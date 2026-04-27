@@ -1,18 +1,45 @@
-# TÀI LIỆU THIẾT KẾ WIREFRAME & UI/UX SPECIFICATION
+# TÀI LIỆU THIẾT KẾ GIAO DIỆN CHI TIẾT (FULL UI/UX WIREFRAME)
 
 **Dự án:** Quản lý Cửa hàng Vật tư Nông nghiệp
-**Phong cách thiết kế:** Hiện đại, Dashboard-centric, tối ưu cho WinForms (GunaUI2/Bunifu).
-**Màu sắc chủ đạo:** Xanh lá (Nông nghiệp), Xanh dương (Tin cậy), Cam (Cảnh báo).
+**Phong cách:** Modern Dashboard, GunaUI2/Bunifu.
+**Chủ đề:** 🌿 Nông nghiệp Xanh.
 
 ---
 
-## 1. MÀN HÌNH ĐĂNG NHẬP (LOGIN SCREEN)
+## 1. BỐ CỤC TỔNG THỂ (GLOBAL LAYOUT)
+
+```text
+__________________________________________________________________________
+| [=] LOGO APP     | [ Breadcrumb: Trang chủ > Bán hàng ]   [🔔] [👤 Admin] |
+|------------------|------------------------------------------------------|
+| ( ) Tổng quan    |                                                      |
+| ( ) Bán hàng     |                                                      |
+| ( ) Nhập hàng    |                                                      |
+| ( ) Sản phẩm     |               VÙNG NỘI DUNG CHÍNH                    |
+| ( ) Lô hàng      |             (HIỂN THỊ CÁC USERCONTROL)               |
+| ( ) Khách hàng   |                                                      |
+| ( ) Công nợ      |                                                      |
+| ( ) Báo cáo      |                                                      |
+| ( ) Cài đặt      |                                                      |
+|------------------|                                                      |
+| [v] Thu gọn      | [ Thời gian: 27/04/2026 14:30 ] [ Version 1.0 ]      |
+|__________________|______________________________________________________|
+```
+
+**Mô tả:**
+- **Sidebar:** Guna2Panel bên trái, chứa các Guna2Button chuyển đổi màn hình.
+- **Header:** Guna2GradientPanel trên cùng, chứa tên màn hình hiện tại và nút thông báo hàng cận date.
+- **Footer:** StatusStrip hiển thị thời gian hệ thống và phiên bản.
+
+---
+
+## 2. MÀN HÌNH ĐĂNG NHẬP (LOGIN)
 
 ```text
 __________________________________________________________
 |                                                         |
-|      [ LOGO CỬA HÀNG ]                                  |
-|      QUẢN LÝ VẬT TƯ NÔNG NGHIỆP                         |
+|      [      HÌNH ẢNH MINH HỌA NÔNG NGHIỆP      ]        |
+|      [           (Banner bên trái)             ]        |
 |                                                         |
 |      --------------------------------------------       |
 |      |  [icon] Tài khoản: [____________________] |      |
@@ -20,129 +47,158 @@ __________________________________________________________
 |      |  [icon] Mật khẩu:  [____________________] |      |
 |      --------------------------------------------       |
 |                                                         |
-|      [ ] Ghi nhớ đăng nhập         [Quên mật khẩu?]     |
+|      [x] Ghi nhớ đăng nhập         [Quên mật khẩu?]     |
 |                                                         |
 |             [ BUTTON: ĐĂNG NHẬP ]                       |
 |_________________________________________________________|
 ```
 
-**Mô tả chi tiết:**
-- **Control gợi ý:** Guna2GradientPanel cho nền, Guna2TextBox (có Icon Left), Guna2Button (bo góc).
-- **Trải nghiệm người dùng:** Nhấn `Enter` để đăng nhập nhanh. Focus sẵn vào ô Tài khoản khi mở app.
+**Mô tả:** 
+- Guna2ShadowForm để tạo bóng đổ cho cửa sổ.
+- Guna2TextBox có thuộc tính `IconLeft` và `PlaceholderText`.
+- Guna2Button với hiệu ứng `HoverState` đổi màu.
 
 ---
 
-## 2. BỐ CỤC CHÍNH (MAIN LAYOUT / DASHBOARD)
-
-```text
-__________________________________________________________
-| SIDEBAR (Menu)  | HEADER: [ Tên Cửa Hàng ] [User] [Date] |
-|-----------------|----------------------------------------|
-| [ ] Tổng quan   |                                        |
-| [ ] Bán hàng    |                                        |
-| [ ] Nhập hàng   |          VÙNG NỘI DUNG CHÍNH           |
-| [ ] Sản phẩm    |          (MAIN CONTENT AREA)           |
-| [ ] Khách hàng  |                                        |
-| [ ] Công nợ     |                                        |
-| [ ] Báo cáo     |                                        |
-| [ ] Cấu hình    |                                        |
-|-----------------|________________________________________|
-```
-
-**Mô tả chi tiết:**
-- **Sidebar:** Dùng Guna2Panel, các nút Menu dùng Guna2Button loại `CheckedState` để highlight menu đang chọn.
-- **Header:** Hiển thị thời gian thực và tên nhân viên đang trực.
-
----
-
-## 3. MÀN HÌNH BÁN HÀNG (POS - POINT OF SALE)
-*Giao diện quan trọng nhất, cần thao tác cực nhanh.*
+## 3. DASHBOARD (TỔNG QUAN)
 
 ```text
 __________________________________________________________________________
-| [ Tìm sản phẩm... (F1) ] [ Quét mã vạch ] | [ Khách hàng: [________] +] |
-|-------------------------------------------|-----------------------------|
-| DANH SÁCH SẢN PHẨM CHỌN (Grid)            | THÔNG TIN ĐƠN HÀNG          |
-| | STT | Tên | Lô | ĐVT | SL | Giá | T.Tiền | |---------------------------|
-| |-----|-----|----|-----|----|-----|--------| | Tổng tiền:     1.500.000 |
-| | 1   | Anvil|L01| Chai| 10 | 120k| 1.200k | | Chiết khấu:       50.000 |
-| | 2   | Regnt|L02| Gói | 5  | 50k |  250k  | | PHẢI THANH TOÁN: 1.450.000 |
-|                                           | |---------------------------|
-|-------------------------------------------| | HÌNH THỨC:                |
-| [F2: Lưu & In] [F3: Chỉ lưu] [F4: Hủy]    | | ( ) Tiền mặt  (*) Ghi nợ  |
-|___________________________________________|_____________________________|
+|  [ TỔNG DOANH THU ]  [ ĐƠN HÀNG MỚI ]  [ KHÁCH CÒN NỢ ]  [ GIÁ TRỊ KHO ] |
+|  [    15.000.000   ]  [      24      ]  [  120.000.000 ]  [ 850.000.000 ] |
+|-------------------------------------------------------------------------|
+|                                     |                                   |
+|       BIỂU ĐỒ DOANH THU 7 NGÀY      |      CẢNH BÁO HÀNG CẬN DATE       |
+|             (Line Chart)            |   | SP       | Lô  | HSD    | SL | |
+|                                     |   |----------|-----|--------|----| |
+|                                     |   | Anvil    | L01 | 05/26  | 10 | |
+|                                     |   | Regent   | L09 | 06/26  | 45 | |
+|_____________________________________|___________________________________|
 ```
 
-**Mô tả chi tiết:**
-- **Grid:** Hiển thị rõ cột "Lô" (Batch). Khi chọn 1 sản phẩm, nếu có nhiều lô, phải hiện Popup chọn Lô (Ưu tiên lô gần hết hạn).
-- **Phím tắt:** F1: Tìm kiếm, F2: Thanh toán, F10: Đổi đơn vị tính.
-- **Xử lý Nợ:** Nếu chọn "Ghi nợ", hệ thống tự động cộng vào `TotalDebt` của Khách hàng sau khi bấm Lưu.
+**Mô tả:**
+- **Top Cards:** Guna2Panel bo góc, đổ bóng.
+- **Chart:** Sử dụng Guna.Charts hoặc LiveCharts.
+- **Alert Table:** Guna2DataGridView loại nhỏ, highlight màu đỏ cho các dòng cận date.
 
 ---
 
-## 4. MÀN HÌNH NHẬP HÀNG (INVENTORY INBOUND)
+## 4. QUẢN LÝ SẢN PHẨM & ĐƠN VỊ TÍNH
 
 ```text
 __________________________________________________________________________
-| Nhà cung cấp: [___________________] [+] | Ngày nhập: [ 26/04/2026 ]     |
+| [ Tìm sản phẩm... ] [ + Thêm mới ] [ Xuất Excel ] [ Bộ lọc Danh mục ▼ ] |
 |-------------------------------------------------------------------------|
-| [ Thêm dòng mới ]                                                       |
-| | Sản phẩm | ĐVT | SL | Giá Nhập | NSX | HSD | Số Lô | Thành tiền |     |
-| |----------|-----|----|----------|-----|-----|-------|------------|     |
-| | [____▼]  | Chai| 100| 80.000   |...  |...  | AB123 | 8.000.000  |     |
+| | ID | Hình | Tên Sản Phẩm | Hoạt Chất | Quy Cách | ĐVT Chính | Giá Bán | |
+| |----|------|--------------|-----------|----------|-----------|---------| |
+| | 01 | [im] | Anvil 5SC    | Hexacon...| 100ml    | Chai      | 85.000  | |
+| | 02 | [im] | Kali Miền Nam| Kali...   | 50kg     | Bao       | 650.000 | |
 |-------------------------------------------------------------------------|
-|                                           Tổng tiền nhập: 8.000.000     |
-| [ Nút: Hoàn tất nhập kho ]                Thanh toán:     [________]    |
+| [ Popup Thêm Mới:                                                       |
+|   - Tên: [____________]  Danh mục: [____▼]                              |
+|   - Đơn vị quy đổi: [1 Thùng] = [20 Chai] = [200 Gói]                   |
+| ]                                                                       |
 |_________________________________________________________________________|
 ```
 
-**Mô tả chi tiết:**
-- **Nhập lô:** Đây là nơi tạo mới các `Batch`. Buộc phải nhập HSD và Số Lô.
-- **Giá nhập:** Tự động gợi ý giá nhập lần gần nhất của nhà cung cấp đó.
+**Mô tả:**
+- Quản lý quy đổi đơn vị tính (Unit Conversion) đa cấp.
+- Guna2DataGridView hỗ trợ Image Column để hiện ảnh sản phẩm nhỏ.
 
 ---
 
-## 5. MÀN HÌNH QUẢN LÝ CÔNG NỢ (DEBT MANAGEMENT)
+## 5. MÀN HÌNH BÁN HÀNG (POS)
 
 ```text
 __________________________________________________________________________
-| [ Tìm khách hàng... ] [ Trạng thái: ( ) Còn nợ  ( ) Hết nợ ] [ Xuất Excel]|
-|--------------------------------------------------------------------------|
-| DANH SÁCH KHÁCH HÀNG NỢ                                                  |
-| | Tên Khách Hàng | Điện thoại | Nợ đầu kỳ | Phát sinh | Đã trả | Còn nợ | |
-| |----------------|------------|-----------|-----------|--------|--------| |
-| | Nguyễn Văn A   | 090xxx     | 5.000k    | 2.000k    | 1.000k | 6.000k | |
-|--------------------------------------------------------------------------|
-| [ Nút: Thu tiền nợ ] [ Nút: Xem lịch sử chi tiết ] [ Nút: In bảng kê ]   |
-|__________________________________________________________________________|
+| [ F1: Tìm SP/Quét mã... ]          | Khách hàng: [ Nguyễn Văn A  ] [+]  |
+|------------------------------------|------------------------------------|
+| DANH SÁCH MUA HÀNG                 | CHI TIẾT THANH TOÁN                |
+| | Tên SP | Lô | ĐVT | SL | Giá | TT| |----------------------------------|
+| |--------|----|-----|----|-----|---| | Tổng tiền hàng:      1.500.000 |
+| | Anvil  |L01| Chai| 10 | 85k |850| | Giảm giá:               50.000 |
+| |        |    |     |    |     |   | |----------------------------------|
+| |        |    |     |    |     |   | | KHÁCH PHẢI TRẢ:      1.450.000 |
+| |        |    |     |    |     |   | |----------------------------------|
+| |        |    |     |    |     |   | | HÌNH THỨC:                       |
+| |        |    |     |    |     |   | | ( ) Tiền mặt ( ) CK  (*) Ghi nợ |
+|------------------------------------| [ BUTTON: F2 - LƯU & IN HÓA ĐƠN ]  |
+| [F3: Hủy đơn] [F4: Xem đơn cũ]     | [ BUTTON: F5 - CHỈ LƯU ĐƠN      ]  |
+|____________________________________|____________________________________|
 ```
 
-**Mô tả chi tiết:**
-- **Thu tiền nợ:** Mở một Dialog cho phép nhập số tiền khách trả, chọn phương thức (Tiền mặt/Chuyển khoản).
-- **Xem chi tiết:** Hiển thị tất cả các `Order` mà khách chưa trả tiền và các `DebtTransaction` đã thực hiện.
+**Mô tả:**
+- **Popup chọn Lô:** Khi chọn sản phẩm, hiện bảng chọn Lô còn tồn (Ưu tiên FEFO).
+- **Phím tắt:** Bắt sự kiện KeyDown toàn Form (F1, F2, F5...).
 
 ---
 
-## 6. MÀN HÌNH QUẢN LÝ LÔ HÀNG (BATCH TRACKING)
-*Dành riêng cho việc theo dõi hạn sử dụng.*
+## 6. QUẢN LÝ LÔ HÀNG & HSD (BATCH)
 
 ```text
 __________________________________________________________________________
-| [ Bộ lọc: ( ) Sắp hết hạn  ( ) Còn hàng  ( ) Hết hàng ] [ Tìm sản phẩm ] |
+| [ Lọc: ( ) Tất cả  (*) Sắp hết hạn  ( ) Hết hàng ] [ Tìm theo Lô... ]   |
 |--------------------------------------------------------------------------|
-| | Tên sản phẩm | Số Lô | Ngày nhập | HSD | Ngày còn lại | Tồn kho |      |
-| |--------------|-------|-----------|-----|--------------|---------|      |
-| | Anvil 5SC    | L001  | 01/01/26  |...  | 45 ngày [!]  | 15 chai |      |
-| | Tung hieu    | L009  | 10/02/26  |...  | 300 ngày     | 100 chai|      |
+| | Sản phẩm | Số Lô | Ngày Nhập | Ngày SX | Hạn Dùng | Tồn Kho | Trạng Thái|
+| |----------|-------|-----------|---------|----------|---------|-----------|
+| | Regent   | L123  | 01/01/26  | 10/25   | 10/26    | 150 Gói | Bình thường|
+| | Anvil    | L002  | 15/02/26  | 05/24   | 05/26    | 12 Chai | Cận Date !!|
 |--------------------------------------------------------------------------|
-| [ ! ] Màu đỏ: Cận date (< 60 ngày) | Màu cam: Cận date (< 180 ngày)      |
+| [ Nút: Xuất báo cáo tồn kho theo lô ] [ Nút: Tiêu hủy/Trả hàng NCC ]     |
 |__________________________________________________________________________|
 ```
 
+**Mô tả:**
+- Hiển thị trạng thái bằng Guna2Chip (Đỏ: Hết hạn, Cam: Cận date, Xanh: An toàn).
+
 ---
 
-## Ghi chú cho Developer:
-1. **Validation:** Tất cả các ô số lượng, đơn giá phải chặn không cho nhập chữ.
-2. **Responsive:** Các Grid phải co giãn theo kích thước màn hình (Anchor: Top, Bottom, Left, Right).
-3. **Feedback:** Khi lưu thành công phải có Toast Notification (Bunifu Snackbar) để người dùng biết.
-4. **Data Binding:** Sử dụng mô hình MVVM hoặc ít nhất là tách biệt logic xử lý ra khỏi Form code-behind.
+## 7. QUẢN LÝ CÔNG NỢ (DEBT MANAGEMENT)
+
+```text
+__________________________________________________________________________
+| [ Tab: Nợ Khách Hàng ] [ Tab: Nợ Nhà Cung Cấp ] [ Lịch sử trả nợ ]      |
+|-------------------------------------------------------------------------|
+| [ Tìm khách hàng... ] [ Tổng nợ: 1.250.000.000đ ] [ Xuất file đối soát ]|
+|-------------------------------------------------------------------------|
+| | Tên Khách Hàng | Địa chỉ | Số ĐT | Nợ Cũ | Phát Sinh | Đã Trả | Còn Nợ | |
+| |----------------|---------|-------|-------|-----------|--------|--------| |
+| | Trần Văn B     | Ấp 1... | 091...| 10tr  | 5tr       | 2tr    | 13tr   | |
+|-------------------------------------------------------------------------|
+| [ Nút: THU TIỀN NỢ (Popup) ] [ Nút: Xem chi tiết hóa đơn nợ ]           |
+|_________________________________________________________________________|
+```
+
+**Mô tả:**
+- Chức năng "Thu tiền nợ" cho phép trả một phần hoặc toàn bộ.
+- "Chi tiết hóa đơn nợ" liệt kê tất cả các phiếu bán hàng chưa thanh toán của khách đó.
+
+---
+
+## 8. NHẬP KHO (IMPORT)
+
+```text
+__________________________________________________________________________
+| Nhà cung cấp: [ Đông Nam A ▼ ] [+] | Ngày nhập: [ 27/04/2026 ]         |
+|-------------------------------------------------------------------------|
+| [ + Thêm dòng sản phẩm ]                                                |
+| | SP | ĐVT | SL | Giá Nhập | Số Lô | Ngày SX | Hạn Dùng | Thành Tiền |  |
+| |----|-----|----|----------|-------|---------|----------|------------|  |
+| |[v] | Chai| 100| 75.000   | AB45  | 01/26   | 01/28    | 7.500.000  |  |
+|-------------------------------------------------------------------------|
+|                                         Tổng tiền nhập: 7.500.000       |
+| [ Nút: HOÀN TẤT NHẬP KHO ]              Thanh toán:     [________]      |
+|_________________________________________________________________________|
+```
+
+**Mô tả:**
+- Ép buộc nhập Số Lô và HSD khi nhập hàng mới.
+- Tự động cộng tồn kho vào bảng `Batch`.
+
+---
+
+## Ghi chú cho nhóm Code:
+1. **Guna2Elipse:** Dùng để bo góc tất cả các Form và Panel.
+2. **Guna2DragControl:** Cho phép nắm kéo Header để di chuyển cửa sổ.
+3. **DataBinding:** Tất cả các bảng (Grid) phải dùng `BindingSource` để lọc dữ liệu nhanh.
+4. **Validation:** Kiểm tra HSD không được nhỏ hơn ngày hiện tại khi nhập hàng.
