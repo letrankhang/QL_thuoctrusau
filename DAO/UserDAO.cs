@@ -3,67 +3,83 @@ using QL_CuaHangBanThuocTruSau.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace QL_CuaHangBanThuocTruSau.DAO {
     public class UserDAO {
-        private readonly AppDbContext _context;
-
-        public UserDAO () {
-            _context = new AppDbContext ();
-        }
+        public UserDAO () { }
 
         //lấy toàn bộ thông tin người dùng
         public List<User> GetAllUsers () {
-            try
+            using (var context = new AppDbContext())
             {
-                return _context.Users.ToList ();
-            }
-            catch( Exception ex )
-            {
-                // ghi log ra màn hình 
-                Console.WriteLine ("Lỗi khi lấy danh sách user: " + ex.Message);
-                return new List<User> ();
+                try
+                {
+                    return context.Users.AsNoTracking().ToList ();
+                }
+                catch( Exception ex )
+                {
+                    Console.WriteLine ("Lỗi khi lấy danh sách user: " + ex.Message);
+                    return new List<User> ();
+                }
             }
         }
 
         /// Lấy thông tin chi tiết một người dùng theo ID
         public User GetUserById (int userId) {
-            try
+            using (var context = new AppDbContext())
             {
-                return _context.Users.FirstOrDefault (u => u.UserID == userId);
-            }
-            catch
-            {
-                return null;
+                try
+                {
+                    return context.Users.AsNoTracking().FirstOrDefault (u => u.UserID == userId);
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
 
         //kiểm tra người dùng có tồn tại ko
         public bool IsUsernameExists (string username) {
-            return _context.Users.Any (u => u.Username == username);
+            using (var context = new AppDbContext())
+            {
+                return context.Users.Any (u => u.Username == username);
+            }
+        }
+
+        public User GetUserByUsername (string username) {
+            using (var context = new AppDbContext())
+            {
+                try
+                {
+                    return context.Users.AsNoTracking().FirstOrDefault (u => u.Username == username);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
         }
 
         //thêm user mới trả về thành công hoặc ko thành công
         public bool AddUser (User user) {
-            try
+            using (var context = new AppDbContext())
             {
-                // Kiểm tra null
-                if( user == null ) return false;
-
-                // Kiểm tra trùng tên đăng nhập trước khi thêm
-                if( IsUsernameExists (user.Username) )
+                try
                 {
+                    if( user == null ) return false;
+                    if( context.Users.Any (u => u.Username == user.Username) ) return false;
+
+                    context.Users.Add (user);
+                    context.SaveChanges ();
+                    return true;
+                }
+                catch( Exception ex )
+                {
+                    Console.WriteLine ("Lỗi khi thêm user: " + ex.Message);
                     return false;
                 }
-
-                _context.Users.Add (user);
-                _context.SaveChanges ();
-                return true;
-            }
-            catch( Exception ex )
-            {
-                Console.WriteLine ("Lỗi khi thêm user: " + ex.Message);
-                return false;
             }
         }
 
@@ -71,32 +87,34 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
         /// Cập nhật thông tin người dùng đã tồn tại
         /// </summary>
         public bool UpdateUser (User user) {
-            try
+            using (var context = new AppDbContext())
             {
-                if( user == null ) return false;
-
-                var existingUser = _context.Users.FirstOrDefault (u => u.UserID == user.UserID);
-                if( existingUser != null )
+                try
                 {
-                    existingUser.FullName = user.FullName;
-                    existingUser.Role = user.Role;
-                    existingUser.Status = user.Status;
+                    if( user == null ) return false;
 
-                    // Chỉ cập nhật mật khẩu nếu nó được cung cấp (không trống)
-                    if( !string.IsNullOrEmpty (user.Password) )
+                    var existingUser = context.Users.FirstOrDefault (u => u.UserID == user.UserID);
+                    if( existingUser != null )
                     {
-                        existingUser.Password = user.Password;
-                    }
+                        existingUser.FullName = user.FullName;
+                        existingUser.Role = user.Role;
+                        existingUser.Status = user.Status;
 
-                    _context.SaveChanges ();
-                    return true;
+                        if( !string.IsNullOrEmpty (user.Password) )
+                        {
+                            existingUser.Password = user.Password;
+                        }
+
+                        context.SaveChanges ();
+                        return true;
+                    }
+                    return false;
                 }
-                return false;
-            }
-            catch( Exception ex )
-            {
-                Console.WriteLine ("Lỗi khi sửa thông tin user: " + ex.Message);
-                return false;
+                catch( Exception ex )
+                {
+                    Console.WriteLine ("Lỗi khi sửa thông tin user: " + ex.Message);
+                    return false;
+                }
             }
         }
 
@@ -104,19 +122,22 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
         /// Xóa mềm người dùng (Chuyển trạng thái Status sang false)
         /// </summary>
         public bool DeleteUser (int userId) {
-            try
+            using (var context = new AppDbContext())
             {
-                var existingUser = _context.Users.FirstOrDefault (u => u.UserID == userId);
-                if( existingUser == null ) return false;
+                try
+                {
+                    var existingUser = context.Users.FirstOrDefault (u => u.UserID == userId);
+                    if( existingUser == null ) return false;
 
-                existingUser.Status = false; // Vô hiệu hóa người dùng
-                _context.SaveChanges ();
-                return true;
-            }
-            catch( Exception ex )
-            {
-                Console.WriteLine ("Lỗi khi xóa mềm user: " + ex.Message);
-                return false;
+                    existingUser.Status = false;
+                    context.SaveChanges ();
+                    return true;
+                }
+                catch( Exception ex )
+                {
+                    Console.WriteLine ("Lỗi khi xóa mềm user: " + ex.Message);
+                    return false;
+                }
             }
         }
 
@@ -124,29 +145,30 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
         /// Xóa vĩnh viễn người dùng khỏi database
         /// </summary>
         public bool HardDeleteUser (int userId) {
-            try
+            using (var context = new AppDbContext())
             {
-                var user = _context.Users.FirstOrDefault (u => u.UserID == userId);
-                if( user == null ) return false;
-
-                // Kiểm tra ràng buộc dữ liệu (nếu user đã có đơn hàng hoặc nhập hàng thì không được xóa vĩnh viễn)
-                bool hasOrders = _context.Orders.Any (o => o.UserID == userId);
-                bool hasImports = _context.Imports.Any (i => i.UserID == userId);
-
-                if( hasOrders || hasImports )
+                try
                 {
-                    Console.WriteLine ("Không thể xóa vĩnh viễn user đã có lịch sử giao dịch. Hãy sử dụng xóa mềm.");
+                    var user = context.Users.FirstOrDefault (u => u.UserID == userId);
+                    if( user == null ) return false;
+
+                    bool hasOrders = context.Orders.Any (o => o.UserID == userId);
+                    bool hasImports = context.Imports.Any (i => i.UserID == userId);
+
+                    if( hasOrders || hasImports )
+                    {
+                        return false;
+                    }
+
+                    context.Users.Remove (user);
+                    context.SaveChanges ();
+                    return true;
+                }
+                catch( Exception ex )
+                {
+                    Console.WriteLine ("Lỗi khi xóa vĩnh viễn user: " + ex.Message);
                     return false;
                 }
-
-                _context.Users.Remove (user);
-                _context.SaveChanges ();
-                return true;
-            }
-            catch( Exception ex )
-            {
-                Console.WriteLine ("Lỗi khi xóa vĩnh viễn user: " + ex.Message);
-                return false;
             }
         }
     }

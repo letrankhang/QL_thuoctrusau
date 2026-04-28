@@ -39,5 +39,22 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
                 u.FullName.ToLower ().Contains (keyword)
             ).ToList ();
         }
+
+        public bool DeleteUser (string username) {
+            var user = _userBUS.GetUserByUsername (username);
+            if( user != null )
+            {
+                return _userBUS.DeleteUser (user.UserID);
+            }
+            return false;
+        }
+
+        public bool UpdateUser (int userId, string password, string fullName, string role, bool status) {
+            return _userBUS.UpdateUserInfo (userId, password, fullName, role, status);
+        }
+
+        public User GetUserByUsername (string username) {
+            return _userBUS.GetUserByUsername (username);
+        }
     }
 }

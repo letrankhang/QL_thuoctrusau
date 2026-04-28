@@ -58,6 +58,10 @@ namespace QL_CuaHangBanThuocTruSau.BUS {
             return _userDAO.GetUserById (userId);
         }
 
+        public User GetUserByUsername (string username) {
+            return _userDAO.GetUserByUsername (username);
+        }
+
         //cập nhật thông tin user
         public bool UpdateUserInfo (int userId, string password, string fullName, string role, bool status) {
             User user = new User
