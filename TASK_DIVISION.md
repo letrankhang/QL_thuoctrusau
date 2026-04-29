@@ -2,7 +2,7 @@
 
 **Dự án:** Quản lý Cửa hàng Vật tư Nông nghiệp
 **Tổng số thành viên:** 4
-**Công nghệ:** C# WinForms, EF Core, GunaUI2/Bunifu, SQL Server.
+**Công nghệ:** C# WinForms, Entity Framework 6 (EF6), GunaUI2, Bunifu UI, SQL Server.
 
 ---
 

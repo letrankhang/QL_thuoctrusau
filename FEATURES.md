@@ -20,7 +20,7 @@
 - **Quản lý Danh mục:** Phân loại sản phẩm (Thuốc trừ sâu, phân bón, hạt giống...).
 - **Quản lý Sản phẩm:** 
     - Lưu trữ tên, hoạt chất, quy cách đóng gói.
-    - Thiết lập đơn vị tính đa cấp (Ví dụ: Thùng -> Chai -> Gói).
+    - Thiết lập đơn vị tính thông qua các quy cách sản phẩm (Variants).
 - **Quản lý Lô hàng (Batch Tracking) - *Trọng tâm*:**
     - Ghi nhận Số lô, Ngày sản xuất, Hạn sử dụng cho từng đợt nhập.
     - Theo dõi tồn kho chi tiết theo từng lô cụ thể.

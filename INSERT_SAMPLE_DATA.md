@@ -66,8 +66,8 @@ SET IDENTITY_INSERT Imports OFF;
 SET IDENTITY_INSERT Batches ON;
 INSERT INTO Batches (BatchID, ImportID, VariantID, ImportPrice, InitialQuantity, RemainingQuantity, ManufactureDate, ExpiryDate)
 VALUES 
-(1, 1, 1, 110000, 100, 90, '2025-01-01', '2027-01-01'),
-(2, 2, 2, 13000, 100, 100, '2025-02-01', '2027-02-01');
+(1, 1, 1, 110000, 100, 90, '2026-01-01', '2028-01-01'),
+(2, 2, 2, 13000, 100, 100, '2026-02-01', '2028-02-01');
 SET IDENTITY_INSERT Batches OFF;
 
 -- 9. Chèn dữ liệu vào bảng Orders
