@@ -84,7 +84,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(271, 1142);
+            this.guna2Panel2.Size = new System.Drawing.Size(271, 1106);
             this.guna2Panel2.TabIndex = 4;
             // 
             // btnDangXuat
@@ -93,7 +93,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnDangXuat.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnDangXuat.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnDangXuat.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.btnDangXuat.Location = new System.Drawing.Point(50, 1050);
+            this.btnDangXuat.Location = new System.Drawing.Point(50, 1014);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.Size = new System.Drawing.Size(171, 56);
             this.btnDangXuat.TabIndex = 8;
@@ -133,6 +133,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Button11.Size = new System.Drawing.Size(171, 56);
             this.guna2Button11.TabIndex = 13;
             this.guna2Button11.Text = "KHÁCH HÀNG";
+            this.guna2Button11.Click += new System.EventHandler(this.guna2Button11_Click);
             // 
             // guna2Button10
             // 
@@ -177,6 +178,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Button2.Size = new System.Drawing.Size(171, 56);
             this.guna2Button2.TabIndex = 9;
             this.guna2Button2.Text = "BÁN HÀNG";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // guna2Button1
             // 
@@ -218,7 +220,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(271, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1675, 1142);
+            this.pnlMain.Size = new System.Drawing.Size(1675, 1106);
             this.pnlMain.TabIndex = 6;
             // 
             // pnlContent
@@ -226,8 +228,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 160);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1675, 982);
+            this.pnlContent.Size = new System.Drawing.Size(1675, 946);
             this.pnlContent.TabIndex = 1;
+            this.pnlContent.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContent_Paint);
             // 
             // pnlTopBar
             // 
@@ -259,7 +262,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblInterfaceName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
             this.lblInterfaceName.Location = new System.Drawing.Point(30, 53);
             this.lblInterfaceName.Name = "lblInterfaceName";
-            this.lblInterfaceName.Size = new System.Drawing.Size(225, 54);
+            this.lblInterfaceName.Size = new System.Drawing.Size(229, 54);
             this.lblInterfaceName.TabIndex = 0;
             this.lblInterfaceName.Text = "Dashboard";
             // 
@@ -267,7 +270,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1946, 1142);
+            this.ClientSize = new System.Drawing.Size(1946, 1106);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.guna2Panel2);

@@ -5,25 +5,24 @@ using System.Linq;
 
 namespace QL_CuaHangBanThuocTruSau.DAO {
     public class LoginDAO {
-        private readonly AppDbContext _context;
-
-        public LoginDAO () {
-            _context = new AppDbContext ();
-        }
+        public LoginDAO () { }
 
         public User GetUserByCredentials (string username, string password) {
-            try
+            using (var context = new AppDbContext())
             {
-                // Truy vấn người dùng từ database (So sánh trực tiếp Password)
-                return _context.Users.FirstOrDefault (u =>
-                    u.Username == username &&
-                    u.Password == password &&
-                    u.Status == true);
-            }
-            catch( Exception )
-            {
-
-                return null;
+                try
+                {
+                    // Truy vấn người dùng từ database (So sánh trực tiếp Password)
+                    return context.Users.FirstOrDefault (u =>
+                        u.Username == username &&
+                        u.Password == password &&
+                        u.Status == true);
+                }
+                catch( Exception ex )
+                {
+                    Console.WriteLine("Lỗi Database: " + ex.Message);
+                    return null;
+                }
             }
         }
     }
