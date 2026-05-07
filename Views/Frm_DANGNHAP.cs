@@ -16,7 +16,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         }
 
         private void btnDangNhap_Click_1 (object sender, EventArgs e) {
-            string result = _loginController.HandleLogin (txtTenTK.Text, txtMK.Text);
+            string result = _loginController.HandleLogin (txtTenTK.Text.Trim(), txtMK.Text.Trim());
 
             if( result == "SUCCESS" )
             {
@@ -31,8 +31,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
         }
 
-        private void guna2HtmlLabel7_Click (object sender, EventArgs e) {
-
+        private void btnExit_Click_1(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

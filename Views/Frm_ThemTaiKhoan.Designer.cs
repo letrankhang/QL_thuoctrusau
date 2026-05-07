@@ -30,6 +30,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,13 +42,14 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             // pnlHeader
             // 
-            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.pnlHeader.BackColor = System.Drawing.Color.SteelBlue;
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Controls.Add(this.btnExit);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(500, 60);
+            this.pnlHeader.Size = new System.Drawing.Size(444, 48);
             this.pnlHeader.TabIndex = 0;
             // 
             // lblTitle
@@ -55,9 +57,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(20, 15);
+            this.lblTitle.Location = new System.Drawing.Point(18, 12);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(196, 32);
+            this.lblTitle.Size = new System.Drawing.Size(152, 25);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Thêm Tài Khoản";
             // 
@@ -66,9 +68,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.FillColor = System.Drawing.Color.Transparent;
             this.btnExit.IconColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(450, 10);
+            this.btnExit.Location = new System.Drawing.Point(400, 8);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(40, 40);
+            this.btnExit.Size = new System.Drawing.Size(36, 32);
             this.btnExit.TabIndex = 1;
             // 
             // txtUsername
@@ -77,12 +80,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtUsername.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtUsername.DefaultText = "";
             this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtUsername.Location = new System.Drawing.Point(40, 110);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtUsername.Location = new System.Drawing.Point(36, 88);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PlaceholderText = "Nhập tên đăng nhập...";
             this.txtUsername.SelectedText = "";
-            this.txtUsername.Size = new System.Drawing.Size(420, 45);
+            this.txtUsername.Size = new System.Drawing.Size(373, 36);
             this.txtUsername.TabIndex = 1;
             // 
             // txtPassword
@@ -91,13 +94,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPassword.DefaultText = "";
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtPassword.Location = new System.Drawing.Point(40, 290);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPassword.Location = new System.Drawing.Point(36, 232);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '●';
             this.txtPassword.PlaceholderText = "Nhập mật khẩu...";
             this.txtPassword.SelectedText = "";
-            this.txtPassword.Size = new System.Drawing.Size(420, 45);
+            this.txtPassword.Size = new System.Drawing.Size(373, 36);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -107,12 +110,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtFullName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtFullName.DefaultText = "";
             this.txtFullName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtFullName.Location = new System.Drawing.Point(40, 200);
-            this.txtFullName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtFullName.Location = new System.Drawing.Point(36, 160);
+            this.txtFullName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.PlaceholderText = "Nhập họ và tên...";
             this.txtFullName.SelectedText = "";
-            this.txtFullName.Size = new System.Drawing.Size(420, 45);
+            this.txtFullName.Size = new System.Drawing.Size(373, 36);
             this.txtFullName.TabIndex = 2;
             // 
             // cboRole
@@ -129,31 +132,35 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.cboRole.Items.AddRange(new object[] {
             "Admin",
             "Staff"});
-            this.cboRole.Location = new System.Drawing.Point(40, 380);
+            this.cboRole.Location = new System.Drawing.Point(36, 304);
+            this.cboRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboRole.Name = "cboRole";
-            this.cboRole.Size = new System.Drawing.Size(420, 36);
+            this.cboRole.Size = new System.Drawing.Size(374, 36);
             this.cboRole.StartIndex = 1;
             this.cboRole.TabIndex = 4;
             // 
             // btnSave
             // 
-            this.btnSave.BorderRadius = 5;
+            this.btnSave.BackColor = System.Drawing.Color.White;
+            this.btnSave.BorderRadius = 10;
             this.btnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSave.FillColor = System.Drawing.Color.SteelBlue;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(260, 460);
+            this.btnSave.Location = new System.Drawing.Point(231, 368);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(200, 50);
+            this.btnSave.Size = new System.Drawing.Size(178, 40);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "LƯU";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.BorderRadius = 5;
+            this.btnCancel.BorderRadius = 10;
             this.btnCancel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnCancel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnCancel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -161,9 +168,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnCancel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
-            this.btnCancel.Location = new System.Drawing.Point(40, 460);
+            this.btnCancel.Location = new System.Drawing.Point(36, 368);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(200, 50);
+            this.btnCancel.Size = new System.Drawing.Size(178, 40);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "HỦY";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -172,9 +180,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(40, 80);
+            this.label1.Location = new System.Drawing.Point(36, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 38);
+            this.label1.Size = new System.Drawing.Size(91, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "User Name:";
             // 
@@ -182,9 +190,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(40, 170);
+            this.label2.Location = new System.Drawing.Point(36, 136);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 25);
+            this.label2.Size = new System.Drawing.Size(80, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "Họ và tên:";
             // 
@@ -192,9 +200,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(40, 260);
+            this.label3.Location = new System.Drawing.Point(36, 208);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 25);
+            this.label3.Size = new System.Drawing.Size(79, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Mật khẩu:";
             // 
@@ -202,18 +210,23 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(40, 350);
+            this.label4.Location = new System.Drawing.Point(36, 280);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 25);
+            this.label4.Size = new System.Drawing.Size(69, 20);
             this.label4.TabIndex = 8;
             this.label4.Text = "Chức vụ:";
             // 
+            // guna2DragControl1
+            // 
+            this.guna2DragControl1.DockIndicatorTransparencyValue = 0.6D;
+            this.guna2DragControl1.UseTransparentDrag = true;
+            // 
             // Frm_ThemTaiKhoan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(500, 550);
+            this.ClientSize = new System.Drawing.Size(444, 440);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label4);
@@ -226,6 +239,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.pnlHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Frm_ThemTaiKhoan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Thêm Tài Khoản";
@@ -250,5 +264,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private Guna.UI2.WinForms.Guna2ComboBox cboRole;
         private Guna.UI2.WinForms.Guna2Button btnSave;
         private Guna.UI2.WinForms.Guna2Button btnCancel;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
     }
 }

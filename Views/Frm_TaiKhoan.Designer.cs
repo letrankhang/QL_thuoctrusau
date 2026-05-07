@@ -31,6 +31,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlHeader = new Guna.UI2.WinForms.Guna2Panel();
             this.btnThemUser = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
@@ -54,25 +55,27 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlHeader.Controls.Add(this.txtSearch);
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(20, 20);
+            this.pnlHeader.Location = new System.Drawing.Point(18, 16);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1200, 80);
+            this.pnlHeader.Size = new System.Drawing.Size(1066, 64);
             this.pnlHeader.TabIndex = 0;
             // 
             // btnThemUser
             // 
             this.btnThemUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThemUser.BorderRadius = 8;
+            this.btnThemUser.BorderRadius = 10;
             this.btnThemUser.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnThemUser.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnThemUser.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnThemUser.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnThemUser.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(53)))), ((int)(((byte)(177)))));
+            this.btnThemUser.FillColor = System.Drawing.Color.SteelBlue;
             this.btnThemUser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnThemUser.ForeColor = System.Drawing.Color.White;
-            this.btnThemUser.Location = new System.Drawing.Point(956, 15);
+            this.btnThemUser.Location = new System.Drawing.Point(849, 12);
+            this.btnThemUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThemUser.Name = "btnThemUser";
-            this.btnThemUser.Size = new System.Drawing.Size(216, 45);
+            this.btnThemUser.Size = new System.Drawing.Size(192, 36);
             this.btnThemUser.TabIndex = 2;
             this.btnThemUser.Text = "+ Thêm tài khoản";
             this.btnThemUser.Click += new System.EventHandler(this.btnThemUser_Click);
@@ -89,26 +92,25 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.Location = new System.Drawing.Point(405, 15);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtSearch.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.magnifier;
+            this.txtSearch.Location = new System.Drawing.Point(322, 12);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Tìm kiếm tên đăng nhập...";
             this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(400, 45);
+            this.txtSearch.Size = new System.Drawing.Size(359, 36);
             this.txtSearch.TabIndex = 1;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged_1);
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
-            this.lblTitle.Location = new System.Drawing.Point(25, 15);
+            this.lblTitle.Location = new System.Drawing.Point(22, 12);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(349, 45);
+            this.lblTitle.Size = new System.Drawing.Size(283, 36);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Tài khoản người dùng";
-            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // dgvUsers
             // 
@@ -116,14 +118,17 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.dgvUsers.AllowUserToDeleteRows = false;
             this.dgvUsers.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgvUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Light", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -141,22 +146,33 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.colDelete});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.dgvUsers.Location = new System.Drawing.Point(20, 100);
+            this.dgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.dgvUsers.Location = new System.Drawing.Point(18, 80);
+            this.dgvUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvUsers.MultiSelect = false;
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
+            this.dgvUsers.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.283186F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvUsers.RowHeadersVisible = false;
             this.dgvUsers.RowHeadersWidth = 62;
             this.dgvUsers.RowTemplate.Height = 60;
-            this.dgvUsers.Size = new System.Drawing.Size(1200, 680);
+            this.dgvUsers.RowTemplate.ReadOnly = true;
+            this.dgvUsers.Size = new System.Drawing.Size(1066, 544);
             this.dgvUsers.TabIndex = 1;
             this.dgvUsers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvUsers.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -164,9 +180,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.dgvUsers.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.dgvUsers.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.dgvUsers.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.dgvUsers.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
+            this.dgvUsers.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.dgvUsers.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.dgvUsers.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvUsers.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvUsers.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.dgvUsers.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvUsers.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -177,13 +193,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.dgvUsers.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dgvUsers.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgvUsers.ThemeStyle.RowsStyle.Height = 60;
-            this.dgvUsers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvUsers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.White;
             this.dgvUsers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
             // colAvatar
             // 
-            this.colAvatar.FillWeight = 40F;
-            this.colAvatar.HeaderText = "";
+            this.colAvatar.FillWeight = 60F;
+            this.colAvatar.HeaderText = "Đại diện";
             this.colAvatar.MinimumWidth = 8;
             this.colAvatar.Name = "colAvatar";
             this.colAvatar.ReadOnly = true;
@@ -233,7 +249,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // colEdit
             // 
             this.colEdit.FillWeight = 30F;
-            this.colEdit.HeaderText = "";
+            this.colEdit.HeaderText = "Sửa";
             this.colEdit.MinimumWidth = 8;
             this.colEdit.Name = "colEdit";
             this.colEdit.ReadOnly = true;
@@ -241,22 +257,23 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // colDelete
             // 
             this.colDelete.FillWeight = 30F;
-            this.colDelete.HeaderText = "";
+            this.colDelete.HeaderText = "Xóa";
             this.colDelete.MinimumWidth = 8;
             this.colDelete.Name = "colDelete";
             this.colDelete.ReadOnly = true;
             // 
             // Frm_TaiKhoan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1240, 800);
+            this.ClientSize = new System.Drawing.Size(1102, 640);
             this.Controls.Add(this.dgvUsers);
             this.Controls.Add(this.pnlHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Frm_TaiKhoan";
-            this.Padding = new System.Windows.Forms.Padding(20);
+            this.Padding = new System.Windows.Forms.Padding(18, 16, 18, 16);
             this.Text = "Quản lý Tài khoản";
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();

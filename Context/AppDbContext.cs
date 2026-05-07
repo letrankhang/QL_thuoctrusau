@@ -3,7 +3,10 @@ using System.Data.Entity;
 
 namespace QL_CuaHangBanThuocTruSau.Context {
     public class AppDbContext : DbContext {
-        public AppDbContext () : base ("name=AppDbContext") { }
+        public AppDbContext () : base ("name=AppDbContext")
+        {
+            Database.SetInitializer<AppDbContext>(null);
+        }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }

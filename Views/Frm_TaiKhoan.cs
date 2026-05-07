@@ -208,12 +208,5 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
         }
 
-        private void txtSearch_TextChanged_1 (object sender, EventArgs e) {
-
-        }
-
-        private void lblTitle_Click (object sender, EventArgs e) {
-
-        }
     }
 }

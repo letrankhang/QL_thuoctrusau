@@ -2,6 +2,7 @@ using QL_CuaHangBanThuocTruSau.Context;
 using QL_CuaHangBanThuocTruSau.Models;
 using System;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace QL_CuaHangBanThuocTruSau.DAO {
     public class LoginDAO {
@@ -10,7 +11,6 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
         public LoginDAO () {
             _context = new AppDbContext ();
         }
-
         public User GetUserByCredentials (string username, string password) {
             try
             {

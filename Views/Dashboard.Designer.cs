@@ -24,9 +24,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent () {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelSummary = new System.Windows.Forms.TableLayoutPanel();
             this.pnlRevenue = new System.Windows.Forms.Panel();
@@ -71,7 +71,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TỔNG QUAN HÔM NAY";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // tableLayoutPanelSummary
             // 
@@ -85,11 +84,11 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.tableLayoutPanelSummary.Controls.Add(this.pnlDebt, 2, 0);
             this.tableLayoutPanelSummary.Controls.Add(this.pnlInventory, 3, 0);
             this.tableLayoutPanelSummary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelSummary.Location = new System.Drawing.Point(3, 30);
+            this.tableLayoutPanelSummary.Location = new System.Drawing.Point(3, 24);
             this.tableLayoutPanelSummary.Name = "tableLayoutPanelSummary";
             this.tableLayoutPanelSummary.RowCount = 1;
             this.tableLayoutPanelSummary.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelSummary.Size = new System.Drawing.Size(994, 147);
+            this.tableLayoutPanelSummary.Size = new System.Drawing.Size(994, 153);
             this.tableLayoutPanelSummary.TabIndex = 0;
             // 
             // pnlRevenue
@@ -101,7 +100,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.pnlRevenue.Location = new System.Drawing.Point(10, 10);
             this.pnlRevenue.Margin = new System.Windows.Forms.Padding(10);
             this.pnlRevenue.Name = "pnlRevenue";
-            this.pnlRevenue.Size = new System.Drawing.Size(228, 127);
+            this.pnlRevenue.Size = new System.Drawing.Size(228, 133);
             this.pnlRevenue.TabIndex = 12;
             // 
             // label6
@@ -111,7 +110,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(0, 35);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(228, 92);
+            this.label6.Size = new System.Drawing.Size(228, 98);
             this.label6.TabIndex = 8;
             this.label6.Text = "0 VNĐ";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -137,7 +136,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.pnlOrders.Location = new System.Drawing.Point(258, 10);
             this.pnlOrders.Margin = new System.Windows.Forms.Padding(10);
             this.pnlOrders.Name = "pnlOrders";
-            this.pnlOrders.Size = new System.Drawing.Size(228, 127);
+            this.pnlOrders.Size = new System.Drawing.Size(228, 133);
             this.pnlOrders.TabIndex = 13;
             // 
             // label7
@@ -147,7 +146,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(0, 35);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(228, 92);
+            this.label7.Size = new System.Drawing.Size(228, 98);
             this.label7.TabIndex = 9;
             this.label7.Text = "0";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -173,7 +172,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.pnlDebt.Location = new System.Drawing.Point(506, 10);
             this.pnlDebt.Margin = new System.Windows.Forms.Padding(10);
             this.pnlDebt.Name = "pnlDebt";
-            this.pnlDebt.Size = new System.Drawing.Size(228, 127);
+            this.pnlDebt.Size = new System.Drawing.Size(228, 133);
             this.pnlDebt.TabIndex = 14;
             // 
             // label8
@@ -183,7 +182,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label8.ForeColor = System.Drawing.Color.White;
             this.label8.Location = new System.Drawing.Point(0, 35);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(228, 92);
+            this.label8.Size = new System.Drawing.Size(228, 98);
             this.label8.TabIndex = 10;
             this.label8.Text = "0 VNĐ";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -209,7 +208,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.pnlInventory.Location = new System.Drawing.Point(754, 10);
             this.pnlInventory.Margin = new System.Windows.Forms.Padding(10);
             this.pnlInventory.Name = "pnlInventory";
-            this.pnlInventory.Size = new System.Drawing.Size(230, 127);
+            this.pnlInventory.Size = new System.Drawing.Size(230, 133);
             this.pnlInventory.TabIndex = 15;
             // 
             // label9
@@ -219,7 +218,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(0, 35);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(230, 92);
+            this.label9.Size = new System.Drawing.Size(230, 98);
             this.label9.TabIndex = 11;
             this.label9.Text = "0 VNĐ";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -256,27 +255,27 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.tableLayoutPanelDetails.Controls.Add(this.chart1, 0, 0);
             this.tableLayoutPanelDetails.Controls.Add(this.panelRight, 1, 0);
             this.tableLayoutPanelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelDetails.Location = new System.Drawing.Point(3, 30);
+            this.tableLayoutPanelDetails.Location = new System.Drawing.Point(3, 24);
             this.tableLayoutPanelDetails.Name = "tableLayoutPanelDetails";
             this.tableLayoutPanelDetails.RowCount = 1;
             this.tableLayoutPanelDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelDetails.Size = new System.Drawing.Size(994, 287);
+            this.tableLayoutPanelDetails.Size = new System.Drawing.Size(994, 293);
             this.tableLayoutPanelDetails.TabIndex = 0;
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(640, 281);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(640, 287);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -287,7 +286,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRight.Location = new System.Drawing.Point(649, 3);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(342, 281);
+            this.panelRight.Size = new System.Drawing.Size(342, 287);
             this.panelRight.TabIndex = 1;
             // 
             // dataGridView1
@@ -299,7 +298,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(342, 246);
+            this.dataGridView1.Size = new System.Drawing.Size(342, 252);
             this.dataGridView1.TabIndex = 1;
             // 
             // label1
