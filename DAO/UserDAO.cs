@@ -62,6 +62,39 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
             }
         }
 
+        public User GetUserByEmailOrUsername (string identifier) {
+            using (var context = new AppDbContext())
+            {
+                try
+                {
+                    return context.Users.AsNoTracking().FirstOrDefault (u => u.Username == identifier || u.Email == identifier);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public bool UpdatePassword (int userId, string newPassword) {
+            using (var context = new AppDbContext())
+            {
+                try
+                {
+                    var user = context.Users.FirstOrDefault (u => u.UserID == userId);
+                    if( user == null ) return false;
+
+                    user.Password = newPassword;
+                    context.SaveChanges ();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+
         //thêm user mới trả về thành công hoặc ko thành công
         public bool AddUser (User user) {
             using (var context = new AppDbContext())
@@ -97,6 +130,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
                     if( existingUser != null )
                     {
                         existingUser.FullName = user.FullName;
+                        existingUser.Email = user.Email;
                         existingUser.Role = user.Role;
                         existingUser.Status = user.Status;
 

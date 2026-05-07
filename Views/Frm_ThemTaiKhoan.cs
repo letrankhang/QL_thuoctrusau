@@ -14,10 +14,11 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private void btnSave_Click (object sender, EventArgs e) {
             string username = txtUsername.Text.Trim ();
             string fullName = txtFullName.Text.Trim ();
+            string email = txtEmail.Text.Trim ();
             string password = txtPassword.Text;
             string role = cboRole.SelectedItem?.ToString () ?? "Staff";
 
-            string result = _addUserController.HandleAddUser (username, password, fullName, role);
+            string result = _addUserController.HandleAddUser (username, password, fullName, email, role);
 
             if( result == "SUCCESS" )
             {

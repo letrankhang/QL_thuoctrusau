@@ -26,6 +26,9 @@ namespace QL_CuaHangBanThuocTruSau.Models {
         [StringLength (100)]
         public string FullName { get; set; }
 
+        [StringLength (150)]
+        public string Email { get; set; }
+
         [StringLength (20)]
         public string Role { get; set; }
 

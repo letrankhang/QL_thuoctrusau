@@ -184,6 +184,7 @@
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\UpdateUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\ForgotPasswordController.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DAO\DashboardDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
@@ -193,6 +194,10 @@
     <Compile Include="Migrations\202604240149512_InitialCreate.cs" />
     <Compile Include="Migrations\202604240149512_InitialCreate.Designer.cs">
       <DependentUpon>202604240149512_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202605071138003_AddEmailToUser.cs" />
+    <Compile Include="Migrations\202605071138003_AddEmailToUser.Designer.cs">
+      <DependentUpon>202605071138003_AddEmailToUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Batch.cs" />
@@ -215,11 +220,30 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\ExcelHelper.cs" />
+    <Compile Include="Utils\EmailHelper.cs" />
     <Compile Include="Views\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FromNhapEmailorUsername.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FromNhapEmailorUsername.Designer.cs">
+      <DependentUpon>FromNhapEmailorUsername.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_NhapMaXacThuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_NhapMaXacThuc.Designer.cs">
+      <DependentUpon>Frm_NhapMaXacThuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_QuenMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_QuenMatKhau.Designer.cs">
+      <DependentUpon>Frm_QuenMatKhau.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Frm_DANGNHAP.cs">
       <SubType>Form</SubType>
@@ -287,11 +311,20 @@
     <EmbeddedResource Include="Migrations\202604240149512_InitialCreate.resx">
       <DependentUpon>202604240149512_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202605071138003_AddEmailToUser.resx">
+      <DependentUpon>202605071138003_AddEmailToUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_DANGNHAP.resx">
       <DependentUpon>Frm_DANGNHAP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_NhapMaXacThuc.resx">
+      <DependentUpon>Frm_NhapMaXacThuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_QuenMatKhau.resx">
+      <DependentUpon>Frm_QuenMatKhau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_LoHang.resx">
       <DependentUpon>Frm_LoHang.cs</DependentUpon>
@@ -324,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_TaiKhoan.resx">
       <DependentUpon>Frm_TaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FromNhapEmailorUsername.resx">
+      <DependentUpon>FromNhapEmailorUsername.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -434,6 +470,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\user %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\icons8-trash-can-50.png" />
+    <Content Include="Resources\pen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

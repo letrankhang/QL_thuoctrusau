@@ -13,7 +13,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS {
         }
 
         //thêm user mới
-        public bool AddNewUser (string username, string password, string fullName, string role) {
+        public bool AddNewUser (string username, string password, string fullName, string email, string role) {
             if( string.IsNullOrEmpty (username) || string.IsNullOrEmpty (password) )
             {
                 Console.WriteLine ("Tên đăng nhập và mật khẩu không được để trống!");
@@ -31,6 +31,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS {
                 Username = username,
                 Password = password,
                 FullName = fullName,
+                Email = email,
                 Role = role,
                 Status = true,
                 CreatedAt = DateTime.Now
@@ -62,13 +63,24 @@ namespace QL_CuaHangBanThuocTruSau.BUS {
             return _userDAO.GetUserByUsername (username);
         }
 
+        public User GetUserByEmailOrUsername (string identifier) {
+            return _userDAO.GetUserByEmailOrUsername (identifier);
+        }
+
+        public bool ResetPassword (int userId, string newPassword) {
+            if( string.IsNullOrWhiteSpace (newPassword) || newPassword.Length < 6 )
+                return false;
+            return _userDAO.UpdatePassword (userId, newPassword);
+        }
+
         //cập nhật thông tin user
-        public bool UpdateUserInfo (int userId, string password, string fullName, string role, bool status) {
+        public bool UpdateUserInfo (int userId, string password, string fullName, string email, string role, bool status) {
             User user = new User
             {
                 UserID = userId,
                 Password = password,
                 FullName = fullName,
+                Email = email,
                 Role = role,
                 Status = status
             };

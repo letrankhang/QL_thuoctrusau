@@ -32,12 +32,8 @@
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
-            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.btnDangNhapQR = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnDangNhap = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnQuenMatKhau = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2CheckBox1 = new Guna.UI2.WinForms.Guna2CheckBox();
             this.txtTenTK = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtMK = new Guna.UI2.WinForms.Guna2TextBox();
@@ -60,12 +56,8 @@
             this.guna2Panel1.BorderThickness = 1;
             this.guna2Panel1.Controls.Add(this.guna2Separator2);
             this.guna2Panel1.Controls.Add(this.guna2Separator1);
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel8);
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel7);
-            this.guna2Panel1.Controls.Add(this.btnDangNhapQR);
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel6);
             this.guna2Panel1.Controls.Add(this.btnDangNhap);
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel3);
+            this.guna2Panel1.Controls.Add(this.btnQuenMatKhau);
             this.guna2Panel1.Controls.Add(this.guna2CheckBox1);
             this.guna2Panel1.Controls.Add(this.txtTenTK);
             this.guna2Panel1.Controls.Add(this.txtMK);
@@ -77,67 +69,17 @@
             // 
             // guna2Separator2
             // 
-            this.guna2Separator2.Location = new System.Drawing.Point(275, 312);
+            this.guna2Separator2.Location = new System.Drawing.Point(278, 392);
             this.guna2Separator2.Name = "guna2Separator2";
             this.guna2Separator2.Size = new System.Drawing.Size(179, 25);
             this.guna2Separator2.TabIndex = 12;
             // 
             // guna2Separator1
             // 
-            this.guna2Separator1.Location = new System.Drawing.Point(39, 312);
+            this.guna2Separator1.Location = new System.Drawing.Point(42, 392);
             this.guna2Separator1.Name = "guna2Separator1";
             this.guna2Separator1.Size = new System.Drawing.Size(179, 25);
             this.guna2Separator1.TabIndex = 11;
-            // 
-            // guna2HtmlLabel8
-            // 
-            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel8.Font = new System.Drawing.Font("Tahoma", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(278, 437);
-            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(69, 21);
-            this.guna2HtmlLabel8.TabIndex = 10;
-            this.guna2HtmlLabel8.Text = "Ðăng ký ";
-            // 
-            // guna2HtmlLabel7
-            // 
-            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Tahoma", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(138, 437);
-            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(139, 21);
-            this.guna2HtmlLabel7.TabIndex = 9;
-            this.guna2HtmlLabel7.Text = "Chưa có tài khoản?";
-            // 
-            // btnDangNhapQR
-            // 
-            this.btnDangNhapQR.BorderRadius = 10;
-            this.btnDangNhapQR.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDangNhapQR.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDangNhapQR.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnDangNhapQR.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnDangNhapQR.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDangNhapQR.FillColor = System.Drawing.Color.Gray;
-            this.btnDangNhapQR.Font = new System.Drawing.Font("Tahoma", 15.9292F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDangNhapQR.ForeColor = System.Drawing.Color.White;
-            this.btnDangNhapQR.Location = new System.Drawing.Point(39, 343);
-            this.btnDangNhapQR.Name = "btnDangNhapQR";
-            this.btnDangNhapQR.Size = new System.Drawing.Size(415, 77);
-            this.btnDangNhapQR.TabIndex = 8;
-            this.btnDangNhapQR.Text = "Ðăng nhập qua QR";
-            // 
-            // guna2HtmlLabel6
-            // 
-            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Tahoma", 12.10619F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(224, 312);
-            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(45, 25);
-            this.guna2HtmlLabel6.TabIndex = 7;
-            this.guna2HtmlLabel6.Text = "Hoặc";
             // 
             // btnDangNhap
             // 
@@ -151,23 +93,24 @@
             this.btnDangNhap.FillColor = System.Drawing.Color.SteelBlue;
             this.btnDangNhap.Font = new System.Drawing.Font("Tahoma", 15.9292F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDangNhap.ForeColor = System.Drawing.Color.White;
-            this.btnDangNhap.Location = new System.Drawing.Point(39, 229);
+            this.btnDangNhap.Location = new System.Drawing.Point(42, 297);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(415, 77);
             this.btnDangNhap.TabIndex = 6;
             this.btnDangNhap.Text = "Đăng nhập";
             this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click_1);
             // 
-            // guna2HtmlLabel3
+            // btnQuenMatKhau
             // 
-            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Tahoma", 10.83186F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(330, 185);
-            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(124, 23);
-            this.guna2HtmlLabel3.TabIndex = 5;
-            this.guna2HtmlLabel3.Text = "Quên mật khẩu?";
+            this.btnQuenMatKhau.BackColor = System.Drawing.Color.Transparent;
+            this.btnQuenMatKhau.Font = new System.Drawing.Font("Tahoma", 10.83186F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuenMatKhau.ForeColor = System.Drawing.Color.Gray;
+            this.btnQuenMatKhau.Location = new System.Drawing.Point(294, 249);
+            this.btnQuenMatKhau.Name = "btnQuenMatKhau";
+            this.btnQuenMatKhau.Size = new System.Drawing.Size(163, 29);
+            this.btnQuenMatKhau.TabIndex = 5;
+            this.btnQuenMatKhau.Text = "Quên mật khẩu?";
+            this.btnQuenMatKhau.Click += new System.EventHandler(this.btnQuenMatKhau_Click);
             // 
             // guna2CheckBox1
             // 
@@ -179,9 +122,9 @@
             this.guna2CheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.guna2CheckBox1.Font = new System.Drawing.Font("Tahoma", 10.83186F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2CheckBox1.ForeColor = System.Drawing.Color.Gray;
-            this.guna2CheckBox1.Location = new System.Drawing.Point(39, 185);
+            this.guna2CheckBox1.Location = new System.Drawing.Point(39, 249);
             this.guna2CheckBox1.Name = "guna2CheckBox1";
-            this.guna2CheckBox1.Size = new System.Drawing.Size(117, 26);
+            this.guna2CheckBox1.Size = new System.Drawing.Size(144, 31);
             this.guna2CheckBox1.TabIndex = 4;
             this.guna2CheckBox1.Text = "Ghi nhớ tôi";
             this.guna2CheckBox1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -205,7 +148,7 @@
             this.txtTenTK.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTenTK.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.user;
             this.txtTenTK.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtTenTK.Location = new System.Drawing.Point(39, 37);
+            this.txtTenTK.Location = new System.Drawing.Point(42, 64);
             this.txtTenTK.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtTenTK.Name = "txtTenTK";
             this.txtTenTK.PlaceholderForeColor = System.Drawing.Color.DarkGray;
@@ -230,7 +173,7 @@
             this.txtMK.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtMK.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources._lock;
             this.txtMK.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtMK.Location = new System.Drawing.Point(39, 120);
+            this.txtMK.Location = new System.Drawing.Point(42, 153);
             this.txtMK.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtMK.Name = "txtMK";
             this.txtMK.PlaceholderForeColor = System.Drawing.Color.DarkGray;
@@ -245,7 +188,7 @@
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Tahoma", 28.0354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel4.Location = new System.Drawing.Point(504, 37);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(337, 55);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(430, 70);
             this.guna2HtmlLabel4.TabIndex = 3;
             this.guna2HtmlLabel4.Text = "Welcome back!";
             // 
@@ -256,7 +199,7 @@
             this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.Gray;
             this.guna2HtmlLabel5.Location = new System.Drawing.Point(504, 90);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(179, 25);
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(221, 31);
             this.guna2HtmlLabel5.TabIndex = 4;
             this.guna2HtmlLabel5.Text = "Đăng nhập hệ thống";
             // 
@@ -310,7 +253,7 @@
             // 
             // Frm_DANGNHAP
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1028, 665);
@@ -341,14 +284,10 @@
         private Guna.UI2.WinForms.Guna2TextBox txtMK;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Button btnDangNhap;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
+        private Guna.UI2.WinForms.Guna2HtmlLabel btnQuenMatKhau;
         private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
-        private Guna.UI2.WinForms.Guna2Button btnDangNhapQR;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Guna.UI2.WinForms.Guna2PictureBox picLogo;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;

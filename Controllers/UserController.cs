@@ -49,8 +49,8 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             return false;
         }
 
-        public bool UpdateUser (int userId, string password, string fullName, string role, bool status) {
-            return _userBUS.UpdateUserInfo (userId, password, fullName, role, status);
+        public bool UpdateUser (int userId, string password, string fullName, string email, string role, bool status) {
+            return _userBUS.UpdateUserInfo (userId, password, fullName, email, role, status);
         }
 
         public User GetUserByUsername (string username) {

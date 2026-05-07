@@ -18,6 +18,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private void LoadUserData () {
             txtUsername.Text = _currentUser.Username;
             txtFullName.Text = _currentUser.FullName;
+            txtEmail.Text = _currentUser.Email;
             cboRole.SelectedItem = _currentUser.Role;
             swStatus.Checked = _currentUser.Status;
             UpdateStatusLabel (_currentUser.Status);
@@ -34,11 +35,12 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
         private void btnSave_Click (object sender, EventArgs e) {
             string fullName = txtFullName.Text.Trim ();
+            string email = txtEmail.Text.Trim ();
             string password = txtPassword.Text; // Có thể trống nếu không đổi
             string role = cboRole.SelectedItem?.ToString () ?? "Staff";
             bool status = swStatus.Checked;
 
-            if( _userController.UpdateUser (_currentUser.UserID, password, fullName, role, status) )
+            if( _userController.UpdateUser (_currentUser.UserID, password, fullName, email, role, status) )
             {
                 MessageBox.Show ("Cập nhật tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;

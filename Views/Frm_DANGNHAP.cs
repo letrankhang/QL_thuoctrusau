@@ -16,7 +16,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         }
 
         private void btnDangNhap_Click_1 (object sender, EventArgs e) {
-            string result = _loginController.HandleLogin (txtTenTK.Text.Trim(), txtMK.Text.Trim());
+            string result = _loginController.HandleLogin (txtTenTK.Text.Trim (), txtMK.Text.Trim ());
 
             if( result == "SUCCESS" )
             {
@@ -31,9 +31,14 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
         }
 
-        private void btnExit_Click_1(object sender, EventArgs e)
-        {
-            this.Dispose();
+        private void btnExit_Click_1 (object sender, EventArgs e) {
+            this.Dispose ();
         }
+
+        private void btnQuenMatKhau_Click (object sender, EventArgs e) {
+            FromNhapEmailorUsername frm = new FromNhapEmailorUsername ();
+            frm.ShowDialog ();
+        }
+
     }
 }
