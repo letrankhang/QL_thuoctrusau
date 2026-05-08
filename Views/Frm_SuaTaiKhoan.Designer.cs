@@ -21,6 +21,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnExit = new Guna.UI2.WinForms.Guna2ControlBox();
             this.txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtFullName = new Guna.UI2.WinForms.Guna2TextBox();
             this.cboRole = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -31,10 +32,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.swStatus = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.labelEmail = new System.Windows.Forms.Label();
-            this.txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +71,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExit.FillColor = System.Drawing.Color.Transparent;
             this.btnExit.IconColor = System.Drawing.Color.White;
             this.btnExit.Location = new System.Drawing.Point(400, 8);
@@ -89,26 +90,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtUsername.Location = new System.Drawing.Point(36, 88);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.PlaceholderText = "";
+            this.txtUsername.PlaceholderText = "Nhập tên đăng nhập...";
             this.txtUsername.SelectedText = "";
             this.txtUsername.Size = new System.Drawing.Size(373, 36);
             this.txtUsername.TabIndex = 1;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.BorderRadius = 5;
-            this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPassword.DefaultText = "";
-            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtPassword.Location = new System.Drawing.Point(36, 304);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '●';
-            this.txtPassword.PlaceholderText = "Để trống nếu không đổi mật khẩu";
-            this.txtPassword.SelectedText = "";
-            this.txtPassword.Size = new System.Drawing.Size(373, 36);
-            this.txtPassword.TabIndex = 4;
-            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtFullName
             // 
@@ -138,6 +123,22 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtEmail.Size = new System.Drawing.Size(373, 36);
             this.txtEmail.TabIndex = 3;
             // 
+            // txtPassword
+            // 
+            this.txtPassword.BorderRadius = 5;
+            this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPassword.DefaultText = "";
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtPassword.Location = new System.Drawing.Point(36, 304);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '●';
+            this.txtPassword.PlaceholderText = "Để trống nếu không đổi mật khẩu...";
+            this.txtPassword.SelectedText = "";
+            this.txtPassword.Size = new System.Drawing.Size(373, 36);
+            this.txtPassword.TabIndex = 4;
+            this.txtPassword.UseSystemPasswordChar = true;
+            // 
             // cboRole
             // 
             this.cboRole.BackColor = System.Drawing.Color.Transparent;
@@ -161,6 +162,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // btnSave
             // 
             this.btnSave.BorderRadius = 10;
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FillColor = System.Drawing.Color.SteelBlue;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
@@ -175,9 +177,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // btnCancel
             // 
             this.btnCancel.BorderRadius = 10;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnCancel.ForeColor = System.Drawing.Color.Black;
+            this.btnCancel.ForeColor = System.Drawing.Color.Gray;
             this.btnCancel.Location = new System.Drawing.Point(36, 440);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
@@ -206,15 +209,15 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.label2.TabIndex = 4;
             this.label2.Text = "Họ và tên:";
             // 
-            // labelEmail
+            // label6
             // 
-            this.labelEmail.AutoSize = true;
-            this.labelEmail.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.labelEmail.Location = new System.Drawing.Point(36, 208);
-            this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(51, 20);
-            this.labelEmail.TabIndex = 6;
-            this.labelEmail.Text = "Email:";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(36, 208);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 20);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Email:";
             // 
             // label3
             // 
@@ -223,7 +226,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.label3.Location = new System.Drawing.Point(36, 280);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 20);
-            this.label3.TabIndex = 8;
+            this.label3.TabIndex = 6;
             this.label3.Text = "Mật khẩu:";
             // 
             // label4
@@ -233,7 +236,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.label4.Location = new System.Drawing.Point(36, 352);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 20);
-            this.label4.TabIndex = 10;
+            this.label4.TabIndex = 8;
             this.label4.Text = "Chức vụ:";
             // 
             // label5
@@ -243,7 +246,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.label5.Location = new System.Drawing.Point(231, 352);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 20);
-            this.label5.TabIndex = 12;
+            this.label5.TabIndex = 10;
             this.label5.Text = "Trạng thái:";
             // 
             // swStatus
@@ -251,11 +254,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.swStatus.CheckedState.BorderColor = System.Drawing.Color.SpringGreen;
             this.swStatus.CheckedState.FillColor = System.Drawing.Color.SpringGreen;
             this.swStatus.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.swStatus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.swStatus.Location = new System.Drawing.Point(236, 380);
             this.swStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.swStatus.Name = "swStatus";
             this.swStatus.Size = new System.Drawing.Size(40, 20);
-            this.swStatus.TabIndex = 13;
+            this.swStatus.TabIndex = 11;
             this.swStatus.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.swStatus.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.swStatus.UncheckedState.InnerColor = System.Drawing.Color.White;
@@ -268,7 +272,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblStatus.Location = new System.Drawing.Point(284, 380);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(81, 20);
-            this.lblStatus.TabIndex = 14;
+            this.lblStatus.TabIndex = 12;
             this.lblStatus.Text = "Hoạt động";
             // 
             // guna2DragControl1
@@ -281,7 +285,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(444, 500);
+            this.ClientSize = new System.Drawing.Size(444, 510);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.swStatus);
             this.Controls.Add(this.label5);
@@ -291,8 +297,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.Controls.Add(this.cboRole);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.labelEmail);
-            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtFullName);
             this.Controls.Add(this.label1);
@@ -318,7 +322,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2TextBox txtFullName;
-        private System.Windows.Forms.Label labelEmail;
+        private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2TextBox txtEmail;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;

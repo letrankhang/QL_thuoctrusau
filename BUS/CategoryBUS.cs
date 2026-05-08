@@ -1,10 +1,6 @@
 ﻿using QL_CuaHangBanThuocTruSau.DAO;
 using QL_CuaHangBanThuocTruSau.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QL_CuaHangBanThuocTruSau.BUS
 {
@@ -16,5 +12,31 @@ namespace QL_CuaHangBanThuocTruSau.BUS
         {
             return dao.layTatCaLoai();
         }
+
+        public bool themMoiLoai(Category loai)
+        {
+            return dao.themMoiLoai(loai);
+        }
+
+        public bool capNhatLoai(Category loai)
+        {
+            return dao.capNhatLoai(loai);
+        }
+
+        public bool xoaLoai(int maLoai)
+        {
+            return dao.xoaTheoMa(maLoai);
+        }
+
+        public bool kiemTraTenHopLe(string ten, int boQuaMa = 0)
+        {
+            if (string.IsNullOrWhiteSpace(ten))
+            {
+                return false;
+            }
+
+            return !dao.tenDaTonTai(ten.Trim(), boQuaMa);
+        }
     }
 }
+

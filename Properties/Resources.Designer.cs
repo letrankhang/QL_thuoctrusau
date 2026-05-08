@@ -93,6 +93,20 @@ namespace QL_CuaHangBanThuocTruSau.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap close {
+            get {
+                object obj = ResourceManager.GetObject("close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+
         public static System.Drawing.Bitmap dashboard_interface {
             get {
                 object obj = ResourceManager.GetObject("dashboard-interface", resourceCulture);
@@ -443,6 +457,20 @@ namespace QL_CuaHangBanThuocTruSau.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap variant {
+            get {
+                object obj = ResourceManager.GetObject("variant", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+
         public static System.Drawing.Bitmap xls_file {
             get {
                 object obj = ResourceManager.GetObject("xls-file", resourceCulture);
@@ -459,7 +487,6 @@ namespace QL_CuaHangBanThuocTruSau.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -481,3 +508,4 @@ namespace QL_CuaHangBanThuocTruSau.Properties {
         }
     }
 }
+

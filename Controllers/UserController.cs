@@ -54,6 +54,7 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
         }
 
         public User GetUserByUsername (string username) {
+
             return _userBUS.GetUserByUsername (username);
         }
     }

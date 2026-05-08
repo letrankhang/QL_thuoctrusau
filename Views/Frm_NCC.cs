@@ -92,6 +92,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dgvNCC.CurrentCell = null;
         }
 
+
         private void Frm_NCC_Load_1(object sender, EventArgs e)
         {
             dgvNCC.AutoGenerateColumns = false;

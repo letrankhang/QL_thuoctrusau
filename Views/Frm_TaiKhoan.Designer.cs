@@ -94,7 +94,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.magnifier;
-            this.txtSearch.Location = new System.Drawing.Point(416, 15);
+            this.txtSearch.Location = new System.Drawing.Point(400, 15);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Tìm kiếm tên đăng nhập...";
@@ -107,12 +107,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
-            this.lblTitle.Location = new System.Drawing.Point(22, 19);
+            this.lblTitle.Location = new System.Drawing.Point(25, 15);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(239, 30);
+            this.lblTitle.Size = new System.Drawing.Size(349, 45);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Tài khoản người dùng";
-            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // dgvUsers
             // 
@@ -226,6 +225,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             // colEmail
             // 
+            this.colEmail.DataPropertyName = "Email";
+            this.colEmail.HeaderText = "Email";
+            this.colEmail.MinimumWidth = 8;
             this.colEmail.Name = "colEmail";
             this.colEmail.ReadOnly = true;
             // 
@@ -280,7 +282,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Frm_TaiKhoan";
-            this.Padding = new System.Windows.Forms.Padding(20);
+            this.Padding = new System.Windows.Forms.Padding(20, 20, 20, 20);
             this.Text = "Quản lý Tài khoản";
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();

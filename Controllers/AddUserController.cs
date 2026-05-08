@@ -30,6 +30,7 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             // 2. Gọi BUS để thực hiện nghiệp vụ
             bool isSuccess = _userBUS.AddNewUser (username, password, fullName, email, role);
 
+
             if( isSuccess )
             {
                 return "SUCCESS";

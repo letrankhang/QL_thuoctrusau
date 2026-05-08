@@ -157,22 +157,23 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             if( e.ColumnIndex == dgvUsers.Columns["colEdit"].Index || e.ColumnIndex == dgvUsers.Columns["colDelete"].Index )
             {
                 e.Paint (e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
-                bool isDelete = e.ColumnIndex == dgvUsers.Columns["colDelete"].Index;
 
-                Image icon = isDelete ? Properties.Resources.icons8_trash_can_50 : Properties.Resources.pen;
+                Image icon = e.ColumnIndex == dgvUsers.Columns["colEdit"].Index
+                    ? Properties.Resources.pen
+                    : Properties.Resources.icons8_trash_can_50;
 
                 if( icon != null )
                 {
-                    // Tính toán kích thước icon (giữ tỷ lệ hoặc cố định 20x20)
-                    int size = 20;
-                    var iconRect = new Rectangle (
-                        e.CellBounds.X + (e.CellBounds.Width - size) / 2,
-                        e.CellBounds.Y + (e.CellBounds.Height - size) / 2,
-                        size, size);
+                    // Tính toán kích thước icon adaptive: tối đa 24px hoặc 40% chiều cao cell
+                    int iconSize = Math.Min (24, (int) (e.CellBounds.Height * 0.45));
+                    int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
+                    int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
 
+                    e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                     e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    e.Graphics.DrawImage (icon, iconRect);
+                    e.Graphics.DrawImage (icon, new Rectangle (x, y, iconSize, iconSize));
                 }
+
                 e.Handled = true;
             }
         }
@@ -213,8 +214,5 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
         }
 
-        private void lblTitle_Click (object sender, EventArgs e) {
-
-        }
     }
 }

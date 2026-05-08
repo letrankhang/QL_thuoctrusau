@@ -32,6 +32,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
         }
 
         // Kiểm tra quyền theo tên Role bất kỳ
+
         public static bool HasRole(string roleName)
         {
             return IsLoggedIn && CurrentUser.Role == roleName;

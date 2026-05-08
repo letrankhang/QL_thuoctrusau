@@ -35,8 +35,8 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
         private void btnSave_Click (object sender, EventArgs e) {
             string fullName = txtFullName.Text.Trim ();
-            string email = txtEmail.Text.Trim ();
             string password = txtPassword.Text; // Có thể trống nếu không đổi
+            string email = txtEmail.Text.Trim ();
             string role = cboRole.SelectedItem?.ToString () ?? "Staff";
             bool status = swStatus.Checked;
 

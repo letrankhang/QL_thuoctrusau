@@ -27,6 +27,7 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             // 2. Gọi BUS
             bool result = _userBUS.UpdateUserInfo (userId, password, fullName, email, role, status);
 
+
             if( result )
             {
                 return "SUCCESS";

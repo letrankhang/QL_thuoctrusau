@@ -14,8 +14,8 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private void btnSave_Click (object sender, EventArgs e) {
             string username = txtUsername.Text.Trim ();
             string fullName = txtFullName.Text.Trim ();
-            string email = txtEmail.Text.Trim ();
             string password = txtPassword.Text;
+            string email = txtEmail.Text.Trim ();
             string role = cboRole.SelectedItem?.ToString () ?? "Staff";
 
             string result = _addUserController.HandleAddUser (username, password, fullName, email, role);
@@ -33,6 +33,11 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         }
 
         private void btnCancel_Click (object sender, EventArgs e) {
+            this.Close ();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
             this.Close ();
         }
     }

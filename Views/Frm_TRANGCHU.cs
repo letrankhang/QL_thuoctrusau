@@ -164,7 +164,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
         private void btnCongNo_Click (object sender, EventArgs e) {
             SetActiveButton (btnCongNo);
-
         }
     }
 }
+

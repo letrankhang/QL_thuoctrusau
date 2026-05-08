@@ -96,6 +96,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
         }
 
         //thêm user mới trả về thành công hoặc ko thành công
+
         public bool AddUser (User user) {
             using (var context = new AppDbContext())
             {
@@ -131,6 +132,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
                     {
                         existingUser.FullName = user.FullName;
                         existingUser.Email = user.Email;
+
                         existingUser.Role = user.Role;
                         existingUser.Status = user.Status;
 

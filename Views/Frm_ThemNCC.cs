@@ -55,5 +55,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
         {
             txtMaNCC.Enabled = false;
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

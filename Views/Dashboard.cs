@@ -28,7 +28,31 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 label7.Text = string.Format ("{0:N0}", summary.NewOrdersToday);
                 label8.Text = string.Format ("{0:N0} VNĐ", summary.CustomerDebt);
                 label9.Text = string.Format ("{0:N0} VNĐ", summary.InventoryValue);
+
+                // Màu chữ
+                label6.ForeColor = Color.FromArgb(45, 95, 166);
+                label7.ForeColor = Color.FromArgb(40, 167, 69);
+                label8.ForeColor = Color.FromArgb(220, 53, 69);
+                label9.ForeColor = Color.FromArgb(240, 165, 0);
+
+                // Nền trong suốt
+                label6.BackColor = Color.Transparent;
+                label7.BackColor = Color.Transparent;
+                label8.BackColor = Color.Transparent;
+                label9.BackColor = Color.Transparent;
+
+                // Màu title
+                label2.ForeColor = Color.FromArgb(45, 95, 166);   
+                label3.ForeColor = Color.FromArgb(40, 167, 69);   
+                label4.ForeColor = Color.FromArgb(220, 53, 69);   
+                label5.ForeColor = Color.FromArgb(180, 120, 0);
+
+                SetCardStyle(pnlRevenue, Color.FromArgb(45, 95, 166));   
+                SetCardStyle(pnlOrders, Color.FromArgb(40, 167, 69));   
+                SetCardStyle(pnlDebt, Color.FromArgb(220, 53, 69));   
+                SetCardStyle(pnlInventory, Color.FromArgb(240, 165, 0));   
             }
+
             catch( Exception ex )
             {
                 Console.WriteLine ("Lỗi khi tải tổng quan: " + ex.Message);
@@ -88,6 +112,34 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 MessageBox.Show ("Lỗi khi tải biểu đồ: " + ex.Message);
             }
         }
+        private void SetCardStyle(Panel pnl, Color accent)
+        {
+            pnl.BackColor = Color.Transparent;
+
+            Action updateRegion = () =>
+            {
+                var path = new System.Drawing.Drawing2D.GraphicsPath();
+                int r = 8;
+                path.AddArc(0, 0, r, r, 180, 90);
+                path.AddArc(pnl.Width - r - 1, 0, r, r, 270, 90);
+                path.AddArc(pnl.Width - r - 1, pnl.Height - r - 1, r, r, 0, 90);
+                path.AddArc(0, pnl.Height - r - 1, r, r, 90, 90);
+                path.CloseFigure();
+                pnl.Region = new Region(path);
+            };
+
+            updateRegion(); // lần đầu
+            pnl.Resize += (s, e) => updateRegion(); // cập nhật khi resize
+
+            pnl.Paint += (s, e) =>
+            {
+                var g = e.Graphics;
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                g.FillRectangle(new SolidBrush(Color.FromArgb(25, accent)), pnl.ClientRectangle);
+                g.FillRectangle(new SolidBrush(accent), 0, 0, 4, pnl.Height);
+            };
+        }
+
 
         private void LoadExpiredProducts () {
             try

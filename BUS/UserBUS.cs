@@ -49,6 +49,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS {
             }
         }
 
+
         // lấy danh sách user
         public List<User> GetAllUsers () {
             return _userDAO.GetAllUsers ();
@@ -84,6 +85,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS {
                 Role = role,
                 Status = status
             };
+
 
             if( _userDAO.UpdateUser (user) )
             {

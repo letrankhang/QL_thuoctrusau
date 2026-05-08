@@ -168,26 +168,33 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\BatchBUS.cs" />
     <Compile Include="BUS\CategoryBUS.cs" />
     <Compile Include="BUS\DashboardBUS.cs" />
     <Compile Include="BUS\LogoutBUS.cs" />
     <Compile Include="BUS\ProductBUS.cs" />
+    <Compile Include="BUS\ProductVariantsBUS.cs" />
     <Compile Include="BUS\SuppliersBUS.cs" />
     <Compile Include="BUS\UserBUS.cs" />
     <Compile Include="BUS\LoginBUS.cs" />
+    <Compile Include="Controllers\BatchController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\AddUserController.cs" />
     <Compile Include="Controllers\DeleteUserController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductVariantsController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\UpdateUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ForgotPasswordController.cs" />
+    <Compile Include="DAO\BatchDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DAO\DashboardDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
+    <Compile Include="DAO\ProductVariantsDAO.cs" />
     <Compile Include="DAO\SuppliersDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="DAO\LoginDAO.cs" />
@@ -221,6 +228,7 @@
     </Compile>
     <Compile Include="Utils\ExcelHelper.cs" />
     <Compile Include="Utils\EmailHelper.cs" />
+    <Compile Include="ViewModels\BatchViewModel.cs" />
     <Compile Include="Views\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +252,12 @@
     </Compile>
     <Compile Include="Views\Frm_QuenMatKhau.Designer.cs">
       <DependentUpon>Frm_QuenMatKhau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_BienTheSP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_BienTheSP.Designer.cs">
+      <DependentUpon>Frm_BienTheSP.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Frm_DANGNHAP.cs">
       <SubType>Form</SubType>
@@ -274,6 +288,12 @@
     </Compile>
     <Compile Include="Views\Frm_SuaNCC.Designer.cs">
       <DependentUpon>Frm_SuaNCC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_ThemLoai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_ThemLoai.Designer.cs">
+      <DependentUpon>Frm_ThemLoai.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Frm_ThemNCC.cs">
       <SubType>Form</SubType>
@@ -317,6 +337,9 @@
     <EmbeddedResource Include="Views\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_BienTheSP.resx">
+      <DependentUpon>Frm_BienTheSP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_DANGNHAP.resx">
       <DependentUpon>Frm_DANGNHAP.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_SuaTaiKhoan.resx">
       <DependentUpon>Frm_SuaTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_ThemLoai.resx">
+      <DependentUpon>Frm_ThemLoai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_ThemNCC.resx">
       <DependentUpon>Frm_ThemNCC.cs</DependentUpon>
@@ -474,6 +500,9 @@
   <ItemGroup>
     <Content Include="Resources\icons8-trash-can-50.png" />
     <Content Include="Resources\pen.png" />
+    <None Include="Resources\variant.png" />
+    <None Include="Resources\close.png" />
+    <Folder Include="ImagesProducts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
