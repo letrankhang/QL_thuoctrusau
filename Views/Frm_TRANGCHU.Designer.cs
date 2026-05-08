@@ -85,16 +85,17 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(256, 882);
+            this.guna2Panel2.Size = new System.Drawing.Size(288, 1102);
             this.guna2Panel2.TabIndex = 4;
             // 
             // guna2Separator1
             // 
             this.guna2Separator1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.guna2Separator1.FillThickness = 2;
-            this.guna2Separator1.Location = new System.Drawing.Point(22, 117);
+            this.guna2Separator1.Location = new System.Drawing.Point(25, 146);
+            this.guna2Separator1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2Separator1.Name = "guna2Separator1";
-            this.guna2Separator1.Size = new System.Drawing.Size(210, 43);
+            this.guna2Separator1.Size = new System.Drawing.Size(236, 54);
             this.guna2Separator1.TabIndex = 19;
             // 
             // btnNCC
@@ -111,11 +112,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnNCC.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnNCC.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.team;
             this.btnNCC.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnNCC.Location = new System.Drawing.Point(35, 506);
+            this.btnNCC.Location = new System.Drawing.Point(39, 632);
             this.btnNCC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNCC.Name = "btnNCC";
             this.btnNCC.PressedColor = System.Drawing.Color.Silver;
-            this.btnNCC.Size = new System.Drawing.Size(187, 55);
+            this.btnNCC.Size = new System.Drawing.Size(210, 69);
             this.btnNCC.TabIndex = 18;
             this.btnNCC.Text = "NHÀ CUNG CẤP";
             this.btnNCC.Click += new System.EventHandler(this.btnNCC_Click);
@@ -125,8 +126,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2PictureBox1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.Logo;
             this.guna2PictureBox1.ImageRotate = 0F;
             this.guna2PictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(253, 134);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(285, 168);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox1.TabIndex = 17;
             this.guna2PictureBox1.TabStop = false;
@@ -145,11 +147,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnDangXuat.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnDangXuat.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnDangXuat.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.logout;
-            this.btnDangXuat.Location = new System.Drawing.Point(35, 803);
+            this.btnDangXuat.Location = new System.Drawing.Point(39, 1004);
             this.btnDangXuat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.PressedColor = System.Drawing.Color.Silver;
-            this.btnDangXuat.Size = new System.Drawing.Size(187, 55);
+            this.btnDangXuat.Size = new System.Drawing.Size(210, 69);
             this.btnDangXuat.TabIndex = 8;
             this.btnDangXuat.Text = "Đăng Xuất";
             this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
@@ -168,11 +170,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnTaiKhoan.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnTaiKhoan.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.user__2_;
             this.btnTaiKhoan.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnTaiKhoan.Location = new System.Drawing.Point(35, 710);
+            this.btnTaiKhoan.Location = new System.Drawing.Point(39, 888);
             this.btnTaiKhoan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTaiKhoan.Name = "btnTaiKhoan";
             this.btnTaiKhoan.PressedColor = System.Drawing.Color.Silver;
-            this.btnTaiKhoan.Size = new System.Drawing.Size(187, 55);
+            this.btnTaiKhoan.Size = new System.Drawing.Size(210, 69);
             this.btnTaiKhoan.TabIndex = 15;
             this.btnTaiKhoan.Text = "TÀI KHOẢN";
             this.btnTaiKhoan.Click += new System.EventHandler(this.btnTaiKhoan_Click);
@@ -191,11 +193,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnCongNo.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnCongNo.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.debt;
             this.btnCongNo.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnCongNo.Location = new System.Drawing.Point(35, 642);
+            this.btnCongNo.Location = new System.Drawing.Point(39, 802);
             this.btnCongNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCongNo.Name = "btnCongNo";
             this.btnCongNo.PressedColor = System.Drawing.Color.Silver;
-            this.btnCongNo.Size = new System.Drawing.Size(187, 55);
+            this.btnCongNo.Size = new System.Drawing.Size(210, 69);
             this.btnCongNo.TabIndex = 14;
             this.btnCongNo.Text = "CÔNG NỢ";
             this.btnCongNo.Click += new System.EventHandler(this.btnCongNo_Click);
@@ -214,11 +216,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnKhachHang.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnKhachHang.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.group;
             this.btnKhachHang.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnKhachHang.Location = new System.Drawing.Point(35, 574);
+            this.btnKhachHang.Location = new System.Drawing.Point(39, 718);
             this.btnKhachHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnKhachHang.Name = "btnKhachHang";
             this.btnKhachHang.PressedColor = System.Drawing.Color.Silver;
-            this.btnKhachHang.Size = new System.Drawing.Size(187, 55);
+            this.btnKhachHang.Size = new System.Drawing.Size(210, 69);
             this.btnKhachHang.TabIndex = 13;
             this.btnKhachHang.Text = "KHÁCH HÀNG";
             this.btnKhachHang.Click += new System.EventHandler(this.btnKhachHang_Click);
@@ -237,11 +239,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnLoHang.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnLoHang.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.arrow;
             this.btnLoHang.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnLoHang.Location = new System.Drawing.Point(35, 370);
+            this.btnLoHang.Location = new System.Drawing.Point(39, 462);
             this.btnLoHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLoHang.Name = "btnLoHang";
             this.btnLoHang.PressedColor = System.Drawing.Color.Silver;
-            this.btnLoHang.Size = new System.Drawing.Size(187, 55);
+            this.btnLoHang.Size = new System.Drawing.Size(210, 69);
             this.btnLoHang.TabIndex = 12;
             this.btnLoHang.Text = "LÔ HÀNG";
             this.btnLoHang.Click += new System.EventHandler(this.btnLoHang_Click);
@@ -261,11 +263,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnSanPham.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnSanPham.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.pesticide;
             this.btnSanPham.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSanPham.Location = new System.Drawing.Point(35, 438);
+            this.btnSanPham.Location = new System.Drawing.Point(39, 548);
             this.btnSanPham.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSanPham.Name = "btnSanPham";
             this.btnSanPham.PressedColor = System.Drawing.Color.Silver;
-            this.btnSanPham.Size = new System.Drawing.Size(187, 55);
+            this.btnSanPham.Size = new System.Drawing.Size(210, 69);
             this.btnSanPham.TabIndex = 11;
             this.btnSanPham.Text = "SẢN PHẨM";
             this.btnSanPham.Click += new System.EventHandler(this.btnSanPham_Click);
@@ -284,11 +286,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnNhapHang.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnNhapHang.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.stock32;
             this.btnNhapHang.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnNhapHang.Location = new System.Drawing.Point(35, 301);
+            this.btnNhapHang.Location = new System.Drawing.Point(39, 376);
             this.btnNhapHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNhapHang.Name = "btnNhapHang";
             this.btnNhapHang.PressedColor = System.Drawing.Color.Silver;
-            this.btnNhapHang.Size = new System.Drawing.Size(187, 55);
+            this.btnNhapHang.Size = new System.Drawing.Size(210, 69);
             this.btnNhapHang.TabIndex = 10;
             this.btnNhapHang.Text = "NHẬP HÀNG";
             this.btnNhapHang.Click += new System.EventHandler(this.btnNhapHang_Click);
@@ -307,11 +309,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnBanHang.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnBanHang.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.sales;
             this.btnBanHang.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnBanHang.Location = new System.Drawing.Point(35, 233);
+            this.btnBanHang.Location = new System.Drawing.Point(39, 291);
             this.btnBanHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBanHang.Name = "btnBanHang";
             this.btnBanHang.PressedColor = System.Drawing.Color.Silver;
-            this.btnBanHang.Size = new System.Drawing.Size(187, 55);
+            this.btnBanHang.Size = new System.Drawing.Size(210, 69);
             this.btnBanHang.TabIndex = 9;
             this.btnBanHang.Text = " BÁN HÀNG";
             this.btnBanHang.Click += new System.EventHandler(this.btnBanHang_Click);
@@ -330,11 +332,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnTongQuan.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnTongQuan.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.dashboard_interface;
             this.btnTongQuan.ImageSize = new System.Drawing.Size(26, 26);
-            this.btnTongQuan.Location = new System.Drawing.Point(35, 165);
+            this.btnTongQuan.Location = new System.Drawing.Point(39, 206);
             this.btnTongQuan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTongQuan.Name = "btnTongQuan";
             this.btnTongQuan.PressedColor = System.Drawing.Color.Silver;
-            this.btnTongQuan.Size = new System.Drawing.Size(187, 55);
+            this.btnTongQuan.Size = new System.Drawing.Size(210, 69);
             this.btnTongQuan.TabIndex = 1;
             this.btnTongQuan.Text = " DASHBOARD";
             this.btnTongQuan.Click += new System.EventHandler(this.btnTongQuan_Click);
@@ -345,19 +347,20 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlMain.Controls.Add(this.pnlContent);
             this.pnlMain.Controls.Add(this.pnlTopBar);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(256, 0);
+            this.pnlMain.Location = new System.Drawing.Point(288, 0);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1470, 882);
+            this.pnlMain.Size = new System.Drawing.Size(1654, 1102);
             this.pnlMain.TabIndex = 6;
             // 
             // pnlContent
             // 
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 108);
+            this.pnlContent.Location = new System.Drawing.Point(0, 135);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Padding = new System.Windows.Forms.Padding(13);
-            this.pnlContent.Size = new System.Drawing.Size(1470, 774);
+            this.pnlContent.Padding = new System.Windows.Forms.Padding(15, 16, 15, 16);
+            this.pnlContent.Size = new System.Drawing.Size(1654, 967);
             this.pnlContent.TabIndex = 1;
             // 
             // pnlTopBar
@@ -372,7 +375,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlTopBar.Location = new System.Drawing.Point(0, 0);
             this.pnlTopBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlTopBar.Name = "pnlTopBar";
-            this.pnlTopBar.Size = new System.Drawing.Size(1470, 108);
+            this.pnlTopBar.Size = new System.Drawing.Size(1654, 135);
             this.pnlTopBar.TabIndex = 0;
             // 
             // lblGreeting
@@ -380,9 +383,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblGreeting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGreeting.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.lblGreeting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(110)))), ((int)(((byte)(114)))));
-            this.lblGreeting.Location = new System.Drawing.Point(936, 42);
+            this.lblGreeting.Location = new System.Drawing.Point(1053, 52);
             this.lblGreeting.Name = "lblGreeting";
-            this.lblGreeting.Size = new System.Drawing.Size(489, 24);
+            this.lblGreeting.Size = new System.Drawing.Size(550, 30);
             this.lblGreeting.TabIndex = 1;
             this.lblGreeting.Text = "Xin chào, Admin";
             this.lblGreeting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -392,24 +395,23 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblInterfaceName.AutoSize = true;
             this.lblInterfaceName.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
             this.lblInterfaceName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
-            this.lblInterfaceName.Location = new System.Drawing.Point(22, 27);
+            this.lblInterfaceName.Location = new System.Drawing.Point(25, 34);
             this.lblInterfaceName.Name = "lblInterfaceName";
-            this.lblInterfaceName.Size = new System.Drawing.Size(184, 45);
+            this.lblInterfaceName.Size = new System.Drawing.Size(229, 54);
             this.lblInterfaceName.TabIndex = 0;
             this.lblInterfaceName.Text = "Dashboard";
             // 
             // Frm_TRANGCHU
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1726, 882);
+            this.ClientSize = new System.Drawing.Size(1942, 1102);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.guna2Panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Frm_TRANGCHU";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Hệ thống Quản lý Cửa hàng";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Frm_TRANGCHU_Load);
             this.guna2Panel2.ResumeLayout(false);

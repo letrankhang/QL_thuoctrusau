@@ -28,7 +28,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
         // Ví dụ một hàm kiểm tra quyền Admin
         public static bool IsAdmin()
         {
-            return IsLoggedIn && CurrentUser.Role == "Admin";
+            return IsLoggedIn && string.Equals(CurrentUser.Role, "ADMIN", System.StringComparison.OrdinalIgnoreCase);
         }
 
         // Kiểm tra quyền theo tên Role bất kỳ
