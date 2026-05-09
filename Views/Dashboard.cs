@@ -140,86 +140,104 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             };
         }
 
-
-        private void LoadExpiredProducts () {
+        private void LoadExpiredProducts()
+        {
             try
             {
-                var expiredProducts = _controller.GetExpiredProducts ();
+                var expiredProducts = _controller.GetExpiredProducts();
 
-                // Thiết lập DataGridView
                 dataGridView1.DataSource = null;
                 dataGridView1.AutoGenerateColumns = false;
-                dataGridView1.Columns.Clear ();
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Ép các cột lấp đầy chiều ngang
-                dataGridView1.EnableHeadersVisualStyles = false;
-                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb (52, 58, 64);
-                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font ("Segoe UI", 9, FontStyle.Bold);
-                dataGridView1.ColumnHeadersHeight = 35;
-                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb (248, 249, 250);
+                dataGridView1.Columns.Clear();
 
-                dataGridView1.Columns.Add (new DataGridViewTextBoxColumn
-                {
-                    Name = "ProductName",
-                    DataPropertyName = "ProductName",
-                    HeaderText = "Sản phẩm",
-                    Width = 180
-                });
-                dataGridView1.Columns.Add (new DataGridViewTextBoxColumn
+                // Grid
+                dataGridView1.BackgroundColor = Color.White;
+                dataGridView1.BorderStyle = BorderStyle.None;
+                dataGridView1.RowHeadersVisible = false;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridView1.RowTemplate.Height = 30;
+                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dataGridView1.GridColor = Color.FromArgb(200, 220, 240);
+                dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
+                dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(45, 45, 45);
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 230, 248);
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.FromArgb(30, 60, 90);
+
+                // Tắt kéo giãn cột và hàng
+                dataGridView1.AllowUserToResizeColumns = false;
+                dataGridView1.AllowUserToResizeRows = false;
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+                // Header
+                dataGridView1.EnableHeadersVisualStyles = false;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
+                dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                dataGridView1.ColumnHeadersHeight = 34;
+
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductName", DataPropertyName = "ProductName", HeaderText = "Sản phẩm", FillWeight = 40 });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     Name = "BatchID",
                     DataPropertyName = "BatchID",
                     HeaderText = "Lô",
-                    Width = 50
+                    FillWeight = 12,
+                    DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
                 });
-                dataGridView1.Columns.Add (new DataGridViewTextBoxColumn
+
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     Name = "ExpiryDate",
                     DataPropertyName = "ExpiryDate",
                     HeaderText = "Hạn dùng",
-                    DefaultCellStyle = new DataGridViewCellStyle { 
-                        Format = "dd/MM/yyyy",
-                        Alignment = DataGridViewContentAlignment.MiddleCenter 
-                    },
-                    Width = 90
+                    FillWeight = 25,
+                    DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy", Alignment = DataGridViewContentAlignment.MiddleCenter }
                 });
-                dataGridView1.Columns.Add (new DataGridViewTextBoxColumn
+
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     Name = "RemainingQuantity",
                     DataPropertyName = "RemainingQuantity",
                     HeaderText = "Tồn",
-                    DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight },
-                    Width = 60
+                    FillWeight = 13,
+                    DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight }
                 });
 
+                dataGridView1.CellFormatting += DataGridView1_CellFormatting;
                 dataGridView1.DataSource = expiredProducts;
-
-                // Highlight dòng cận date hoặc hết hạn
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Cells["ExpiryDate"] != null && row.Cells["ExpiryDate"].Value != null)
-                    {
-                        DateTime expiryDate = (DateTime)row.Cells["ExpiryDate"].Value;
-                        if (expiryDate < DateTime.Now)
-                        {
-                            row.DefaultCellStyle.ForeColor = Color.Red;
-                            row.DefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
-                        }
-                        else if ((expiryDate - DateTime.Now).TotalDays <= 30)
-                        {
-                            row.DefaultCellStyle.ForeColor = Color.OrangeRed;
-                        }
-                    }
-                }
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
-                Console.WriteLine ("Lỗi khi tải hàng cận date: " + ex.Message);
+                Console.WriteLine("Lỗi khi tải hàng cận date: " + ex.Message);
             }
         }
 
+        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
 
+            var row = dataGridView1.Rows[e.RowIndex];
+            if (row.Cells["ExpiryDate"]?.Value == null) return;
+            if (!(row.Cells["ExpiryDate"].Value is DateTime)) return;
+
+            DateTime expiryDate = (DateTime)row.Cells["ExpiryDate"].Value;
+            double daysLeft = (expiryDate - DateTime.Now).TotalDays;
+
+            if (daysLeft < 0)
+            {
+                row.DefaultCellStyle.BackColor = Color.FromArgb(255, 235, 235);
+                row.DefaultCellStyle.ForeColor = Color.FromArgb(180, 30, 30);
+                row.DefaultCellStyle.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
+            }
+            else if (daysLeft <= 30)
+            {
+                row.DefaultCellStyle.BackColor = Color.FromArgb(255, 248, 225);
+                row.DefaultCellStyle.ForeColor = Color.FromArgb(180, 95, 0);
+            }
+        }
     }
 }
 

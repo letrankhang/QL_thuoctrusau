@@ -20,6 +20,10 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.dgvUsers.CellPainting += dgvUsers_CellPainting;
             this.txtSearch.TextChanged += txtSearch_TextChanged;
             this.dgvUsers.CellClick += dgvUsers_CellClick;
+
+            this.cboLocChucVu.SelectedIndexChanged += ApplyFilter;
+            this.cboLocTrangThai.SelectedIndexChanged += ApplyFilter;
+            this.cboLocNgayTao.SelectedIndexChanged += ApplyFilter;
         }
 
         private void dgvUsers_CellClick (object sender, DataGridViewCellEventArgs e) {
@@ -61,6 +65,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
         private void Frm_TaiKhoan_Load (object sender, EventArgs e) {
             LoadData ();
+            InitFilters();
         }
 
         private void btnThemUser_Click (object sender, EventArgs e) {
@@ -98,6 +103,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             string keyword = txtSearch.Text.Trim ();
             var filtered = _userController.SearchUsers (keyword);
             DisplayUsers (filtered);
+            ApplyFilter(sender, e);
         }
 
         private void dgvUsers_CellPainting (object sender, DataGridViewCellPaintingEventArgs e) {
@@ -214,5 +220,53 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
         }
 
+        private void InitFilters()
+        {
+            cboLocChucVu.Items.Clear();
+            cboLocChucVu.Items.AddRange(new[] { "Tất cả chức vụ", "Admin", "Staff" });
+            cboLocChucVu.SelectedIndex = 0;
+
+            cboLocTrangThai.Items.Clear();
+            cboLocTrangThai.Items.AddRange(new[] { "Tất cả trạng thái", "Hoạt động", "Đã khóa" });
+            cboLocTrangThai.SelectedIndex = 0;
+
+            cboLocNgayTao.Items.Clear();
+            cboLocNgayTao.Items.AddRange(new[] { "Tất cả ngày", "Hôm nay", "7 ngày qua", "30 ngày qua" });
+            cboLocNgayTao.SelectedIndex = 0;
+        }
+
+        private void ApplyFilter(object sender, EventArgs e)
+        {
+            string chucVu = cboLocChucVu.SelectedItem?.ToString();
+            string trangThai = cboLocTrangThai.SelectedItem?.ToString();
+            string ngayTao = cboLocNgayTao.SelectedItem?.ToString();
+            string keyword = txtSearch.Text.Trim();
+
+            var result = _userController.SearchUsers(keyword);
+
+            if (chucVu != "Tất cả chức vụ" && chucVu != null)
+                result = result.FindAll(u => u.Role == chucVu);
+
+            if (trangThai != "Tất cả trạng thái" && trangThai != null)
+            {
+                result = result.FindAll(u => {
+                    string trangThaiUser = "Đã khóa";
+                    if (u.Status) trangThaiUser = "Hoạt động";
+                    return trangThaiUser == trangThai;
+                });
+            }
+
+            if (ngayTao != "Tất cả ngày" && ngayTao != null)
+            {
+                DateTime fromDate = DateTime.Now;
+                if (ngayTao == "Hôm nay") fromDate = DateTime.Today;
+                if (ngayTao == "7 ngày qua") fromDate = DateTime.Now.AddDays(-7);
+                if (ngayTao == "30 ngày qua") fromDate = DateTime.Now.AddDays(-30);
+
+                result = result.FindAll(u => u.CreatedAt.HasValue && u.CreatedAt.Value >= fromDate);
+            }
+
+            DisplayUsers(result);
+        }
     }
 }

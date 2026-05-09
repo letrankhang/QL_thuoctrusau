@@ -49,12 +49,12 @@ namespace QL_CuaHangBanThuocTruSau.DAO
 
             if (productID != -1)
             {
-                query = query.Where(x => x.TenSanPham != null);
+                query = query.Where(x => x.ProductID == productID);
             }
                 
             if (supplierID != -1)
             {
-                query = query.Where(x => x.NhaCungCap != null);
+                query = query.Where(x => x.SupplierID == supplierID);
             }
             return query.ToList();
         }

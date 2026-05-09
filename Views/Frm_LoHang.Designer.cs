@@ -59,8 +59,9 @@
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnLamMoi = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Separator6 = new Guna.UI2.WinForms.Guna2Separator();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblAnTT = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnTrangThai = new Guna.UI2.WinForms.Guna2Button();
             this.lblHSD = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblNSX = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblSLConLai = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -82,19 +83,9 @@
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Separator6 = new Guna.UI2.WinForms.Guna2Separator();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.dgvLoHang = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.pnlThongKe = new Guna.UI2.WinForms.Guna2Panel();
-            this.lblDangChon = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
-            this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblTongLoHang = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnTrangThai = new Guna.UI2.WinForms.Guna2Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,7 +96,16 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblAnTT = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.pnlThongKe = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblDangChon = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
+            this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblTongLoHang = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel11.SuspendLayout();
             this.guna2Panel12.SuspendLayout();
@@ -490,21 +490,12 @@
             this.guna2Panel2.Size = new System.Drawing.Size(407, 767);
             this.guna2Panel2.TabIndex = 1;
             // 
-            // guna2Separator6
-            // 
-            this.guna2Separator6.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.guna2Separator6.FillThickness = 2;
-            this.guna2Separator6.Location = new System.Drawing.Point(45, 754);
-            this.guna2Separator6.Name = "guna2Separator6";
-            this.guna2Separator6.Size = new System.Drawing.Size(339, 30);
-            this.guna2Separator6.TabIndex = 30;
-            // 
             // guna2Panel3
             // 
             this.guna2Panel3.BorderColor = System.Drawing.Color.SteelBlue;
             this.guna2Panel3.BorderThickness = 1;
-            this.guna2Panel3.Controls.Add(this.lblAnTT);
             this.guna2Panel3.Controls.Add(this.btnTrangThai);
+            this.guna2Panel3.Controls.Add(this.lblAnTT);
             this.guna2Panel3.Controls.Add(this.lblHSD);
             this.guna2Panel3.Controls.Add(this.lblNSX);
             this.guna2Panel3.Controls.Add(this.lblSLConLai);
@@ -531,6 +522,37 @@
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Size = new System.Drawing.Size(387, 747);
             this.guna2Panel3.TabIndex = 10;
+            // 
+            // lblAnTT
+            // 
+            this.lblAnTT.BackColor = System.Drawing.Color.Transparent;
+            this.lblAnTT.Font = new System.Drawing.Font("Segoe UI", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAnTT.ForeColor = System.Drawing.Color.Black;
+            this.lblAnTT.Location = new System.Drawing.Point(26, 702);
+            this.lblAnTT.Name = "lblAnTT";
+            this.lblAnTT.Size = new System.Drawing.Size(12, 23);
+            this.lblAnTT.TabIndex = 32;
+            this.lblAnTT.Text = "...";
+            // 
+            // btnTrangThai
+            // 
+            this.btnTrangThai.BorderColor = System.Drawing.Color.Transparent;
+            this.btnTrangThai.BorderRadius = 16;
+            this.btnTrangThai.BorderThickness = 1;
+            this.btnTrangThai.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTrangThai.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTrangThai.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTrangThai.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTrangThai.FillColor = System.Drawing.Color.Transparent;
+            this.btnTrangThai.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnTrangThai.ForeColor = System.Drawing.Color.Black;
+            this.btnTrangThai.HoverState.FillColor = System.Drawing.Color.Transparent;
+            this.btnTrangThai.Location = new System.Drawing.Point(25, 702);
+            this.btnTrangThai.Name = "btnTrangThai";
+            this.btnTrangThai.PressedColor = System.Drawing.Color.Transparent;
+            this.btnTrangThai.Size = new System.Drawing.Size(142, 36);
+            this.btnTrangThai.TabIndex = 31;
+            this.btnTrangThai.Text = "...";
             // 
             // lblHSD
             // 
@@ -762,6 +784,15 @@
             this.guna2HtmlLabel6.TabIndex = 1;
             this.guna2HtmlLabel6.Text = "Chi tiết lô hàng";
             // 
+            // guna2Separator6
+            // 
+            this.guna2Separator6.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Separator6.FillThickness = 2;
+            this.guna2Separator6.Location = new System.Drawing.Point(45, 754);
+            this.guna2Separator6.Name = "guna2Separator6";
+            this.guna2Separator6.Size = new System.Drawing.Size(339, 30);
+            this.guna2Separator6.TabIndex = 30;
+            // 
             // guna2Panel5
             // 
             this.guna2Panel5.Controls.Add(this.dgvLoHang);
@@ -842,6 +873,97 @@
             this.dgvLoHang.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvLoHang.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgvLoHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLoHang_CellClick);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "BatchID";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column1.FillWeight = 80F;
+            this.Column1.HeaderText = "Mã lô";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "TenSanPham";
+            this.Column5.FillWeight = 110F;
+            this.Column5.HeaderText = "Tên sản phẩm";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "BienThe";
+            this.Column6.HeaderText = "Biến thể";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "NhaCungCap";
+            this.Column8.HeaderText = "Nhà cung cấp";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "GiaNhap";
+            this.Column9.HeaderText = "Giá nhập";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "SoLuongBanDau";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column10.HeaderText = "SL ban đầu";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "SoLuongConLai";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column11.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column11.HeaderText = "SL còn lại";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "NgaySanXuat";
+            this.Column2.HeaderText = "Ngày sản xuất";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "HanSuDung";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Column3.FillWeight = 80F;
+            this.Column3.HeaderText = "Hạn sử dụng";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "TrangThai";
+            this.Column4.HeaderText = "Trạng thái";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // guna2Panel6
             // 
@@ -950,128 +1072,6 @@
             this.guna2Panel8.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.guna2Panel8.Size = new System.Drawing.Size(1198, 62);
             this.guna2Panel8.TabIndex = 3;
-            // 
-            // btnTrangThai
-            // 
-            this.btnTrangThai.BorderColor = System.Drawing.Color.Transparent;
-            this.btnTrangThai.BorderRadius = 16;
-            this.btnTrangThai.BorderThickness = 1;
-            this.btnTrangThai.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnTrangThai.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnTrangThai.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTrangThai.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnTrangThai.FillColor = System.Drawing.Color.Transparent;
-            this.btnTrangThai.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnTrangThai.ForeColor = System.Drawing.Color.Black;
-            this.btnTrangThai.HoverState.FillColor = System.Drawing.Color.Transparent;
-            this.btnTrangThai.Location = new System.Drawing.Point(25, 702);
-            this.btnTrangThai.Name = "btnTrangThai";
-            this.btnTrangThai.PressedColor = System.Drawing.Color.Transparent;
-            this.btnTrangThai.Size = new System.Drawing.Size(142, 36);
-            this.btnTrangThai.TabIndex = 31;
-            this.btnTrangThai.Text = "...";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "BatchID";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column1.FillWeight = 80F;
-            this.Column1.HeaderText = "Mã lô";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "TenSanPham";
-            this.Column5.FillWeight = 110F;
-            this.Column5.HeaderText = "Tên sản phẩm";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "BienThe";
-            this.Column6.HeaderText = "Biến thể";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "NhaCungCap";
-            this.Column8.HeaderText = "Nhà cung cấp";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "GiaNhap";
-            this.Column9.HeaderText = "Giá nhập";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "SoLuongBanDau";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column10.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column10.HeaderText = "SL ban đầu";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "SoLuongConLai";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column11.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Column11.HeaderText = "SL còn lại";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "NgaySanXuat";
-            this.Column2.HeaderText = "Ngày sản xuất";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "HanSuDung";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Column3.FillWeight = 80F;
-            this.Column3.HeaderText = "Hạn sử dụng";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "TrangThai";
-            this.Column4.HeaderText = "Trạng thái";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // lblAnTT
-            // 
-            this.lblAnTT.BackColor = System.Drawing.Color.Transparent;
-            this.lblAnTT.Font = new System.Drawing.Font("Segoe UI", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnTT.ForeColor = System.Drawing.Color.Black;
-            this.lblAnTT.Location = new System.Drawing.Point(26, 702);
-            this.lblAnTT.Name = "lblAnTT";
-            this.lblAnTT.Size = new System.Drawing.Size(12, 23);
-            this.lblAnTT.TabIndex = 32;
-            this.lblAnTT.Text = "...";
             // 
             // Frm_LoHang
             // 

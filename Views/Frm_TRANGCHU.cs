@@ -23,7 +23,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             if( SessionManager.IsAdmin () )
             {
                 SetActiveButton (btnTongQuan);
-                OpenChildForm (new Dashboard (), "DASHBOARD");
+                OpenChildForm (new Dashboard (), "TỔNG QUAN");
             }
             else
             {
@@ -129,7 +129,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private void btnTongQuan_Click (object sender, EventArgs e) {
             if( !SessionManager.IsAdmin () ) return;
             SetActiveButton (btnTongQuan);
-            OpenChildForm (new Dashboard (), "DASHBOARD");
+            OpenChildForm (new Dashboard (), "TỔNG QUAN");
         }
 
         private void btnSanPham_Click (object sender, EventArgs e) {
