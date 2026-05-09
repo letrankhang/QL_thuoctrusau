@@ -1,17 +1,19 @@
-﻿using QL_CuaHangBanThuocTruSau.Controllers;
+using Guna.UI2.WinForms;
+using QL_CuaHangBanThuocTruSau.BUS;
+using QL_CuaHangBanThuocTruSau.Controllers;
 using QL_CuaHangBanThuocTruSau.Models;
 using QL_CuaHangBanThuocTruSau.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Guna.UI2.WinForms;
 
 namespace QL_CuaHangBanThuocTruSau.Views
 {
     public partial class Frm_LoHang : Form
     {
         BatchController controller = new BatchController();
+        BatchExportBUS exportBUS = new BatchExportBUS();
         private Guna2Button btnDangChon = null;
         private string trangThaiDangChon = "Tất cả";
 
@@ -239,6 +241,34 @@ namespace QL_CuaHangBanThuocTruSau.Views
             lblNSX.Text = "...";
             lblHSD.Text = "...";
             btnTrangThai.Visible = false;
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Excel Workbook|*.xlsx";
+                sfd.FileName = $"BaoCaoLoHang_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Lấy các giá trị lọc hiện tại trên Form
+                        int productID = ((Product)cboLocTheoSP.SelectedItem).ProductID;
+                        int supplierID = ((Supplier)cboLocTheoNCC.SelectedItem).SupplierID;
+
+                        // Gọi BUS thực hiện quy trình xuất
+                        exportBUS.ExportBatches(sfd.FileName, productID, supplierID, trangThaiDangChon);
+
+                        MessageBox.Show("Xuất báo cáo Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Có lỗi xảy ra khi xuất Excel: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

@@ -1,7 +1,8 @@
-﻿using QL_CuaHangBanThuocTruSau.Context;
+using QL_CuaHangBanThuocTruSau.Context;
 using QL_CuaHangBanThuocTruSau.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -55,6 +56,11 @@ namespace QL_CuaHangBanThuocTruSau.DAO
         public bool maDaTonTai(int maSP)
         {
             return db.Products.Any(s => s.ProductID == maSP);
+        }
+
+        public List<Product> layTatCaKemBienThe()
+        {
+            return db.Products.Include(p => p.Category).Include(p => p.ProductVariants).ToList();
         }
     }
 }

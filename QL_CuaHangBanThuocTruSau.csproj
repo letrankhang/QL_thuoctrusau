@@ -177,6 +177,7 @@
     <Compile Include="BUS\SuppliersBUS.cs" />
     <Compile Include="BUS\UserBUS.cs" />
     <Compile Include="BUS\LoginBUS.cs" />
+    <Compile Include="BUS\BatchExportBUS.cs" />
     <Compile Include="Controllers\BatchController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="DAO\SuppliersDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="DAO\LoginDAO.cs" />
+    <Compile Include="DAO\BatchExportDAO.cs" />
     <Compile Include="Migrations\202604240149512_InitialCreate.cs" />
     <Compile Include="Migrations\202604240149512_InitialCreate.Designer.cs">
       <DependentUpon>202604240149512_InitialCreate.cs</DependentUpon>

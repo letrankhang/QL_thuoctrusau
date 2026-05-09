@@ -270,7 +270,45 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void btnXuatExcel_Click(object sender, EventArgs e)
         {
-            //
+            if (dgvSanPham.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Excel Workbook|*.xlsx";
+                sfd.FileName = $"DanhSachSanPhamChiTiet_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Lấy toàn bộ danh sách kèm biến thể từ DB
+                        var allProducts = controller.LayDanhSachKemBienThe();
+
+                        // Lấy danh sách ID sản phẩm đang hiển thị trên DGV (đã qua lọc/tìm kiếm)
+                        var visibleProductIDs = new HashSet<int>();
+                        foreach (DataGridViewRow row in dgvSanPham.Rows)
+                        {
+                            if (row.Cells[0].Value != null)
+                            {
+                                visibleProductIDs.Add(Convert.ToInt32(row.Cells[0].Value));
+                            }
+                        }
+
+                        // Lọc danh sách chi tiết theo những gì đang hiển thị
+                        var filteredData = allProducts.Where(p => visibleProductIDs.Contains(p.ProductID)).ToList();
+
+                        ExcelHelper.XuatExcelSanPhamChiTiet(filteredData, sfd.FileName);
+                        MessageBox.Show("Xuất file Excel chi tiết sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void btnNhapExcel_Click(object sender, EventArgs e)

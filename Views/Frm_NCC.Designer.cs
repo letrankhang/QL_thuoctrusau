@@ -221,6 +221,7 @@
             this.btnXuatExcel.Size = new System.Drawing.Size(137, 45);
             this.btnXuatExcel.TabIndex = 14;
             this.btnXuatExcel.Text = "Xuất Excel";
+            this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
             // 
             // btnXoa
             // 
