@@ -1,4 +1,4 @@
-﻿using QL_CuaHangBanThuocTruSau.Controllers;
+using QL_CuaHangBanThuocTruSau.Controllers;
 using QL_CuaHangBanThuocTruSau.Models;
 using System;
 using System.Collections.Generic;

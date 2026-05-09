@@ -170,10 +170,16 @@
   <ItemGroup>
     <Compile Include="BUS\BatchBUS.cs" />
     <Compile Include="BUS\CategoryBUS.cs" />
+    <Compile Include="BUS\CustomerBUS.cs" />
     <Compile Include="BUS\DashboardBUS.cs" />
+    <Compile Include="BUS\DebtBUS.cs" />
+    <Compile Include="BUS\InventoryTransactionBUS.cs" />
+    <Compile Include="BUS\ImportBUS.cs" />
     <Compile Include="BUS\LogoutBUS.cs" />
+    <Compile Include="BUS\OrderBUS.cs" />
     <Compile Include="BUS\ProductBUS.cs" />
     <Compile Include="BUS\ProductVariantsBUS.cs" />
+    <Compile Include="BUS\SaleBUS.cs" />
     <Compile Include="BUS\SuppliersBUS.cs" />
     <Compile Include="BUS\UserBUS.cs" />
     <Compile Include="BUS\LoginBUS.cs" />
@@ -185,6 +191,7 @@
     <Compile Include="Controllers\DeleteUserController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductVariantsController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
@@ -193,9 +200,15 @@
     <Compile Include="Controllers\ForgotPasswordController.cs" />
     <Compile Include="DAO\BatchDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
+    <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\DashboardDAO.cs" />
+    <Compile Include="DAO\DebtDAO.cs" />
+    <Compile Include="DAO\InventoryTransactionDAO.cs" />
+    <Compile Include="DAO\ImportDAO.cs" />
+    <Compile Include="DAO\OrderDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="DAO\ProductVariantsDAO.cs" />
+    <Compile Include="DAO\SaleDAO.cs" />
     <Compile Include="DAO\SuppliersDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="DAO\LoginDAO.cs" />
@@ -230,12 +243,42 @@
     </Compile>
     <Compile Include="Utils\ExcelHelper.cs" />
     <Compile Include="Utils\EmailHelper.cs" />
+    <Compile Include="Utils\OperationResult.cs" />
+    <Compile Include="Utils\Logger.cs" />
+    <Compile Include="Utils\InvoicePrinter.cs" />
     <Compile Include="ViewModels\BatchViewModel.cs" />
     <Compile Include="Views\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_BanHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_BanHang.Designer.cs">
+      <DependentUpon>Frm_BanHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_KhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_KhachHang.Designer.cs">
+      <DependentUpon>Frm_KhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_LichSuGiaoDich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_LichSuDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_LichSuDonHang.Designer.cs">
+      <DependentUpon>Frm_LichSuDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_LichSuKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_LichSuKho.Designer.cs">
+      <DependentUpon>Frm_LichSuKho.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FromNhapEmailorUsername.cs">
       <SubType>Form</SubType>
@@ -339,11 +382,20 @@
     <EmbeddedResource Include="Views\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_BanHang.resx">
+      <DependentUpon>Frm_BanHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_BienTheSP.resx">
       <DependentUpon>Frm_BienTheSP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_DANGNHAP.resx">
       <DependentUpon>Frm_DANGNHAP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_KhachHang.resx">
+      <DependentUpon>Frm_KhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_LichSuDonHang.resx">
+      <DependentUpon>Frm_LichSuDonHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_NhapMaXacThuc.resx">
       <DependentUpon>Frm_NhapMaXacThuc.cs</DependentUpon>

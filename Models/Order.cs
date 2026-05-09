@@ -33,5 +33,6 @@ namespace QL_CuaHangBanThuocTruSau.Models {
         public virtual User User { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<DebtTransaction> DebtTransactions { get; set; }
     }
 }

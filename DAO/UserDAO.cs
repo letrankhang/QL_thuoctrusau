@@ -33,8 +33,9 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
                 {
                     return context.Users.AsNoTracking().FirstOrDefault (u => u.UserID == userId);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return null;
                 }
             }
@@ -55,8 +56,9 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
                 {
                     return context.Users.AsNoTracking().FirstOrDefault (u => u.Username == username);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return null;
                 }
             }
@@ -69,8 +71,9 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
                 {
                     return context.Users.AsNoTracking().FirstOrDefault (u => u.Username == identifier || u.Email == identifier);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Console.WriteLine("Lỗi: " + ex.Message);
                     return null;
                 }
             }

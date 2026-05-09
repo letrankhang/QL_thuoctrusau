@@ -313,7 +313,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void btnNhapExcel_Click(object sender, EventArgs e)
         {
-           // 
+            ExcelHelper.NhapExcel(new ProductBUS());
+            loadDanhSach();
         }
 
         private void btnXuatReport_Click(object sender, EventArgs e)

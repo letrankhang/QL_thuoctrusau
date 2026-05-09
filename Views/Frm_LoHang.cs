@@ -6,6 +6,7 @@ using QL_CuaHangBanThuocTruSau.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace QL_CuaHangBanThuocTruSau.Views
@@ -85,7 +86,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             cboLocTheoNCC.DisplayMember = "Name";
             cboLocTheoNCC.ValueMember = "SupplierID";
             cboLocTheoNCC.SelectedIndex = 0;
-            cboLocTheoNCC.DropDownWidth = 400; 
+            cboLocTheoNCC.DropDownWidth = 400;
         }
 
         private void taiDuLieu()
@@ -129,7 +130,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         {
             khoiTaoMauBtn();
             btn.BorderThickness = 2;
-            btn.BorderColor = btn.ForeColor; 
+            btn.BorderColor = btn.ForeColor;
 
             btnDangChon = btn;
         }
@@ -160,6 +161,34 @@ namespace QL_CuaHangBanThuocTruSau.Views
             trangThaiDangChon = "Hết hạn";
             chonBtn(btnHetHan);
             taiDuLieu();
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Excel Workbook|*.xlsx";
+                sfd.FileName = $"BaoCaoLoHang_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Lấy các giá trị lọc hiện tại trên Form
+                        int productID = ((Product)cboLocTheoSP.SelectedItem).ProductID;
+                        int supplierID = ((Supplier)cboLocTheoNCC.SelectedItem).SupplierID;
+
+                        // Gọi BUS thực hiện quy trình xuất
+                        exportBUS.ExportBatches(sfd.FileName, productID, supplierID, trangThaiDangChon);
+
+                        MessageBox.Show("Xuất báo cáo Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Có lỗi xảy ra khi xuất Excel: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
@@ -243,32 +272,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             btnTrangThai.Visible = false;
         }
 
-        private void btnXuatExcel_Click(object sender, EventArgs e)
+        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
         {
-            using (SaveFileDialog sfd = new SaveFileDialog())
-            {
-                sfd.Filter = "Excel Workbook|*.xlsx";
-                sfd.FileName = $"BaoCaoLoHang_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
 
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        // Lấy các giá trị lọc hiện tại trên Form
-                        int productID = ((Product)cboLocTheoSP.SelectedItem).ProductID;
-                        int supplierID = ((Supplier)cboLocTheoNCC.SelectedItem).SupplierID;
-
-                        // Gọi BUS thực hiện quy trình xuất
-                        exportBUS.ExportBatches(sfd.FileName, productID, supplierID, trangThaiDangChon);
-
-                        MessageBox.Show("Xuất báo cáo Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Có lỗi xảy ra khi xuất Excel: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
         }
     }
 }

@@ -3,21 +3,75 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QL_CuaHangBanThuocTruSau.Utils;
 
 namespace QL_CuaHangBanThuocTruSau.BUS
 {
     using QL_CuaHangBanThuocTruSau.DAO;
     using QL_CuaHangBanThuocTruSau.Models;
+    using QL_CuaHangBanThuocTruSau.Context;
     using System.Security.Cryptography;
 
     public class ProductBUS
     {
         ProductDAO dao = new ProductDAO();
+        ProductVariantDAO variantDao = new ProductVariantDAO();
+        AppDbContext db = new AppDbContext();
 
-        public List<Product> layDanhSach()
+        public Result<List<ProductVariant>> GetAllProductVariants()
         {
-            return dao.layTatCa();
+            try
+            {
+                var list = variantDao.layTatCa();
+                // Load navigation property Product manually if not included
+                foreach (var item in list)
+                {
+                    if (item.Product == null)
+                        item.Product = db.Products.Find(item.ProductID);
+                }
+                return Result<List<ProductVariant>>.Success(list);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex, "ProductBUS.GetAllProductVariants");
+                return Result<List<ProductVariant>>.Failure("Lỗi lấy danh sách biến thể sản phẩm: " + ex.Message);
+            }
         }
+
+        public Result<List<ProductVariant>> SearchProducts(string keyword)
+        {
+            try
+            {
+                var list = variantDao.layTatCa()
+                    .Where(v => (v.Product?.Name != null && v.Product.Name.ToLower().Contains(keyword.ToLower())) ||
+                                v.Unit.ToLower().Contains(keyword.ToLower()))
+                    .ToList();
+                return Result<List<ProductVariant>>.Success(list);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex, "ProductBUS.SearchProducts");
+                return Result<List<ProductVariant>>.Failure("Lỗi tìm kiếm sản phẩm: " + ex.Message);
+            }
+        }
+
+        public Result<int> GetStockQuantity(int variantId)
+        {
+            try
+            {
+                int totalStock = db.Batches
+                    .Where(b => b.VariantID == variantId)
+                    .Sum(b => (int?)b.RemainingQuantity) ?? 0;
+                return Result<int>.Success(totalStock);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex, "ProductBUS.GetStockQuantity");
+                return Result<int>.Failure("Lỗi lấy số lượng tồn kho: " + ex.Message);
+            }
+        }
+
+        public List<Product> layDanhSach() => dao.layTatCa();
 
         public bool them(Product sp, out string loi)
         {

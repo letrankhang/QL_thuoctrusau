@@ -20,9 +20,9 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
                     u.Password == password &&
                     u.Status == true);
             }
-            catch( Exception )
+            catch( Exception ex )
             {
-
+                Console.WriteLine("Lỗi đăng nhập: " + ex.Message);
                 return null;
             }
         }

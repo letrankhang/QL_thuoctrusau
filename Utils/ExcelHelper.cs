@@ -1,16 +1,49 @@
 using ClosedXML.Excel;
+using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Models;
 using QL_CuaHangBanThuocTruSau.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace QL_CuaHangBanThuocTruSau.Utils
 {
     public class ExcelHelper
     {
         /// <summary>
-        /// Phương thức xuất Excel chuyên biệt cho Lô hàng
+        /// Phương thức xuất Excel generic cho các danh sách đơn giản
+        /// </summary>
+        public static void ExportToExcel<T>(IEnumerable<T> data, string fileName, string sheetName = "Data")
+        {
+            try
+            {
+                using (SaveFileDialog sfd = new SaveFileDialog())
+                {
+                    sfd.Filter = "Excel Files|*.xlsx";
+                    sfd.FileName = fileName;
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var workbook = new XLWorkbook())
+                        {
+                            var worksheet = workbook.Worksheets.Add(sheetName);
+                            worksheet.Cell(1, 1).InsertTable(data);
+                            worksheet.Columns().AdjustToContents();
+                            workbook.SaveAs(sfd.FileName);
+                        }
+                        MessageBox.Show("Xuất dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xuất Excel: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Phương thức xuất Excel chuyên biệt cho Lô hàng (Stylized)
         /// </summary>
         public static void XuatExcelLoHang(List<BatchViewModel> danhSach, string filePath)
         {
@@ -84,7 +117,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
         }
 
         /// <summary>
-        /// Phương thức xuất Excel cho danh sách Nhà cung cấp
+        /// Phương thức xuất Excel cho danh sách Nhà cung cấp (Stylized)
         /// </summary>
         public static void XuatExcelNCC(List<Supplier> danhSach, string filePath)
         {
@@ -96,7 +129,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 var titleRange = worksheet.Range("A1:E1");
                 titleRange.Merge().Value = "DANH SÁCH NHÀ CUNG CẤP";
                 titleRange.Style.Font.SetBold().Font.SetFontSize(16).Font.FontColor = XLColor.White;
-                titleRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#1976D2"); // Blue color for Suppliers
+                titleRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#1976D2");
                 titleRange.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
 
                 // 2. Thông tin phụ
@@ -145,7 +178,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
         }
 
         /// <summary>
-        /// Phương thức xuất Excel cho danh sách Sản phẩm
+        /// Phương thức xuất Excel cho danh sách Sản phẩm (Stylized)
         /// </summary>
         public static void XuatExcelSanPham(List<Product> danhSach, string filePath)
         {
@@ -157,7 +190,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 var titleRange = worksheet.Range("A1:D1");
                 titleRange.Merge().Value = "DANH SÁCH SẢN PHẨM";
                 titleRange.Style.Font.SetBold().Font.SetFontSize(16).Font.FontColor = XLColor.White;
-                titleRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#EF6C00"); // Orange color for Products
+                titleRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#EF6C00");
                 titleRange.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
 
                 // 2. Thông tin phụ
@@ -282,6 +315,51 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 worksheet.Columns().AdjustToContents();
 
                 workbook.SaveAs(filePath);
+            }
+        }
+
+        /// <summary>
+        /// Phương thức nhập Excel cho Sản phẩm
+        /// </summary>
+        public static void NhapExcel(ProductBUS bus)
+        {
+            try
+            {
+                using (OpenFileDialog ofd = new OpenFileDialog())
+                {
+                    ofd.Filter = "Excel Files|*.xlsx";
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var workbook = new XLWorkbook(ofd.FileName))
+                        {
+                            var worksheet = workbook.Worksheet(1);
+                            var rows = worksheet.RangeUsed().RowsUsed().Skip(1); // Skip header
+
+                            int count = 0;
+                            foreach (var row in rows)
+                            {
+                                var sp = new Product
+                                {
+                                    ProductID = row.Cell(1).GetValue<int>(),
+                                    Name = row.Cell(2).GetValue<string>(),
+                                    CategoryID = row.Cell(3).GetValue<int>(),
+                                    Description = row.Cell(4).GetValue<string>()
+                                };
+
+                                string loi = "";
+                                if (bus.them(sp, out loi))
+                                {
+                                    count++;
+                                }
+                            }
+                            MessageBox.Show($"Đã nhập thành công {count} sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi nhập Excel: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
