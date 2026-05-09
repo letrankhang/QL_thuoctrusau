@@ -21,7 +21,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.btnExit = new Guna.UI2.WinForms.Guna2Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblSubTitle = new System.Windows.Forms.Label();
             this.pnlStep1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -36,6 +35,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnReset = new Guna.UI2.WinForms.Guna2Button();
             this.txtNewPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtConfirmPassword = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnExit = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.pnlStep1.SuspendLayout();
@@ -55,38 +55,24 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Panel2.Controls.Add(this.guna2PictureBox1);
             this.guna2Panel2.Location = new System.Drawing.Point(-1, -2);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(472, 669);
+            this.guna2Panel2.Size = new System.Drawing.Size(472, 554);
             this.guna2Panel2.TabIndex = 5;
             // 
             // guna2PictureBox1
             // 
             this.guna2PictureBox1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.Logo;
             this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(31, 156);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(31, 103);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(438, 320);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(438, 343);
             this.guna2PictureBox1.TabIndex = 0;
             this.guna2PictureBox1.TabStop = false;
-            // 
-            // btnExit
-            // 
-            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExit.FillColor = System.Drawing.Color.Transparent;
-            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.HoverState.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.delete_button2;
-            this.btnExit.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.delete_button;
-            this.btnExit.Location = new System.Drawing.Point(985, -2);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(46, 46);
-            this.btnExit.TabIndex = 6;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // lblWelcome
             // 
             this.lblWelcome.BackColor = System.Drawing.Color.Transparent;
-            this.lblWelcome.Font = new System.Drawing.Font("Tahoma", 28F, System.Drawing.FontStyle.Bold);
-            this.lblWelcome.Location = new System.Drawing.Point(504, 12);
+            this.lblWelcome.Font = new System.Drawing.Font("Tahoma", 24.21239F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Location = new System.Drawing.Point(504, 37);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(450, 60);
             this.lblWelcome.TabIndex = 3;
@@ -98,9 +84,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblSubTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblSubTitle.Font = new System.Drawing.Font("Tahoma", 12F);
             this.lblSubTitle.ForeColor = System.Drawing.Color.Gray;
-            this.lblSubTitle.Location = new System.Drawing.Point(504, 86);
+            this.lblSubTitle.Location = new System.Drawing.Point(509, 88);
             this.lblSubTitle.Name = "lblSubTitle";
-            this.lblSubTitle.Size = new System.Drawing.Size(400, 30);
+            this.lblSubTitle.Size = new System.Drawing.Size(400, 39);
             this.lblSubTitle.TabIndex = 4;
             this.lblSubTitle.Text = "Vui lòng làm theo các bước";
             this.lblSubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -227,7 +213,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlStep3.Controls.Add(this.txtConfirmPassword);
             this.pnlStep3.Location = new System.Drawing.Point(504, 154);
             this.pnlStep3.Name = "pnlStep3";
-            this.pnlStep3.Size = new System.Drawing.Size(490, 486);
+            this.pnlStep3.Size = new System.Drawing.Size(490, 350);
             this.pnlStep3.TabIndex = 8;
             this.pnlStep3.Visible = false;
             // 
@@ -237,9 +223,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnReset.FillColor = System.Drawing.Color.SteelBlue;
             this.btnReset.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
             this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Location = new System.Drawing.Point(40, 344);
+            this.btnReset.Location = new System.Drawing.Point(40, 220);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(410, 70);
+            this.btnReset.Size = new System.Drawing.Size(410, 97);
             this.btnReset.TabIndex = 2;
             this.btnReset.Text = "Đặt lại mật khẩu";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -249,10 +235,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtNewPassword.BorderRadius = 10;
             this.txtNewPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtNewPassword.DefaultText = "";
+            this.txtNewPassword.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtNewPassword.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtNewPassword.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources._lock;
+            this.txtNewPassword.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtNewPassword.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtNewPassword.Location = new System.Drawing.Point(40, 132);
+            this.txtNewPassword.IconRightSize = new System.Drawing.Size(30, 30);
+            this.txtNewPassword.Location = new System.Drawing.Point(40, 33);
             this.txtNewPassword.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.PasswordChar = '●';
@@ -267,10 +255,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtConfirmPassword.BorderRadius = 10;
             this.txtConfirmPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtConfirmPassword.DefaultText = "";
+            this.txtConfirmPassword.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtConfirmPassword.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtConfirmPassword.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources._lock;
+            this.txtConfirmPassword.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtConfirmPassword.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtConfirmPassword.Location = new System.Drawing.Point(40, 226);
+            this.txtConfirmPassword.IconRightSize = new System.Drawing.Size(30, 30);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(40, 127);
             this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.PasswordChar = '●';
@@ -280,33 +270,52 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtConfirmPassword.TabIndex = 1;
             this.txtConfirmPassword.UseSystemPasswordChar = true;
             // 
+            // btnExit
+            // 
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnExit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnExit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnExit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnExit.FillColor = System.Drawing.Color.Transparent;
+            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.HoverState.FillColor = System.Drawing.Color.White;
+            this.btnExit.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnExit.HoverState.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.delete_button2;
+            this.btnExit.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.delete_button;
+            this.btnExit.Location = new System.Drawing.Point(978, -2);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.PressedColor = System.Drawing.Color.White;
+            this.btnExit.Size = new System.Drawing.Size(49, 53);
+            this.btnExit.TabIndex = 9;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click_1);
+            // 
             // Frm_QuenMatKhau
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1028, 665);
+            this.ClientSize = new System.Drawing.Size(1028, 549);
+            this.Controls.Add(this.lblWelcome);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.pnlStep3);
             this.Controls.Add(this.pnlStep2);
             this.Controls.Add(this.pnlStep1);
             this.Controls.Add(this.lblSubTitle);
-            this.Controls.Add(this.lblWelcome);
-            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.guna2Panel2);
             this.Font = new System.Drawing.Font("Tahoma", 10.19469F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_QuenMatKhau";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quên mật khẩu";
+            this.Load += new System.EventHandler(this.Frm_QuenMatKhau_Load);
             this.guna2Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.pnlStep1.ResumeLayout(false);
-            this.pnlStep1.PerformLayout();
             this.pnlStep2.ResumeLayout(false);
-            this.pnlStep2.PerformLayout();
             this.pnlStep3.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -315,7 +324,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private Guna.UI2.WinForms.Guna2Button btnExit;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Label lblSubTitle;
         private Guna.UI2.WinForms.Guna2Panel pnlStep1;
@@ -330,5 +338,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private Guna.UI2.WinForms.Guna2TextBox txtNewPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtConfirmPassword;
         private Guna.UI2.WinForms.Guna2Button btnReset;
+        private Guna.UI2.WinForms.Guna2Button btnExit;
     }
 }

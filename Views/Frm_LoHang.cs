@@ -107,6 +107,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 taiDuLieu();
                 return;
             }
+            int productID = ((Product)cboLocTheoSP.SelectedItem).ProductID;
+            int supplierID = ((Supplier)cboLocTheoNCC.SelectedItem).SupplierID;
             List<BatchViewModel> danhSach = controller.timKiem(keyword);
             dgvLoHang.DataSource = null;
             dgvLoHang.DataSource = danhSach;
@@ -213,7 +215,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 btnTrangThai.ForeColor = ColorTranslator.FromHtml("#856404");
                 btnTrangThai.BorderColor = ColorTranslator.FromHtml("#FDE68A");
             }
-            else if (trangThai == "Còn hàng")
+            else if (trangThai == "Còn hạn")
             {
                 btnTrangThai.FillColor = ColorTranslator.FromHtml("#D4EDDA");
                 btnTrangThai.ForeColor = ColorTranslator.FromHtml("#155724");

@@ -410,11 +410,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblInterfaceName.AutoSize = true;
             this.lblInterfaceName.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
             this.lblInterfaceName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
-            this.lblInterfaceName.Location = new System.Drawing.Point(20, 27);
+            this.lblInterfaceName.Location = new System.Drawing.Point(20, 29);
             this.lblInterfaceName.Name = "lblInterfaceName";
-            this.lblInterfaceName.Size = new System.Drawing.Size(184, 45);
+            this.lblInterfaceName.Size = new System.Drawing.Size(214, 45);
             this.lblInterfaceName.TabIndex = 0;
-            this.lblInterfaceName.Text = "Dashboard";
+            this.lblInterfaceName.Text = "TỔNG QUAN";
             // 
             // Frm_TRANGCHU
             // 

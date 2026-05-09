@@ -27,8 +27,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 
                 // Chuyển sang giao diện nhập mã xác thực
                 Frm_NhapMaXacThuc frm = new Frm_NhapMaXacThuc(_controller);
-                frm.Show();
-                this.Hide();
+                this.Hide();          
+                frm.ShowDialog();    
+                this.Close();
             } else {
                 MessageBox.Show(result, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -38,16 +39,25 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.Close();
         }
 
-        private void lblBackToLogin_Click(object sender, EventArgs e) {
+        private void lblBackToLogin_Click(object sender, EventArgs e) 
+        {
             this.Close();
-        }
-
-        private void guna2PictureBox1_Click (object sender, EventArgs e) {
 
         }
 
-        private void txtIdentifier_TextChanged (object sender, EventArgs e) {
+        private void lblBackToLogin_MouseEnter(object sender, EventArgs e)
+        {
+            lblBackToLogin.Font = new Font(lblBackToLogin.Font, FontStyle.Underline);
+        }
 
+        private void lblBackToLogin_MouseLeave(object sender, EventArgs e)
+        {
+            lblBackToLogin.Font = new Font(lblBackToLogin.Font, FontStyle.Regular);
+        }
+
+        private void btnExit_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -1,3 +1,4 @@
+using Guna.UI2.WinForms;
 using QL_CuaHangBanThuocTruSau.Controllers;
 using System;
 using System.Windows.Forms;
@@ -9,6 +10,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         public Frm_QuenMatKhau() {
             InitializeComponent();
             this.Name = "Frm_QuenMatKhau";
+
             _controller = new ForgotPasswordController();
         }
 
@@ -29,25 +31,21 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private void btnReset_Click(object sender, EventArgs e) {
             string newPass = txtNewPassword.Text;
             string confirmPass = txtConfirmPassword.Text;
-
             string result = _controller.ResetPassword(newPass, confirmPass);
-
-            if (result == "SUCCESS") {
-                MessageBox.Show("Đặt lại mật khẩu thành công! Vui lòng đăng nhập lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Đóng tất cả các form liên quan đến quên mật khẩu
-                Application.OpenForms["FromNhapEmailorUsername"]?.Close();
-                Application.OpenForms["Frm_NhapMaXacThuc"]?.Close();
-                this.Close();
-            } else {
+            if (result == "SUCCESS")
+            {
+                MessageBox.Show("Đặt lại mật khẩu thành công! Vui lòng đăng nhập lại.",
+                                "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close(); 
+            }
+            else
+            {
                 MessageBox.Show(result, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e) {
-            // Đóng tất cả các form liên quan đến quên mật khẩu khi thoát
-            Application.OpenForms["FromNhapEmailorUsername"]?.Close();
-            Application.OpenForms["Frm_NhapMaXacThuc"]?.Close();
+        private void btnExit_Click(object sender, EventArgs e) 
+        {
             this.Close();
         }
 
@@ -59,5 +57,18 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private void lblSubTitle_Click (object sender, EventArgs e) {
 
         }
+
+
+        private void btnExit_Click_1(object sender, EventArgs e)
+        {
+           this.Close ();   
+        }
+
+        private void Frm_QuenMatKhau_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

@@ -1,5 +1,6 @@
 using QL_CuaHangBanThuocTruSau.Controllers;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace QL_CuaHangBanThuocTruSau.Views {
@@ -18,8 +19,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             {
                 // Chuyển sang giao diện đặt lại mật khẩu
                 Frm_QuenMatKhau frm = new Frm_QuenMatKhau (_controller);
-                frm.Show ();
-                this.Hide ();
+                this.Hide();          // ← Ẩn trước
+                frm.ShowDialog();     
+                this.Close();
             }
             else
             {
@@ -29,7 +31,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
         private void btnExit_Click (object sender, EventArgs e) {
             // Đóng cả form bước 1 đang ẩn
-            Application.OpenForms["FromNhapEmailorUsername"]?.Close ();
             this.Close ();
         }
 
@@ -42,6 +43,21 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             // Ở đây tạm thời thông báo
             MessageBox.Show ("Hệ thống đang gửi lại mã xác thực...", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Cursor = Cursors.Default;
+        }
+
+        private void lblResendOTP_MouseEnter(object sender, EventArgs e)
+        {
+            lblResendOTP.Font = new Font(lblResendOTP.Font, FontStyle.Underline);
+        }
+
+        private void lblResendOTP_MouseLeave(object sender, EventArgs e)
+        {
+            lblResendOTP.Font = new Font(lblResendOTP.Font, FontStyle.Regular);
+        }
+
+        private void txtOTP_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -500,10 +500,23 @@
     <None Include="Resources\user %282%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\shared-vision.png" />
+    <None Include="Resources\email.png" />
+    <None Include="Resources\email1.png" />
+    <None Include="Resources\close1.png" />
+    <None Include="Resources\eye.png" />
+    <None Include="Resources\eyeopen.png" />
+    <None Include="Resources\add-group.png" />
     <Content Include="Resources\icons8-trash-can-50.png" />
+    <None Include="Resources\mail.png" />
+    <None Include="Resources\mail1.png" />
+    <None Include="Resources\mail2.png" />
+    <None Include="Resources\password.png" />
     <Content Include="Resources\pen.png" />
     <None Include="Resources\variant.png" />
     <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="ImagesProducts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -28,6 +28,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void Frm_SanPham_Load(object sender, EventArgs e)
         {
+            btnXoaAnh.Visible = false;
             dgvSanPham.AutoGenerateColumns = false;
 
             DataGridViewTextBoxColumn colImagePath = new DataGridViewTextBoxColumn();

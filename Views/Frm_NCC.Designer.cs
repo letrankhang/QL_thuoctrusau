@@ -386,11 +386,12 @@
             this.btnLamMoi.FillColor = System.Drawing.Color.White;
             this.btnLamMoi.Font = new System.Drawing.Font("Segoe UI", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLamMoi.ForeColor = System.Drawing.Color.Black;
+            this.btnLamMoi.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btnLamMoi.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.icons8_refresh_100;
             this.btnLamMoi.ImageSize = new System.Drawing.Size(30, 30);
             this.btnLamMoi.Location = new System.Drawing.Point(602, 67);
             this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnLamMoi.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btnLamMoi.Size = new System.Drawing.Size(136, 36);
             this.btnLamMoi.TabIndex = 10;
             this.btnLamMoi.Text = "Làm mới";
