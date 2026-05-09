@@ -25,9 +25,9 @@ namespace QL_CuaHangBanThuocTruSau.BUS
 
         public bool AddPayment(DebtTransaction trans, out string error)
         {
-            if (trans.Amount >= 0)
+            if (trans.Amount <= 0)
             {
-                error = "Số tiền thanh toán nợ phải là số âm!";
+                error = "Số tiền thanh toán nợ phải lớn hơn 0!";
                 return false;
             }
             return dao.AddTransaction(trans, out error);

@@ -319,6 +319,87 @@ namespace QL_CuaHangBanThuocTruSau.Utils
         }
 
         /// <summary>
+        /// Phương thức xuất Excel cho danh sách Công nợ (Stylized)
+        /// </summary>
+        public static void XuatExcelCongNo(List<CongNoViewModel> danhSach, string filePath)
+        {
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Công nợ");
+
+                // 1. Tiêu đề
+                var titleRange = worksheet.Range("A1:I1");
+                titleRange.Merge().Value = "BÁO CÁO TÌNH HÌNH CÔNG NỢ ĐỐI TÁC";
+                titleRange.Style.Font.SetBold().Font.SetFontSize(16).Font.FontColor = XLColor.White;
+                titleRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#1565C0");
+                titleRange.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+
+                // 2. Thông tin phụ
+                worksheet.Cell("A2").Value = $"Ngày xuất: {DateTime.Now:dd/MM/yyyy HH:mm}";
+                worksheet.Range("A2:I2").Merge().Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right).Font.SetItalic();
+
+                // 3. Header bảng
+                string[] headers = { "Mã Đơn", "Tên Đối Tác", "Loại Nợ", "Tổng Nợ", "Đã Thanh Toán", "Còn Lại", "Ngày Lập", "Trạng Thái", "Nhân Viên Lập" };
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    var cell = worksheet.Cell(4, i + 1);
+                    cell.Value = headers[i];
+                    cell.Style.Fill.BackgroundColor = XLColor.FromHtml("#BBDEFB");
+                    cell.Style.Font.SetBold();
+                    cell.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    cell.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                }
+
+                // 4. Dữ liệu
+                int row = 5;
+                foreach (var item in danhSach)
+                {
+                    worksheet.Cell(row, 1).Value = item.OrderID;
+                    worksheet.Cell(row, 2).Value = item.PartnerName;
+                    worksheet.Cell(row, 3).Value = item.LoaiNo;
+                    worksheet.Cell(row, 4).Value = item.TotalAmount;
+                    worksheet.Cell(row, 4).Style.NumberFormat.Format = "#,##0";
+                    worksheet.Cell(row, 5).Value = item.PaidAmount;
+                    worksheet.Cell(row, 5).Style.NumberFormat.Format = "#,##0";
+                    worksheet.Cell(row, 6).Value = item.RemainingDebt;
+                    worksheet.Cell(row, 6).Style.NumberFormat.Format = "#,##0";
+                    worksheet.Cell(row, 7).Value = item.OrderDate;
+                    worksheet.Cell(row, 7).Style.NumberFormat.Format = "dd/MM/yyyy";
+                    worksheet.Cell(row, 8).Value = item.Status;
+                    worksheet.Cell(row, 9).Value = item.StaffName;
+
+                    worksheet.Range(row, 1, row, 9).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    row++;
+                }
+
+                // 5. Tổng kết
+                int lastRow = row + 1;
+                worksheet.Cell(lastRow, 1).Value = "TỔNG CỘNG:";
+                worksheet.Cell(lastRow, 1).Style.Font.SetBold();
+                
+                worksheet.Cell(lastRow, 2).Value = $"Số lượng công nợ: {danhSach.Count}";
+                worksheet.Cell(lastRow, 2).Style.Font.SetBold();
+
+                worksheet.Cell(lastRow, 4).FormulaA1 = $"=SUM(D5:D{row - 1})";
+                worksheet.Cell(lastRow, 4).Style.Font.SetBold().NumberFormat.Format = "#,##0";
+                
+                worksheet.Cell(lastRow, 5).FormulaA1 = $"=SUM(E5:E{row - 1})";
+                worksheet.Cell(lastRow, 5).Style.Font.SetBold().NumberFormat.Format = "#,##0";
+                
+                worksheet.Cell(lastRow, 6).FormulaA1 = $"=SUM(F5:F{row - 1})";
+                worksheet.Cell(lastRow, 6).Style.Font.SetBold().NumberFormat.Format = "#,##0";
+
+                worksheet.Range(lastRow, 1, lastRow, 9).Style.Fill.BackgroundColor = XLColor.FromHtml("#F5F5F5");
+                worksheet.Range(lastRow, 1, lastRow, 9).Style.Border.OutsideBorder = XLBorderStyleValues.Medium;
+
+                // Tự động căn chỉnh
+                worksheet.Columns().AdjustToContents();
+
+                workbook.SaveAs(filePath);
+            }
+        }
+
+        /// <summary>
         /// Phương thức nhập Excel cho Sản phẩm
         /// </summary>
         public static void NhapExcel(ProductBUS bus)

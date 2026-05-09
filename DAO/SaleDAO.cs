@@ -131,10 +131,30 @@ namespace QL_CuaHangBanThuocTruSau.DAO
                             }
                         }
 
-                        // 3. Ghi nợ
-                        if (newDebt > 0)
+                        // 3. Ghi nợ & Thanh toán
+                        // Luôn ghi nhận giao dịch SALE với tổng số tiền để theo dõi nợ gốc
+                        context.DebtTransactions.Add(new DebtTransaction 
+                        { 
+                            CustomerID = order.CustomerID, 
+                            Amount = order.TotalAmount, 
+                            TransactionType = "SALE", 
+                            ReferenceOrderID = order.OrderID, 
+                            TransactionDate = DateTime.Now,
+                            Note = $"Bán hàng đơn #{order.OrderID}"
+                        });
+
+                        // Nếu có thanh toán, ghi nhận giao dịch PAYMENT
+                        if (paidAmount > 0)
                         {
-                            context.DebtTransactions.Add(new DebtTransaction { CustomerID = order.CustomerID, Amount = newDebt, TransactionType = "DEBT", ReferenceOrderID = order.OrderID, TransactionDate = DateTime.Now });
+                            context.DebtTransactions.Add(new DebtTransaction 
+                            { 
+                                CustomerID = order.CustomerID, 
+                                Amount = paidAmount, 
+                                TransactionType = "PAYMENT", 
+                                ReferenceOrderID = order.OrderID, 
+                                TransactionDate = DateTime.Now,
+                                Note = $"Thanh toán cho đơn #{order.OrderID}"
+                            });
                         }
 
                         context.SaveChanges();

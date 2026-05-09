@@ -76,6 +76,7 @@
     <Reference Include="Microsoft.Bcl.HashCode, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.HashCode.6.0.0\lib\net462\Microsoft.Bcl.HashCode.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -189,6 +190,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\AddUserController.cs" />
     <Compile Include="Controllers\DeleteUserController.cs" />
+    <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -247,6 +249,7 @@
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\InvoicePrinter.cs" />
     <Compile Include="ViewModels\BatchViewModel.cs" />
+    <Compile Include="ViewModels\CongNoViewModel.cs" />
     <Compile Include="Views\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,14 +262,17 @@
     <Compile Include="Views\Frm_BanHang.Designer.cs">
       <DependentUpon>Frm_BanHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Frm_CongNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_CongNo.Designer.cs">
+      <DependentUpon>Frm_CongNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Frm_KhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Frm_KhachHang.Designer.cs">
       <DependentUpon>Frm_KhachHang.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Frm_LichSuGiaoDich.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Frm_LichSuDonHang.cs">
       <SubType>Form</SubType>
@@ -279,6 +285,18 @@
     </Compile>
     <Compile Include="Views\Frm_LichSuKho.Designer.cs">
       <DependentUpon>Frm_LichSuKho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_NhapChiTietSP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_NhapChiTietSP.Designer.cs">
+      <DependentUpon>Frm_NhapChiTietSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_NhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_NhapHang.Designer.cs">
+      <DependentUpon>Frm_NhapHang.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FromNhapEmailorUsername.cs">
       <SubType>Form</SubType>
@@ -388,6 +406,9 @@
     <EmbeddedResource Include="Views\Frm_BienTheSP.resx">
       <DependentUpon>Frm_BienTheSP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_CongNo.resx">
+      <DependentUpon>Frm_CongNo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_DANGNHAP.resx">
       <DependentUpon>Frm_DANGNHAP.cs</DependentUpon>
     </EmbeddedResource>
@@ -396,6 +417,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_LichSuDonHang.resx">
       <DependentUpon>Frm_LichSuDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_NhapChiTietSP.resx">
+      <DependentUpon>Frm_NhapChiTietSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_NhapHang.resx">
+      <DependentUpon>Frm_NhapHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_NhapMaXacThuc.resx">
       <DependentUpon>Frm_NhapMaXacThuc.cs</DependentUpon>
@@ -552,6 +579,7 @@
     <None Include="Resources\user %282%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\thanhtoan.jpg" />
     <None Include="Resources\shared-vision.png" />
     <None Include="Resources\email.png" />
     <None Include="Resources\email1.png" />

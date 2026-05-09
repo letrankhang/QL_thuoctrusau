@@ -21,7 +21,9 @@ namespace QL_CuaHangBanThuocTruSau
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_DANGNHAP());
+            Application.Run(new Frm_DANGNHAP
+
+                ());
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)

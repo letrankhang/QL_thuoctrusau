@@ -1,0 +1,621 @@
+﻿using Microsoft.VisualBasic;
+using QL_CuaHangBanThuocTruSau.Context;
+using QL_CuaHangBanThuocTruSau.Models;
+using System;
+using System.Data.Entity;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
+
+namespace QL_CuaHangBanThuocTruSau.Views
+{
+    public partial class Frm_CongNo : Form
+    {
+        private bool isLoaded = false;
+        private int _currentPage = 1;
+        private int _pageSize = 10;
+        private int _totalRows = 0;
+        private System.Collections.Generic.List<ViewModels.CongNoViewModel> _fullFilteredList = new System.Collections.Generic.List<ViewModels.CongNoViewModel>();
+
+        // ===================== STYLE =====================
+
+        private void StyleDgv(DataGridView dgv)
+        {
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.AllowUserToAddRows = false;
+            dgv.RowHeadersVisible = false;
+            dgv.BorderStyle = BorderStyle.FixedSingle;
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.GridColor = Color.FromArgb(220, 225, 235);
+            dgv.BackgroundColor = Color.White;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 107, 163);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 107, 163);
+            dgv.ColumnHeadersHeight = 42;
+
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9.5f);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
+            dgv.DefaultCellStyle.BackColor = Color.White;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 225, 245);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.FromArgb(30, 30, 30);
+            dgv.DefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
+            dgv.RowTemplate.Height = 36;
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
+        }
+
+        // ===================== SETUP COLUMNS =====================
+
+        private void SetupColumns()
+        {
+            dgvCongNo.Columns.Clear();
+
+            dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Mã đơn hàng",
+                DataPropertyName = "OrderID",
+                Name = "OrderID"
+            });
+
+            // ✅ Dùng nhất quán "PartnerName" cho cả DataPropertyName và Name
+            dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Tên đối tác",
+                DataPropertyName = "PartnerName",
+                Name = "PartnerName"
+            });
+
+            dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Loại nợ",
+                DataPropertyName = "LoaiNo",
+                Name = "LoaiNo"
+            });
+
+            dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Tổng công nợ",
+                DataPropertyName = "TotalAmount",
+                Name = "TotalAmount",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" }
+            });
+
+            dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Đã thanh toán",
+                DataPropertyName = "PaidAmount",
+                Name = "PaidAmount",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" }
+            });
+
+            dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Còn lại",
+                DataPropertyName = "RemainingDebt",
+                Name = "RemainingDebt",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" }
+            });
+
+            dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Ngày lập",
+                DataPropertyName = "OrderDate",
+                Name = "OrderDate",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy" }
+            });
+
+            dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Trạng thái",
+                DataPropertyName = "Status",
+                Name = "Status"
+            });
+
+            dgvCongNo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        // ===================== CONSTRUCTOR =====================
+
+        public Frm_CongNo()
+        {
+            InitializeComponent();
+            WireEvents();
+        }
+
+        private void WireEvents()
+        {
+            this.Load += Frm_CongNo_Load;
+            txtTimKiem.TextChanged += txtTimKiem_TextChanged;
+            cboLocKhachHang.SelectedIndexChanged += CboLocKhachHang_SelectedIndexChanged;
+            cboTrangThai.SelectedIndexChanged += (s, e) => { if (isLoaded) { _currentPage = 1; LoadData(); } };
+            dtpTuNgay.ValueChanged += (s, e) => { if (isLoaded) { _currentPage = 1; LoadData(); } };
+            dtpDenNgay.ValueChanged += (s, e) => { if (isLoaded) { _currentPage = 1; LoadData(); } };
+            btnNext.Click += BtnNext_Click;
+            btnPrev.Click += BtnPrev_Click;
+            btnThuNo.Click += btnThuNo_Click;
+            btnXuatExcel.Click += btnXuatExcel_Click;
+        }
+
+        // ===================== LOAD =====================
+
+        private void Frm_CongNo_Load(object sender, EventArgs e)
+        {
+            StyleDgv(dgvCongNo);
+
+            dgvCongNo.AutoGenerateColumns = false;
+            dgvCongNo.AllowUserToAddRows = false;
+
+            SetupColumns();
+
+            cboTrangThai.Items.Clear();
+            cboTrangThai.Items.Add("All");
+            cboTrangThai.Items.Add("Chưa thanh toán");
+            cboTrangThai.Items.Add("Thanh toán một phần");
+            cboTrangThai.Items.Add("Đã thanh toán");
+            cboTrangThai.SelectedIndex = 0;
+
+            dtpTuNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dtpDenNgay.Value = DateTime.Now;
+
+            LoadCustomers();
+
+            isLoaded = true;
+
+            LoadData();
+            CanhBaoNoQuaHan();
+        }
+
+        // ===================== LOAD CUSTOMERS + SUPPLIERS =====================
+
+        private void LoadCustomers()
+        {
+            cboLocKhachHang.Items.Clear();
+            cboLocKhachHang.Items.Add("All");
+
+            try
+            {
+                using (var db = new AppDbContext())
+                {
+                    var customerNames = db.Customers.Select(c => c.Name).ToList();
+                    var supplierNames = db.Suppliers.Select(s => s.Name).ToList();
+
+                    var allNames = customerNames.Concat(supplierNames)
+                        .Distinct().OrderBy(x => x).ToList();
+
+                    foreach (var name in allNames)
+                        if (!string.IsNullOrEmpty(name))
+                            cboLocKhachHang.Items.Add(name);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi load danh sách đối tác: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (cboLocKhachHang.Items.Count > 0)
+                cboLocKhachHang.SelectedIndex = 0;
+        }
+
+        // ===================== LOAD DATA =====================
+
+        private void LoadData()
+        {
+            int savedPage = _currentPage;
+            try
+            {
+                using (var db = new AppDbContext())
+                {
+                    string keyword = (txtTimKiem.Text ?? "").Trim().ToLower();
+                    string doiTacFilter = cboLocKhachHang.SelectedItem?.ToString() ?? "All";
+                    string trangThai = cboTrangThai.SelectedItem?.ToString() ?? "All";
+                    DateTime tuNgay = dtpTuNgay.Value.Date;
+                    DateTime denNgay = dtpDenNgay.Value.Date.AddDays(1);
+
+                    // ── LẤY TẤT CẢ CÁC GIAO DỊCH GỐC (SALE/PURCHASE/DEBT) ──
+                    var baseTransactions = db.DebtTransactions
+                        .Include(d => d.Customer)
+                        .Include(d => d.Supplier)
+                        .Include(d => d.Order.User)   // Load User cho đơn hàng
+                        .Include(d => d.Import.User)  // Load User cho phiếu nhập
+                        .Where(d => (d.TransactionType.ToUpper() == "SALE" || 
+                                     d.TransactionType.ToUpper() == "PURCHASE" || 
+                                     d.TransactionType.ToUpper() == "DEBT")
+                                 && d.TransactionDate >= tuNgay
+                                 && d.TransactionDate < denNgay)
+                        .ToList();
+
+                    var combined = baseTransactions.Select(t => {
+                        decimal totalDebtAmount = t.Amount;
+                        decimal paidAmount = 0;
+                        string staff = "N/A";
+
+                        if (t.ReferenceOrderID != null)
+                        {
+                            paidAmount = db.DebtTransactions
+                                .Where(p => p.TransactionType.ToUpper() == "PAYMENT" && p.ReferenceOrderID == t.ReferenceOrderID)
+                                .Sum(p => (decimal?)p.Amount) ?? 0;
+                            staff = t.Order?.User?.FullName ?? "N/A";
+                        }
+                        else if (t.ReferenceImportID != null)
+                        {
+                            paidAmount = db.DebtTransactions
+                                .Where(p => p.TransactionType.ToUpper() == "PAYMENT" && p.ReferenceImportID == t.ReferenceImportID)
+                                .Sum(p => (decimal?)p.Amount) ?? 0;
+                            staff = t.Import?.User?.FullName ?? "N/A";
+                        }
+
+                        decimal remaining = totalDebtAmount - paidAmount;
+
+                        return new ViewModels.CongNoViewModel
+                        {
+                            OrderID = t.ReferenceOrderID ?? t.ReferenceImportID,
+                            PartnerName = t.Customer?.Name ?? t.Supplier?.Name ?? "N/A",
+                            TotalAmount = totalDebtAmount,
+                            PaidAmount = paidAmount,
+                            RemainingDebt = remaining,
+                            OrderDate = t.TransactionDate,
+                            LoaiNo = (t.TransactionType.ToUpper() == "PURCHASE") ? "Nhà cung cấp" : "Khách hàng",
+                            Status = remaining <= 0 ? "Đã thanh toán"
+                                   : remaining < totalDebtAmount ? "Thanh toán một phần"
+                                   : "Chưa thanh toán",
+                            StaffName = staff
+                        };
+                    }).ToList();
+
+                    // ── BỘ LỌC ──
+                    var filtered = combined.AsEnumerable();
+
+                    if (!string.IsNullOrEmpty(keyword))
+                        filtered = filtered.Where(x => 
+                            x.OrderID.ToString().Contains(keyword) || 
+                            x.PartnerName.ToLower().Contains(keyword));
+
+                    if (doiTacFilter != "All")
+                        filtered = filtered.Where(x => x.PartnerName == doiTacFilter);
+
+                    if (trangThai != "All")
+                        filtered = filtered.Where(x => x.Status == trangThai);
+
+                    var finalResult = filtered.OrderByDescending(x => x.OrderDate).ToList();
+
+                    _totalRows = finalResult.Count;
+                    _fullFilteredList = finalResult; // Lưu lại danh sách đầy đủ đã lọc
+
+                    dgvCongNo.DataSource = finalResult
+                        .Skip((_currentPage - 1) * _pageSize)
+                        .Take(_pageSize)
+                        .ToList();
+
+                    // Lưu lại danh sách đã lọc để xuất Excel nếu cần (hoặc lấy trực tiếp từ DataSource)
+                    // Ở đây ta tính toán tổng dựa trên finalResult (đã lọc nhưng chưa phân trang)
+                    decimal tongNoKhach = finalResult.Where(x => x.LoaiNo == "Khách hàng").Sum(x => x.RemainingDebt);
+                    decimal tongNoNCC = finalResult.Where(x => x.LoaiNo == "Nhà cung cấp").Sum(x => x.RemainingDebt);
+                    
+                    lblTongCongNoValue.Text = (tongNoKhach + tongNoNCC).ToString("N0");
+                    lblNoPhaiThuValue.Text = tongNoKhach.ToString("N0");
+                    lblDaThanhToanValue.Text = tongNoNCC.ToString("N0");
+                    
+                    // Cập nhật text label cho trực quan
+                    lblNoPhaiThuTitle.Text = "Khách nợ (Phải thu)";
+                    lblDaThanhToanTitle.Text = "Nợ NCC (Phải trả)";
+                    lblTongCongNoTitle.Text = "Tổng cộng nợ";
+                    
+                    lblNoPhaiThuValue.ForeColor = Color.FromArgb(0, 120, 215); // Xanh dương cho phải thu
+                    lblDaThanhToanValue.ForeColor = Color.FromArgb(220, 53, 69); // Đỏ cho phải trả
+
+                    UpdatePagingInfo();
+                    ToMauDong();
+                }
+            }
+            catch (Exception ex)
+            {
+                _currentPage = savedPage;
+                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ===================== TÔ MÀU =====================
+
+        private void ToMauDong()
+        {
+            foreach (DataGridViewRow row in dgvCongNo.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string status = row.Cells["Status"].Value?.ToString() ?? "";
+                string loaiNo = row.Cells["LoaiNo"].Value?.ToString() ?? "";
+
+                if (loaiNo == "Nhà cung cấp" && status == "Chưa thanh toán")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(189, 215, 238);
+                    row.DefaultCellStyle.ForeColor = Color.DarkBlue;
+                }
+                else if (status == "Đã thanh toán")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(198, 239, 206);
+                    row.DefaultCellStyle.ForeColor = Color.DarkGreen;
+                }
+                else if (status == "Thanh toán một phần")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(255, 235, 156);
+                    row.DefaultCellStyle.ForeColor = Color.DarkOrange;
+                }
+                else
+                {
+                    DateTime orderDate = DateTime.MinValue;
+                    if (row.Cells["OrderDate"].Value is DateTime dt)
+                        orderDate = dt;
+
+                    if (orderDate != DateTime.MinValue && (DateTime.Now - orderDate).TotalDays > 30)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 199, 206);
+                        row.DefaultCellStyle.ForeColor = Color.DarkRed;
+                    }
+                    else
+                    {
+                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 235, 156);
+                        row.DefaultCellStyle.ForeColor = Color.DarkOrange;
+                    }
+                }
+            }
+        }
+
+        // ===================== CẢNH BÁO NỢ QUÁ HẠN =====================
+
+        private void CanhBaoNoQuaHan()
+        {
+            try
+            {
+                using (var db = new AppDbContext())
+                {
+                    var ngayQuaHan = DateTime.Now.AddDays(-30);
+
+                    var dsQuaHan = db.DebtTransactions
+                        .Include(x => x.Customer)
+                        .Include(x => x.Supplier)
+                        .Where(x => (x.TransactionType.ToUpper() == "SALE" ||
+                                     x.TransactionType.ToUpper() == "PURCHASE")
+                                 && x.TransactionDate < ngayQuaHan
+                                 && x.Amount > 0)
+                        .Select(x => new
+                        {
+                            TenDoiTac = x.Customer != null ? x.Customer.Name
+                                      : x.Supplier != null ? x.Supplier.Name : "N/A",
+                            Amount = x.Amount,
+                            OrderDate = x.TransactionDate,
+                            LoaiNo = x.TransactionType.ToUpper() == "SALE" ? "Khách hàng" : "Nhà cung cấp"
+                        })
+                        .ToList();
+
+                    if (dsQuaHan.Any())
+                    {
+                        string msg = $"⚠️ Có {dsQuaHan.Count} khoản nợ quá hạn (> 30 ngày):\n\n";
+                        foreach (var item in dsQuaHan.Take(5))
+                            msg += $"• [{item.LoaiNo}] {item.TenDoiTac} — {item.Amount:N0} đ — {item.OrderDate:dd/MM/yyyy}\n";
+
+                        if (dsQuaHan.Count > 5)
+                            msg += $"... và {dsQuaHan.Count - 5} khoản khác.";
+
+                        MessageBox.Show(msg, "Cảnh báo nợ quá hạn",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kiểm tra nợ quá hạn: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ===================== PAGING =====================
+
+        private void UpdatePagingInfo()
+        {
+            int start = _totalRows == 0 ? 0 : (_currentPage - 1) * _pageSize + 1;
+            int end = Math.Min(_currentPage * _pageSize, _totalRows);
+            lblPageInfo.Text = $"{start}-{end} of {_totalRows} items";
+
+            int totalPages = _pageSize == 0 ? 1 : (_totalRows + _pageSize - 1) / _pageSize;
+            btnPrev.Enabled = _currentPage > 1;
+            btnNext.Enabled = _currentPage < totalPages;
+        }
+
+        private void BtnNext_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int totalPages = (_totalRows + _pageSize - 1) / _pageSize;
+                if (_currentPage < totalPages) { _currentPage++; LoadData(); }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi chuyển trang tiếp: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnPrev_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_currentPage > 1) { _currentPage--; LoadData(); }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi chuyển trang trước: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ===================== FILTER EVENTS =====================
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            if (!isLoaded) return;
+            _currentPage = 1;
+            LoadData();
+        }
+
+        private void CboLocKhachHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isLoaded) return;
+            _currentPage = 1;
+            LoadData();
+        }
+
+        // ===================== THU NỢ =====================
+
+        private void btnThuNo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvCongNo.CurrentRow == null)
+                {
+                    MessageBox.Show("Vui lòng chọn một dòng để thu/trả nợ.", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string orderID = dgvCongNo.CurrentRow.Cells["OrderID"].Value?.ToString();
+                string partnerName = dgvCongNo.CurrentRow.Cells["PartnerName"].Value?.ToString();
+                string loaiNo = dgvCongNo.CurrentRow.Cells["LoaiNo"].Value?.ToString();
+                decimal remaining = Convert.ToDecimal(dgvCongNo.CurrentRow.Cells["RemainingDebt"].Value ?? 0);
+
+                if (remaining <= 0)
+                {
+                    MessageBox.Show("Khoản nợ này đã thanh toán đủ.", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string hanhDong = loaiNo == "Khách hàng" ? "Thu nợ" : "Trả nợ";
+
+                string input = Interaction.InputBox(
+                    $"Loại nợ:      {loaiNo}\n" +
+                    $"Đối tác:      {partnerName}\n" +
+                    $"Còn phải thu: {remaining:N0} đ\n\n" +
+                    $"Nhập số tiền {hanhDong.ToLower()}:",
+                    hanhDong, remaining.ToString());
+
+                if (string.IsNullOrWhiteSpace(input)) return;
+
+                if (!decimal.TryParse(input, out decimal soTienThu) || soTienThu <= 0)
+                {
+                    MessageBox.Show("Số tiền không hợp lệ.", "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (soTienThu > remaining)
+                {
+                    MessageBox.Show($"Số tiền ({soTienThu:N0}) vượt quá số còn nợ ({remaining:N0}).", "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                using (var db = new AppDbContext())
+                {
+                    using (var dbTran = db.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var payment = new DebtTransaction
+                            {
+                                TransactionType = "PAYMENT",
+                                Amount = soTienThu,
+                                TransactionDate = DateTime.Now
+                            };
+
+                            if (loaiNo == "Khách hàng")
+                            {
+                                int id = int.Parse(orderID);
+                                payment.ReferenceOrderID = id;
+                                payment.Note = $"Thu nợ đơn hàng #{orderID}";
+
+                                var order = db.Orders.Find(id);
+                                if (order != null)
+                                {
+                                    payment.CustomerID = order.CustomerID;
+                                    if (soTienThu >= remaining)
+                                        order.Status = "COMPLETED";
+                                }
+                            }
+                            else
+                            {
+                                int id = int.Parse(orderID);
+                                payment.ReferenceImportID = id;
+                                payment.Note = $"Trả nợ phiếu nhập #{orderID}";
+
+                                var original = db.DebtTransactions
+                                    .FirstOrDefault(x => x.ReferenceImportID == id
+                                                      && x.TransactionType.ToUpper() == "PURCHASE");
+                                if (original != null)
+                                    payment.SupplierID = original.SupplierID;
+                            }
+
+                            db.DebtTransactions.Add(payment);
+                            db.SaveChanges();
+                            dbTran.Commit();
+
+                            MessageBox.Show($"{hanhDong} {soTienThu:N0} đ thành công!", "Thành công",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch
+                        {
+                            dbTran.Rollback();
+                            throw;
+                        }
+                    }
+                }
+
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi giao dịch: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ===================== XUẤT EXCEL =====================
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_fullFilteredList == null || _fullFilteredList.Count == 0)
+                {
+                    MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var saveDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    FileName = $"CongNo_{DateTime.Now:ddMMyyyy_HHmm}.xlsx"
+                };
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Utils.ExcelHelper.XuatExcelCongNo(_fullFilteredList, saveDialog.FileName);
+                    MessageBox.Show("Xuất Excel thành công!", "Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xuất Excel: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
+}
