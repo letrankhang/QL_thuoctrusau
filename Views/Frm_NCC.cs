@@ -1,6 +1,7 @@
 ﻿using QL_CuaHangBanThuocTruSau.Controllers;
 using QL_CuaHangBanThuocTruSau.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -149,6 +150,34 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
             dgvNCC.DataSource = danhSach;
             lblTongNCC.Text = dgvNCC.Rows.Count.ToString();
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            if (dgvNCC.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Excel Workbook|*.xlsx";
+                sfd.FileName = $"DanhSachNhaCungCap_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        var danhSach = (List<Supplier>)dgvNCC.DataSource;
+                        Utils.ExcelHelper.XuatExcelNCC(danhSach, sfd.FileName);
+                        MessageBox.Show("Xuất file Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

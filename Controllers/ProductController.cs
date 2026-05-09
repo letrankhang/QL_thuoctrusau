@@ -1,4 +1,4 @@
-﻿using QL_CuaHangBanThuocTruSau.BUS;
+using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,6 +118,11 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
             }
 
             return true;
+        }
+
+        public List<Product> LayDanhSachKemBienThe()
+        {
+            return sanPhamBus.layDanhSachKemBienThe();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,6 +71,11 @@ namespace QL_CuaHangBanThuocTruSau.BUS
         {
             return dao.layTatCa().FindAll(s => s.Name.ToLower().Contains(keyword.ToLower())
                                          || s.ProductID.ToString().Contains(keyword.ToLower()));
+        }
+
+        public List<Product> layDanhSachKemBienThe()
+        {
+            return dao.layTatCaKemBienThe();
         }
     }
 }
