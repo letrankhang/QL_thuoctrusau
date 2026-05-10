@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace QL_CuaHangBanThuocTruSau.Views {
     public partial class Frm_TaiKhoan : Form {
-        private readonly UserController _userController;
+        UserController _userController;
         private List<User> _allUsers;
 
         public Frm_TaiKhoan () {
@@ -24,6 +24,25 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.cboLocChucVu.SelectedIndexChanged += ApplyFilter;
             this.cboLocTrangThai.SelectedIndexChanged += ApplyFilter;
             this.cboLocNgayTao.SelectedIndexChanged += ApplyFilter;
+
+            this.dgvUsers.SelectionChanged += (s, e) =>
+            {
+                if (dgvUsers.SelectedRows.Count > 0)
+                {
+                    lblDangChon.Text = dgvUsers.SelectedRows[0].Cells["colFullName"].Value?.ToString() ?? "---";
+                }
+                else
+                {
+                    lblDangChon.Text = "---";
+                }
+            };
+
+            this.dgvUsers.CellMouseEnter += (s, e) => {
+                if (e.RowIndex >= 0 && (e.ColumnIndex == dgvUsers.Columns["colEdit"].Index || e.ColumnIndex == dgvUsers.Columns["colDelete"].Index))
+                    dgvUsers.Cursor = Cursors.Hand;
+                else
+                    dgvUsers.Cursor = Cursors.Default;
+            };
         }
 
         private void dgvUsers_CellClick (object sender, DataGridViewCellEventArgs e) {
@@ -97,6 +116,8 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                     null  // Delete icon placeholder
                 );
             }
+
+            lblTongTK.Text = users.Count.ToString();
         }
 
         private void txtSearch_TextChanged (object sender, EventArgs e) {
@@ -165,8 +186,8 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 e.Paint (e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
 
                 Image icon = e.ColumnIndex == dgvUsers.Columns["colEdit"].Index
-                    ? Properties.Resources.pen
-                    : Properties.Resources.icons8_trash_can_50;
+                    ? Properties.Resources.edit
+                    : Properties.Resources.bin;
 
                 if( icon != null )
                 {
@@ -186,24 +207,25 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
         private void DrawBadge (Graphics g, Rectangle cellBounds, string text, Color backColor, Color textColor) {
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            using( var font = new Font ("Segoe UI", 8.5F, FontStyle.Bold) )
+            using (var font = new Font("Segoe UI", 8.5F, FontStyle.Bold))
             {
-                var textSize = g.MeasureString (text, font);
+                var textSize = g.MeasureString(text, font);
                 int paddingH = 12;
                 int paddingV = 4;
-                var badgeRect = new Rectangle (
-                    cellBounds.X + 10,
-                    cellBounds.Y + (cellBounds.Height - (int) textSize.Height - paddingV * 2) / 2,
-                    (int) textSize.Width + paddingH * 2,
-                    (int) textSize.Height + paddingV * 2
+                int badgeWidth = (int)textSize.Width + paddingH * 2;
+                int badgeHeight = (int)textSize.Height + paddingV * 2;
+
+                var badgeRect = new Rectangle(
+                    cellBounds.X + (cellBounds.Width - badgeWidth) / 2,
+                    cellBounds.Y + (cellBounds.Height - badgeHeight) / 2,
+                    badgeWidth,
+                    badgeHeight
                 );
 
-                using( var brush = new SolidBrush (backColor) )
-                {
-                    FillRoundedRectangle (g, brush, badgeRect, 6);
-                }
+                using (var brush = new SolidBrush(backColor))
+                    FillRoundedRectangle(g, brush, badgeRect, 6);
 
-                g.DrawString (text, font, new SolidBrush (textColor),
+                g.DrawString(text, font, new SolidBrush(textColor),
                     badgeRect.X + paddingH, badgeRect.Y + paddingV);
             }
         }

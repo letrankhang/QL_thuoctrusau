@@ -418,6 +418,9 @@
     <EmbeddedResource Include="Views\Frm_LichSuDonHang.resx">
       <DependentUpon>Frm_LichSuDonHang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_LichSuKho.resx">
+      <DependentUpon>Frm_LichSuKho.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_NhapChiTietSP.resx">
       <DependentUpon>Frm_NhapChiTietSP.cs</DependentUpon>
     </EmbeddedResource>
@@ -579,6 +582,15 @@
     <None Include="Resources\user %282%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\rotation1.png" />
+    <None Include="Resources\plus1.png" />
+    <None Include="Resources\print1.png" />
+    <None Include="Resources\refresh1.png" />
+    <None Include="Resources\wallet1.png" />
+    <None Include="Resources\rotation.png" />
+    <None Include="Resources\wallet.png" />
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\print.png" />
     <None Include="Resources\thanhtoan.jpg" />
     <None Include="Resources\shared-vision.png" />
     <None Include="Resources\email.png" />
@@ -587,11 +599,32 @@
     <None Include="Resources\eye.png" />
     <None Include="Resources\eyeopen.png" />
     <None Include="Resources\add-group.png" />
+    <None Include="Resources\add-to-cart.png" />
+    <None Include="Resources\add-to-cart1.png" />
+    <None Include="Resources\filter.png" />
+    <None Include="Resources\historical.png" />
+    <None Include="Resources\debt-consolidation.png" />
+    <None Include="Resources\bookmark.png" />
+    <None Include="Resources\floppy-disk.png" />
+    <None Include="Resources\123.png" />
+    <None Include="Resources\1231.png" />
+    <None Include="Resources\floppy-disk1.png" />
+    <None Include="Resources\bookmark1.png" />
+    <None Include="Resources\debt-consolidation1.png" />
+    <None Include="Resources\historical1.png" />
+    <None Include="Resources\filter1.png" />
+    <None Include="Resources\delete221.png" />
+    <None Include="Resources\delete1.png" />
+    <None Include="Resources\add-to-cart2.png" />
+    <None Include="Resources\bin1.png" />
+    <None Include="Resources\edit1.png" />
     <Content Include="Resources\icons8-trash-can-50.png" />
     <None Include="Resources\mail.png" />
     <None Include="Resources\mail1.png" />
     <None Include="Resources\mail2.png" />
     <None Include="Resources\password.png" />
+    <None Include="Resources\minus1.png" />
+    <None Include="Resources\long-term-debt.png" />
     <Content Include="Resources\pen.png" />
     <None Include="Resources\variant.png" />
     <None Include="Resources\close.png" />

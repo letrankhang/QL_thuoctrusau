@@ -1,6 +1,8 @@
-﻿using QL_CuaHangBanThuocTruSau.Context;
+﻿using QL_CuaHangBanThuocTruSau.BUS;
+using QL_CuaHangBanThuocTruSau.Context;
 using QL_CuaHangBanThuocTruSau.Controllers;
 using QL_CuaHangBanThuocTruSau.Models;
+using QL_CuaHangBanThuocTruSau.Utils;
 using System;
 using System.Drawing;
 using System.Globalization;
@@ -34,72 +36,76 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             StyleDgv (dgvChiTietDonHang);
             StyleDgv (dgvLichSuNhap);
 
+            dtpNgay.Format = DateTimePickerFormat.Custom;
+            dtpNgay.CustomFormat = "d/M/yyyy";
+
             LoadDataToComboBox ();
             LoadLichSuNhap ();
+            LoadCboLocTheoTT();
+
+            dgvLichSuNhap.Columns[0].Width = 80;   
+            dgvLichSuNhap.Columns[1].Width = 220;  
+            dgvLichSuNhap.Columns[2].Width = 150;  
+            dgvLichSuNhap.Columns[3].Width = 100;  
+            dgvLichSuNhap.Columns[4].Width = 120;  
+            dgvLichSuNhap.Columns[5].Width = 200;
+
+            dgvChiTietDonHang.CellClick += (s, ev) => dgvLichSuNhap.ClearSelection();
+            dgvLichSuNhap.CellClick += (s, ev) => dgvChiTietDonHang.ClearSelection();
         }
 
         // ===================== STYLE =====================
 
-        private void StyleDgv (DataGridView dgv) {
+        private void StyleDgv (DataGridView dgv) 
+        {
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.AllowUserToAddRows = false;
             dgv.RowHeadersVisible = false;
-            dgv.BorderStyle = BorderStyle.FixedSingle;
+            dgv.BorderStyle = BorderStyle.Fixed3D;
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.GridColor = Color.FromArgb (220, 225, 235);
+            dgv.GridColor = Color.WhiteSmoke;
             dgv.BackgroundColor = Color.White;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.AllowUserToResizeRows = false;
 
-            // ✅ Header xanh dương đậm giống bảng Sản phẩm
             dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb (52, 107, 163);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font ("Segoe UI", 10, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9f, FontStyle.Regular);
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb (52, 107, 163);
-            dgv.ColumnHeadersHeight = 42;
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersHeight = 34;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
-            // Row
-            dgv.DefaultCellStyle.Font = new Font ("Segoe UI", 9.5f);
-            dgv.DefaultCellStyle.ForeColor = Color.FromArgb (40, 40, 40);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9.5f);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
             dgv.DefaultCellStyle.BackColor = Color.White;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb (210, 225, 245);
-            dgv.DefaultCellStyle.SelectionForeColor = Color.FromArgb (30, 30, 30);
-            dgv.DefaultCellStyle.Padding = new Padding (4, 0, 4, 0);
-            dgv.RowTemplate.Height = 36;
-
-            // ✅ Alternating rows xám nhạt giống bảng Sản phẩm
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb (245, 247, 250);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.FromArgb(40, 40, 40);
+            dgv.DefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
+            dgv.RowTemplate.Height = 34;
         }
 
         // ===================== LOAD DỮ LIỆU =====================
 
         private void LoadDataToComboBox () {
-            try
+            using (var db = new AppDbContext())
             {
-                using( var db = new AppDbContext () )
-                {
-                    cboNhaCungCap.Items.Clear ();
-                    var listSuppliers = db.Suppliers.ToList ();
-                    foreach( var ncc in listSuppliers )
-                    {
-                        cboNhaCungCap.Items.Add (new CboItem { Text = ncc.Name, Value = ncc.SupplierID });
-                    }
+                var listSuppliers = db.Suppliers.ToList();
+                listSuppliers.Insert(0, new Supplier { SupplierID = 0, Name = "--- Chọn nhà cung cấp ---" });
+                cboNhaCungCap.DataSource = listSuppliers;
+                cboNhaCungCap.DisplayMember = "Name";
+                cboNhaCungCap.ValueMember = "SupplierID";
+                cboNhaCungCap.SelectedIndex = 0;
 
-                    cboSanPham.Items.Clear ();
-                    var listProducts = db.Products.ToList ();
-                    foreach( var sp in listProducts )
-                    {
-                        cboSanPham.Items.Add (new CboItem { Text = sp.Name, Value = sp.ProductID });
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                string errorMsg = "Lỗi bề mặt: " + ex.Message;
-                if( ex.InnerException != null )
-                    errorMsg += "\n\nLỗi bên trong:\n" + ex.InnerException.Message;
-                MessageBox.Show (errorMsg, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var listProducts = db.Products.ToList();
+                listProducts.Insert(0, new Product { ProductID = 0, Name = "--- Chọn sản phẩm ---" });
+                cboSanPham.DataSource = listProducts;
+                cboSanPham.DisplayMember = "Name";
+                cboSanPham.ValueMember = "ProductID";
+                cboSanPham.SelectedIndex = 0;
             }
         }
 
@@ -134,22 +140,23 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                             DichTrangThai (item.Status)   // hiển thị tiếng Việt
                         );
 
-                        // Tô màu theo status gốc tiếng Anh — đúng logic
-                        switch( item.Status?.ToUpper () )
+                        var cellTrangThai = dgvLichSuNhap.Rows[rowIndex].Cells[5];
+
+                        switch (item.Status?.ToUpper())
                         {
                             case "COMPLETED":
                             case "PAID":
-                                dgvLichSuNhap.Rows[rowIndex].DefaultCellStyle.BackColor = Color.FromArgb (198, 239, 206);
-                                dgvLichSuNhap.Rows[rowIndex].DefaultCellStyle.ForeColor = Color.DarkGreen;
+                                cellTrangThai.Style.ForeColor = Color.FromArgb(0, 180, 80);
+                                cellTrangThai.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
                             case "PARTIAL":
                             case "UNPAID":
-                                dgvLichSuNhap.Rows[rowIndex].DefaultCellStyle.BackColor = Color.FromArgb (255, 235, 156);
-                                dgvLichSuNhap.Rows[rowIndex].DefaultCellStyle.ForeColor = Color.DarkOrange;
+                                cellTrangThai.Style.ForeColor = Color.FromArgb(255, 160, 0);
+                                cellTrangThai.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
                             case "CANCELLED":
-                                dgvLichSuNhap.Rows[rowIndex].DefaultCellStyle.BackColor = Color.FromArgb (255, 199, 206);
-                                dgvLichSuNhap.Rows[rowIndex].DefaultCellStyle.ForeColor = Color.DarkRed;
+                                cellTrangThai.Style.ForeColor = Color.FromArgb(220, 50, 50);
+                                cellTrangThai.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
                         }
                     }
@@ -162,110 +169,19 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
         }
 
-        // ===================== THÊM / XÓA DÒNG =====================
-
-        private void btnThemDong_Click (object sender, EventArgs e) {
-            if( cboSanPham.SelectedItem == null )
-            {
-                MessageBox.Show ("Vui lòng chọn sản phẩm!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            CboItem spDuocChon = (CboItem) cboSanPham.SelectedItem;
-            string tenSanPham = spDuocChon.Text;
-            string tenNhaCungCap = cboNhaCungCap.Text;
-
-            Frm_NhapChiTietSP frmChiTiet = new Frm_NhapChiTietSP ();
-
-            if( frmChiTiet.ShowDialog () == DialogResult.OK )
-            {
-                int stt = dgvChiTietDonHang.Rows.Count + 1;
-                decimal thanhTien = frmChiTiet.DonGia * frmChiTiet.SoLuong;
-
-                int rowIndex = dgvChiTietDonHang.Rows.Add (
-                    stt,
-                    tenSanPham,
-                    frmChiTiet.BienThe,
-                    tenNhaCungCap,
-                    frmChiTiet.DonGia,
-                    frmChiTiet.SoLuong,
-                    frmChiTiet.NSX.ToString ("dd/MM/yyyy"),
-                    frmChiTiet.HSD.ToString ("dd/MM/yyyy"),
-                    thanhTien
-                );
-
-                dgvChiTietDonHang.Rows[rowIndex].Tag = frmChiTiet.VariantID;
-            }
-
-            TinhTongTien ();
-        }
-
-        private void btnXoaDong_Click (object sender, EventArgs e) {
-            if( dgvChiTietDonHang.SelectedRows.Count > 0 )
-            {
-                DialogResult dr = MessageBox.Show (
-                    "Bạn có chắc chắn muốn xóa sản phẩm này khỏi danh sách?",
-                    "Xác nhận xóa",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if( dr == DialogResult.Yes )
-                {
-                    foreach( DataGridViewRow row in dgvChiTietDonHang.SelectedRows )
-                    {
-                        if( !row.IsNewRow )
-                            dgvChiTietDonHang.Rows.Remove (row);
-                    }
-                    CapNhatLaiSTT ();
-                }
-            }
-            else
-            {
-                MessageBox.Show ("Vui lòng chọn sản phẩm cần xóa!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-            TinhTongTien ();
-        }
-
-        // ===================== LÀM MỚI =====================
-
         private void btnLamMoi_Click (object sender, EventArgs e) {
-            DialogResult dr = MessageBox.Show (
-                "Bạn có chắc muốn làm mới toàn bộ phiếu nhập?",
-                "Xác nhận",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn làm mới toàn bộ phiếu nhập?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if( dr != DialogResult.Yes ) return;
+            if (dr != DialogResult.Yes)
+                return;
 
-            try
-            {
-                // Xóa bảng chi tiết
-                dgvChiTietDonHang.Rows.Clear ();
-
-                // Reset combobox
-                if( cboNhaCungCap.Items.Count > 0 ) cboNhaCungCap.SelectedIndex = 0;
-                if( cboSanPham.Items.Count > 0 ) cboSanPham.SelectedIndex = 0;
-
-                // Reset textbox
-                txtDaThanhToan.Clear ();
-                txtTongGiaTriPhieu.Clear ();
-                txtCongNo.Clear ();
-                lblKetQua.Text = "0 VNĐ";
-
-                // Reload lịch sử
-                LoadLichSuNhap ();
-
-                MessageBox.Show ("Đã làm mới phiếu nhập!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch( Exception ex )
-            {
-                MessageBox.Show ("Lỗi làm mới: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            dgvChiTietDonHang.Rows.Clear();
+            cboNhaCungCap.SelectedIndex = 0;
+            cboSanPham.SelectedIndex = 0;
+            dtpNgay.Value = DateTime.Now;
+            txtDaThanhToan.Clear();
+            TinhTongTien(); // tự cập nhật txtTongGiaTriPhieu, txtCongNo, lblKetQua
+            LoadLichSuNhap();
         }
 
         // ===================== LƯU / THANH TOÁN =====================
@@ -348,154 +264,143 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         }
 
         private void btnLuuPhieu_Click (object sender, EventArgs e) {
-            if( dgvChiTietDonHang.Rows.Count == 0 )
+            if (dgvChiTietDonHang.Rows.Count == 0)
             {
-                MessageBox.Show ("Chưa có sản phẩm nào trong phiếu!", "Thông báo",
+                MessageBox.Show("Chưa có sản phẩm nào trong phiếu!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if( cboNhaCungCap.SelectedItem == null )
+            if (cboNhaCungCap.SelectedIndex <= 0)
             {
-                MessageBox.Show ("Vui lòng chọn nhà cung cấp!", "Thông báo",
+                MessageBox.Show("Vui lòng chọn nhà cung cấp!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            Supplier nccSelected = (Supplier)cboNhaCungCap.SelectedItem;
 
             try
             {
-                using( var db = new AppDbContext () )
+                using (var db = new AppDbContext())
                 {
-                    CboItem nccSelected = (CboItem) cboNhaCungCap.SelectedItem;
-
-                    decimal.TryParse (
-                        txtTongGiaTriPhieu.Text.Replace (",", ""),
-                        out decimal tongTien);
+                    decimal.TryParse(txtTongGiaTriPhieu.Text.Replace(",", ""), out decimal tongTien);
 
                     var hoaDon = new Import
                     {
-                        SupplierID = nccSelected.Value,
-                        ImportDate = dataNgay.Value,
+                        SupplierID = nccSelected.SupplierID,
+                        ImportDate = dtpNgay.Value,
                         TotalAmount = tongTien,
-                        UserID = 1,
+                        UserID = SessionManager.CurrentUser?.UserID ?? 1,
                         Status = "UNPAID"
                     };
 
-                    db.Imports.Add (hoaDon);
-                    db.SaveChanges ();
+                    db.Imports.Add(hoaDon);
+                    db.SaveChanges();
 
-                    foreach( DataGridViewRow row in dgvChiTietDonHang.Rows )
+                    foreach (DataGridViewRow row in dgvChiTietDonHang.Rows)
                     {
-                        if( row.IsNewRow || row.Tag == null ) continue;
+                        if (row.IsNewRow || row.Tag == null) continue;
 
-                        bool okNSX = DateTime.TryParseExact (
-                            row.Cells[6].Value?.ToString (), "dd/MM/yyyy",
-                            CultureInfo.InvariantCulture, DateTimeStyles.None,
-                            out DateTime nsx);
+                        bool okNSX = DateTime.TryParseExact(
+                            row.Cells[6].Value?.ToString(), "dd/MM/yyyy",
+                            CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime nsx);
 
-                        bool okHSD = DateTime.TryParseExact (
-                            row.Cells[7].Value?.ToString (), "dd/MM/yyyy",
-                            CultureInfo.InvariantCulture, DateTimeStyles.None,
-                            out DateTime hsd);
+                        bool okHSD = DateTime.TryParseExact(
+                            row.Cells[7].Value?.ToString(), "dd/MM/yyyy",
+                            CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime hsd);
 
-                        if( !okNSX || !okHSD )
+                        if (!okNSX || !okHSD)
                         {
-                            MessageBox.Show (
-                                $"Dòng {row.Index + 1}: NSX hoặc HSD không đúng định dạng dd/MM/yyyy.",
+                            MessageBox.Show($"Dòng {row.Index + 1}: NSX hoặc HSD không đúng định dạng dd/MM/yyyy.",
                                 "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
-                        db.Batches.Add (new Batch
+                        db.Batches.Add(new Batch
                         {
                             ImportID = hoaDon.ImportID,
-                            VariantID = (int) row.Tag,
-                            InitialQuantity = Convert.ToInt32 (row.Cells[5].Value),
-                            RemainingQuantity = Convert.ToInt32 (row.Cells[5].Value),
-                            ImportPrice = Convert.ToDecimal (row.Cells[4].Value),
+                            VariantID = (int)row.Tag,
+                            InitialQuantity = Convert.ToInt32(row.Cells[5].Value),
+                            RemainingQuantity = Convert.ToInt32(row.Cells[5].Value),
+                            ImportPrice = Convert.ToDecimal(row.Cells[4].Value),
                             ManufactureDate = nsx,
                             ExpiryDate = hsd
                         });
                     }
 
-                    decimal.TryParse (txtDaThanhToan.Text.Replace (",", ""), out decimal daThanhToan);
+                    decimal.TryParse(txtDaThanhToan.Text.Replace(",", ""), out decimal daThanhToan);
 
-                    // ✅ Tạo DebtTransaction gốc loại PURCHASE để Frm_CongNo load được
-                    db.DebtTransactions.Add (new DebtTransaction
+                    db.DebtTransactions.Add(new DebtTransaction
                     {
-                        SupplierID = nccSelected.Value,
+                        SupplierID = nccSelected.SupplierID,
                         TransactionType = "PURCHASE",
                         Amount = tongTien,
-                        TransactionDate = dataNgay.Value,
+                        TransactionDate = dtpNgay.Value,
                         ReferenceImportID = hoaDon.ImportID,
                         Note = $"Nhập hàng phiếu #{hoaDon.ImportID}"
                     });
 
-                    // ✅ Nếu có thanh toán trước, ghi nhận thêm một giao dịch PAYMENT
-                    if( daThanhToan > 0 )
+                    if (daThanhToan > 0)
                     {
-                        db.DebtTransactions.Add (new DebtTransaction
+                        db.DebtTransactions.Add(new DebtTransaction
                         {
-                            SupplierID = nccSelected.Value,
+                            SupplierID = nccSelected.SupplierID,
                             TransactionType = "PAYMENT",
                             Amount = daThanhToan,
-                            TransactionDate = dataNgay.Value,
+                            TransactionDate = dtpNgay.Value,
                             ReferenceImportID = hoaDon.ImportID,
                             Note = $"Thanh toán trước cho phiếu nhập #{hoaDon.ImportID}"
                         });
 
-                        // Cập nhật trạng thái phiếu nhập nếu thanh toán đủ hoặc một phần
-                        if( daThanhToan >= tongTien )
-                            hoaDon.Status = "COMPLETED";
-                        else
-                            hoaDon.Status = "PARTIAL";
+                        hoaDon.Status = daThanhToan >= tongTien ? "COMPLETED" : "PARTIAL";
                     }
 
-                    db.SaveChanges ();
+                    db.SaveChanges();
 
-                    MessageBox.Show ("Lưu phiếu nhập thành công!", "Thành công",
+                    MessageBox.Show("Lưu phiếu nhập thành công!", "Thành công",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    dgvChiTietDonHang.Rows.Clear ();
-                    txtDaThanhToan.Clear ();
-                    TinhTongTien ();
-                    LoadLichSuNhap ();
+                    dgvChiTietDonHang.Rows.Clear();
+                    txtDaThanhToan.Clear();
+                    TinhTongTien();
+                    LoadLichSuNhap();
                 }
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
-                MessageBox.Show ("Lỗi khi lưu phiếu: " + ex.Message, "Lỗi",
+                MessageBox.Show("Lỗi khi lưu phiếu: " + ex.Message, "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void guna2Button2_Click (object sender, EventArgs e) {
-            if( dgvLichSuNhap.CurrentRow == null )
+        private void btnThanhToan_Click (object sender, EventArgs e) {
+            if (dgvLichSuNhap.CurrentRow == null)
             {
-                MessageBox.Show ("Vui lòng chọn một phiếu nhập để thanh toán!", "Thông báo",
+                MessageBox.Show("Vui lòng chọn một phiếu nhập để thanh toán!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int importID = Convert.ToInt32 (dgvLichSuNhap.CurrentRow.Cells[0].Value);
-            string supplierName = dgvLichSuNhap.CurrentRow.Cells[1].Value?.ToString ();
-            string trangThai = dgvLichSuNhap.CurrentRow.Cells[5].Value?.ToString ();
+            int importID = Convert.ToInt32(dgvLichSuNhap.CurrentRow.Cells[0].Value);
+            string supplierName = dgvLichSuNhap.CurrentRow.Cells[1].Value?.ToString();
+            string trangThai = dgvLichSuNhap.CurrentRow.Cells[5].Value?.ToString();
 
-            if( trangThai == "Hoàn thành" || trangThai == "Đã thanh toán" )
+            if (trangThai == "Hoàn thành" || trangThai == "Đã thanh toán")
             {
-                MessageBox.Show ("Phiếu nhập này đã thanh toán xong!", "Thông báo",
+                MessageBox.Show("Phiếu nhập này đã thanh toán xong!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             try
             {
-                using( var db = new AppDbContext () )
+                using (var db = new AppDbContext())
                 {
-                    var phieu = db.Imports.FirstOrDefault (x => x.ImportID == importID);
-                    if( phieu == null )
+                    var phieu = db.Imports.FirstOrDefault(x => x.ImportID == importID);
+                    if (phieu == null)
                     {
-                        MessageBox.Show ("Không tìm thấy phiếu nhập!", "Lỗi",
+                        MessageBox.Show("Không tìm thấy phiếu nhập!", "Lỗi",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
@@ -503,46 +408,46 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                     decimal tongTien = phieu.TotalAmount;
 
                     decimal daDaTra = db.DebtTransactions
-                        .Where (x => x.ReferenceImportID == importID
-                                 && x.TransactionType.ToLower () == "payment")
-                        .Sum (x => (decimal?) x.Amount) ?? 0;
+                        .Where(x => x.ReferenceImportID == importID
+                                 && x.TransactionType.ToLower() == "payment")
+                        .Sum(x => (decimal?)x.Amount) ?? 0;
 
                     decimal conLai = tongTien - daDaTra;
 
-                    if( conLai <= 0 )
+                    if (conLai <= 0)
                     {
-                        MessageBox.Show ("Phiếu nhập này đã thanh toán đủ!", "Thông báo",
+                        MessageBox.Show("Phiếu nhập này đã thanh toán đủ!", "Thông báo",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
 
-                    string input = Microsoft.VisualBasic.Interaction.InputBox (
+                    string input = Microsoft.VisualBasic.Interaction.InputBox(
                         $"Nhà cung cấp:  {supplierName}\n" +
-                        $"Tổng tiền:     {tongTien:N0} đ\n" +
-                        $"Đã thanh toán: {daDaTra:N0} đ\n" +
-                        $"Còn lại:       {conLai:N0} đ\n\n" +
+                        $"Tổng tiền:     {tongTien:N0}đ\n" +
+                        $"Đã thanh toán: {daDaTra:N0}đ\n" +
+                        $"Còn lại:       {conLai:N0}đ\n\n" +
                         "Nhập số tiền thanh toán:",
                         "Thanh toán phiếu nhập",
-                        conLai.ToString ());
+                        conLai.ToString());
 
-                    if( string.IsNullOrWhiteSpace (input) ) return;
+                    if (string.IsNullOrWhiteSpace(input)) return;
 
-                    if( !decimal.TryParse (input, out decimal soTienTra) || soTienTra <= 0 )
+                    if (!decimal.TryParse(input, out decimal soTienTra) || soTienTra <= 0)
                     {
-                        MessageBox.Show ("Số tiền không hợp lệ!", "Lỗi",
+                        MessageBox.Show("Số tiền không hợp lệ!", "Lỗi",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    if( soTienTra > conLai )
+                    if (soTienTra > conLai)
                     {
-                        MessageBox.Show (
-                            $"Số tiền nhập ({soTienTra:N0} đ) vượt quá số còn lại ({conLai:N0} đ)!",
+                        MessageBox.Show(
+                            $"Số tiền nhập ({soTienTra:N0}đ) vượt quá số còn lại ({conLai:N0}đ)!",
                             "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    db.DebtTransactions.Add (new DebtTransaction
+                    db.DebtTransactions.Add(new DebtTransaction
                     {
                         SupplierID = phieu.SupplierID,
                         TransactionType = "PAYMENT",
@@ -557,22 +462,20 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                         ? "COMPLETED"
                         : "PARTIAL";
 
-                    db.SaveChanges ();
+                    db.SaveChanges();
 
-                    MessageBox.Show ($"Thanh toán {soTienTra:N0} đ thành công!", "Thành công",
+                    MessageBox.Show($"Thanh toán {soTienTra:N0}đ thành công!", "Thành công",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    LoadLichSuNhap ();
+                    LoadLichSuNhap();
                 }
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
-                MessageBox.Show ("Lỗi thanh toán: " + ex.Message, "Lỗi",
+                MessageBox.Show("Lỗi thanh toán: " + ex.Message, "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        // ===================== TÍNH TIỀN =====================
 
         private void TinhTongTien () {
             decimal tong = 0;
@@ -585,7 +488,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 }
             }
 
-            lblKetQua.Text = string.Format ("{0:N0} VNĐ", tong);
+            lblKetQua.Text = string.Format ("{0:N0}VNĐ", tong);
             txtTongGiaTriPhieu.Text = tong.ToString ("N0");
             TinhCongNo ();
         }
@@ -605,53 +508,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             TinhTongTien ();
         }
 
-        // ===================== TÌM KIẾM =====================
-
-        private void btnTim_Click (object sender, EventArgs e) {
-            try
-            {
-                using( var db = new AppDbContext () )
-                {
-                    string keyword = txtTimKiem.Text.Trim ().ToLower ();
-
-                    var ds = db.Imports
-                        .Where (x =>
-                            x.ImportID.ToString ().Contains (keyword) ||
-                            x.Supplier.Name.ToLower ().Contains (keyword) ||
-                            x.User.FullName.ToLower ().Contains (keyword))
-                        .Select (x => new
-                        {
-                            x.ImportID,
-                            SupplierName = x.Supplier.Name,
-                            UserName = x.User.FullName,
-                            x.ImportDate,
-                            x.TotalAmount,
-                            x.Status
-                        })
-                        .ToList ();
-
-                    dgvLichSuNhap.Rows.Clear ();
-
-                    foreach( var item in ds )
-                    {
-                        dgvLichSuNhap.Rows.Add (
-                            item.ImportID,
-                            item.SupplierName,
-                            item.UserName,
-                            item.ImportDate?.ToString ("dd/MM/yyyy"),
-                            item.TotalAmount.ToString ("N0"),
-                            DichTrangThai (item.Status)
-                        );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                MessageBox.Show ("Lỗi tìm kiếm: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         // ===================== HELPER =====================
 
         private void CapNhatLaiSTT () {
@@ -662,20 +518,169 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
         }
 
-        private void btnLamMoi_Click_1 (object sender, EventArgs e) {
-            DialogResult dr = MessageBox.Show (
-        "Bạn có chắc muốn làm mới toàn bộ phiếu nhập?",
-        "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        private void btnThemDong_Click(object sender, EventArgs e)
+        {
+            if (cboNhaCungCap.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Vui lòng chọn nhà cung cấp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            if( dr != DialogResult.Yes ) return;
+            if (cboSanPham.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            dgvChiTietDonHang.Rows.Clear ();
-            cboNhaCungCap.SelectedIndex = 0;
-            cboSanPham.SelectedIndex = 0;
-            dataNgay.Value = DateTime.Now;
-            txtDaThanhToan.Clear ();
-            TinhTongTien (); // tự cập nhật txtTongGiaTriPhieu, txtCongNo, lblKetQua
-            LoadLichSuNhap ();
+            Supplier nccCheck = (Supplier)cboNhaCungCap.SelectedItem;
+            Product spDuocChon = (Product)cboSanPham.SelectedItem;
+
+            Frm_NhapChiTietSP frmChiTiet = new Frm_NhapChiTietSP(spDuocChon.ProductID);
+            if (frmChiTiet.ShowDialog() == DialogResult.OK)
+            {
+                decimal thanhTien = frmChiTiet.DonGia * frmChiTiet.SoLuong;
+                int rowIndex = dgvChiTietDonHang.Rows.Add(
+                    dgvChiTietDonHang.Rows.Count + 1,
+                    spDuocChon.Name,
+                    frmChiTiet.BienThe,
+                    nccCheck.Name,
+                    frmChiTiet.DonGia,
+                    frmChiTiet.SoLuong,
+                    frmChiTiet.NSX.ToString("dd/MM/yyyy"),
+                    frmChiTiet.HSD.ToString("dd/MM/yyyy"),
+                    thanhTien
+                );
+                dgvChiTietDonHang.Rows[rowIndex].Tag = frmChiTiet.VariantID;
+            }
+            TinhTongTien();
+        }
+
+        private void btnXoaDong_Click(object sender, EventArgs e)
+        {
+            if (dgvChiTietDonHang.SelectedRows.Count > 0)
+            {
+                DialogResult dr = MessageBox.Show(
+                    "Bạn có chắc chắn muốn xóa sản phẩm này khỏi danh sách?",
+                    "Xác nhận xóa",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (dr == DialogResult.Yes)
+                {
+                    foreach (DataGridViewRow row in dgvChiTietDonHang.SelectedRows)
+                    {
+                        if (!row.IsNewRow)
+                            dgvChiTietDonHang.Rows.Remove(row);
+                    }
+                    CapNhatLaiSTT();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm cần xóa!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            TinhTongTien();
+        }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            LocDuLieu();
+        }
+
+        private void cboLocTheoTT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LocDuLieu();
+        }
+
+        private void LocDuLieu()
+        {
+            string tuKhoa = txtTimKiem.Text.Trim().ToLower();
+            string trangThaiLoc = cboLocTheoTT.SelectedValue?.ToString() ?? "ALL";
+
+            try
+            {
+                using (var db = new AppDbContext())
+                {
+                    var ds = db.Imports
+                        .Select(x => new
+                        {
+                            x.ImportID,
+                            SupplierName = x.Supplier.Name,
+                            UserName = x.User.FullName,
+                            x.ImportDate,
+                            x.TotalAmount,
+                            x.Status
+                        })
+                        .ToList();
+
+                    if (trangThaiLoc != "ALL")
+                        ds = ds.Where(x => x.Status?.ToUpper() == trangThaiLoc).ToList();
+
+                    if (!string.IsNullOrEmpty(tuKhoa))
+                        ds = ds.Where(x =>
+                            x.SupplierName.ToLower().Contains(tuKhoa) ||
+                            x.ImportID.ToString().Contains(tuKhoa) ||
+                            x.UserName.ToLower().Contains(tuKhoa)
+                        ).ToList();
+
+                    dgvLichSuNhap.Rows.Clear();
+
+                    foreach (var item in ds)
+                    {
+                        int rowIndex = dgvLichSuNhap.Rows.Add(
+                            item.ImportID,
+                            item.SupplierName,
+                            item.UserName,
+                            item.ImportDate?.ToString("dd/MM/yyyy"),
+                            item.TotalAmount.ToString("N0"),
+                            DichTrangThai(item.Status)
+                        );
+
+                        var cell = dgvLichSuNhap.Rows[rowIndex].Cells[5];
+                        switch (item.Status?.ToUpper())
+                        {
+                            case "COMPLETED":
+                            case "PAID":
+                                cell.Style.ForeColor = Color.FromArgb(0, 180, 80);
+                                cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+                                break;
+                            case "PARTIAL":
+                            case "UNPAID":
+                                cell.Style.ForeColor = Color.FromArgb(255, 160, 0);
+                                cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+                                break;
+                            case "CANCELLED":
+                                cell.Style.ForeColor = Color.FromArgb(220, 50, 50);
+                                cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadCboLocTheoTT()
+        {
+            var dsTrangThai = new[]
+            {
+                new { Text = "Tất cả trạng thái", Value = "ALL" },
+                new { Text = "Hoàn thành", Value = "COMPLETED" },
+                new { Text = "Chưa thanh toán", Value = "UNPAID" },
+                new { Text = "Thanh toán một phần", Value = "PARTIAL" }
+            };
+
+            cboLocTheoTT.DataSource = dsTrangThai;
+            cboLocTheoTT.DisplayMember = "Text";
+            cboLocTheoTT.ValueMember = "Value";
+            cboLocTheoTT.SelectedIndex = 0;
+            cboLocTheoTT.DropDownWidth = 200;
+            cboLocTheoTT.SelectedIndexChanged += (s, ev) => LocDuLieu();
         }
     }
 

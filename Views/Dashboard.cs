@@ -208,6 +208,21 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
                 dataGridView1.CellFormatting += DataGridView1_CellFormatting;
                 dataGridView1.DataSource = expiredProducts;
+
+                int loHetHan = 0, loCangDate = 0;
+                foreach (var p in expiredProducts)
+                {
+                    DateTime exp = (DateTime)p.ExpiryDate;
+                    if ((exp - DateTime.Now).TotalDays < 0) 
+                        loHetHan++;
+                    else 
+                        loCangDate++;
+                }
+                lblTongSoLo.Text = string.Format("Tổng: {0} lô ({1} hết hạn, {2} cận hạn)", loHetHan + loCangDate, loHetHan, loCangDate);
+
+                lblThongBao.Visible = expiredProducts.Count == 0;
+                lblThongBao.Text = "(Không có lô hàng nào sắp hết hạn)";
+                lblThongBao.BringToFront();
             }
             catch (Exception ex)
             {

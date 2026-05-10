@@ -1,6 +1,8 @@
-﻿using QL_CuaHangBanThuocTruSau.BUS;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Models;
 using System;
+using System.Drawing;
 using System.Text.RegularExpressions; // Thêm thư viện để dùng Regex bắt lỗi số điện thoại
 using System.Windows.Forms;
 
@@ -28,6 +30,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         {
             dgvKhachHang.AutoGenerateColumns = false;
             loadDanhSach();
+            StyleDgv(dgvKhachHang);
         }
 
         public void loadDanhSach()
@@ -69,9 +72,36 @@ namespace QL_CuaHangBanThuocTruSau.Views
             return true;
         }
 
+        private void lamMoi()
+        {
+            maDangChon = 0;
+            txtTenKH.Clear();
+            txtSĐT.Clear();
+            txtDiaChi.Clear();
+            txtTim.Clear();
+            lblDangChon.Text = "---";
+        }
+
+        private void dgvKhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvKhachHang.Rows[e.RowIndex];
+                maDangChon = Convert.ToInt32(row.Cells["colMaKH"].Value);
+                txtTenKH.Text = row.Cells["colTenKH"].Value?.ToString();
+                txtSĐT.Text = row.Cells["colSĐT"].Value?.ToString();
+                txtDiaChi.Text = row.Cells["colDiaChi"].Value?.ToString();
+                lblDangChon.Text = maDangChon + " - " + txtTenKH.Text;
+            }
+        }
+
+        private void txtTim_TextChanged(object sender, EventArgs e)
+        {
+            dgvKhachHang.DataSource = khachHangBus.timKiem(txtTim.Text.Trim());
+        }
+
         private void btnThem_Click(object sender, EventArgs e)
         {
-            // Gọi hàm kiểm tra tính hợp lệ trước khi xử lý
             if (!KiemTraHopLe()) return;
 
             if (khachHangBus.kiemTraSoDienThoaiTonTai(txtSĐT.Text.Trim()))
@@ -168,67 +198,40 @@ namespace QL_CuaHangBanThuocTruSau.Views
             loadDanhSach();
         }
 
-        private void lamMoi()
+        private void StyleDgv(DataGridView dgv)
         {
-            maDangChon = 0;
-            txtTenKH.Clear();
-            txtSĐT.Clear();
-            txtDiaChi.Clear();
-            txtTim.Clear();
-            lblDangChon.Text = "---";
-        }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.AllowUserToAddRows = false;
+            dgv.RowHeadersVisible = false;
+            dgv.BorderStyle = BorderStyle.Fixed3D;
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.GridColor = System.Drawing.Color.WhiteSmoke;
+            dgv.BackgroundColor = System.Drawing.Color.White;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Regular);
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgv.ColumnHeadersHeight = 34;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9.5f);
+            dgv.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
+            dgv.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dgv.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dgv.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
+            dgv.DefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
+            dgv.RowTemplate.Height = 34;
 
-        private void dgvKhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
+            if (dgv.Columns["cotNgayTao"] != null)
             {
-                DataGridViewRow row = dgvKhachHang.Rows[e.RowIndex];
-                maDangChon = Convert.ToInt32(row.Cells["colMaKH"].Value);
-                txtTenKH.Text = row.Cells["colTenKH"].Value?.ToString();
-                txtSĐT.Text = row.Cells["colSĐT"].Value?.ToString();
-                txtDiaChi.Text = row.Cells["colDiaChi"].Value?.ToString();
-                lblDangChon.Text = maDangChon + " - " + txtTenKH.Text;
+                dgv.Columns["cotNgayTao"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+                dgv.Columns["cotNgayTao"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
-        }
-
-        private void txtTim_TextChanged(object sender, EventArgs e)
-        {
-            dgvKhachHang.DataSource = khachHangBus.timKiem(txtTim.Text.Trim());
-        }
-
-        private void pnlTitle_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlInput_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblDangChon_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvKhachHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

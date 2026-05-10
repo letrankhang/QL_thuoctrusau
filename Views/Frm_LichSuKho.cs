@@ -1,11 +1,12 @@
+using QL_CuaHangBanThuocTruSau.BUS;
+using QL_CuaHangBanThuocTruSau.Models;
+using QL_CuaHangBanThuocTruSau.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
-using QL_CuaHangBanThuocTruSau.BUS;
-using QL_CuaHangBanThuocTruSau.Models;
-using QL_CuaHangBanThuocTruSau.Utils;
 
 namespace QL_CuaHangBanThuocTruSau.Views
 {
@@ -13,40 +14,22 @@ namespace QL_CuaHangBanThuocTruSau.Views
     {
         private readonly InventoryTransactionBUS _bus = new InventoryTransactionBUS();
         private List<InventoryTransaction> _allTransactions = new List<InventoryTransaction>();
-        private const string PlaceholderText = "Tìm kiếm theo tên sản phẩm hoặc mã lô...";
 
         public Frm_LichSuKho()
         {
             InitializeComponent();
-            SetupPlaceholder();
-        }
-
-        private void SetupPlaceholder()
-        {
-            txtTimKiem.Text = PlaceholderText;
-            txtTimKiem.ForeColor = System.Drawing.Color.Gray;
-
-            txtTimKiem.Enter += (s, e) =>
-            {
-                if (txtTimKiem.Text == PlaceholderText)
-                {
-                    txtTimKiem.Text = "";
-                    txtTimKiem.ForeColor = System.Drawing.Color.Black;
-                }
-            };
-
-            txtTimKiem.Leave += (s, e) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtTimKiem.Text))
-                {
-                    txtTimKiem.Text = PlaceholderText;
-                    txtTimKiem.ForeColor = System.Drawing.Color.Gray;
-                }
-            };
         }
 
         private void Frm_LichSuKho_Load(object sender, EventArgs e)
         {
+            dtpTuNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dtpDenNgay.Value = DateTime.Now;
+
+            dtpTuNgay.Format = DateTimePickerFormat.Custom;
+            dtpTuNgay.CustomFormat = "d/M/yyyy";
+
+            dtpDenNgay.Format = DateTimePickerFormat.Custom;
+            dtpDenNgay.CustomFormat = "d/M/yyyy";
             LoadFullData();
         }
 
@@ -94,35 +77,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             }
         }
 
-        private void btnLoc_Click(object sender, EventArgs e)
-        {
-            DateTime tuNgay = dtpTuNgay.Value.Date;
-            DateTime denNgay = dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1);
-
-            var filtered = _allTransactions.Where(t => t.CreatedAt >= tuNgay && t.CreatedAt <= denNgay).ToList();
-            BindData(filtered);
-        }
-
-        private void txtTimKiem_TextChanged(object sender, EventArgs e)
-        {
-            if (txtTimKiem.Text == PlaceholderText || string.IsNullOrWhiteSpace(txtTimKiem.Text))
-            {
-                if (_allTransactions.Count > 0 && dgvLichSu.Rows.Count != _allTransactions.Count)
-                {
-                    BindData(_allTransactions);
-                }
-                return;
-            }
-
-            string searchText = txtTimKiem.Text.ToLower();
-            var filtered = _allTransactions.Where(t => 
-                (t.Batch?.ProductVariant?.Product?.Name != null && t.Batch.ProductVariant.Product.Name.ToLower().Contains(searchText)) ||
-                t.BatchID.ToString().Contains(searchText)
-            ).ToList();
-
-            BindData(filtered);
-        }
-
         private void DinhDangLuoi()
         {
             if (dgvLichSu.Columns.Count > 0)
@@ -140,14 +94,66 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 
                 if (dgvLichSu.Columns.Contains("Quantity"))
                     dgvLichSu.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                if (dgvLichSu.Columns.Contains("CreatedAt"))
+                    dgvLichSu.Columns["CreatedAt"].Width = 140;
+            }
+        }
+
+        private void btnLoc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime tuNgay = dtpTuNgay.Value.Date;
+                DateTime denNgay = dtpDenNgay.Value.Date;
+                DateTime denNgayCuoi = denNgay.Date.AddDays(1).AddSeconds(-1);
+
+                if (tuNgay > denNgay)
+                {
+                    MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var filtered = _allTransactions.Where(t => t.CreatedAt >= tuNgay && t.CreatedAt <= denNgayCuoi).ToList();
+
+                BindData(filtered);
+                DinhDangLuoi();
+
+                if (filtered.Count == 0)
+                    MessageBox.Show("Không có giao dịch nào trong khoảng thời gian này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex, "btnLoc_Click");
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
+            txtTimKiem.Clear();
             LoadFullData();
-            txtTimKiem.Text = PlaceholderText;
-            txtTimKiem.ForeColor = System.Drawing.Color.Gray;
+        }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtTimKiem.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                BindData(_allTransactions);
+                DinhDangLuoi();
+                return;
+            }
+
+            var filtered = _allTransactions.Where(t =>
+                (t.Batch?.ProductVariant?.Product?.Name != null &&
+                 t.Batch.ProductVariant.Product.Name.ToLower().Contains(keyword)) ||
+                t.BatchID.ToString().Contains(keyword)
+            ).ToList();
+
+            BindData(filtered);
+            DinhDangLuoi();
         }
     }
 }

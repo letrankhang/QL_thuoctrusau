@@ -1,8 +1,10 @@
-﻿using QL_CuaHangBanThuocTruSau.Context;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using QL_CuaHangBanThuocTruSau.Context;
 using QL_CuaHangBanThuocTruSau.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace QL_CuaHangBanThuocTruSau.DAO
 {
@@ -82,6 +84,13 @@ namespace QL_CuaHangBanThuocTruSau.DAO
                 if (nhaCungCap == null)
                 {
                     loi = "Không tìm thấy nhà cung cấp cần xóa!";
+                    return false;
+                }
+
+                bool coGD = db.Imports.Any(nh => nh.SupplierID == maNhaCungCap);
+                if (coGD)
+                {
+                    loi = "Không thể xóa do nhà cung cấp này đã có đơn hàng hoặc giao dịch trong hệ thống!";
                     return false;
                 }
 

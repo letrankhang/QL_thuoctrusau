@@ -1,26 +1,28 @@
 ﻿using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Models;
+using QL_CuaHangBanThuocTruSau.Properties;
 using QL_CuaHangBanThuocTruSau.Utils;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace QL_CuaHangBanThuocTruSau.Views
 {
     public partial class Frm_BanHang : Form
     {
-        private readonly SaleBUS _saleBUS = new SaleBUS();
-        private readonly CustomerBUS _customerBUS = new CustomerBUS();
-        private readonly ProductBUS _productBUS = new ProductBUS();
-        private readonly InvoicePrinter _printer = new InvoicePrinter();
-        private const string PlaceholderText = "🔍 Tìm kiếm sản phẩm theo tên, mã (F1)...";
-
+        SaleBUS _saleBUS = new SaleBUS();
+        CustomerBUS _customerBUS = new CustomerBUS();
+        ProductBUS _productBUS = new ProductBUS();
+        CategoryBUS _categoryBUS = new CategoryBUS();
+        InvoicePrinter _printer = new InvoicePrinter();
+        private Frm_LichSuDonHang frmLichSuDonHang;
+        private List<ProductVariant> _allVariants = new List<ProductVariant>();
         public Frm_BanHang()
         {
             InitializeComponent();
             SetupGridColumns();
-            SetupPlaceholder();
 
             this.KeyPreview = true;
             this.KeyDown += Frm_BanHang_KeyDown;
@@ -38,31 +40,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.Load += Frm_BanHang_Load;
         }
 
-        private void SetupPlaceholder()
-        {
-            txtSearch.PlaceholderText = ""; // Clear Guna design placeholder
-            txtSearch.Text = PlaceholderText;
-            txtSearch.ForeColor = System.Drawing.Color.Gray;
-
-            txtSearch.Enter += (s, e) =>
-            {
-                if (txtSearch.Text == PlaceholderText)
-                {
-                    txtSearch.Text = "";
-                    txtSearch.ForeColor = System.Drawing.Color.Black;
-                }
-            };
-
-            txtSearch.Leave += (s, e) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtSearch.Text))
-                {
-                    txtSearch.Text = PlaceholderText;
-                    txtSearch.ForeColor = System.Drawing.Color.Gray;
-                }
-            };
-        }
-
         private void Frm_BanHang_Load(object sender, EventArgs e)
         {
             try
@@ -73,11 +50,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     var customers = result.Data;
                     if (customers != null && customers.Count > 0)
                     {
+                        customers.Insert(0, new Customer { CustomerID = 0, Name = "--- Chọn khách hàng ---" });
                         cboCustomer.DataSource = customers;
                         cboCustomer.DisplayMember = "Name";
                         cboCustomer.ValueMember = "CustomerID";
                     }
                 }
+                SetupFilterCombos();
                 RefreshProductData();
             }
             catch (Exception ex)
@@ -85,11 +64,84 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 Logger.Log(ex, "Frm_BanHang_Load");
             }
         }
+        private void SetupFilterCombos()
+        {
+            LoadCboLocTheoLoai();
+
+            cboLocTheoGia.Items.Clear();
+            cboLocTheoGia.Items.Add("Tất cả giá");
+            cboLocTheoGia.Items.Add("Dưới 50.000đ");
+            cboLocTheoGia.Items.Add("50.000 đến 100.000đ");
+            cboLocTheoGia.Items.Add("100.000 đến 200.000đ");
+            cboLocTheoGia.Items.Add("200.000 đến 500.000đ");
+            cboLocTheoGia.Items.Add("Trên 500.000đ");
+            cboLocTheoGia.SelectedIndex = 0;
+            cboLocTheoGia.DropDownWidth = 150;
+
+            cboLocTheoLoai.SelectedIndexChanged += (s, e) => ApplyFilter();
+            cboLocTheoGia.SelectedIndexChanged += (s, e) => ApplyFilter();
+        }
+        private void LoadCboLocTheoLoai()
+        {
+            var categories = _categoryBUS.layDanhSachLoai();
+            if (categories == null) return;
+
+            categories.Insert(0, new Category { CategoryID = 0, Name = "Tất cả loại" });
+
+            cboLocTheoLoai.DataSource = categories;
+            cboLocTheoLoai.DisplayMember = "Name";
+            cboLocTheoLoai.ValueMember = "CategoryID";
+        }
+
+        private void ApplyFilter()
+        {
+            if (_allVariants == null || _allVariants.Count == 0) return;
+
+            var filtered = _allVariants.AsEnumerable();
+
+            string loai = (cboLocTheoLoai.SelectedItem as Category)?.Name;
+            if (loai != "Tất cả loại" && !string.IsNullOrEmpty(loai))
+            {
+                filtered = filtered.Where(v =>
+                    v.Product?.Category?.Name != null &&
+                    v.Product.Category.Name.Contains(loai));
+            }
+
+            string gia = cboLocTheoGia.SelectedItem?.ToString();
+            switch (gia)
+            {
+                case "Dưới 50.000đ":
+                    filtered = filtered.Where(v => v.RetailPrice < 50000); 
+                    break;
+
+                case "50.000 đến 100.000đ":
+                    filtered = filtered.Where(v => v.RetailPrice >= 50000 && v.RetailPrice <= 100000); 
+                    break;
+
+                case "100.000 đến 200.000đ":
+                    filtered = filtered.Where(v => v.RetailPrice > 100000 && v.RetailPrice <= 200000); 
+                    break;
+
+                case "200.000 đến 500.000đ":
+                    filtered = filtered.Where(v => v.RetailPrice > 200000 && v.RetailPrice <= 500000); 
+                    break;
+
+                case "Trên 500.000đ":
+                    filtered = filtered.Where(v => v.RetailPrice > 500000); 
+                    break;
+            }
+
+            LoadProductGallery(filtered.ToList());
+        }
 
         private void RefreshProductData()
         {
             var result = _productBUS.GetAllProductVariants();
-            if (result.IsSuccess) LoadProductGallery(result.Data);
+            if (result.IsSuccess)
+            {
+                _allVariants = result.Data;
+                LoadProductGallery(result.Data);
+            }
         }
 
         private void LoadProductGallery(List<ProductVariant> products)
@@ -135,7 +187,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
                     Label lblPrice = new Label
                     {
-                        Text = $"{item.RetailPrice:N0} đ",
+                        Text = $"{item.RetailPrice:N0}đ",
                         Font = new Font("Segoe UI", 11, FontStyle.Bold),
                         ForeColor = Color.SteelBlue,
                         Location = new Point(10, 130),
@@ -188,52 +240,53 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 dgvCart.Columns.Add("Capacity", "Dung Tích");
                 dgvCart.Columns.Add("Price", "Đơn Giá");
 
-                // Nút Trừ
-                DataGridViewButtonColumn btnMinus = new DataGridViewButtonColumn();
+                DataGridViewImageColumn btnMinus = new DataGridViewImageColumn();
                 btnMinus.Name = "btnMinus";
                 btnMinus.HeaderText = "";
-                btnMinus.Text = "➖";
-                btnMinus.UseColumnTextForButtonValue = true;
-                btnMinus.FlatStyle = FlatStyle.Flat;
+                btnMinus.Image = Properties.Resources.minus; 
+                btnMinus.ImageLayout = DataGridViewImageCellLayout.Zoom;
                 dgvCart.Columns.Add(btnMinus);
 
                 dgvCart.Columns.Add("Quantity", "SL");
+                dgvCart.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                // Nút Cộng
-                DataGridViewButtonColumn btnPlus = new DataGridViewButtonColumn();
+                DataGridViewImageColumn btnPlus = new DataGridViewImageColumn();
                 btnPlus.Name = "btnPlus";
                 btnPlus.HeaderText = "";
-                btnPlus.Text = "➕";
-                btnPlus.UseColumnTextForButtonValue = true;
-                btnPlus.FlatStyle = FlatStyle.Flat;
+                btnPlus.Image = Properties.Resources.plus; 
+                btnPlus.ImageLayout = DataGridViewImageCellLayout.Zoom;
                 dgvCart.Columns.Add(btnPlus);
 
-                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+                DataGridViewImageColumn btnDelete = new DataGridViewImageColumn();
                 btnDelete.Name = "btnDelete";
                 btnDelete.HeaderText = "";
-                btnDelete.Text = "🗑️";
-                btnDelete.UseColumnTextForButtonValue = true;
-                btnDelete.FlatStyle = FlatStyle.Flat;
+                btnDelete.Image = Properties.Resources.bin; 
+                btnDelete.ImageLayout = DataGridViewImageCellLayout.Zoom;
                 dgvCart.Columns.Add(btnDelete);
 
                 dgvCart.Columns.Add("Total", "Thành Tiền");
 
                 dgvCart.Columns["Total"].Visible = false;
                 dgvCart.Columns["VariantID"].Visible = false;
-                dgvCart.Columns["ProductName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgvCart.Columns["ProductName"].Width = 120;
                 dgvCart.Columns["ProductName"].ReadOnly = true;
                 dgvCart.Columns["Capacity"].Width = 80;
                 dgvCart.Columns["Capacity"].ReadOnly = true;
                 dgvCart.Columns["Quantity"].Width = 40;
                 dgvCart.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvCart.Columns["Price"].Width = 90;
+                dgvCart.Columns["Price"].Width = 100;
                 dgvCart.Columns["Price"].ReadOnly = true;
                 dgvCart.Columns["Price"].DefaultCellStyle.Format = "N0";
                 dgvCart.Columns["Price"].DefaultCellStyle.ForeColor = Color.SteelBlue;
 
                 dgvCart.Columns["btnMinus"].Width = 30;
+                dgvCart.Columns["btnMinus"].DefaultCellStyle.Padding = new Padding(6);
+
                 dgvCart.Columns["btnPlus"].Width = 30;
-                dgvCart.Columns["btnDelete"].Width = 35;
+                dgvCart.Columns["btnPlus"].DefaultCellStyle.Padding = new Padding(6);
+
+                dgvCart.Columns["btnDelete"].Width = 45;
+                dgvCart.Columns["btnDelete"].DefaultCellStyle.Padding = new Padding(11);
 
                 dgvCart.CellValueChanged += DgvCart_CellValueChanged;
                 dgvCart.CellValidating += DgvCart_CellValidating;
@@ -314,6 +367,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void AddProductToCart(ProductVariant variant)
         {
+            if (cboCustomer.SelectedValue == null || (int)cboCustomer.SelectedValue == 0)
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng trước khi thêm sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cboCustomer.Focus();
+                return;
+            }
+
             if (variant == null || variant.Product == null) return;
 
             var stockResult = _productBUS.GetStockQuantity(variant.VariantID);
@@ -335,7 +395,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     return;
                 }
             }
-            dgvCart.Rows.Add(variant.VariantID, variant.Product.Name, variant.Unit, variant.RetailPrice, "➖", 1, "➕", "🗑️", variant.RetailPrice);
+            dgvCart.Rows.Add(variant.VariantID, variant.Product.Name, variant.Unit, variant.RetailPrice, Properties.Resources.minus, 1, Properties.Resources.plus, Properties.Resources.delete22, variant.RetailPrice);
             UpdateTotals();
         }
 
@@ -363,65 +423,84 @@ namespace QL_CuaHangBanThuocTruSau.Views
         // =========================================================================
         private decimal GetPaidAmountFromUser(decimal totalAmount)
         {
-            decimal resultAmount = -1; // Mặc định -1 là hủy bỏ
+            decimal resultAmount = -1;
 
             Form prompt = new Form()
             {
-                Width = 350,
-                Height = 220,
+                Width = 400,
+                Height = 236, 
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 Text = "Thanh toán đơn hàng",
                 StartPosition = FormStartPosition.CenterParent,
                 MaximizeBox = false,
-                MinimizeBox = false
+                MinimizeBox = false,
+                BackColor = Color.White,
+                Font = new Font("Segoe UI", 10),
+                Padding = new Padding(20)
             };
 
             Label lblTotal = new Label()
             {
                 Left = 20,
-                Top = 20,
-                Width = 300,
-                Text = $"Tổng tiền: {totalAmount:N0} VNĐ",
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                ForeColor = Color.SteelBlue
+                Top = 13,
+                Width = 345,
+                Height = 30,
+                Text = string.Format("Tổng tiền: {0:N0} VNĐ", totalAmount),
+                Font = new Font("Segoe UI", 13, FontStyle.Bold),
+                ForeColor = Color.FromArgb(70, 130, 180)
             };
 
             Label lblPrompt = new Label()
             {
                 Left = 20,
-                Top = 60,
-                Width = 300,
-                Text = "Nhập số tiền khách thanh toán trước:",
-                Font = new Font("Segoe UI", 10)
+                Top = 50,
+                Width = 345,
+                Height = 20,
+                Text = "Số tiền khách thanh toán:",
+                ForeColor = Color.FromArgb(60, 60, 60),
+                BackColor = Color.Transparent
             };
 
-            TextBox txtAmount = new TextBox()
+            Guna.UI2.WinForms.Guna2TextBox txtAmount = new Guna.UI2.WinForms.Guna2TextBox()
             {
-                Left = 20,
-                Top = 90,
-                Width = 290,
+                Left = 15,
+                Top = 58,
+                Width = 250,
+                Height = 24,
+                Text = totalAmount.ToString("0"),
                 Font = new Font("Segoe UI", 12),
-                Text = totalAmount.ToString("0") // Mặc định điền sẵn tổng tiền
+                BorderColor = Color.FromArgb(200, 200, 200),
+                BorderRadius = 6,
             };
 
-            // Logic Format tiền tệ tự động khi gõ
-            txtAmount.TextChanged += (s, e) =>
+            Guna.UI2.WinForms.Guna2Button btnOk = new Guna.UI2.WinForms.Guna2Button()
             {
-                if (string.IsNullOrWhiteSpace(txtAmount.Text)) return;
-
-                // Loại bỏ dấu phẩy/chấm cũ trước khi parse
-                string rawText = txtAmount.Text.Replace(",", "").Replace(".", "");
-                if (decimal.TryParse(rawText, out decimal val))
-                {
-                    txtAmount.TextChanged -= null; // Tạm tắt event để tránh loop
-                    txtAmount.Text = val.ToString("N0");
-                    txtAmount.SelectionStart = txtAmount.Text.Length; // Đẩy nháy chuột về cuối
-                    txtAmount.TextChanged += null;
-                }
+                Text = "Xác nhận",
+                Left = 20,
+                Top = 128,
+                Width = 165,
+                Height = 40,
+                FillColor = Color.FromArgb(70, 130, 180),
+                ForeColor = Color.White,
+                BorderRadius = 6,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold)
             };
 
-            Button btnOk = new Button() { Text = "Xác nhận", Left = 120, Width = 90, Top = 135, DialogResult = DialogResult.OK };
-            Button btnCancelBtn = new Button() { Text = "Hủy", Left = 220, Width = 90, Top = 135, DialogResult = DialogResult.Cancel };
+            Guna.UI2.WinForms.Guna2Button btnCancelBtn = new Guna.UI2.WinForms.Guna2Button()
+            {
+                Text = "Hủy",
+                Left = 200,
+                Top = 128,
+                Width = 165,
+                Height = 40,
+                FillColor = Color.FromArgb(224, 224, 224),
+                ForeColor = Color.FromArgb(128, 128, 128),
+                BorderRadius = 6,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold)
+            };
+
+            btnOk.Click += (s, e) => { prompt.DialogResult = DialogResult.OK; prompt.Close(); };
+            btnCancelBtn.Click += (s, e) => { prompt.DialogResult = DialogResult.Cancel; prompt.Close(); };
 
             prompt.Controls.Add(lblTotal);
             prompt.Controls.Add(lblPrompt);
@@ -435,18 +514,14 @@ namespace QL_CuaHangBanThuocTruSau.Views
             {
                 string cleanVal = txtAmount.Text.Replace(",", "").Replace(".", "");
                 if (decimal.TryParse(cleanVal, out decimal paid))
-                {
                     resultAmount = paid;
-                }
             }
 
             prompt.Dispose();
             return resultAmount;
         }
 
-
         // HÀM XỬ LÝ THANH TOÁN 
-
         private void HandlePayment(bool isPrint, bool isFullPayment = true)
         {
             try
@@ -529,11 +604,19 @@ namespace QL_CuaHangBanThuocTruSau.Views
         {
             try
             {
-                // Khởi tạo form Lịch sử đơn hàng mới
-                Frm_LichSuDonHang frmLichSu = new Frm_LichSuDonHang();
+                if (frmLichSuDonHang == null || frmLichSuDonHang.IsDisposed)
+                {
+                    frmLichSuDonHang = new Frm_LichSuDonHang();
+                }
 
-                // Mở form lên
-                frmLichSu.ShowDialog();
+                if (!frmLichSuDonHang.Visible)
+                {
+                    frmLichSuDonHang.Show();
+                }   
+                else
+                {
+                    frmLichSuDonHang.BringToFront();
+                }     
             }
             catch (Exception ex)
             {
@@ -553,18 +636,19 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (txtSearch.Text == PlaceholderText || string.IsNullOrWhiteSpace(txtSearch.Text))
+            string keyword = txtSearch.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(keyword))
             {
-                // Nếu là placeholder hoặc trống, có thể giữ nguyên gallery hiện tại hoặc load toàn bộ
+                ApplyFilter();
                 return;
             }
 
-            string keyword = txtSearch.Text.Trim();
-            var result = _productBUS.SearchProducts(keyword);
-            if (result.IsSuccess)
-            {
-                LoadProductGallery(result.Data);
-            }
+            var filtered = _allVariants.Where(v =>
+                (v.Product?.Name ?? "").ToLower().Contains(keyword)
+            ).ToList();
+
+            LoadProductGallery(filtered);
         }
 
         private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
@@ -610,19 +694,5 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private void pnlCartHeader_Paint(object sender, PaintEventArgs e) { }
         private void cboCustomer_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void Frm_BanHang_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblCartTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -13,40 +13,22 @@ namespace QL_CuaHangBanThuocTruSau.Views
     {
         private readonly OrderBUS _orderBUS = new OrderBUS();
         private List<Order> _allOrders = new List<Order>();
-        private const string PlaceholderText = "Nhập mã hóa đơn hoặc tên khách hàng...";
 
         public Frm_LichSuDonHang()
         {
             InitializeComponent();
-            SetupPlaceholder();
-        }
-
-        private void SetupPlaceholder()
-        {
-            txtTimKiem.Text = PlaceholderText;
-            txtTimKiem.ForeColor = System.Drawing.Color.Gray;
-
-            txtTimKiem.Enter += (s, e) =>
-            {
-                if (txtTimKiem.Text == PlaceholderText)
-                {
-                    txtTimKiem.Text = "";
-                    txtTimKiem.ForeColor = System.Drawing.Color.Black;
-                }
-            };
-
-            txtTimKiem.Leave += (s, e) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtTimKiem.Text))
-                {
-                    txtTimKiem.Text = PlaceholderText;
-                    txtTimKiem.ForeColor = System.Drawing.Color.Gray;
-                }
-            };
         }
 
         private void Frm_LichSuDonHang_Load(object sender, EventArgs e)
         {
+            dtpTuNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dtpDenNgay.Value = DateTime.Now;
+
+            dtpTuNgay.Format = DateTimePickerFormat.Custom;
+            dtpTuNgay.CustomFormat = "d/M/yyyy";
+
+            dtpDenNgay.Format = DateTimePickerFormat.Custom;
+            dtpDenNgay.CustomFormat = "d/M/yyyy";
             LoadFullData();
         }
 
@@ -81,14 +63,60 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dgvLichSu.DataSource = displayList;
         }
 
-        // Chức năng Lọc theo ngày
+        // Làm đẹp bảng dữ liệu
+        private void DinhDangLuoi()
+        {
+            if (dgvLichSu.Columns.Count > 0)
+            {
+                if (dgvLichSu.Columns.Contains("OrderID")) dgvLichSu.Columns["OrderID"].HeaderText = "Mã Đơn";
+                if (dgvLichSu.Columns.Contains("CustomerName")) dgvLichSu.Columns["CustomerName"].HeaderText = "Khách Hàng";
+                if (dgvLichSu.Columns.Contains("UserName")) dgvLichSu.Columns["UserName"].HeaderText = "Nhân Viên";
+                if (dgvLichSu.Columns.Contains("OrderDate")) dgvLichSu.Columns["OrderDate"].HeaderText = "Ngày Lập";
+                if (dgvLichSu.Columns.Contains("TotalAmount")) dgvLichSu.Columns["TotalAmount"].HeaderText = "Tổng Tiền";
+                if (dgvLichSu.Columns.Contains("Status")) dgvLichSu.Columns["Status"].HeaderText = "Trạng Thái";
+                
+                dgvLichSu.Columns["OrderID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvLichSu.Columns["OrderDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvLichSu.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                // Định dạng ngày tháng
+                if (dgvLichSu.Columns.Contains("OrderDate"))
+                    dgvLichSu.Columns["OrderDate"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+
+                // Định dạng tiền tệ VNĐ
+                if (dgvLichSu.Columns.Contains("TotalAmount"))
+                {
+                    dgvLichSu.Columns["TotalAmount"].DefaultCellStyle.Format = "N0";
+                    dgvLichSu.Columns["TotalAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
+            }
+        }
+
         private void btnLoc_Click(object sender, EventArgs e)
         {
-            DateTime tuNgay = dtpTuNgay.Value.Date;
-            DateTime denNgay = dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1);
+            try
+            {
+                DateTime tuNgay = dtpTuNgay.Value.Date;
+                DateTime denNgay = dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1);
 
-            var filtered = _allOrders.Where(o => o.OrderDate >= tuNgay && o.OrderDate <= denNgay).ToList();
-            BindData(filtered);
+                if (tuNgay > denNgay)
+                {
+                    MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var filtered = _allOrders.Where(o => o.OrderDate >= tuNgay && o.OrderDate < denNgay).ToList();
+
+                BindData(filtered);
+                DinhDangLuoi();
+
+                if (filtered.Count == 0)
+                    MessageBox.Show("Không có đơn hàng nào trong khoảng thời gian này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex, "btnLoc_Click");
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnInHoaDon_Click(object sender, EventArgs e)
@@ -134,50 +162,24 @@ namespace QL_CuaHangBanThuocTruSau.Views
             }
         }
 
-        // Chức năng tìm kiếm nhanh
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (txtTimKiem.Text == PlaceholderText || string.IsNullOrWhiteSpace(txtTimKiem.Text))
+            string searchText = txtTimKiem.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(searchText))
             {
-                if (_allOrders.Count > 0 && dgvLichSu.Rows.Count != _allOrders.Count)
-                {
-                    BindData(_allOrders);
-                }
+                BindData(_allOrders);
+                DinhDangLuoi();
                 return;
             }
 
-            string searchText = txtTimKiem.Text.ToLower();
             var filtered = _allOrders.Where(o =>
                 o.OrderID.ToString().Contains(searchText) ||
                 (o.Customer?.Name != null && o.Customer.Name.ToLower().Contains(searchText))
             ).ToList();
 
             BindData(filtered);
-        }
-
-        // Làm đẹp bảng dữ liệu
-        private void DinhDangLuoi()
-        {
-            if (dgvLichSu.Columns.Count > 0)
-            {
-                if (dgvLichSu.Columns.Contains("OrderID")) dgvLichSu.Columns["OrderID"].HeaderText = "Mã Đơn";
-                if (dgvLichSu.Columns.Contains("CustomerName")) dgvLichSu.Columns["CustomerName"].HeaderText = "Khách Hàng";
-                if (dgvLichSu.Columns.Contains("UserName")) dgvLichSu.Columns["UserName"].HeaderText = "Nhân Viên";
-                if (dgvLichSu.Columns.Contains("OrderDate")) dgvLichSu.Columns["OrderDate"].HeaderText = "Ngày Lập";
-                if (dgvLichSu.Columns.Contains("TotalAmount")) dgvLichSu.Columns["TotalAmount"].HeaderText = "Tổng Tiền";
-                if (dgvLichSu.Columns.Contains("Status")) dgvLichSu.Columns["Status"].HeaderText = "Trạng Thái";
-
-                // Định dạng ngày tháng
-                if (dgvLichSu.Columns.Contains("OrderDate"))
-                    dgvLichSu.Columns["OrderDate"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
-
-                // Định dạng tiền tệ VNĐ
-                if (dgvLichSu.Columns.Contains("TotalAmount"))
-                {
-                    dgvLichSu.Columns["TotalAmount"].DefaultCellStyle.Format = "N0";
-                    dgvLichSu.Columns["TotalAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                }
-            }
+            DinhDangLuoi();
         }
     }
 }

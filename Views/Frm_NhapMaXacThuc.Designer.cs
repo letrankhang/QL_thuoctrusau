@@ -24,8 +24,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnVerify = new Guna.UI2.WinForms.Guna2Button();
             this.lblResendOTP = new System.Windows.Forms.Label();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnExit = new Guna.UI2.WinForms.Guna2Button();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.btnExit = new Guna.UI2.WinForms.Guna2Button();
             this.txtOTP = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel1.SuspendLayout();
@@ -107,6 +107,18 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Panel1.Size = new System.Drawing.Size(400, 513);
             this.guna2Panel1.TabIndex = 7;
             // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.BackColor = System.Drawing.Color.White;
+            this.guna2PictureBox1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.Logo;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(0, -26);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(404, 542);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 0;
+            this.guna2PictureBox1.TabStop = false;
+            // 
             // btnExit
             // 
             this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -124,20 +136,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnExit.Location = new System.Drawing.Point(898, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.PressedColor = System.Drawing.Color.White;
-            this.btnExit.Size = new System.Drawing.Size(49, 53);
+            this.btnExit.Size = new System.Drawing.Size(46, 53);
             this.btnExit.TabIndex = 10;
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.BackColor = System.Drawing.Color.White;
-            this.guna2PictureBox1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.Logo;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(0, -26);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(404, 542);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // txtOTP
             // 

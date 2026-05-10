@@ -20,23 +20,33 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private List<ProductVariant> _dsBienThe;
         private List<BienTheItem> _dsBind;
         private ProductVariantBUS bus = new ProductVariantBUS();
+        private int _productID;
 
-        public Frm_NhapChiTietSP()
+        public Frm_NhapChiTietSP(int productID)
         {
             InitializeComponent();
+            _productID = productID;
         }
 
         private void Frm_NhapChiTietSP_Load(object sender, EventArgs e)
         {
-            // ✅ Lưu list gốc để dùng lấy giá
             _dsBienThe = bus.layDanhSach();
 
-            // ✅ Tạo list hiển thị Unit - Concentration
+            _dsBienThe = _dsBienThe.Where(x => x.ProductID == _productID).ToList();
+
             _dsBind = _dsBienThe.Select(x => new BienTheItem
             {
                 VariantID = x.VariantID,
                 TenBienThe = $"{x.Unit} - {x.Concentration}"
             }).ToList();
+
+            txtSoLuong.KeyPress += (s, ev) => {
+                if (!char.IsDigit(ev.KeyChar) && ev.KeyChar != '\b')
+                {
+                    ev.Handled = true;
+                    MessageBox.Show("Chỉ được nhập số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            };
 
             cboBienThe.DataSource = _dsBind;
             cboBienThe.DisplayMember = "TenBienThe";
@@ -45,6 +55,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
             cboBienThe.SelectedIndexChanged += cboBienThe_SelectedIndexChanged;
             if (cboBienThe.SelectedItem != null)
                 cboBienThe_SelectedIndexChanged(null, null);
+
+            dtpNSX.Format = DateTimePickerFormat.Custom;
+            dtpNSX.CustomFormat = "d/M/yyyy";
+
+            dtpHSD.Format = DateTimePickerFormat.Custom;
+            dtpHSD.CustomFormat = "d/M/yyyy";
         }
 
         private void cboBienThe_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,7 +75,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
                 if (bienThe == null) return;
 
-                lblGiaSi.Text = $"Giá bán sĩ: {bienThe.WholesalePrice:N0} đ";
+                lblGiaSi.Text = $"Giá bán sỉ: {bienThe.WholesalePrice:N0} đ";
                 lblGiaLe.Text = $"Giá bán lẻ: {bienThe.RetailPrice:N0} đ";
             }
             catch (Exception ex)
@@ -93,7 +109,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 MessageBox.Show("Đơn giá nhập phải nhỏ hơn giá bán sỉ!");
                 return;
             }
-            if (txtHSD.Value.Date <= txtNSX.Value.Date)
+            if (dtpHSD.Value.Date <= dtpNSX.Value.Date)
             {
                 MessageBox.Show("HSD phải lớn hơn NSX!");
                 return;
@@ -103,14 +119,23 @@ namespace QL_CuaHangBanThuocTruSau.Views
             BienThe = $"{bienThe.Unit} - {bienThe.Concentration}";
             DonGia = donGiaNhap;
             SoLuong = int.Parse(txtSoLuong.Text);
-            NSX = txtNSX.Value.Date;
-            HSD = txtHSD.Value.Date;
+            NSX = dtpNSX.Value.Date;
+            HSD = dtpHSD.Value.Date;
 
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void lblGBL_Click(object sender, EventArgs e) { }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
     public class BienTheItem

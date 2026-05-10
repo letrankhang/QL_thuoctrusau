@@ -13,40 +13,41 @@ namespace QL_CuaHangBanThuocTruSau.Views
     {
         private bool isLoaded = false;
         private int _currentPage = 1;
-        private int _pageSize = 10;
+        private int _pageSize = 14;
         private int _totalRows = 0;
         private System.Collections.Generic.List<ViewModels.CongNoViewModel> _fullFilteredList = new System.Collections.Generic.List<ViewModels.CongNoViewModel>();
 
-        // ===================== STYLE =====================
 
         private void StyleDgv(DataGridView dgv)
         {
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.AllowUserToAddRows = false;
             dgv.RowHeadersVisible = false;
-            dgv.BorderStyle = BorderStyle.FixedSingle;
+            dgv.BorderStyle = BorderStyle.Fixed3D;
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.GridColor = Color.FromArgb(220, 225, 235);
+            dgv.GridColor = Color.WhiteSmoke;
             dgv.BackgroundColor = Color.White;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.AllowUserToResizeRows = false;
 
             dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 107, 163);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9f, FontStyle.Regular);
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 107, 163);
-            dgv.ColumnHeadersHeight = 42;
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersHeight = 34;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
             dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9.5f);
             dgv.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
             dgv.DefaultCellStyle.BackColor = Color.White;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 225, 245);
-            dgv.DefaultCellStyle.SelectionForeColor = Color.FromArgb(30, 30, 30);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.FromArgb(40, 40, 40);
             dgv.DefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
-            dgv.RowTemplate.Height = 36;
-
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
+            dgv.RowTemplate.Height = 34;
         }
 
         // ===================== SETUP COLUMNS =====================
@@ -62,7 +63,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 Name = "OrderID"
             });
 
-            // ✅ Dùng nhất quán "PartnerName" cho cả DataPropertyName và Name
             dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Tên đối tác",
@@ -119,8 +119,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dgvCongNo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        // ===================== CONSTRUCTOR =====================
-
         public Frm_CongNo()
         {
             InitializeComponent();
@@ -130,15 +128,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private void WireEvents()
         {
             this.Load += Frm_CongNo_Load;
-            txtTimKiem.TextChanged += txtTimKiem_TextChanged;
             cboLocKhachHang.SelectedIndexChanged += CboLocKhachHang_SelectedIndexChanged;
             cboTrangThai.SelectedIndexChanged += (s, e) => { if (isLoaded) { _currentPage = 1; LoadData(); } };
             dtpTuNgay.ValueChanged += (s, e) => { if (isLoaded) { _currentPage = 1; LoadData(); } };
             dtpDenNgay.ValueChanged += (s, e) => { if (isLoaded) { _currentPage = 1; LoadData(); } };
             btnNext.Click += BtnNext_Click;
             btnPrev.Click += BtnPrev_Click;
-            btnThuNo.Click += btnThuNo_Click;
-            btnXuatExcel.Click += btnXuatExcel_Click;
+            dgvCongNo.DataBindingComplete += (s, e) => ToMauDong();
         }
 
         // ===================== LOAD =====================
@@ -153,7 +149,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             SetupColumns();
 
             cboTrangThai.Items.Clear();
-            cboTrangThai.Items.Add("All");
+            cboTrangThai.Items.Add("Tất cả trạng thái");
             cboTrangThai.Items.Add("Chưa thanh toán");
             cboTrangThai.Items.Add("Thanh toán một phần");
             cboTrangThai.Items.Add("Đã thanh toán");
@@ -161,6 +157,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
             dtpTuNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             dtpDenNgay.Value = DateTime.Now;
+
+            dtpTuNgay.Format = DateTimePickerFormat.Custom;
+            dtpTuNgay.CustomFormat = "d/M/yyyy";
+
+            dtpDenNgay.Format = DateTimePickerFormat.Custom;
+            dtpDenNgay.CustomFormat = "d/M/yyyy";
 
             LoadCustomers();
 
@@ -175,8 +177,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private void LoadCustomers()
         {
             cboLocKhachHang.Items.Clear();
-            cboLocKhachHang.Items.Add("All");
-
+            cboLocKhachHang.Items.Add("Tất cả khách hàng");
+            cboLocKhachHang.DropDownWidth = 400;
+            cboTrangThai.DropDownWidth = 220;
             try
             {
                 using (var db = new AppDbContext())
@@ -202,8 +205,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 cboLocKhachHang.SelectedIndex = 0;
         }
 
-        // ===================== LOAD DATA =====================
-
         private void LoadData()
         {
             int savedPage = _currentPage;
@@ -212,8 +213,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 using (var db = new AppDbContext())
                 {
                     string keyword = (txtTimKiem.Text ?? "").Trim().ToLower();
-                    string doiTacFilter = cboLocKhachHang.SelectedItem?.ToString() ?? "All";
-                    string trangThai = cboTrangThai.SelectedItem?.ToString() ?? "All";
+                    string doiTacFilter = cboLocKhachHang.SelectedItem?.ToString() ?? "Tất cả khách hàng";
+                    string trangThai = cboTrangThai.SelectedItem?.ToString() ?? "Tất cả trạng thái";
                     DateTime tuNgay = dtpTuNgay.Value.Date;
                     DateTime denNgay = dtpDenNgay.Value.Date.AddDays(1);
 
@@ -276,10 +277,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
                             x.OrderID.ToString().Contains(keyword) || 
                             x.PartnerName.ToLower().Contains(keyword));
 
-                    if (doiTacFilter != "All")
+                    if (doiTacFilter != "Tất cả khách hàng")
                         filtered = filtered.Where(x => x.PartnerName == doiTacFilter);
 
-                    if (trangThai != "All")
+                    if (trangThai != "Tất cả trạng thái")
                         filtered = filtered.Where(x => x.Status == trangThai);
 
                     var finalResult = filtered.OrderByDescending(x => x.OrderDate).ToList();
@@ -304,10 +305,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     // Cập nhật text label cho trực quan
                     lblNoPhaiThuTitle.Text = "Khách nợ (Phải thu)";
                     lblDaThanhToanTitle.Text = "Nợ NCC (Phải trả)";
-                    lblTongCongNoTitle.Text = "Tổng cộng nợ";
+                    lblTongCongNoTitle.Text = "Tổng công nợ";
                     
                     lblNoPhaiThuValue.ForeColor = Color.FromArgb(0, 120, 215); // Xanh dương cho phải thu
-                    lblDaThanhToanValue.ForeColor = Color.FromArgb(220, 53, 69); // Đỏ cho phải trả
+                    lblDaThanhToanValue.ForeColor = Color.FromArgb(0, 192, 0); // Đỏ cho phải trả
 
                     UpdatePagingInfo();
                     ToMauDong();
@@ -325,45 +326,27 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void ToMauDong()
         {
-            foreach (DataGridViewRow row in dgvCongNo.Rows)
+            foreach (DataGridViewRow r in dgvCongNo.Rows)
             {
-                if (row.IsNewRow) continue;
+                if (r.IsNewRow) 
+                    continue;
 
-                string status = row.Cells["Status"].Value?.ToString() ?? "";
-                string loaiNo = row.Cells["LoaiNo"].Value?.ToString() ?? "";
+                string status = r.Cells["Status"].Value?.ToString() ?? "";
+                bool quaHan = r.Cells["OrderDate"].Value is DateTime dt && (DateTime.Now - dt).TotalDays > 30;
 
-                if (loaiNo == "Nhà cung cấp" && status == "Chưa thanh toán")
-                {
-                    row.DefaultCellStyle.BackColor = Color.FromArgb(189, 215, 238);
-                    row.DefaultCellStyle.ForeColor = Color.DarkBlue;
-                }
-                else if (status == "Đã thanh toán")
-                {
-                    row.DefaultCellStyle.BackColor = Color.FromArgb(198, 239, 206);
-                    row.DefaultCellStyle.ForeColor = Color.DarkGreen;
-                }
+                r.Cells["Status"].Style.Font = new System.Drawing.Font("Segoe UI", 9.5f, FontStyle.Bold);
+
+                if (status == "Đã thanh toán")
+                    r.Cells["Status"].Style.ForeColor = Color.FromArgb(0, 150, 60);
+
                 else if (status == "Thanh toán một phần")
-                {
-                    row.DefaultCellStyle.BackColor = Color.FromArgb(255, 235, 156);
-                    row.DefaultCellStyle.ForeColor = Color.DarkOrange;
-                }
-                else
-                {
-                    DateTime orderDate = DateTime.MinValue;
-                    if (row.Cells["OrderDate"].Value is DateTime dt)
-                        orderDate = dt;
+                    r.Cells["Status"].Style.ForeColor = Color.FromArgb(200, 120, 0);
 
-                    if (orderDate != DateTime.MinValue && (DateTime.Now - orderDate).TotalDays > 30)
-                    {
-                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 199, 206);
-                        row.DefaultCellStyle.ForeColor = Color.DarkRed;
-                    }
-                    else
-                    {
-                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 235, 156);
-                        row.DefaultCellStyle.ForeColor = Color.DarkOrange;
-                    }
-                }
+                else if (quaHan)
+                    r.Cells["Status"].Style.ForeColor = Color.DarkRed;
+
+                else
+                    r.Cells["Status"].Style.ForeColor = Color.FromArgb(200, 80, 0);
             }
         }
 
@@ -559,13 +542,27 @@ namespace QL_CuaHangBanThuocTruSau.Views
                                                       && x.TransactionType.ToUpper() == "PURCHASE");
                                 if (original != null)
                                     payment.SupplierID = original.SupplierID;
+
+                                var phieuNhap = db.Imports.Find(id);
+                                if (phieuNhap != null)
+                                {
+                                    decimal tongTien = phieuNhap.TotalAmount;
+                                    decimal daDaTra = db.DebtTransactions
+                                        .Where(x => x.ReferenceImportID == id
+                                                 && x.TransactionType.ToUpper() == "PAYMENT")
+                                        .Sum(x => (decimal?)x.Amount) ?? 0;
+
+                                    phieuNhap.Status = (daDaTra + soTienThu >= tongTien)
+                                        ? "COMPLETED"
+                                        : "PARTIAL";
+                                }
                             }
 
                             db.DebtTransactions.Add(payment);
                             db.SaveChanges();
                             dbTran.Commit();
 
-                            MessageBox.Show($"{hanhDong} {soTienThu:N0} đ thành công!", "Thành công",
+                            MessageBox.Show($"{hanhDong} {soTienThu:N0}đ thành công!", "Thành công",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         catch

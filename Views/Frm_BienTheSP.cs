@@ -35,7 +35,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             cboDonViTinh.Items.Clear();
             cboDonViTinh.Items.AddRange(new string[]
             {
-                "Chọn đơn vị", "Chai", "Gói", "Lít", "Thùng", "Hộp", "Bình", "Túi"
+                "Chọn đơn vị", "Chai", "Gói", "Lít", "Thùng", "Hộp", "Bình"
             });
             cboDonViTinh.SelectedIndex = 0;
         }

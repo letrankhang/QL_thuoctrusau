@@ -57,7 +57,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 document.Add(new Paragraph($"Địa chỉ: {order.Customer?.Address ?? "..................................................."}", fontNormal));
                 document.Add(new Paragraph($"Điện thoại: {order.Customer?.Phone ?? "..................................................."}", fontNormal));
                 document.Add(new Paragraph("\n"));
-
                 // 4. Bảng danh sách sản phẩm
                 PdfPTable table = new PdfPTable(5);
                 table.WidthPercentage = 100;
@@ -99,16 +98,25 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 cellTotalValue.Padding = 5;
                 table.AddCell(cellTotalValue);
 
-                // Tính toán tiền nợ và đã thanh toán
-                decimal debtAmount = 0;
+                // Tính toán tiền nợ và đã thanh toán dựa trên giao dịch thực tế
+                decimal paidAmount = 0;
+                decimal refundAmount = 0;
+
                 if (order.DebtTransactions != null)
                 {
-                    // Lấy giao dịch nợ liên quan đến đơn hàng này (SALE hoặc DEBT)
-                    debtAmount = order.DebtTransactions
-                        .Where(t => t.TransactionType == "SALE" || t.TransactionType == "DEBT")
+                    // Tổng tiền khách đã thực trả cho đơn này
+                    paidAmount = order.DebtTransactions
+                        .Where(t => t.TransactionType == "PAYMENT")
+                        .Sum(t => t.Amount);
+
+                    // Tổng tiền được giảm trừ do trả hàng (nếu có)
+                    refundAmount = order.DebtTransactions
+                        .Where(t => t.TransactionType == "REFUND")
                         .Sum(t => t.Amount);
                 }
-                decimal paidAmount = order.TotalAmount - debtAmount;
+                // Nợ còn lại = Tổng đơn - Đã trả - Tiền trả hàng
+                decimal debtAmount = order.TotalAmount - paidAmount - refundAmount;
+                if (debtAmount < 0) debtAmount = 0;
 
                 // Dòng đã thanh toán
                 PdfPCell cellPaidLabel = new PdfPCell(new Phrase("Đã thanh toán", fontNormal));
@@ -162,7 +170,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
 
                 document.Close();
                 MessageBox.Show("Xuất hóa đơn thành công tại: " + filePath, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 // Mở file sau khi xuất
                 try { System.Diagnostics.Process.Start(filePath); } catch { }
             }
@@ -209,7 +216,10 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 if (rs.EndsWith(",")) rs = rs.Substring(0, rs.Length - 1);
                 return rs.Substring(0, 1).ToUpper() + rs.Substring(1) + " đồng";
             }
-            catch { return "Không thể đọc số"; }
+            catch 
+            { 
+                return "Không thể đọc số";
+            }
         }
 
         private static string ReadGroup3(long n)

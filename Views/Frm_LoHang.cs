@@ -215,7 +215,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             lblTenSP.Text = row.Cells[1].Value?.ToString();
             lblBienThe.Text = row.Cells[2].Value?.ToString();
             lblNCC.Text = row.Cells[3].Value?.ToString();
-            lblGiaNhap.Text = string.Format("{0:N0} đ", row.Cells[4].Value);
+            lblGiaNhap.Text = string.Format("{0:N0}đ", row.Cells[4].Value);
             lblSLBanDau.Text = row.Cells[5].Value?.ToString();
             lblSLConLai.Text = row.Cells[6].Value?.ToString();
             lblNSX.Text = string.Format("{0:dd/MM/yyyy}", row.Cells[7].Value);

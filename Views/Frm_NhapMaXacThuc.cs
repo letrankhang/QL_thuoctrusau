@@ -29,12 +29,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
         }
 
-        private void btnExit_Click (object sender, EventArgs e) {
-            // Đóng cả form bước 1 đang ẩn
-            this.Close ();
-        }
-
-
         private void lblResendOTP_Click (object sender, EventArgs e) {
             // Logic gửi lại mã (có thể gọi lại IdentifyUser hoặc một phương thức Resend cụ thể)
             // Để đơn giản, ta thông báo đang gửi lại
@@ -58,6 +52,11 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private void txtOTP_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
