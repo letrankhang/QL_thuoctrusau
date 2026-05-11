@@ -26,8 +26,8 @@
 
 ## 2. Người thứ hai (Developer - Inventory Expert)
 *Trọng tâm: Quản lý hàng hóa, Lô hàng và Kho bãi.*
-
-### 🛠️ Nhiệm vụ chi tiết:
+*Tiến độ: ✅ Done (100%)
+### 🛠️ Nhiệm vụ chi tiết: 
 - **Danh mục & Sản phẩm:** Xây dựng CRUD Sản phẩm, Loại hàng (Category).
 - **Quy đổi Đơn vị tính:** Xử lý logic quy đổi Thùng -> Chai/Gói (ProductVariant).
 - **Quản lý Lô hàng (Batch):** 
