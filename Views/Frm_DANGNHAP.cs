@@ -1,4 +1,5 @@
 using QL_CuaHangBanThuocTruSau.Controllers;
+using QL_CuaHangBanThuocTruSau.Utils;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -30,7 +31,11 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
             if( result == "SUCCESS" )
             {
-                MessageBox.Show ("Đăng nhập thành công!");
+                MessageBox.Show("Xin chào, " + SessionManager.CurrentUser.FullName + "!\nVai trò: " 
+                    + SessionManager.CurrentUser.Role, "Đăng nhập thành công",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                );
 
                 if (chkGhiNho.Checked)
                 {
@@ -51,7 +56,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
             else
             {
-                MessageBox.Show (result);
+                MessageBox.Show (result, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

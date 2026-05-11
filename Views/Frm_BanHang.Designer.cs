@@ -45,6 +45,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.cboLocTheoLoai = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cboLocTheoGia = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblHTGioHang = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pnlRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.guna2Panel2.SuspendLayout();
@@ -58,6 +59,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // pnlRight
             // 
             this.pnlRight.BackColor = System.Drawing.Color.White;
+            this.pnlRight.Controls.Add(this.lblHTGioHang);
             this.pnlRight.Controls.Add(this.dgvCart);
             this.pnlRight.Controls.Add(this.guna2Panel2);
             this.pnlRight.Controls.Add(this.pnlCartHeader);
@@ -194,6 +196,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnViewOld.FillColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnViewOld.Font = new System.Drawing.Font("Segoe UI Semibold", 8.920354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewOld.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnViewOld.HoverState.ForeColor = System.Drawing.Color.White;
             this.btnViewOld.Location = new System.Drawing.Point(14, 172);
             this.btnViewOld.Name = "btnViewOld";
             this.btnViewOld.Size = new System.Drawing.Size(101, 53);
@@ -209,6 +212,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnCancel.FillColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.920354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnCancel.HoverState.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(125, 172);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(104, 53);
@@ -223,11 +227,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnSaveOnly.FillColor = System.Drawing.Color.White;
             this.btnSaveOnly.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveOnly.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btnSaveOnly.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnSaveOnly.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.debt_consolidation;
             this.btnSaveOnly.ImageOffset = new System.Drawing.Point(2, 0);
             this.btnSaveOnly.ImageSize = new System.Drawing.Size(30, 30);
             this.btnSaveOnly.Location = new System.Drawing.Point(313, 75);
             this.btnSaveOnly.Name = "btnSaveOnly";
+            this.btnSaveOnly.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnSaveOnly.Size = new System.Drawing.Size(176, 58);
             this.btnSaveOnly.TabIndex = 4;
             this.btnSaveOnly.Text = " Ghi nợ / Lưu đơn";
@@ -432,6 +438,17 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
+            // lblHTGioHang
+            // 
+            this.lblHTGioHang.BackColor = System.Drawing.Color.Transparent;
+            this.lblHTGioHang.Font = new System.Drawing.Font("Segoe UI", 10.83186F);
+            this.lblHTGioHang.ForeColor = System.Drawing.Color.Gray;
+            this.lblHTGioHang.Location = new System.Drawing.Point(189, 400);
+            this.lblHTGioHang.Name = "lblHTGioHang";
+            this.lblHTGioHang.Size = new System.Drawing.Size(174, 25);
+            this.lblHTGioHang.TabIndex = 4;
+            this.lblHTGioHang.Text = "(Giỏ hàng đang trống)";
+            // 
             // Frm_BanHang
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
@@ -443,6 +460,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HỆ THỐNG BÁN HÀNG - POS";
             this.pnlRight.ResumeLayout(false);
+            this.pnlRight.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
             this.guna2Panel2.ResumeLayout(false);
             this.pnlCheckout.ResumeLayout(false);
@@ -483,5 +501,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblHTGioHang;
     }
 }

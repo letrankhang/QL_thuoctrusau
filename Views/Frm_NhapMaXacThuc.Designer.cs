@@ -62,7 +62,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblSubTitle.Name = "lblSubTitle";
             this.lblSubTitle.Size = new System.Drawing.Size(444, 32);
             this.lblSubTitle.TabIndex = 6;
-            this.lblSubTitle.Text = "Nhập mã xác thực đã được gửi tới Email";
+            this.lblSubTitle.Text = "Nhập mã xác thực đã được gửi đến Email";
             this.lblSubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnVerify
@@ -90,7 +90,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblResendOTP.Location = new System.Drawing.Point(317, 107);
             this.lblResendOTP.Margin = new System.Windows.Forms.Padding(3);
             this.lblResendOTP.Name = "lblResendOTP";
-            this.lblResendOTP.Size = new System.Drawing.Size(134, 22);
+            this.lblResendOTP.Size = new System.Drawing.Size(132, 24);
             this.lblResendOTP.TabIndex = 2;
             this.lblResendOTP.Text = "Gửi lại mã OTP";
             this.lblResendOTP.Click += new System.EventHandler(this.lblResendOTP_Click);
@@ -149,7 +149,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtOTP.Font = new System.Drawing.Font("Tahoma", 12F);
             this.txtOTP.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtOTP.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.password;
-            this.txtOTP.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.txtOTP.IconLeftOffset = new System.Drawing.Point(7, 0);
             this.txtOTP.IconLeftSize = new System.Drawing.Size(40, 40);
             this.txtOTP.Location = new System.Drawing.Point(43, 40);
             this.txtOTP.Margin = new System.Windows.Forms.Padding(4);

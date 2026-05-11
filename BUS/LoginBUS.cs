@@ -13,14 +13,20 @@ namespace QL_CuaHangBanThuocTruSau.BUS {
         /// <summary>
         /// Nghiệp vụ xác thực người dùng
         /// </summary>
-        public User Authenticate (string username, string password) {
-            if( string.IsNullOrEmpty (username) || string.IsNullOrEmpty (password) )
-            {
-                return null;
-            }
+        public string Authenticate (string username, string password) 
+        {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+                return "EMPTY";
 
-            // Gọi DAO để truy vấn database
-            return _loginDAO.GetUserByCredentials (username, password);
+            User user = _loginDAO.GetUserByCredentials(username, password);
+
+            if (user == null)
+                return "INVALID";
+
+            if (!user.Status)
+                return "LOCKED";
+
+            return "SUCCESS";
         }
     }
 }

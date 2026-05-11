@@ -2,6 +2,7 @@
 using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Models;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions; // Thêm thư viện để dùng Regex bắt lỗi số điện thoại
 using System.Windows.Forms;
@@ -12,6 +13,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
     {
         private CustomerBUS khachHangBus = new CustomerBUS();
         private int maDangChon = 0;
+        private List<Customer> _danhSachGoc = new List<Customer>();
 
         public Frm_KhachHang()
         {
@@ -31,6 +33,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dgvKhachHang.AutoGenerateColumns = false;
             loadDanhSach();
             StyleDgv(dgvKhachHang);
+
+            cboLocTheoNgay.Items.Clear();
+            cboLocTheoNgay.Items.Add("Tất cả các ngày");
+            cboLocTheoNgay.Items.Add("Hôm nay");
+            cboLocTheoNgay.Items.Add("Tuần này");
+            cboLocTheoNgay.Items.Add("Tháng này");
+            cboLocTheoNgay.SelectedIndex = 0;
         }
 
         public void loadDanhSach()
@@ -232,6 +241,51 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 dgv.Columns["cotNgayTao"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
                 dgv.Columns["cotNgayTao"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
+        }
+
+        private void cboLocTheoNgay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DateTime homNay = DateTime.Today;
+            DateTime tuNgay, denNgay;
+            string tieuChi = cboLocTheoNgay.SelectedItem?.ToString();
+
+            if (tieuChi == "Tất cả các ngày")
+            {
+                dgvKhachHang.DataSource = khachHangBus.layDanhSach();
+                lblTongKhachHang.Text = _danhSachGoc.Count.ToString();
+                lblDangChon.Text = "---";
+                return;
+            }
+
+            if (tieuChi == "Hôm nay")
+            {
+                tuNgay = homNay;
+                denNgay = homNay;
+            }
+             
+            else if (tieuChi == "Tuần này")
+            {
+                int thu = (int)homNay.DayOfWeek;
+                int soNgayVeThu2;
+                if (thu == 0)
+                    soNgayVeThu2 = 6;
+                else
+                    soNgayVeThu2 = thu - 1;
+
+                tuNgay = homNay.AddDays(-soNgayVeThu2);
+                denNgay = homNay;
+            }
+            else // Tháng này
+            {
+                tuNgay = new DateTime(homNay.Year, homNay.Month, 1);
+                denNgay = homNay;
+            }
+
+            List<Customer> ketQua = khachHangBus.locTheoNgay(tuNgay, denNgay);
+
+            dgvKhachHang.DataSource = ketQua;
+            lblTongKhachHang.Text = ketQua.Count.ToString();
+            lblDangChon.Text = "Lọc: " + tuNgay.ToString("dd/MM/yyyy") + " → " + denNgay.ToString("dd/MM/yyyy") + " (" + ketQua.Count + " KH)";
         }
     }
 }

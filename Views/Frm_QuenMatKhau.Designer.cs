@@ -20,27 +20,27 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.components = new System.ComponentModel.Container();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblSubTitle = new System.Windows.Forms.Label();
             this.pnlStep1 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnIdentify = new Guna.UI2.WinForms.Guna2Button();
-            this.txtIdentifier = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnBackToLogin = new System.Windows.Forms.Label();
             this.pnlStep2 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnVerify = new Guna.UI2.WinForms.Guna2Button();
-            this.txtOTP = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblResendOTP = new System.Windows.Forms.Label();
             this.pnlStep3 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnReset = new Guna.UI2.WinForms.Guna2Button();
             this.txtNewPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtConfirmPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnExit = new Guna.UI2.WinForms.Guna2Button();
+            this.txtOTP = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtIdentifier = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2Panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.pnlStep1.SuspendLayout();
             this.pnlStep2.SuspendLayout();
             this.pnlStep3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -57,16 +57,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(472, 554);
             this.guna2Panel2.TabIndex = 5;
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.Logo;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(31, 103);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(438, 343);
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
             // 
             // lblWelcome
             // 
@@ -88,7 +78,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblSubTitle.Name = "lblSubTitle";
             this.lblSubTitle.Size = new System.Drawing.Size(400, 39);
             this.lblSubTitle.TabIndex = 4;
-            this.lblSubTitle.Text = "Vui lòng làm theo các bước";
+            this.lblSubTitle.Text = "Thay đổi mật khẩu mới của bạn";
             this.lblSubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblSubTitle.Click += new System.EventHandler(this.lblSubTitle_Click);
             // 
@@ -118,22 +108,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnIdentify.TabIndex = 1;
             this.btnIdentify.Text = "Tiếp tục";
             this.btnIdentify.Click += new System.EventHandler(this.btnIdentify_Click);
-            // 
-            // txtIdentifier
-            // 
-            this.txtIdentifier.BorderRadius = 10;
-            this.txtIdentifier.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtIdentifier.DefaultText = "";
-            this.txtIdentifier.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtIdentifier.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.user;
-            this.txtIdentifier.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtIdentifier.Location = new System.Drawing.Point(40, 60);
-            this.txtIdentifier.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.txtIdentifier.Name = "txtIdentifier";
-            this.txtIdentifier.PlaceholderText = "Email hoặc Tên tài khoản";
-            this.txtIdentifier.SelectedText = "";
-            this.txtIdentifier.Size = new System.Drawing.Size(410, 60);
-            this.txtIdentifier.TabIndex = 0;
             // 
             // btnBackToLogin
             // 
@@ -175,22 +149,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnVerify.Text = "Xác nhận";
             this.btnVerify.Click += new System.EventHandler(this.btnVerify_Click);
             // 
-            // txtOTP
-            // 
-            this.txtOTP.BorderRadius = 10;
-            this.txtOTP.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtOTP.DefaultText = "";
-            this.txtOTP.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtOTP.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources._lock;
-            this.txtOTP.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtOTP.Location = new System.Drawing.Point(40, 60);
-            this.txtOTP.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.txtOTP.Name = "txtOTP";
-            this.txtOTP.PlaceholderText = "Mã xác thực (6 số)";
-            this.txtOTP.SelectedText = "";
-            this.txtOTP.Size = new System.Drawing.Size(410, 60);
-            this.txtOTP.TabIndex = 0;
-            // 
             // lblResendOTP
             // 
             this.lblResendOTP.BackColor = System.Drawing.Color.Transparent;
@@ -223,9 +181,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnReset.FillColor = System.Drawing.Color.SteelBlue;
             this.btnReset.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
             this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Location = new System.Drawing.Point(40, 220);
+            this.btnReset.Location = new System.Drawing.Point(40, 230);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(410, 97);
+            this.btnReset.Size = new System.Drawing.Size(410, 87);
             this.btnReset.TabIndex = 2;
             this.btnReset.Text = "Đặt lại mật khẩu";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -240,11 +198,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtNewPassword.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtNewPassword.IconLeftSize = new System.Drawing.Size(30, 30);
             this.txtNewPassword.IconRightSize = new System.Drawing.Size(30, 30);
-            this.txtNewPassword.Location = new System.Drawing.Point(40, 33);
+            this.txtNewPassword.Location = new System.Drawing.Point(40, 39);
             this.txtNewPassword.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.PasswordChar = '●';
-            this.txtNewPassword.PlaceholderText = "Mật khẩu mới";
+            this.txtNewPassword.PlaceholderText = "Nhập mật khẩu mới";
             this.txtNewPassword.SelectedText = "";
             this.txtNewPassword.Size = new System.Drawing.Size(410, 60);
             this.txtNewPassword.TabIndex = 0;
@@ -260,11 +218,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtConfirmPassword.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtConfirmPassword.IconLeftSize = new System.Drawing.Size(30, 30);
             this.txtConfirmPassword.IconRightSize = new System.Drawing.Size(30, 30);
-            this.txtConfirmPassword.Location = new System.Drawing.Point(40, 127);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(40, 132);
             this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.PasswordChar = '●';
-            this.txtConfirmPassword.PlaceholderText = "Xác nhận mật khẩu";
+            this.txtConfirmPassword.PlaceholderText = "Xác nhận lại mật khẩu";
             this.txtConfirmPassword.SelectedText = "";
             this.txtConfirmPassword.Size = new System.Drawing.Size(410, 60);
             this.txtConfirmPassword.TabIndex = 1;
@@ -291,6 +249,48 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnExit.TabIndex = 9;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click_1);
             // 
+            // txtOTP
+            // 
+            this.txtOTP.BorderRadius = 10;
+            this.txtOTP.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtOTP.DefaultText = "";
+            this.txtOTP.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtOTP.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources._lock;
+            this.txtOTP.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.txtOTP.Location = new System.Drawing.Point(40, 60);
+            this.txtOTP.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.txtOTP.Name = "txtOTP";
+            this.txtOTP.PlaceholderText = "Mã xác thực (6 số)";
+            this.txtOTP.SelectedText = "";
+            this.txtOTP.Size = new System.Drawing.Size(410, 60);
+            this.txtOTP.TabIndex = 0;
+            // 
+            // txtIdentifier
+            // 
+            this.txtIdentifier.BorderRadius = 10;
+            this.txtIdentifier.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtIdentifier.DefaultText = "";
+            this.txtIdentifier.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtIdentifier.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.user;
+            this.txtIdentifier.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.txtIdentifier.Location = new System.Drawing.Point(40, 60);
+            this.txtIdentifier.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.txtIdentifier.Name = "txtIdentifier";
+            this.txtIdentifier.PlaceholderText = "Email hoặc Tên tài khoản";
+            this.txtIdentifier.SelectedText = "";
+            this.txtIdentifier.Size = new System.Drawing.Size(410, 60);
+            this.txtIdentifier.TabIndex = 0;
+            // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.Logo;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(31, 103);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(438, 343);
+            this.guna2PictureBox1.TabIndex = 0;
+            this.guna2PictureBox1.TabStop = false;
+            // 
             // Frm_QuenMatKhau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -311,10 +311,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.Text = "Quên mật khẩu";
             this.Load += new System.EventHandler(this.Frm_QuenMatKhau_Load);
             this.guna2Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.pnlStep1.ResumeLayout(false);
             this.pnlStep2.ResumeLayout(false);
             this.pnlStep3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -309,10 +309,11 @@
             this.cboLoc.BorderRadius = 10;
             this.cboLoc.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboLoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLoc.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cboLoc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboLoc.FocusedColor = System.Drawing.Color.SteelBlue;
+            this.cboLoc.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.cboLoc.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboLoc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cboLoc.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.cboLoc.ItemHeight = 30;
             this.cboLoc.Location = new System.Drawing.Point(407, 67);
             this.cboLoc.Name = "cboLoc";
@@ -446,7 +447,7 @@
             this.dgvNCC.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.83186F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.83186F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;

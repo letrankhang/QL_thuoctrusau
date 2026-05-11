@@ -1,13 +1,15 @@
 using QL_CuaHangBanThuocTruSau.BUS;
+using QL_CuaHangBanThuocTruSau.DAO;
 using QL_CuaHangBanThuocTruSau.Models;
 using QL_CuaHangBanThuocTruSau.Utils;
 
 namespace QL_CuaHangBanThuocTruSau.Controllers {
     public class LoginController {
         private readonly LoginBUS _loginBUS;
-
+        private readonly LoginDAO _loginDAO;
         public LoginController () {
             _loginBUS = new LoginBUS ();
+            _loginDAO = new LoginDAO();
         }
 
         /// <summary>
@@ -16,24 +18,30 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns>Chuỗi thông báo kết quả (SUCCESS nếu thành công)</returns>
-        public string HandleLogin (string username, string password) {
-            // 1. Kiểm tra sơ bộ (Validation UI)
-            if( string.IsNullOrEmpty (username) || string.IsNullOrEmpty (password) )
-            {
-                return "Tên đăng nhập và mật khẩu không được để trống!";
-            }
+        public string HandleLogin (string username, string password) 
+        {
+            if (string.IsNullOrWhiteSpace(username))
+                return "Vui lòng nhập tên đăng nhập!";
 
-            // 2. Gọi BUS để thực hiện nghiệp vụ xác thực
-            User user = _loginBUS.Authenticate (username, password);
+            if (string.IsNullOrWhiteSpace(password))
+                return "Vui lòng nhập mật khẩu!";
 
-            if( user != null )
+            string result = _loginBUS.Authenticate(username, password);
+
+            if (result == "SUCCESS")
             {
-                // 3. Xử lý trạng thái ứng dụng sau khi nghiệp vụ thành công
-                SessionManager.SetSession (user);
+                User user = _loginDAO.GetUserByCredentials(username, password);
+                SessionManager.SetSession(user);
                 return "SUCCESS";
             }
+            else if (result == "LOCKED")
+                return "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên!";
 
-            return "Tên đăng nhập hoặc mật khẩu không chính xác!";
+            else if (result == "INVALID")
+                return "Tên đăng nhập hoặc mật khẩu không chính xác!";
+
+            else
+                return "Đã có lỗi xảy ra, vui lòng thử lại!";
         }
     }
 }

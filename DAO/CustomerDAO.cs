@@ -110,5 +110,16 @@ namespace QL_CuaHangBanThuocTruSau.DAO
         {
             return db.Customers.Any(c => c.Phone == soDienThoai && c.CustomerID != boQuaID);
         }
+
+        public List<Customer> locTheoNgay(DateTime tuNgay, DateTime denNgay)
+        {
+            DateTime batDau = tuNgay.Date;
+            DateTime ketThuc = denNgay.Date.AddDays(1);
+
+            return db.Customers
+                     .Where(c => c.CreatedAt >= batDau && c.CreatedAt < ketThuc)
+                     .OrderBy(c => c.CustomerID)
+                     .ToList();
+        }
     }
 }

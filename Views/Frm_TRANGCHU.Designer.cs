@@ -35,23 +35,34 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnNCC = new Guna.UI2.WinForms.Guna2Button();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.btnDangXuat = new Guna.UI2.WinForms.Guna2Button();
-            this.btnTaiKhoan = new Guna.UI2.WinForms.Guna2Button();
             this.btnCongNo = new Guna.UI2.WinForms.Guna2Button();
             this.btnKhachHang = new Guna.UI2.WinForms.Guna2Button();
             this.btnLoHang = new Guna.UI2.WinForms.Guna2Button();
             this.btnSanPham = new Guna.UI2.WinForms.Guna2Button();
             this.btnNhapHang = new Guna.UI2.WinForms.Guna2Button();
             this.btnBanHang = new Guna.UI2.WinForms.Guna2Button();
+            this.btnTaiKhoan = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.btnTongQuan = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlMain = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlContent = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlTopBar = new Guna.UI2.WinForms.Guna2Panel();
-            this.lblGreeting = new System.Windows.Forms.Label();
             this.lblInterfaceName = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlGreeting = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblGreeting = new System.Windows.Forms.Label();
+            this.pb_Avatar = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.btnTrangThai = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.pnlMain.SuspendLayout();
             this.pnlTopBar.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.pnlGreeting.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Avatar)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -71,14 +82,18 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Panel2.Controls.Add(this.btnNCC);
             this.guna2Panel2.Controls.Add(this.guna2PictureBox1);
             this.guna2Panel2.Controls.Add(this.btnDangXuat);
-            this.guna2Panel2.Controls.Add(this.btnTaiKhoan);
             this.guna2Panel2.Controls.Add(this.btnCongNo);
             this.guna2Panel2.Controls.Add(this.btnKhachHang);
             this.guna2Panel2.Controls.Add(this.btnLoHang);
             this.guna2Panel2.Controls.Add(this.btnSanPham);
             this.guna2Panel2.Controls.Add(this.btnNhapHang);
             this.guna2Panel2.Controls.Add(this.btnBanHang);
+            this.guna2Panel2.Controls.Add(this.btnTaiKhoan);
+            this.guna2Panel2.Controls.Add(this.guna2Button3);
+            this.guna2Panel2.Controls.Add(this.guna2Button4);
             this.guna2Panel2.Controls.Add(this.btnTongQuan);
+            this.guna2Panel2.Controls.Add(this.guna2Button2);
+            this.guna2Panel2.Controls.Add(this.guna2Button1);
             this.guna2Panel2.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.guna2Panel2.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -90,7 +105,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             // guna2Separator1
             // 
-            this.guna2Separator1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.guna2Separator1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.guna2Separator1.FillThickness = 2;
             this.guna2Separator1.Location = new System.Drawing.Point(22, 117);
             this.guna2Separator1.Name = "guna2Separator1";
@@ -147,39 +162,15 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnDangXuat.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnDangXuat.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnDangXuat.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.logout;
+            this.btnDangXuat.ImageSize = new System.Drawing.Size(26, 26);
             this.btnDangXuat.Location = new System.Drawing.Point(35, 803);
             this.btnDangXuat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.PressedColor = System.Drawing.Color.Silver;
             this.btnDangXuat.Size = new System.Drawing.Size(187, 55);
             this.btnDangXuat.TabIndex = 8;
-            this.btnDangXuat.Text = "ĐĂNG XUẤT";
+            this.btnDangXuat.Text = " ĐĂNG XUẤT";
             this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
-            // 
-            // btnTaiKhoan
-            // 
-            this.btnTaiKhoan.BorderColor = System.Drawing.Color.Transparent;
-            this.btnTaiKhoan.BorderRadius = 10;
-            this.btnTaiKhoan.BorderThickness = 1;
-            this.btnTaiKhoan.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTaiKhoan.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.btnTaiKhoan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnTaiKhoan.ForeColor = System.Drawing.Color.Black;
-            this.btnTaiKhoan.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnTaiKhoan.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.btnTaiKhoan.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnTaiKhoan.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.user__2_;
-            this.btnTaiKhoan.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnTaiKhoan.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnTaiKhoan.Location = new System.Drawing.Point(35, 710);
-            this.btnTaiKhoan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTaiKhoan.Name = "btnTaiKhoan";
-            this.btnTaiKhoan.PressedColor = System.Drawing.Color.Silver;
-            this.btnTaiKhoan.Size = new System.Drawing.Size(187, 55);
-            this.btnTaiKhoan.TabIndex = 15;
-            this.btnTaiKhoan.Text = "TÀI KHOẢN";
-            this.btnTaiKhoan.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnTaiKhoan.Click += new System.EventHandler(this.btnTaiKhoan_Click);
             // 
             // btnCongNo
             // 
@@ -332,6 +323,80 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnBanHang.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnBanHang.Click += new System.EventHandler(this.btnBanHang_Click);
             // 
+            // btnTaiKhoan
+            // 
+            this.btnTaiKhoan.BorderColor = System.Drawing.Color.Transparent;
+            this.btnTaiKhoan.BorderRadius = 10;
+            this.btnTaiKhoan.BorderThickness = 1;
+            this.btnTaiKhoan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTaiKhoan.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.btnTaiKhoan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnTaiKhoan.ForeColor = System.Drawing.Color.Black;
+            this.btnTaiKhoan.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnTaiKhoan.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.btnTaiKhoan.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnTaiKhoan.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.user__2_;
+            this.btnTaiKhoan.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnTaiKhoan.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnTaiKhoan.Location = new System.Drawing.Point(35, 710);
+            this.btnTaiKhoan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTaiKhoan.Name = "btnTaiKhoan";
+            this.btnTaiKhoan.PressedColor = System.Drawing.Color.Silver;
+            this.btnTaiKhoan.Size = new System.Drawing.Size(187, 55);
+            this.btnTaiKhoan.TabIndex = 15;
+            this.btnTaiKhoan.Text = "TÀI KHOẢN";
+            this.btnTaiKhoan.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnTaiKhoan.Click += new System.EventHandler(this.btnTaiKhoan_Click);
+            // 
+            // guna2Button3
+            // 
+            this.guna2Button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.guna2Button3.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button3.BorderRadius = 10;
+            this.guna2Button3.BorderThickness = 1;
+            this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.guna2Button3.Enabled = false;
+            this.guna2Button3.FillColor = System.Drawing.Color.Transparent;
+            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button3.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2Button3.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.padlock;
+            this.guna2Button3.ImageSize = new System.Drawing.Size(22, 22);
+            this.guna2Button3.Location = new System.Drawing.Point(186, 719);
+            this.guna2Button3.Name = "guna2Button3";
+            this.guna2Button3.Size = new System.Drawing.Size(26, 30);
+            this.guna2Button3.TabIndex = 21;
+            // 
+            // guna2Button4
+            // 
+            this.guna2Button4.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button4.BorderRadius = 10;
+            this.guna2Button4.BorderThickness = 1;
+            this.guna2Button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
+            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.guna2Button4.Enabled = false;
+            this.guna2Button4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.guna2Button4.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button4.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.guna2Button4.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.guna2Button4.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button4.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.user__2_;
+            this.guna2Button4.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button4.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2Button4.Location = new System.Drawing.Point(35, 710);
+            this.guna2Button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Button4.Name = "guna2Button4";
+            this.guna2Button4.PressedColor = System.Drawing.Color.Silver;
+            this.guna2Button4.Size = new System.Drawing.Size(187, 55);
+            this.guna2Button4.TabIndex = 22;
+            this.guna2Button4.Text = "TÀI KHOẢN";
+            this.guna2Button4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
             // btnTongQuan
             // 
             this.btnTongQuan.BorderColor = System.Drawing.Color.Transparent;
@@ -344,7 +409,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnTongQuan.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnTongQuan.HoverState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnTongQuan.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnTongQuan.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.dashboard_interface;
+            this.btnTongQuan.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.dashboard;
             this.btnTongQuan.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnTongQuan.ImageSize = new System.Drawing.Size(26, 26);
             this.btnTongQuan.Location = new System.Drawing.Point(35, 165);
@@ -356,6 +421,55 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnTongQuan.Text = "TỔNG QUAN";
             this.btnTongQuan.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnTongQuan.Click += new System.EventHandler(this.btnTongQuan_Click);
+            // 
+            // guna2Button2
+            // 
+            this.guna2Button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.guna2Button2.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button2.BorderRadius = 10;
+            this.guna2Button2.BorderThickness = 1;
+            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.guna2Button2.Enabled = false;
+            this.guna2Button2.FillColor = System.Drawing.Color.Transparent;
+            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button2.ForeColor = System.Drawing.Color.Transparent;
+            this.guna2Button2.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.padlock;
+            this.guna2Button2.ImageSize = new System.Drawing.Size(22, 22);
+            this.guna2Button2.Location = new System.Drawing.Point(186, 174);
+            this.guna2Button2.Name = "guna2Button2";
+            this.guna2Button2.Size = new System.Drawing.Size(26, 30);
+            this.guna2Button2.TabIndex = 20;
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2Button1.BorderRadius = 10;
+            this.guna2Button1.BorderThickness = 1;
+            this.guna2Button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.guna2Button1.Enabled = false;
+            this.guna2Button1.FillColor = System.Drawing.Color.Transparent;
+            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.guna2Button1.HoverState.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Button1.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.dashboard_interface3;
+            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button1.ImageSize = new System.Drawing.Size(26, 26);
+            this.guna2Button1.Location = new System.Drawing.Point(35, 165);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.PressedColor = System.Drawing.Color.Silver;
+            this.guna2Button1.Size = new System.Drawing.Size(187, 55);
+            this.guna2Button1.TabIndex = 2;
+            this.guna2Button1.Text = "TỔNG QUAN";
+            this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // pnlMain
             // 
@@ -382,8 +496,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.pnlTopBar.BackColor = System.Drawing.Color.White;
             this.pnlTopBar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.pnlTopBar.Controls.Add(this.lblGreeting);
+            this.pnlTopBar.Controls.Add(this.btnTrangThai);
             this.pnlTopBar.Controls.Add(this.lblInterfaceName);
+            this.pnlTopBar.Controls.Add(this.panel1);
             this.pnlTopBar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.pnlTopBar.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.pnlTopBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -393,28 +508,77 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlTopBar.Size = new System.Drawing.Size(1470, 108);
             this.pnlTopBar.TabIndex = 0;
             // 
-            // lblGreeting
-            // 
-            this.lblGreeting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblGreeting.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblGreeting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(110)))), ((int)(((byte)(114)))));
-            this.lblGreeting.Location = new System.Drawing.Point(936, 42);
-            this.lblGreeting.Name = "lblGreeting";
-            this.lblGreeting.Size = new System.Drawing.Size(489, 24);
-            this.lblGreeting.TabIndex = 1;
-            this.lblGreeting.Text = "Xin chào, Admin";
-            this.lblGreeting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // lblInterfaceName
             // 
             this.lblInterfaceName.AutoSize = true;
             this.lblInterfaceName.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
             this.lblInterfaceName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
-            this.lblInterfaceName.Location = new System.Drawing.Point(20, 29);
+            this.lblInterfaceName.Location = new System.Drawing.Point(32, 29);
             this.lblInterfaceName.Name = "lblInterfaceName";
             this.lblInterfaceName.Size = new System.Drawing.Size(214, 45);
             this.lblInterfaceName.TabIndex = 0;
             this.lblInterfaceName.Text = "TỔNG QUAN";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pnlGreeting);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(683, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(787, 108);
+            this.panel1.TabIndex = 1;
+            // 
+            // pnlGreeting
+            // 
+            this.pnlGreeting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlGreeting.Controls.Add(this.lblGreeting);
+            this.pnlGreeting.Controls.Add(this.pb_Avatar);
+            this.pnlGreeting.Location = new System.Drawing.Point(150, 31);
+            this.pnlGreeting.Name = "pnlGreeting";
+            this.pnlGreeting.Size = new System.Drawing.Size(625, 43);
+            this.pnlGreeting.TabIndex = 0;
+            // 
+            // lblGreeting
+            // 
+            this.lblGreeting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGreeting.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblGreeting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(110)))), ((int)(((byte)(114)))));
+            this.lblGreeting.Location = new System.Drawing.Point(3, 0);
+            this.lblGreeting.Name = "lblGreeting";
+            this.lblGreeting.Size = new System.Drawing.Size(566, 43);
+            this.lblGreeting.TabIndex = 1;
+            this.lblGreeting.Text = "Xin chào, Admin";
+            this.lblGreeting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // pb_Avatar
+            // 
+            this.pb_Avatar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pb_Avatar.ImageRotate = 0F;
+            this.pb_Avatar.Location = new System.Drawing.Point(575, 3);
+            this.pb_Avatar.Name = "pb_Avatar";
+            this.pb_Avatar.Size = new System.Drawing.Size(36, 36);
+            this.pb_Avatar.TabIndex = 2;
+            this.pb_Avatar.TabStop = false;
+            // 
+            // btnTrangThai
+            // 
+            this.btnTrangThai.BorderColor = System.Drawing.Color.Transparent;
+            this.btnTrangThai.BorderRadius = 2;
+            this.btnTrangThai.BorderThickness = 1;
+            this.btnTrangThai.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTrangThai.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTrangThai.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTrangThai.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTrangThai.FillColor = System.Drawing.Color.SteelBlue;
+            this.btnTrangThai.Font = new System.Drawing.Font("Segoe UI Semibold", 8.920354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrangThai.ForeColor = System.Drawing.Color.Black;
+            this.btnTrangThai.HoverState.FillColor = System.Drawing.Color.SteelBlue;
+            this.btnTrangThai.Location = new System.Drawing.Point(22, 29);
+            this.btnTrangThai.Name = "btnTrangThai";
+            this.btnTrangThai.PressedColor = System.Drawing.Color.SteelBlue;
+            this.btnTrangThai.Size = new System.Drawing.Size(7, 45);
+            this.btnTrangThai.TabIndex = 32;
+            this.btnTrangThai.Text = "...";
             // 
             // Frm_TRANGCHU
             // 
@@ -435,6 +599,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlMain.ResumeLayout(false);
             this.pnlTopBar.ResumeLayout(false);
             this.pnlTopBar.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.pnlGreeting.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Avatar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -462,5 +629,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2Button btnNCC;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button guna2Button4;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI2.WinForms.Guna2PictureBox pb_Avatar;
+        private System.Windows.Forms.FlowLayoutPanel pnlGreeting;
+        private System.Windows.Forms.Panel panel1;
+        private Guna.UI2.WinForms.Guna2Button btnTrangThai;
     }
 }

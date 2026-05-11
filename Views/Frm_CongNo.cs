@@ -34,7 +34,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dgv.EnableHeadersVisualStyles = false;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9f, FontStyle.Regular);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9f, FontStyle.Regular);
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
             dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
@@ -50,8 +50,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dgv.RowTemplate.Height = 34;
         }
 
-        // ===================== SETUP COLUMNS =====================
-
         private void SetupColumns()
         {
             dgvCongNo.Columns.Clear();
@@ -60,7 +58,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             {
                 HeaderText = "Mã đơn hàng",
                 DataPropertyName = "OrderID",
-                Name = "OrderID"
+                Name = "OrderID",
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter },
+                HeaderCell = { Style = { Alignment = DataGridViewContentAlignment.MiddleCenter } }
             });
 
             dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
@@ -74,7 +74,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             {
                 HeaderText = "Loại nợ",
                 DataPropertyName = "LoaiNo",
-                Name = "LoaiNo"
+                Name = "LoaiNo",
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter },
+                HeaderCell = { Style = { Alignment = DataGridViewContentAlignment.MiddleCenter } }
             });
 
             dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
@@ -82,7 +84,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 HeaderText = "Tổng công nợ",
                 DataPropertyName = "TotalAmount",
                 Name = "TotalAmount",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0", Alignment = DataGridViewContentAlignment.MiddleLeft },
+                HeaderCell = { Style = { Alignment = DataGridViewContentAlignment.MiddleCenter } }
             });
 
             dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
@@ -90,7 +93,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 HeaderText = "Đã thanh toán",
                 DataPropertyName = "PaidAmount",
                 Name = "PaidAmount",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0", Alignment = DataGridViewContentAlignment.MiddleLeft },
+                HeaderCell = { Style = { Alignment = DataGridViewContentAlignment.MiddleCenter } }
             });
 
             dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
@@ -98,7 +102,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 HeaderText = "Còn lại",
                 DataPropertyName = "RemainingDebt",
                 Name = "RemainingDebt",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0", Alignment = DataGridViewContentAlignment.MiddleLeft },
+                HeaderCell = { Style = { Alignment = DataGridViewContentAlignment.MiddleCenter } }
             });
 
             dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
@@ -106,16 +111,19 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 HeaderText = "Ngày lập",
                 DataPropertyName = "OrderDate",
                 Name = "OrderDate",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy" }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy", Alignment = DataGridViewContentAlignment.MiddleCenter },
+                HeaderCell = { Style = { Alignment = DataGridViewContentAlignment.MiddleCenter } }
             });
 
             dgvCongNo.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Trạng thái",
                 DataPropertyName = "Status",
-                Name = "Status"
+                Name = "Status",
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter },
+                HeaderCell = { Style = { Alignment = DataGridViewContentAlignment.MiddleCenter } }
             });
-
+            dgvCongNo.Columns["PartnerName"].FillWeight = 180;
             dgvCongNo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -350,8 +358,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             }
         }
 
-        // ===================== CẢNH BÁO NỢ QUÁ HẠN =====================
-
         private void CanhBaoNoQuaHan()
         {
             try
@@ -581,8 +587,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        // ===================== XUẤT EXCEL =====================
 
         private void btnXuatExcel_Click(object sender, EventArgs e)
         {

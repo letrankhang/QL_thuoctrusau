@@ -25,9 +25,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblBackToLogin = new System.Windows.Forms.Label();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtIdentifier = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnExit = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.guna2Panel2.SuspendLayout();
@@ -62,7 +63,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblSubTitle.Name = "lblSubTitle";
             this.lblSubTitle.Size = new System.Drawing.Size(489, 40);
             this.lblSubTitle.TabIndex = 6;
-            this.lblSubTitle.Text = "Nhập Email hoặc Tên tài khoản để bắt đầu";
+            this.lblSubTitle.Text = "Nhập Email hoặc tên tài khoản để tiếp tục ";
             this.lblSubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnIdentify
@@ -82,14 +83,14 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.lblBackToLogin.BackColor = System.Drawing.Color.Transparent;
             this.lblBackToLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblBackToLogin.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblBackToLogin.Font = new System.Drawing.Font("Tahoma", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBackToLogin.ForeColor = System.Drawing.Color.Gray;
-            this.lblBackToLogin.Location = new System.Drawing.Point(165, 256);
+            this.lblBackToLogin.Location = new System.Drawing.Point(275, 256);
             this.lblBackToLogin.Margin = new System.Windows.Forms.Padding(3);
             this.lblBackToLogin.Name = "lblBackToLogin";
-            this.lblBackToLogin.Size = new System.Drawing.Size(149, 32);
+            this.lblBackToLogin.Size = new System.Drawing.Size(69, 32);
             this.lblBackToLogin.TabIndex = 2;
-            this.lblBackToLogin.Text = "Quay lại đăng nhập";
+            this.lblBackToLogin.Text = "tại đây";
             this.lblBackToLogin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblBackToLogin.Click += new System.EventHandler(this.lblBackToLogin_Click);
             this.lblBackToLogin.MouseEnter += new System.EventHandler(this.lblBackToLogin_MouseEnter);
@@ -110,12 +111,42 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2PictureBox1.BackColor = System.Drawing.Color.White;
             this.guna2PictureBox1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.Logo;
             this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(0, -16);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(400, 500);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(400, 516);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox1.TabIndex = 0;
             this.guna2PictureBox1.TabStop = false;
+            // 
+            // guna2Panel2
+            // 
+            this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.guna2Panel2.BorderColor = System.Drawing.Color.Silver;
+            this.guna2Panel2.BorderRadius = 5;
+            this.guna2Panel2.BorderThickness = 1;
+            this.guna2Panel2.Controls.Add(this.label1);
+            this.guna2Panel2.Controls.Add(this.txtIdentifier);
+            this.guna2Panel2.Controls.Add(this.btnIdentify);
+            this.guna2Panel2.Controls.Add(this.lblBackToLogin);
+            this.guna2Panel2.Location = new System.Drawing.Point(440, 160);
+            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.guna2Panel2.Name = "guna2Panel2";
+            this.guna2Panel2.Size = new System.Drawing.Size(471, 302);
+            this.guna2Panel2.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(131, 256);
+            this.label1.Margin = new System.Windows.Forms.Padding(3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(148, 32);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Quay lại đăng nhập";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtIdentifier
             // 
@@ -125,13 +156,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtIdentifier.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtIdentifier.Font = new System.Drawing.Font("Tahoma", 12F);
             this.txtIdentifier.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
-            this.txtIdentifier.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.mail2;
-            this.txtIdentifier.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtIdentifier.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.txtIdentifier.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.address;
+            this.txtIdentifier.IconLeftOffset = new System.Drawing.Point(7, 0);
+            this.txtIdentifier.IconLeftSize = new System.Drawing.Size(40, 40);
             this.txtIdentifier.Location = new System.Drawing.Point(26, 57);
             this.txtIdentifier.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdentifier.Name = "txtIdentifier";
-            this.txtIdentifier.PlaceholderText = "Email hoặc Tên tài khoản";
+            this.txtIdentifier.PlaceholderText = "Email hoặc tên tài khoản";
             this.txtIdentifier.SelectedText = "";
             this.txtIdentifier.Size = new System.Drawing.Size(423, 60);
             this.txtIdentifier.TabIndex = 0;
@@ -156,21 +187,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnExit.Size = new System.Drawing.Size(46, 46);
             this.btnExit.TabIndex = 8;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click_1);
-            // 
-            // guna2Panel2
-            // 
-            this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.guna2Panel2.BorderColor = System.Drawing.Color.Silver;
-            this.guna2Panel2.BorderRadius = 5;
-            this.guna2Panel2.BorderThickness = 1;
-            this.guna2Panel2.Controls.Add(this.txtIdentifier);
-            this.guna2Panel2.Controls.Add(this.btnIdentify);
-            this.guna2Panel2.Controls.Add(this.lblBackToLogin);
-            this.guna2Panel2.Location = new System.Drawing.Point(440, 160);
-            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(471, 302);
-            this.guna2Panel2.TabIndex = 9;
             // 
             // FromNhapEmailorUsername
             // 
@@ -206,5 +222,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2Button btnExit;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private System.Windows.Forms.Label label1;
     }
 }

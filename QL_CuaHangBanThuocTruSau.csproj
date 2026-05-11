@@ -618,6 +618,9 @@
     <None Include="Resources\add-to-cart2.png" />
     <None Include="Resources\bin1.png" />
     <None Include="Resources\edit1.png" />
+    <None Include="Resources\dashboard-interface3.png" />
+    <None Include="Resources\dashboard.png" />
+    <None Include="Resources\address.png" />
     <Content Include="Resources\icons8-trash-can-50.png" />
     <None Include="Resources\mail.png" />
     <None Include="Resources\mail1.png" />
@@ -625,13 +628,17 @@
     <None Include="Resources\password.png" />
     <None Include="Resources\minus1.png" />
     <None Include="Resources\long-term-debt.png" />
+    <None Include="Resources\padlock.png" />
+    <None Include="Resources\logout1.png" />
     <Content Include="Resources\pen.png" />
     <None Include="Resources\variant.png" />
     <None Include="Resources\close.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ImagesProducts\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="ImagesProducts\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -17,12 +17,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvKhachHang = new Guna.UI2.WinForms.Guna2DataGridView();
             this.colMaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +59,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblDangChon = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
+            this.cboLocTheoNgay = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
             this.pnlTop.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
@@ -75,16 +76,16 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.dgvKhachHang.AllowUserToAddRows = false;
             this.dgvKhachHang.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            this.dgvKhachHang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
+            this.dgvKhachHang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dgvKhachHang.ColumnHeadersHeight = 35;
             this.dgvKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colMaKH,
@@ -92,14 +93,14 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.colSĐT,
             this.colDiaChi,
             this.cotNgayTao});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvKhachHang.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvKhachHang.DefaultCellStyle = dataGridViewCellStyle24;
             this.dgvKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvKhachHang.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvKhachHang.Location = new System.Drawing.Point(1, 50);
@@ -136,8 +137,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // colMaKH
             // 
             this.colMaKH.DataPropertyName = "CustomerID";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colMaKH.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colMaKH.DefaultCellStyle = dataGridViewCellStyle21;
             this.colMaKH.HeaderText = "Mã KH";
             this.colMaKH.MinimumWidth = 8;
             this.colMaKH.Name = "colMaKH";
@@ -154,8 +155,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // colSĐT
             // 
             this.colSĐT.DataPropertyName = "Phone";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colSĐT.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colSĐT.DefaultCellStyle = dataGridViewCellStyle22;
             this.colSĐT.HeaderText = "Số điện thoại";
             this.colSĐT.MinimumWidth = 8;
             this.colSĐT.Name = "colSĐT";
@@ -173,8 +174,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // cotNgayTao
             // 
             this.cotNgayTao.DataPropertyName = "CreatedAt";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cotNgayTao.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cotNgayTao.DefaultCellStyle = dataGridViewCellStyle23;
             this.cotNgayTao.HeaderText = "Ngày tạo";
             this.cotNgayTao.MinimumWidth = 6;
             this.cotNgayTao.Name = "cotNgayTao";
@@ -248,7 +249,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtTim.Name = "txtTim";
             this.txtTim.PlaceholderText = "Tìm kiếm theo tên khách hàng...";
             this.txtTim.SelectedText = "";
-            this.txtTim.Size = new System.Drawing.Size(476, 36);
+            this.txtTim.Size = new System.Drawing.Size(478, 36);
             this.txtTim.TabIndex = 0;
             this.txtTim.TextChanged += new System.EventHandler(this.txtTim_TextChanged);
             // 
@@ -566,6 +567,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             // guna2Panel2
             // 
+            this.guna2Panel2.Controls.Add(this.cboLocTheoNgay);
             this.guna2Panel2.Controls.Add(this.txtTim);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
@@ -582,6 +584,23 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Panel7.Padding = new System.Windows.Forms.Padding(10);
             this.guna2Panel7.Size = new System.Drawing.Size(431, 629);
             this.guna2Panel7.TabIndex = 6;
+            // 
+            // cboLocTheoNgay
+            // 
+            this.cboLocTheoNgay.BackColor = System.Drawing.Color.Transparent;
+            this.cboLocTheoNgay.BorderRadius = 10;
+            this.cboLocTheoNgay.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboLocTheoNgay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLocTheoNgay.FocusedColor = System.Drawing.Color.SteelBlue;
+            this.cboLocTheoNgay.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
+            this.cboLocTheoNgay.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboLocTheoNgay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cboLocTheoNgay.ItemHeight = 30;
+            this.cboLocTheoNgay.Location = new System.Drawing.Point(507, 22);
+            this.cboLocTheoNgay.Name = "cboLocTheoNgay";
+            this.cboLocTheoNgay.Size = new System.Drawing.Size(189, 36);
+            this.cboLocTheoNgay.TabIndex = 5;
+            this.cboLocTheoNgay.SelectedIndexChanged += new System.EventHandler(this.cboLocTheoNgay_SelectedIndexChanged);
             // 
             // Frm_KhachHang
             // 
@@ -653,5 +672,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private System.Windows.Forms.DataGridViewTextBoxColumn colSĐT;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDiaChi;
         private System.Windows.Forms.DataGridViewTextBoxColumn cotNgayTao;
+        private Guna.UI2.WinForms.Guna2ComboBox cboLocTheoNgay;
     }
 }

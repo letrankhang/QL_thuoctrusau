@@ -27,6 +27,8 @@ namespace QL_CuaHangBanThuocTruSau.BUS
         public List<Customer> layDanhSach() => khachHangDao.layDanhSach();
 
         public List<Customer> timKiem(string tuKhoa) => khachHangDao.timKiem(tuKhoa);
+        public List<Customer> locTheoNgay(DateTime tuNgay, DateTime denNgay) => khachHangDao.locTheoNgay(tuNgay, denNgay);
+
 
         public Result<List<Customer>> SearchCustomers(string tuKhoa)
         {

@@ -24,10 +24,10 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent () {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelSummary = new System.Windows.Forms.TableLayoutPanel();
             this.pnlRevenue = new System.Windows.Forms.Panel();
@@ -46,6 +46,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.tableLayoutPanelDetails = new System.Windows.Forms.TableLayoutPanel();
             this.panelRight = new System.Windows.Forms.Panel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblThongBao = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
@@ -54,7 +55,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label1 = new System.Windows.Forms.Label();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.lblThongBao = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanelSummary.SuspendLayout();
             this.pnlRevenue.SuspendLayout();
@@ -120,9 +120,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(0, 35);
+            this.label6.Location = new System.Drawing.Point(0, 45);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(384, 97);
+            this.label6.Size = new System.Drawing.Size(384, 87);
             this.label6.TabIndex = 8;
             this.label6.Text = "0 VNĐ";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -134,7 +134,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(384, 35);
+            this.label2.Size = new System.Drawing.Size(384, 45);
             this.label2.TabIndex = 0;
             this.label2.Text = "Tổng doanh thu";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -156,9 +156,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(0, 35);
+            this.label7.Location = new System.Drawing.Point(0, 45);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(384, 97);
+            this.label7.Size = new System.Drawing.Size(384, 87);
             this.label7.TabIndex = 9;
             this.label7.Text = "0";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -170,7 +170,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(384, 35);
+            this.label3.Size = new System.Drawing.Size(384, 45);
             this.label3.TabIndex = 1;
             this.label3.Text = "Số đơn hàng mới";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -192,9 +192,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(0, 35);
+            this.label8.Location = new System.Drawing.Point(0, 45);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(384, 97);
+            this.label8.Size = new System.Drawing.Size(384, 87);
             this.label8.TabIndex = 10;
             this.label8.Text = "0 VNĐ";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -206,7 +206,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(384, 35);
+            this.label4.Size = new System.Drawing.Size(384, 45);
             this.label4.TabIndex = 2;
             this.label4.Text = "Tổng công nợ";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -228,9 +228,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(0, 35);
+            this.label9.Location = new System.Drawing.Point(0, 45);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(387, 97);
+            this.label9.Size = new System.Drawing.Size(387, 87);
             this.label9.TabIndex = 11;
             this.label9.Text = "0 VNĐ";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -242,7 +242,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(387, 35);
+            this.label5.Size = new System.Drawing.Size(387, 45);
             this.label5.TabIndex = 3;
             this.label5.Text = "Giá trị kho hiện tại";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -298,21 +298,33 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.guna2Panel3.Location = new System.Drawing.Point(7, 42);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Padding = new System.Windows.Forms.Padding(4);
-            this.guna2Panel3.Size = new System.Drawing.Size(547, 455);
+            this.guna2Panel3.Size = new System.Drawing.Size(547, 439);
             this.guna2Panel3.TabIndex = 5;
+            // 
+            // lblThongBao
+            // 
+            this.lblThongBao.BackColor = System.Drawing.Color.White;
+            this.lblThongBao.Enabled = false;
+            this.lblThongBao.Font = new System.Drawing.Font("Segoe UI", 10.83186F);
+            this.lblThongBao.ForeColor = System.Drawing.Color.Gray;
+            this.lblThongBao.Location = new System.Drawing.Point(139, 302);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(278, 25);
+            this.lblThongBao.TabIndex = 2;
+            this.lblThongBao.Text = "(Không có lô hàng nào sắp hết hạn)";
             // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(4, 4);
@@ -320,7 +332,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(539, 447);
+            this.dataGridView1.Size = new System.Drawing.Size(539, 431);
             this.dataGridView1.TabIndex = 1;
             // 
             // guna2Panel1
@@ -328,10 +340,10 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.guna2Panel1.Controls.Add(this.guna2Panel2);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2Panel1.Location = new System.Drawing.Point(7, 497);
+            this.guna2Panel1.Location = new System.Drawing.Point(7, 481);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.guna2Panel1.Size = new System.Drawing.Size(547, 49);
+            this.guna2Panel1.Size = new System.Drawing.Size(547, 65);
             this.guna2Panel1.TabIndex = 4;
             // 
             // guna2Panel2
@@ -343,26 +355,26 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel2.Location = new System.Drawing.Point(0, 7);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(547, 42);
+            this.guna2Panel2.Size = new System.Drawing.Size(547, 58);
             this.guna2Panel2.TabIndex = 2;
             // 
             // lblTongSoLo
             // 
             this.lblTongSoLo.BackColor = System.Drawing.Color.Transparent;
-            this.lblTongSoLo.Font = new System.Drawing.Font("Segoe UI", 8.920354F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTongSoLo.Font = new System.Drawing.Font("Segoe UI", 10.83186F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTongSoLo.ForeColor = System.Drawing.Color.Gray;
-            this.lblTongSoLo.Location = new System.Drawing.Point(13, 10);
+            this.lblTongSoLo.Location = new System.Drawing.Point(15, 17);
             this.lblTongSoLo.Name = "lblTongSoLo";
-            this.lblTongSoLo.Size = new System.Drawing.Size(11, 21);
+            this.lblTongSoLo.Size = new System.Drawing.Size(12, 25);
             this.lblTongSoLo.TabIndex = 1;
             this.lblTongSoLo.Text = "0";
             // 
             // guna2Separator1
             // 
             this.guna2Separator1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.guna2Separator1.Location = new System.Drawing.Point(157, 20);
+            this.guna2Separator1.Location = new System.Drawing.Point(187, 20);
             this.guna2Separator1.Name = "guna2Separator1";
-            this.guna2Separator1.Size = new System.Drawing.Size(398, 16);
+            this.guna2Separator1.Size = new System.Drawing.Size(368, 16);
             this.guna2Separator1.TabIndex = 3;
             // 
             // label1
@@ -373,7 +385,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(547, 35);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Lô hàng sắp hết hạn";
+            this.label1.Text = "Lô hàng tồn sắp hết hạn";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // guna2Panel4
@@ -391,33 +403,22 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             // 
             // chart1
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea7);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend7.Name = "Legend1";
-            this.chart1.Legends.Add(legend7);
+            this.chart1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(1, 1);
             this.chart1.Name = "chart1";
             this.chart1.Padding = new System.Windows.Forms.Padding(10);
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chart1.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(1044, 551);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.BackColor = System.Drawing.Color.White;
-            this.lblThongBao.Enabled = false;
-            this.lblThongBao.Font = new System.Drawing.Font("Segoe UI", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.ForeColor = System.Drawing.Color.Gray;
-            this.lblThongBao.Location = new System.Drawing.Point(150, 317);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(248, 23);
-            this.lblThongBao.TabIndex = 2;
-            this.lblThongBao.Text = "(Không có lô hàng nào sắp hết hạn)";
             // 
             // Dashboard
             // 

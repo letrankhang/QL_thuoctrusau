@@ -70,6 +70,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     }
                     dgvBienThe.Columns[i].Visible = laCotCanHien;
                 }
+
+                dgvBienThe.Columns["VariantID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvBienThe.Columns["ProductID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvBienThe.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
         }
 

@@ -158,7 +158,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 dataGridView1.RowTemplate.Height = 30;
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView1.GridColor = Color.FromArgb(200, 220, 240);
+                dataGridView1.GridColor = Color.LightGray;
                 dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
                 dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(45, 45, 45);
                 dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 230, 248);
@@ -183,7 +183,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 {
                     Name = "BatchID",
                     DataPropertyName = "BatchID",
-                    HeaderText = "Lô",
+                    HeaderText = "Mã lô",
                     FillWeight = 12,
                     DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
                 });
@@ -192,7 +192,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 {
                     Name = "ExpiryDate",
                     DataPropertyName = "ExpiryDate",
-                    HeaderText = "Hạn dùng",
+                    HeaderText = "Hạn sử dụng",
                     FillWeight = 25,
                     DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy", Alignment = DataGridViewContentAlignment.MiddleCenter }
                 });
@@ -203,11 +203,17 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                     DataPropertyName = "RemainingQuantity",
                     HeaderText = "Tồn",
                     FillWeight = 13,
-                    DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight }
+                    DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
                 });
 
                 dataGridView1.CellFormatting += DataGridView1_CellFormatting;
                 dataGridView1.DataSource = expiredProducts;
+                dataGridView1.LostFocus += (s, e) => dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 230, 248);
+
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = dataGridView1.DefaultCellStyle.ForeColor;
+                dataGridView1.SelectionChanged += (s, e) => dataGridView1.ClearSelection();
+                dataGridView1.ClearSelection();
 
                 int loHetHan = 0, loCangDate = 0;
                 foreach (var p in expiredProducts)

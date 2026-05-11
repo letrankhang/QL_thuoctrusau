@@ -120,9 +120,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             txtMaSP.Enabled = false;
 
             duongDanAnh = row.Cells["colImagePath"].Value?.ToString();
-            if (!string.IsNullOrEmpty(duongDanAnh) && File.Exists(duongDanAnh))
+            string duongDanDay = LayDuongDanAnh(duongDanAnh);
+
+            if (!string.IsNullOrEmpty(duongDanDay))
             {
-                picAnhSP.Image = Image.FromFile(duongDanAnh);
+                picAnhSP.Image = Image.FromFile(duongDanDay);
                 picAnhSP.SizeMode = PictureBoxSizeMode.Zoom;
                 lblNoImage.Visible = false;
                 btnXoaAnh.Visible = true;
@@ -251,17 +253,43 @@ namespace QL_CuaHangBanThuocTruSau.Views
             string keyword = txtTim.Text.Trim();
             dgvSanPham.DataSource = controller.TimKiem(keyword);
         }
+        private string LayDuongDanAnh(string imagePath)
+        {
+            if (string.IsNullOrEmpty(imagePath)) return "";
+
+            if (File.Exists(imagePath)) return imagePath;
+
+            string thuMuc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "ImagesProducts");
+            thuMuc = Path.GetFullPath(thuMuc);
+            string duongDanDay = Path.Combine(thuMuc, imagePath);
+
+            if (File.Exists(duongDanDay)) return duongDanDay;
+
+            return "";
+        }
 
         private void btnChonAnh_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-            ofd.Title = "Chọn ảnh sản phẩm";
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                duongDanAnh = ofd.FileName;
-                picAnhSP.Image = Image.FromFile(duongDanAnh);   
+                string thuMuc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "ImagesProducts");
+                thuMuc = Path.GetFullPath(thuMuc);
+
+                if (!Directory.Exists(thuMuc))
+                    Directory.CreateDirectory(thuMuc);
+
+                string tenFile = Guid.NewGuid().ToString() + Path.GetExtension(ofd.FileName);
+                string duongDanDich = Path.Combine(thuMuc, tenFile);
+
+                File.Copy(ofd.FileName, duongDanDich, true);
+
+                // Chỉ lưu tên file vào biến, không lưu đường dẫn đầy đủ
+                duongDanAnh = tenFile;
+
+                picAnhSP.Image = Image.FromFile(duongDanDich);
                 picAnhSP.SizeMode = PictureBoxSizeMode.Zoom;
                 lblNoImage.Visible = false;
                 btnXoaAnh.Visible = true;

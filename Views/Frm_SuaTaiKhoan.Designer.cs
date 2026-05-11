@@ -65,9 +65,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(18, 12);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(137, 25);
+            this.lblTitle.Size = new System.Drawing.Size(139, 25);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Sửa Tài Khoản";
+            this.lblTitle.Text = "Sửa tài khoản ";
             // 
             // btnExit
             // 
@@ -87,7 +87,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtUsername.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtUsername.DefaultText = "";
             this.txtUsername.Enabled = false;
+            this.txtUsername.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtUsername.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtUsername.Location = new System.Drawing.Point(36, 88);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtUsername.Name = "txtUsername";
@@ -101,7 +103,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtEmail.BorderRadius = 5;
             this.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtEmail.DefaultText = "";
+            this.txtEmail.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtEmail.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtEmail.Location = new System.Drawing.Point(36, 232);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmail.Name = "txtEmail";
@@ -115,7 +119,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtPassword.BorderRadius = 5;
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPassword.DefaultText = "";
+            this.txtPassword.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtPassword.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtPassword.Location = new System.Drawing.Point(36, 304);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPassword.Name = "txtPassword";
@@ -131,7 +137,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtFullName.BorderRadius = 5;
             this.txtFullName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtFullName.DefaultText = "";
+            this.txtFullName.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtFullName.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtFullName.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtFullName.Location = new System.Drawing.Point(36, 160);
             this.txtFullName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtFullName.Name = "txtFullName";
@@ -143,13 +151,14 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // cboRole
             // 
             this.cboRole.BackColor = System.Drawing.Color.Transparent;
-            this.cboRole.BorderRadius = 5;
+            this.cboRole.BorderRadius = 10;
             this.cboRole.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboRole.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cboRole.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboRole.FocusedColor = System.Drawing.Color.SteelBlue;
+            this.cboRole.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.cboRole.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cboRole.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.cboRole.ItemHeight = 30;
             this.cboRole.Items.AddRange(new object[] {
             "Admin",
@@ -254,8 +263,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             // swStatus
             // 
-            this.swStatus.CheckedState.BorderColor = System.Drawing.Color.SpringGreen;
-            this.swStatus.CheckedState.FillColor = System.Drawing.Color.SpringGreen;
+            this.swStatus.CheckedState.BorderColor = System.Drawing.Color.MediumSeaGreen;
+            this.swStatus.CheckedState.FillColor = System.Drawing.Color.MediumSeaGreen;
             this.swStatus.CheckedState.InnerColor = System.Drawing.Color.White;
             this.swStatus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.swStatus.Location = new System.Drawing.Point(236, 380);
@@ -272,6 +281,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblStatus.Location = new System.Drawing.Point(284, 380);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(81, 20);

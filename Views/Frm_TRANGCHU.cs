@@ -9,8 +9,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
 {
     public partial class Frm_TRANGCHU : Form
     {
-        private readonly LogoutController _logoutController;
-
+        LogoutController _logoutController;
+        private System.Windows.Forms.Timer clock;
         public Frm_TRANGCHU()
         {
             InitializeComponent();
@@ -34,6 +34,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 SetActiveButton(btnSanPham);
                 OpenChildForm(new Frm_SanPham(), "QUẢN LÝ SẢN PHẨM");
             }
+
+            clock = new System.Windows.Forms.Timer();
+            clock.Interval = 1000;
+            clock.Tick += (s, ev) => lblGreeting.Text = FormatGreeting();
+            clock.Start();
         }
 
         private void ApplyPermissions()
@@ -55,10 +60,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 buttons[i].BorderColor = Color.White;
                 buttons[i].HoverState.FillColor = Color.FromArgb(240, 240, 240);
                 buttons[i].HoverState.ForeColor = Color.Black;
-                if (buttons[i] == btnTongQuan)
-                {
-                    buttons[i].Image = Properties.Resources.dashboard_interface;
-                }
             }
             btn.FillColor = Color.SteelBlue;
             btn.ForeColor = Color.White;
@@ -66,17 +67,21 @@ namespace QL_CuaHangBanThuocTruSau.Views
             btn.BorderColor = Color.SteelBlue;
             btn.HoverState.FillColor = Color.SteelBlue;
             btn.HoverState.ForeColor = Color.White;
-            if (btn == btnTongQuan)
-            {
-                btn.Image = Properties.Resources.dashboard_interfacew;
-            }
+        }
+        private string FormatGreeting()
+        {
+            System.Globalization.CultureInfo vi = new System.Globalization.CultureInfo("vi-VN");
+            return DateTime.Now.ToString("HH:mm:ss | dddd, dd/MM/yyyy", vi) + "  |  Xin chào, "
+                + SessionManager.CurrentUser.FullName
+                + " (" + SessionManager.CurrentUser.Role + ")";
         }
 
         private void UpdateUserInfo()
         {
             if (SessionManager.IsLoggedIn)
             {
-                lblGreeting.Text = $"Xin chào, {SessionManager.CurrentUser.FullName} ({SessionManager.CurrentUser.Role})";
+                lblGreeting.Text = FormatGreeting();
+                veAvatar(SessionManager.CurrentUser.FullName, SessionManager.CurrentUser.Role);
             }
         }
 
@@ -110,6 +115,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void Frm_TRANGCHU_FormClosed(object sender, FormClosedEventArgs e)
         {
+            clock?.Stop();
+            clock?.Dispose();
+
             if (!isLoggingOut)
             {
                 Application.Exit();
@@ -136,7 +144,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 }
             }
         }
-
         private void btnTongQuan_Click(object sender, EventArgs e)
         {
             if (!SessionManager.IsAdmin()) return;
@@ -184,7 +191,30 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private void btnCongNo_Click(object sender, EventArgs e)
         {
             SetActiveButton(btnCongNo);
-            OpenChildForm(new Frm_CongNo(), "CÔNG NỢ");
+            OpenChildForm(new Frm_CongNo(), "QUẢN LÝ CÔNG NỢ");
+        }
+
+        private void veAvatar(string hoTen, string role)
+        {
+            string chu = hoTen.Trim().Split(' ')[hoTen.Trim().Split(' ').Length - 1][0].ToString().ToUpper();
+            Color bgColor = role == "Admin" ? Color.SteelBlue : Color.MediumSeaGreen;
+
+            Bitmap bmp = new Bitmap(pb_Avatar.Width, pb_Avatar.Height);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                g.FillEllipse(new SolidBrush(bgColor), 0, 0, pb_Avatar.Width - 1, pb_Avatar.Height - 1);
+
+                Font font = new Font("Segoe UI", pb_Avatar.Width / 3f, FontStyle.Bold);
+                SizeF size = g.MeasureString(chu, font);
+                g.DrawString(chu, font, Brushes.White,(pb_Avatar.Width - size.Width) / 2f, (pb_Avatar.Height - size.Height) / 2f);
+            }
+            pb_Avatar.Image = bmp;
+            pb_Avatar.Region = new Region(new System.Drawing.Drawing2D.GraphicsPath());
+
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddEllipse(0, 0, pb_Avatar.Width - 1, pb_Avatar.Height - 1);
+            pb_Avatar.Region = new Region(path);
         }
     }
 }

@@ -98,7 +98,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         {
             dgvNCC.AutoGenerateColumns = false;
 
-            dgvNCC.Columns["colNgayTao"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dgvNCC.Columns["colNgayTao"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
 
             cboLoc.Items.Clear();
             cboLoc.Items.Add("Tất cả các ngày");

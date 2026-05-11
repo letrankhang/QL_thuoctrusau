@@ -28,6 +28,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dgvLoHang.AutoGenerateColumns = false;
             btnTrangThai.Visible = false;
             lblDangChon.Text = "---";
+
             khoiTaoMauBtn();
 
             cboLocTheoSP.SelectedIndexChanged -= cboLocTheoSP_SelectedIndexChanged;
@@ -41,6 +42,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
             taiDuLieu();
             chonBtn(btnTatCa);
+
+            dgvLoHang.CellFormatting += dgvLoHang_CellFormatting;
+            dgvLoHang.Columns["colGiaNhap"].DefaultCellStyle.Format = "N0";
         }
 
         private void khoiTaoMauBtn()
@@ -130,7 +134,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         {
             khoiTaoMauBtn();
             btn.BorderThickness = 2;
-            btn.BorderColor = btn.ForeColor;
+            btn.BorderColor = btn.BorderColor;
 
             btnDangChon = btn;
         }
@@ -275,6 +279,40 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private void guna2Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void dgvLoHang_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvLoHang.Columns[e.ColumnIndex].Name != "colTrangThai")
+            {
+                return;
+            }
+
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            string trangThai = e.Value?.ToString();
+            Font semibold = new Font("Segoe UI Semibold", dgvLoHang.Font.Size, FontStyle.Bold);
+
+            switch (trangThai)
+            {
+                case "Còn hạn":
+                    e.CellStyle.ForeColor = ColorTranslator.FromHtml("#155724");
+                    e.CellStyle.Font = semibold;
+                    break;
+
+                case "Sắp hết hạn":
+                    e.CellStyle.ForeColor = ColorTranslator.FromHtml("#856404");
+                    e.CellStyle.Font = semibold;
+                    break;
+
+                case "Hết hạn":
+                    e.CellStyle.ForeColor = ColorTranslator.FromHtml("#721C24");
+                    e.CellStyle.Font = semibold;
+                    break;
+            }
         }
     }
 }

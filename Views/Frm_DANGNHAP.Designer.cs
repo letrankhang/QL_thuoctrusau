@@ -33,14 +33,14 @@
             this.lblQuenMK = new System.Windows.Forms.Label();
             this.btnDangNhap = new Guna.UI2.WinForms.Guna2Button();
             this.chkGhiNho = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.txtTenTK = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtMK = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.btnExit = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.txtTenTK = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtMK = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
@@ -118,61 +118,6 @@
             this.chkGhiNho.UncheckedState.BorderThickness = 0;
             this.chkGhiNho.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             // 
-            // txtTenTK
-            // 
-            this.txtTenTK.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtTenTK.BorderRadius = 10;
-            this.txtTenTK.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTenTK.DefaultText = "";
-            this.txtTenTK.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTenTK.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTenTK.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTenTK.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTenTK.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
-            this.txtTenTK.Font = new System.Drawing.Font("Tahoma", 12.10619F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenTK.ForeColor = System.Drawing.Color.Gray;
-            this.txtTenTK.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
-            this.txtTenTK.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.user;
-            this.txtTenTK.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtTenTK.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtTenTK.Location = new System.Drawing.Point(39, 43);
-            this.txtTenTK.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtTenTK.Name = "txtTenTK";
-            this.txtTenTK.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.txtTenTK.PlaceholderText = "Tên tài khoản";
-            this.txtTenTK.SelectedText = "";
-            this.txtTenTK.Size = new System.Drawing.Size(415, 57);
-            this.txtTenTK.TabIndex = 0;
-            // 
-            // txtMK
-            // 
-            this.txtMK.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtMK.BorderRadius = 10;
-            this.txtMK.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMK.DefaultText = "";
-            this.txtMK.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtMK.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtMK.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMK.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMK.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
-            this.txtMK.Font = new System.Drawing.Font("Tahoma", 12.10619F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMK.ForeColor = System.Drawing.Color.Gray;
-            this.txtMK.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
-            this.txtMK.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources._lock;
-            this.txtMK.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtMK.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txtMK.IconRight = global::QL_CuaHangBanThuocTruSau.Properties.Resources.eye;
-            this.txtMK.IconRightSize = new System.Drawing.Size(30, 30);
-            this.txtMK.Location = new System.Drawing.Point(39, 131);
-            this.txtMK.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtMK.Name = "txtMK";
-            this.txtMK.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.txtMK.PlaceholderText = "Mật khẩu";
-            this.txtMK.SelectedText = "";
-            this.txtMK.Size = new System.Drawing.Size(415, 57);
-            this.txtMK.TabIndex = 1;
-            this.txtMK.IconRightClick += new System.EventHandler(this.txtMK_IconRightClick);
-            // 
             // guna2HtmlLabel4
             // 
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
@@ -190,9 +135,9 @@
             this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.Gray;
             this.guna2HtmlLabel5.Location = new System.Drawing.Point(504, 101);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(247, 25);
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(316, 25);
             this.guna2HtmlLabel5.TabIndex = 4;
-            this.guna2HtmlLabel5.Text = "Đăng nhập để vào trang chủ";
+            this.guna2HtmlLabel5.Text = "Đăng nhập để tiếp tục  vào trang chủ";
             // 
             // guna2Panel2
             // 
@@ -201,16 +146,6 @@
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(472, 669);
             this.guna2Panel2.TabIndex = 5;
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.Logo;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(22, 158);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(438, 320);
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
             // 
             // guna2BorderlessForm1
             // 
@@ -241,6 +176,72 @@
             this.btnExit.Size = new System.Drawing.Size(46, 46);
             this.btnExit.TabIndex = 6;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click_1);
+            // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.Logo;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(28, 143);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(441, 313);
+            this.guna2PictureBox1.TabIndex = 0;
+            this.guna2PictureBox1.TabStop = false;
+            // 
+            // txtTenTK
+            // 
+            this.txtTenTK.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtTenTK.BorderRadius = 10;
+            this.txtTenTK.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTenTK.DefaultText = "";
+            this.txtTenTK.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTenTK.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTenTK.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTenTK.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTenTK.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
+            this.txtTenTK.Font = new System.Drawing.Font("Tahoma", 12.10619F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTenTK.ForeColor = System.Drawing.Color.Gray;
+            this.txtTenTK.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
+            this.txtTenTK.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.user;
+            this.txtTenTK.IconLeftOffset = new System.Drawing.Point(7, 0);
+            this.txtTenTK.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.txtTenTK.Location = new System.Drawing.Point(39, 43);
+            this.txtTenTK.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtTenTK.Name = "txtTenTK";
+            this.txtTenTK.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.txtTenTK.PlaceholderText = "Tên tài khoản";
+            this.txtTenTK.SelectedText = "";
+            this.txtTenTK.Size = new System.Drawing.Size(415, 57);
+            this.txtTenTK.TabIndex = 0;
+            // 
+            // txtMK
+            // 
+            this.txtMK.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtMK.BorderRadius = 10;
+            this.txtMK.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtMK.DefaultText = "";
+            this.txtMK.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtMK.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtMK.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMK.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMK.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
+            this.txtMK.Font = new System.Drawing.Font("Tahoma", 12.10619F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMK.ForeColor = System.Drawing.Color.Gray;
+            this.txtMK.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
+            this.txtMK.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources._lock;
+            this.txtMK.IconLeftOffset = new System.Drawing.Point(7, 0);
+            this.txtMK.IconLeftSize = new System.Drawing.Size(30, 30);
+            this.txtMK.IconRight = global::QL_CuaHangBanThuocTruSau.Properties.Resources.eye;
+            this.txtMK.IconRightOffset = new System.Drawing.Point(7, 0);
+            this.txtMK.IconRightSize = new System.Drawing.Size(30, 30);
+            this.txtMK.Location = new System.Drawing.Point(39, 131);
+            this.txtMK.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtMK.Name = "txtMK";
+            this.txtMK.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.txtMK.PlaceholderText = "Mật khẩu";
+            this.txtMK.SelectedText = "";
+            this.txtMK.Size = new System.Drawing.Size(415, 57);
+            this.txtMK.TabIndex = 1;
+            this.txtMK.IconRightClick += new System.EventHandler(this.txtMK_IconRightClick);
             // 
             // Frm_DANGNHAP
             // 

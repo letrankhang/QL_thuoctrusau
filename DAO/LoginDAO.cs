@@ -17,8 +17,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
                 // Truy vấn người dùng từ database (So sánh trực tiếp Password)
                 return _context.Users.FirstOrDefault (u =>
                     u.Username == username &&
-                    u.Password == password &&
-                    u.Status == true);
+                    u.Password == password);
             }
             catch( Exception ex )
             {

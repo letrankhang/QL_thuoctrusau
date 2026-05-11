@@ -47,12 +47,14 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
         private void lblBackToLogin_MouseEnter(object sender, EventArgs e)
         {
-            lblBackToLogin.Font = new Font(lblBackToLogin.Font, FontStyle.Underline);
+            lblBackToLogin.Font = new Font(lblBackToLogin.Font.FontFamily,
+                lblBackToLogin.Font.Size, FontStyle.Bold | FontStyle.Underline);
         }
 
         private void lblBackToLogin_MouseLeave(object sender, EventArgs e)
         {
-            lblBackToLogin.Font = new Font(lblBackToLogin.Font, FontStyle.Regular);
+            lblBackToLogin.Font = new Font(lblBackToLogin.Font.FontFamily,
+               lblBackToLogin.Font.Size, FontStyle.Bold);
         }
 
         private void btnExit_Click_1(object sender, EventArgs e)

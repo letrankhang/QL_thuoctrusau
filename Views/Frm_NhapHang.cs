@@ -42,6 +42,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             LoadDataToComboBox ();
             LoadLichSuNhap ();
             LoadCboLocTheoTT();
+            UpdateEmptyLabel();
 
             dgvLichSuNhap.Columns[0].Width = 80;   
             dgvLichSuNhap.Columns[1].Width = 220;  
@@ -72,7 +73,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             dgv.EnableHeadersVisualStyles = false;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9f, FontStyle.Regular);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9f, FontStyle.Regular);
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
             dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
@@ -87,8 +88,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             dgv.DefaultCellStyle.Padding = new Padding(4, 0, 4, 0);
             dgv.RowTemplate.Height = 34;
         }
-
-        // ===================== LOAD DỮ LIỆU =====================
 
         private void LoadDataToComboBox () {
             using (var db = new AppDbContext())
@@ -168,6 +167,10 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
 
         }
+        private void UpdateEmptyLabel()
+        {
+            lblPhieu.Visible = dgvChiTietDonHang.Rows.Count == 0;
+        }
 
         private void btnLamMoi_Click (object sender, EventArgs e) {
             DialogResult dr = MessageBox.Show("Bạn có chắc muốn làm mới toàn bộ phiếu nhập?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -182,6 +185,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             txtDaThanhToan.Clear();
             TinhTongTien(); // tự cập nhật txtTongGiaTriPhieu, txtCongNo, lblKetQua
             LoadLichSuNhap();
+            UpdateEmptyLabel();
         }
 
         // ===================== LƯU / THANH TOÁN =====================
@@ -365,6 +369,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                     txtDaThanhToan.Clear();
                     TinhTongTien();
                     LoadLichSuNhap();
+                    UpdateEmptyLabel();
                 }
             }
             catch (Exception ex)
@@ -553,6 +558,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 dgvChiTietDonHang.Rows[rowIndex].Tag = frmChiTiet.VariantID;
             }
             TinhTongTien();
+            UpdateEmptyLabel();
         }
 
         private void btnXoaDong_Click(object sender, EventArgs e)
@@ -581,6 +587,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+            UpdateEmptyLabel();
             TinhTongTien();
         }
 
