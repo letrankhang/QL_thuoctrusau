@@ -17,12 +17,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvKhachHang = new Guna.UI2.WinForms.Guna2DataGridView();
             this.colMaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,8 +58,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.label1 = new System.Windows.Forms.Label();
             this.lblDangChon = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
             this.cboLocTheoNgay = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
             this.pnlTop.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
@@ -76,16 +76,16 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.dgvKhachHang.AllowUserToAddRows = false;
             this.dgvKhachHang.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
-            this.dgvKhachHang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvKhachHang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvKhachHang.ColumnHeadersHeight = 35;
             this.dgvKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colMaKH,
@@ -93,14 +93,14 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.colSĐT,
             this.colDiaChi,
             this.cotNgayTao});
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvKhachHang.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvKhachHang.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvKhachHang.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvKhachHang.Location = new System.Drawing.Point(1, 50);
@@ -109,7 +109,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.dgvKhachHang.RowHeadersVisible = false;
             this.dgvKhachHang.RowHeadersWidth = 62;
             this.dgvKhachHang.RowTemplate.Height = 28;
-            this.dgvKhachHang.Size = new System.Drawing.Size(1172, 558);
+            this.dgvKhachHang.Size = new System.Drawing.Size(1172, 568);
             this.dgvKhachHang.TabIndex = 0;
             this.dgvKhachHang.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvKhachHang.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -137,8 +137,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // colMaKH
             // 
             this.colMaKH.DataPropertyName = "CustomerID";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colMaKH.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colMaKH.DefaultCellStyle = dataGridViewCellStyle3;
             this.colMaKH.HeaderText = "Mã KH";
             this.colMaKH.MinimumWidth = 8;
             this.colMaKH.Name = "colMaKH";
@@ -155,8 +155,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // colSĐT
             // 
             this.colSĐT.DataPropertyName = "Phone";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colSĐT.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colSĐT.DefaultCellStyle = dataGridViewCellStyle4;
             this.colSĐT.HeaderText = "Số điện thoại";
             this.colSĐT.MinimumWidth = 8;
             this.colSĐT.Name = "colSĐT";
@@ -174,8 +174,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // cotNgayTao
             // 
             this.cotNgayTao.DataPropertyName = "CreatedAt";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cotNgayTao.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cotNgayTao.DefaultCellStyle = dataGridViewCellStyle5;
             this.cotNgayTao.HeaderText = "Ngày tạo";
             this.cotNgayTao.MinimumWidth = 6;
             this.cotNgayTao.Name = "cotNgayTao";
@@ -187,7 +187,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTop.Location = new System.Drawing.Point(0, 66);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlTop.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
             this.pnlTop.Size = new System.Drawing.Size(1194, 629);
             this.pnlTop.TabIndex = 1;
             // 
@@ -202,7 +202,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Panel4.Location = new System.Drawing.Point(10, 10);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.Padding = new System.Windows.Forms.Padding(1, 0, 1, 1);
-            this.guna2Panel4.Size = new System.Drawing.Size(1174, 609);
+            this.guna2Panel4.Size = new System.Drawing.Size(1174, 619);
             this.guna2Panel4.TabIndex = 16;
             // 
             // pnlTitle
@@ -274,7 +274,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlInput.Location = new System.Drawing.Point(10, 10);
             this.pnlInput.Name = "pnlInput";
-            this.pnlInput.Size = new System.Drawing.Size(411, 609);
+            this.pnlInput.Size = new System.Drawing.Size(411, 619);
             this.pnlInput.TabIndex = 2;
             // 
             // guna2Separator1
@@ -575,16 +575,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Panel2.Size = new System.Drawing.Size(1625, 66);
             this.guna2Panel2.TabIndex = 5;
             // 
-            // guna2Panel7
-            // 
-            this.guna2Panel7.Controls.Add(this.pnlInput);
-            this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.guna2Panel7.Location = new System.Drawing.Point(1194, 66);
-            this.guna2Panel7.Name = "guna2Panel7";
-            this.guna2Panel7.Padding = new System.Windows.Forms.Padding(10);
-            this.guna2Panel7.Size = new System.Drawing.Size(431, 629);
-            this.guna2Panel7.TabIndex = 6;
-            // 
             // cboLocTheoNgay
             // 
             this.cboLocTheoNgay.BackColor = System.Drawing.Color.Transparent;
@@ -601,6 +591,16 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.cboLocTheoNgay.Size = new System.Drawing.Size(189, 36);
             this.cboLocTheoNgay.TabIndex = 5;
             this.cboLocTheoNgay.SelectedIndexChanged += new System.EventHandler(this.cboLocTheoNgay_SelectedIndexChanged);
+            // 
+            // guna2Panel7
+            // 
+            this.guna2Panel7.Controls.Add(this.pnlInput);
+            this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.guna2Panel7.Location = new System.Drawing.Point(1194, 66);
+            this.guna2Panel7.Name = "guna2Panel7";
+            this.guna2Panel7.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.guna2Panel7.Size = new System.Drawing.Size(431, 629);
+            this.guna2Panel7.TabIndex = 6;
             // 
             // Frm_KhachHang
             // 

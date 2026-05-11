@@ -17,10 +17,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlRight = new System.Windows.Forms.Panel();
+            this.lblHTGioHang = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvCart = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlCheckout = new System.Windows.Forms.Panel();
@@ -45,7 +46,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.cboLocTheoLoai = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cboLocTheoGia = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblHTGioHang = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pnlRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.guna2Panel2.SuspendLayout();
@@ -70,30 +70,41 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlRight.Size = new System.Drawing.Size(536, 767);
             this.pnlRight.TabIndex = 0;
             // 
+            // lblHTGioHang
+            // 
+            this.lblHTGioHang.BackColor = System.Drawing.Color.Transparent;
+            this.lblHTGioHang.Font = new System.Drawing.Font("Segoe UI", 10.83186F);
+            this.lblHTGioHang.ForeColor = System.Drawing.Color.Gray;
+            this.lblHTGioHang.Location = new System.Drawing.Point(189, 400);
+            this.lblHTGioHang.Name = "lblHTGioHang";
+            this.lblHTGioHang.Size = new System.Drawing.Size(174, 25);
+            this.lblHTGioHang.TabIndex = 4;
+            this.lblHTGioHang.Text = "(Giỏ hàng đang trống)";
+            // 
             // dgvCart
             // 
             this.dgvCart.AllowUserToAddRows = false;
             this.dgvCart.AllowUserToResizeColumns = false;
             this.dgvCart.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.dgvCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.dgvCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvCart.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvCart.ColumnHeadersHeight = 38;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvCart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCart.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
             this.dgvCart.Location = new System.Drawing.Point(15, 114);
@@ -176,6 +187,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnInventoryHistory.BackColor = System.Drawing.Color.Transparent;
             this.btnInventoryHistory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnInventoryHistory.BorderRadius = 10;
+            this.btnInventoryHistory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInventoryHistory.FillColor = System.Drawing.Color.SteelBlue;
             this.btnInventoryHistory.Font = new System.Drawing.Font("Segoe UI Semibold", 8.920354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInventoryHistory.ForeColor = System.Drawing.Color.White;
@@ -193,6 +205,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnViewOld.BackColor = System.Drawing.Color.Transparent;
             this.btnViewOld.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnViewOld.BorderRadius = 10;
+            this.btnViewOld.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnViewOld.FillColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnViewOld.Font = new System.Drawing.Font("Segoe UI Semibold", 8.920354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewOld.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -209,6 +222,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
             this.btnCancel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCancel.BorderRadius = 10;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.FillColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.920354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -224,6 +238,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnSaveOnly.BorderColor = System.Drawing.Color.SteelBlue;
             this.btnSaveOnly.BorderRadius = 10;
             this.btnSaveOnly.BorderThickness = 1;
+            this.btnSaveOnly.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSaveOnly.FillColor = System.Drawing.Color.White;
             this.btnSaveOnly.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveOnly.ForeColor = System.Drawing.Color.SteelBlue;
@@ -241,6 +256,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // btnSavePrint
             // 
             this.btnSavePrint.BorderRadius = 10;
+            this.btnSavePrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSavePrint.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(168)))), ((int)(((byte)(83)))));
             this.btnSavePrint.Font = new System.Drawing.Font("Segoe UI Semibold", 12.10619F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSavePrint.ForeColor = System.Drawing.Color.White;
@@ -437,17 +453,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtSearch.Size = new System.Drawing.Size(648, 36);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // lblHTGioHang
-            // 
-            this.lblHTGioHang.BackColor = System.Drawing.Color.Transparent;
-            this.lblHTGioHang.Font = new System.Drawing.Font("Segoe UI", 10.83186F);
-            this.lblHTGioHang.ForeColor = System.Drawing.Color.Gray;
-            this.lblHTGioHang.Location = new System.Drawing.Point(189, 400);
-            this.lblHTGioHang.Name = "lblHTGioHang";
-            this.lblHTGioHang.Size = new System.Drawing.Size(174, 25);
-            this.lblHTGioHang.TabIndex = 4;
-            this.lblHTGioHang.Text = "(Giỏ hàng đang trống)";
             // 
             // Frm_BanHang
             // 

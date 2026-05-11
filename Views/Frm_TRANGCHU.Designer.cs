@@ -50,12 +50,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlMain = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlContent = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlTopBar = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnTrangThai = new Guna.UI2.WinForms.Guna2Button();
             this.lblInterfaceName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlGreeting = new System.Windows.Forms.FlowLayoutPanel();
             this.lblGreeting = new System.Windows.Forms.Label();
             this.pb_Avatar = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.btnTrangThai = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.pnlMain.SuspendLayout();
@@ -163,7 +163,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnDangXuat.HoverState.ForeColor = System.Drawing.Color.Black;
             this.btnDangXuat.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.logout;
             this.btnDangXuat.ImageSize = new System.Drawing.Size(26, 26);
-            this.btnDangXuat.Location = new System.Drawing.Point(35, 803);
+            this.btnDangXuat.Location = new System.Drawing.Point(35, 797);
             this.btnDangXuat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.PressedColor = System.Drawing.Color.Silver;
@@ -508,6 +508,26 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlTopBar.Size = new System.Drawing.Size(1470, 108);
             this.pnlTopBar.TabIndex = 0;
             // 
+            // btnTrangThai
+            // 
+            this.btnTrangThai.BorderColor = System.Drawing.Color.Transparent;
+            this.btnTrangThai.BorderRadius = 2;
+            this.btnTrangThai.BorderThickness = 1;
+            this.btnTrangThai.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTrangThai.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTrangThai.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTrangThai.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTrangThai.FillColor = System.Drawing.Color.SteelBlue;
+            this.btnTrangThai.Font = new System.Drawing.Font("Segoe UI Semibold", 8.920354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrangThai.ForeColor = System.Drawing.Color.Black;
+            this.btnTrangThai.HoverState.FillColor = System.Drawing.Color.SteelBlue;
+            this.btnTrangThai.Location = new System.Drawing.Point(22, 29);
+            this.btnTrangThai.Name = "btnTrangThai";
+            this.btnTrangThai.PressedColor = System.Drawing.Color.SteelBlue;
+            this.btnTrangThai.Size = new System.Drawing.Size(7, 45);
+            this.btnTrangThai.TabIndex = 32;
+            this.btnTrangThai.Text = "...";
+            // 
             // lblInterfaceName
             // 
             this.lblInterfaceName.AutoSize = true;
@@ -559,26 +579,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pb_Avatar.Size = new System.Drawing.Size(36, 36);
             this.pb_Avatar.TabIndex = 2;
             this.pb_Avatar.TabStop = false;
-            // 
-            // btnTrangThai
-            // 
-            this.btnTrangThai.BorderColor = System.Drawing.Color.Transparent;
-            this.btnTrangThai.BorderRadius = 2;
-            this.btnTrangThai.BorderThickness = 1;
-            this.btnTrangThai.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnTrangThai.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnTrangThai.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTrangThai.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnTrangThai.FillColor = System.Drawing.Color.SteelBlue;
-            this.btnTrangThai.Font = new System.Drawing.Font("Segoe UI Semibold", 8.920354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTrangThai.ForeColor = System.Drawing.Color.Black;
-            this.btnTrangThai.HoverState.FillColor = System.Drawing.Color.SteelBlue;
-            this.btnTrangThai.Location = new System.Drawing.Point(22, 29);
-            this.btnTrangThai.Name = "btnTrangThai";
-            this.btnTrangThai.PressedColor = System.Drawing.Color.SteelBlue;
-            this.btnTrangThai.Size = new System.Drawing.Size(7, 45);
-            this.btnTrangThai.TabIndex = 32;
-            this.btnTrangThai.Text = "...";
             // 
             // Frm_TRANGCHU
             // 

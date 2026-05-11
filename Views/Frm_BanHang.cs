@@ -391,7 +391,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     }
                     else
                     {
-                        MessageBox.Show($"Chỉ còn {stockQty} sản phẩm trong kho!", "Thông báo");
+                        MessageBox.Show($"Chỉ còn {stockQty} sản phẩm trong kho!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     return;
                 }
@@ -529,8 +529,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
         {
             try
             {
-                if (dgvCart.Rows.Count == 0) { MessageBox.Show("Giỏ hàng đang trống!", "Thông báo"); return; }
-                if (cboCustomer.SelectedValue == null) { MessageBox.Show("Vui lòng chọn khách hàng!", "Thông báo"); return; }
+                if (dgvCart.Rows.Count == 0) { MessageBox.Show("Giỏ hàng đang trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+                if (cboCustomer.SelectedValue == null) { MessageBox.Show("Vui lòng chọn khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
                 int customerId = (int)cboCustomer.SelectedValue;
                 decimal totalAmount = 0;
@@ -696,6 +696,5 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void pnlCartHeader_Paint(object sender, PaintEventArgs e) { }
         private void cboCustomer_SelectedIndexChanged(object sender, EventArgs e) { }
-
     }
 }

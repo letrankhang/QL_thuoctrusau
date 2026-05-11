@@ -25,6 +25,13 @@
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlPagination = new Guna.UI2.WinForms.Guna2Panel();
             this.dgvCongNo = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.colMaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKhachHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTongCongNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDaThanhToan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colConPhaiThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNgayLap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
             this.dtpTuNgay = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -36,6 +43,7 @@
             this.lblTuNgay = new System.Windows.Forms.Label();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.guna2Separator8 = new Guna.UI2.WinForms.Guna2Separator();
             this.guna2Separator7 = new Guna.UI2.WinForms.Guna2Separator();
             this.btnNext = new Guna.UI2.WinForms.Guna2Button();
             this.lblPageInfo = new System.Windows.Forms.Label();
@@ -73,14 +81,6 @@
             this.lblTongCongNoTitle = new System.Windows.Forms.Label();
             this.pnlTopBar = new Guna.UI2.WinForms.Guna2Panel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.guna2Separator8 = new Guna.UI2.WinForms.Guna2Separator();
-            this.colMaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colKhachHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTongCongNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDaThanhToan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colConPhaiThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNgayLap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlMain.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
             this.pnlPagination.SuspendLayout();
@@ -131,7 +131,7 @@
             this.pnlPagination.Location = new System.Drawing.Point(10, 287);
             this.pnlPagination.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlPagination.Name = "pnlPagination";
-            this.pnlPagination.Size = new System.Drawing.Size(1605, 410);
+            this.pnlPagination.Size = new System.Drawing.Size(1605, 413);
             this.pnlPagination.TabIndex = 3;
             // 
             // dgvCongNo
@@ -175,7 +175,7 @@
             this.dgvCongNo.RowHeadersVisible = false;
             this.dgvCongNo.RowHeadersWidth = 48;
             this.dgvCongNo.RowTemplate.Height = 40;
-            this.dgvCongNo.Size = new System.Drawing.Size(1605, 338);
+            this.dgvCongNo.Size = new System.Drawing.Size(1605, 341);
             this.dgvCongNo.TabIndex = 2;
             this.dgvCongNo.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvCongNo.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -198,6 +198,61 @@
             this.dgvCongNo.ThemeStyle.RowsStyle.Height = 40;
             this.dgvCongNo.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvCongNo.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // colMaDon
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colMaDon.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colMaDon.HeaderText = "Mã đơn hàng";
+            this.colMaDon.MinimumWidth = 6;
+            this.colMaDon.Name = "colMaDon";
+            this.colMaDon.ReadOnly = true;
+            // 
+            // colKhachHang
+            // 
+            this.colKhachHang.HeaderText = "Tên khách hàng";
+            this.colKhachHang.MinimumWidth = 6;
+            this.colKhachHang.Name = "colKhachHang";
+            this.colKhachHang.ReadOnly = true;
+            // 
+            // colTongCongNo
+            // 
+            this.colTongCongNo.HeaderText = "Tổng công nợ";
+            this.colTongCongNo.MinimumWidth = 6;
+            this.colTongCongNo.Name = "colTongCongNo";
+            this.colTongCongNo.ReadOnly = true;
+            // 
+            // colDaThanhToan
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.colDaThanhToan.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colDaThanhToan.HeaderText = "Đã thanh toán";
+            this.colDaThanhToan.MinimumWidth = 6;
+            this.colDaThanhToan.Name = "colDaThanhToan";
+            this.colDaThanhToan.ReadOnly = true;
+            // 
+            // colConPhaiThu
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.colConPhaiThu.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colConPhaiThu.HeaderText = "Còn phải thu";
+            this.colConPhaiThu.MinimumWidth = 6;
+            this.colConPhaiThu.Name = "colConPhaiThu";
+            this.colConPhaiThu.ReadOnly = true;
+            // 
+            // colNgayLap
+            // 
+            this.colNgayLap.HeaderText = "Ngày lập";
+            this.colNgayLap.MinimumWidth = 6;
+            this.colNgayLap.Name = "colNgayLap";
+            this.colNgayLap.ReadOnly = true;
+            // 
+            // colTrangThai
+            // 
+            this.colTrangThai.HeaderText = "Trạng thái";
+            this.colTrangThai.MinimumWidth = 6;
+            this.colTrangThai.Name = "colTrangThai";
+            this.colTrangThai.ReadOnly = true;
             // 
             // guna2Panel2
             // 
@@ -338,9 +393,9 @@
             // 
             this.guna2Panel4.Controls.Add(this.panel1);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2Panel4.Location = new System.Drawing.Point(10, 697);
+            this.guna2Panel4.Location = new System.Drawing.Point(10, 700);
             this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.Size = new System.Drawing.Size(1605, 60);
+            this.guna2Panel4.Size = new System.Drawing.Size(1605, 57);
             this.guna2Panel4.TabIndex = 0;
             // 
             // panel1
@@ -350,11 +405,20 @@
             this.panel1.Controls.Add(this.btnNext);
             this.panel1.Controls.Add(this.lblPageInfo);
             this.panel1.Controls.Add(this.btnPrev);
-            this.panel1.Location = new System.Drawing.Point(542, 6);
+            this.panel1.Location = new System.Drawing.Point(539, 9);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(547, 48);
             this.panel1.TabIndex = 3;
+            // 
+            // guna2Separator8
+            // 
+            this.guna2Separator8.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Separator8.FillThickness = 2;
+            this.guna2Separator8.Location = new System.Drawing.Point(340, 6);
+            this.guna2Separator8.Name = "guna2Separator8";
+            this.guna2Separator8.Size = new System.Drawing.Size(87, 36);
+            this.guna2Separator8.TabIndex = 16;
             // 
             // guna2Separator7
             // 
@@ -828,70 +892,6 @@
             this.lblTitle.Size = new System.Drawing.Size(265, 40);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Thống kê công nợ";
-            // 
-            // guna2Separator8
-            // 
-            this.guna2Separator8.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.guna2Separator8.FillThickness = 2;
-            this.guna2Separator8.Location = new System.Drawing.Point(340, 6);
-            this.guna2Separator8.Name = "guna2Separator8";
-            this.guna2Separator8.Size = new System.Drawing.Size(87, 36);
-            this.guna2Separator8.TabIndex = 16;
-            // 
-            // colMaDon
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colMaDon.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colMaDon.HeaderText = "Mã đơn hàng";
-            this.colMaDon.MinimumWidth = 6;
-            this.colMaDon.Name = "colMaDon";
-            this.colMaDon.ReadOnly = true;
-            // 
-            // colKhachHang
-            // 
-            this.colKhachHang.HeaderText = "Tên khách hàng";
-            this.colKhachHang.MinimumWidth = 6;
-            this.colKhachHang.Name = "colKhachHang";
-            this.colKhachHang.ReadOnly = true;
-            // 
-            // colTongCongNo
-            // 
-            this.colTongCongNo.HeaderText = "Tổng công nợ";
-            this.colTongCongNo.MinimumWidth = 6;
-            this.colTongCongNo.Name = "colTongCongNo";
-            this.colTongCongNo.ReadOnly = true;
-            // 
-            // colDaThanhToan
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.colDaThanhToan.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colDaThanhToan.HeaderText = "Đã thanh toán";
-            this.colDaThanhToan.MinimumWidth = 6;
-            this.colDaThanhToan.Name = "colDaThanhToan";
-            this.colDaThanhToan.ReadOnly = true;
-            // 
-            // colConPhaiThu
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.colConPhaiThu.DefaultCellStyle = dataGridViewCellStyle5;
-            this.colConPhaiThu.HeaderText = "Còn phải thu";
-            this.colConPhaiThu.MinimumWidth = 6;
-            this.colConPhaiThu.Name = "colConPhaiThu";
-            this.colConPhaiThu.ReadOnly = true;
-            // 
-            // colNgayLap
-            // 
-            this.colNgayLap.HeaderText = "Ngày lập";
-            this.colNgayLap.MinimumWidth = 6;
-            this.colNgayLap.Name = "colNgayLap";
-            this.colNgayLap.ReadOnly = true;
-            // 
-            // colTrangThai
-            // 
-            this.colTrangThai.HeaderText = "Trạng thái";
-            this.colTrangThai.MinimumWidth = 6;
-            this.colTrangThai.Name = "colTrangThai";
-            this.colTrangThai.ReadOnly = true;
             // 
             // Frm_CongNo
             // 

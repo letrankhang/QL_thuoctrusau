@@ -189,7 +189,7 @@
             this.dgvBienThe.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 8.283186F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 8.283186F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -313,10 +313,11 @@
             this.cboDonViTinh.BorderRadius = 5;
             this.cboDonViTinh.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboDonViTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDonViTinh.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cboDonViTinh.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboDonViTinh.FocusedColor = System.Drawing.Color.SteelBlue;
+            this.cboDonViTinh.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.cboDonViTinh.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboDonViTinh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cboDonViTinh.HoverState.FillColor = System.Drawing.Color.SteelBlue;
             this.cboDonViTinh.ItemHeight = 30;
             this.cboDonViTinh.Location = new System.Drawing.Point(264, 98);
             this.cboDonViTinh.Name = "cboDonViTinh";
