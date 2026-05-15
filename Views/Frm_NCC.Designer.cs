@@ -334,6 +334,7 @@
             this.txtTim.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTim.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtTim.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.magnifier1;
+            this.txtTim.IconLeftOffset = new System.Drawing.Point(5, 0);
             this.txtTim.Location = new System.Drawing.Point(27, 67);
             this.txtTim.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTim.Name = "txtTim";

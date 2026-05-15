@@ -582,6 +582,8 @@
     <None Include="Resources\user %282%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\sticky-notes.png" />
+    <None Include="Resources\plus3.png" />
     <None Include="Resources\rotation1.png" />
     <None Include="Resources\plus1.png" />
     <None Include="Resources\print1.png" />
@@ -621,6 +623,9 @@
     <None Include="Resources\dashboard-interface3.png" />
     <None Include="Resources\dashboard.png" />
     <None Include="Resources\address.png" />
+    <None Include="Resources\add_category.png" />
+    <None Include="Resources\bookmark3.png" />
+    <None Include="Resources\add-to-cart3.png" />
     <Content Include="Resources\icons8-trash-can-50.png" />
     <None Include="Resources\mail.png" />
     <None Include="Resources\mail1.png" />
@@ -630,15 +635,16 @@
     <None Include="Resources\long-term-debt.png" />
     <None Include="Resources\padlock.png" />
     <None Include="Resources\logout1.png" />
+    <None Include="Resources\new-folder.png" />
     <Content Include="Resources\pen.png" />
     <None Include="Resources\variant.png" />
     <None Include="Resources\close.png" />
   </ItemGroup>
-	<ItemGroup>
-		<Content Include="ImagesProducts\**\*.*">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="ImagesProducts\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

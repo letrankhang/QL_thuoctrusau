@@ -417,6 +417,7 @@
             this.Name = "Frm_ThemLoai";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_ThemLoaI";
+            this.Load += new System.EventHandler(this.Frm_ThemLoai_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLoai)).EndInit();
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel2.PerformLayout();

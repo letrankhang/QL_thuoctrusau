@@ -75,7 +75,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.lblHTGioHang.BackColor = System.Drawing.Color.Transparent;
             this.lblHTGioHang.Font = new System.Drawing.Font("Segoe UI", 10.83186F);
             this.lblHTGioHang.ForeColor = System.Drawing.Color.Gray;
-            this.lblHTGioHang.Location = new System.Drawing.Point(189, 400);
+            this.lblHTGioHang.Location = new System.Drawing.Point(183, 400);
             this.lblHTGioHang.Name = "lblHTGioHang";
             this.lblHTGioHang.Size = new System.Drawing.Size(174, 25);
             this.lblHTGioHang.TabIndex = 4;
@@ -328,7 +328,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Button1.Location = new System.Drawing.Point(3, 10);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.PressedColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.Size = new System.Drawing.Size(44, 37);
+            this.guna2Button1.Size = new System.Drawing.Size(33, 37);
             this.guna2Button1.TabIndex = 3;
             // 
             // guna2Separator1
@@ -347,9 +347,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.cboCustomer.BorderRadius = 10;
             this.cboCustomer.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCustomer.FocusedColor = System.Drawing.Color.Empty;
+            this.cboCustomer.FocusedColor = System.Drawing.Color.SteelBlue;
+            this.cboCustomer.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.cboCustomer.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cboCustomer.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.cboCustomer.ItemHeight = 30;
             this.cboCustomer.Location = new System.Drawing.Point(3, 62);
             this.cboCustomer.Name = "cboCustomer";
@@ -444,7 +446,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtSearch.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.magnifier;
-            this.txtSearch.IconLeftOffset = new System.Drawing.Point(7, 0);
+            this.txtSearch.IconLeftOffset = new System.Drawing.Point(5, 0);
             this.txtSearch.Location = new System.Drawing.Point(4, 9);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearch.Name = "txtSearch";

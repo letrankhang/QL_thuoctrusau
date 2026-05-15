@@ -178,7 +178,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
                     Label lblUnit = new Label
                     {
-                        Text = item.Unit,
+                        Text = $"{item.Unit} - {item.Concentration}",
                         Font = new Font("Segoe UI", 9),
                         ForeColor = Color.Gray,
                         Location = new Point(10, 60),
@@ -191,7 +191,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                         Text = $"{item.RetailPrice:N0}đ",
                         Font = new Font("Segoe UI", 11, FontStyle.Bold),
                         ForeColor = Color.SteelBlue,
-                        Location = new Point(10, 130),
+                        Location = new Point(8, 130),
                         AutoSize = true,
                         BackColor = Color.Transparent
                     };
@@ -204,11 +204,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
                         Font = new Font("Segoe UI", 8),
                         ForeColor = stockQty > 0 ? Color.SteelBlue : Color.FromArgb(225, 29, 72),
                         BackColor = stockQty > 0 ? Color.FromArgb(231, 241, 255) : Color.FromArgb(255, 228, 230),
-                        Location = new Point(100, 132),
+                        Location = new Point(97, 132),
                         AutoSize = true,
-                        Padding = new Padding(3)
+                        Padding = new Padding(3),
+                        TextAlign = ContentAlignment.MiddleCenter
                     };
-
                     card.Controls.Add(lblName);
                     card.Controls.Add(lblUnit);
                     card.Controls.Add(lblPrice);
@@ -217,13 +217,37 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     EventHandler cardClickHandler = (s, e) =>
                     {
                         if (stockQty > 0) AddProductToCart(item);
-                        else MessageBox.Show("Sản phẩm đã hết hàng!", "Thông báo");
+                        else MessageBox.Show("Sản phẩm đã hết hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     };
 
                     card.Click += cardClickHandler;
                     lblName.Click += cardClickHandler;
                     lblUnit.Click += cardClickHandler;
                     lblPrice.Click += cardClickHandler;
+
+                    EventHandler mouseEnter = (s, e) =>
+                    {
+                        card.BorderColor = Color.SteelBlue;
+                        card.BorderThickness = 2;
+                    };
+
+                    EventHandler mouseLeave = (s, e) =>
+                    {
+                        card.BorderColor = Color.FromArgb(230, 230, 230);
+                        card.BorderThickness = 1;
+                    };
+
+                    card.MouseEnter += mouseEnter;
+                    card.MouseLeave += mouseLeave;
+
+                    lblName.MouseEnter += mouseEnter;
+                    lblName.MouseLeave += mouseLeave;
+                    lblUnit.MouseEnter += mouseEnter;
+                    lblUnit.MouseLeave += mouseLeave;
+                    lblPrice.MouseEnter += mouseEnter;
+                    lblPrice.MouseLeave += mouseLeave;
+                    lblStock.MouseEnter += mouseEnter;
+                    lblStock.MouseLeave += mouseLeave;
 
                     flpProducts.Controls.Add(card);
                 }

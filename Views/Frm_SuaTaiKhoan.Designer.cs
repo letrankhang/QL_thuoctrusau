@@ -227,9 +227,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(35, 279);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 21);
+            this.label3.Size = new System.Drawing.Size(109, 21);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Mật khẩu:";
+            this.label3.Text = "Đổi mật khẩu:";
             // 
             // label4
             // 

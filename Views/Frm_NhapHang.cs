@@ -21,13 +21,26 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private string DichTrangThai (string status) {
             switch( status?.ToUpper () )
             {
-                case "COMPLETED": return "Hoàn thành";
-                case "PENDING": return "Chờ xử lý";
-                case "CANCELLED": return "Đã hủy";
-                case "PARTIAL": return "Thanh toán một phần";
-                case "UNPAID": return "Chưa thanh toán";
-                case "PAID": return "Đã thanh toán";
-                default: return status ?? "";
+                case "COMPLETED": 
+                    return "Hoàn thành";
+
+                case "PENDING": 
+                    return "Chờ xử lý";
+
+                case "CANCELLED": 
+                    return "Đã hủy";
+
+                case "PARTIAL": 
+                    return "Thanh toán một phần";
+
+                case "UNPAID":
+                    return "Chưa thanh toán";
+
+                case "PAID": 
+                    return "Đã thanh toán";
+
+                default: 
+                    return status ?? "";
             }
         }
         // ===================== LOAD =====================

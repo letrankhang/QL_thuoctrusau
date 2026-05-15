@@ -74,6 +74,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 dgvBienThe.Columns["VariantID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvBienThe.Columns["ProductID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvBienThe.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvBienThe.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Seminbold", 9f);
+                dgvBienThe.Columns["RetailPrice"].DefaultCellStyle.Format = "N0";
+                dgvBienThe.Columns["WholesalePrice"].DefaultCellStyle.Format = "N0";
             }
         }
 
@@ -176,6 +179,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             txtHamLuong.Text = row.Cells["Concentration"].Value.ToString();
             txtGiaBanLe.Text = row.Cells["RetailPrice"].Value.ToString();
             txtGiaBanSi.Text = row.Cells["WholesalePrice"].Value.ToString();
+
+            txtGiaBanLe.Text = string.Format("{0:N0}", row.Cells["RetailPrice"].Value);
+            txtGiaBanSi.Text = string.Format("{0:N0}", row.Cells["WholesalePrice"].Value);
         }
 
         private void lamMoi()

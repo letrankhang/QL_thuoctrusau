@@ -87,10 +87,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private void btnLamMoi_Click_1(object sender, EventArgs e)
         {
             maDangChon = 0;
-            lblDangChon.Text = "---";
             loadDanhSach();
             dgvNCC.ClearSelection();
             dgvNCC.CurrentCell = null;
+            lblDangChon.Text = "---";
         }
 
 

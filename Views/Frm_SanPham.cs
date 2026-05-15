@@ -8,8 +8,6 @@ using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Management;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace QL_CuaHangBanThuocTruSau.Views
@@ -40,6 +38,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             loadDanhSach();
             loadLoai();
 
+            dgvSanPham.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 10, FontStyle.Regular);
             cboLocChuCai.DataSource = new List<string> { "Sắp xếp theo tên", "A đến Z", "Z đến A" };
             cboLocChuCai.SelectedIndex = 0;
             cboLocChuCai.SelectedIndexChanged += (s, ev) => locTheoChuCai();

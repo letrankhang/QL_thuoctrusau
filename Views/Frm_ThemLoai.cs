@@ -186,5 +186,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
         {
             this.Close();
         }
+
+        private void Frm_ThemLoai_Load(object sender, EventArgs e)
+        {
+            dgvLoai.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 10, FontStyle.Regular);
+        }
     }
 }

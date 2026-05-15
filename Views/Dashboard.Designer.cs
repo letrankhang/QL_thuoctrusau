@@ -342,7 +342,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.guna2Panel1.Location = new System.Drawing.Point(7, 481);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.guna2Panel1.Size = new System.Drawing.Size(547, 65);
             this.guna2Panel1.TabIndex = 4;
             // 
@@ -353,19 +353,19 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.guna2Panel2.BorderThickness = 1;
             this.guna2Panel2.Controls.Add(this.lblTongSoLo);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Panel2.Location = new System.Drawing.Point(0, 7);
+            this.guna2Panel2.Location = new System.Drawing.Point(0, 13);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(547, 58);
+            this.guna2Panel2.Size = new System.Drawing.Size(547, 52);
             this.guna2Panel2.TabIndex = 2;
             // 
             // lblTongSoLo
             // 
             this.lblTongSoLo.BackColor = System.Drawing.Color.Transparent;
-            this.lblTongSoLo.Font = new System.Drawing.Font("Segoe UI", 10.83186F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTongSoLo.Font = new System.Drawing.Font("Segoe UI", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTongSoLo.ForeColor = System.Drawing.Color.Gray;
-            this.lblTongSoLo.Location = new System.Drawing.Point(15, 17);
+            this.lblTongSoLo.Location = new System.Drawing.Point(15, 14);
             this.lblTongSoLo.Name = "lblTongSoLo";
-            this.lblTongSoLo.Size = new System.Drawing.Size(12, 25);
+            this.lblTongSoLo.Size = new System.Drawing.Size(12, 23);
             this.lblTongSoLo.TabIndex = 1;
             this.lblTongSoLo.Text = "0";
             // 
