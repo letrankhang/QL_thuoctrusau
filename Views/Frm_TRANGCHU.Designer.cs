@@ -505,6 +505,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlTopBar.Location = new System.Drawing.Point(0, 0);
             this.pnlTopBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlTopBar.Name = "pnlTopBar";
+            this.pnlTopBar.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.pnlTopBar.Size = new System.Drawing.Size(1470, 108);
             this.pnlTopBar.TabIndex = 0;
             // 
@@ -545,7 +546,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(683, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(787, 108);
+            this.panel1.Size = new System.Drawing.Size(787, 106);
             this.panel1.TabIndex = 1;
             // 
             // pnlGreeting

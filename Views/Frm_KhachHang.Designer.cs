@@ -281,18 +281,18 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.guna2Separator1.FillColor = System.Drawing.Color.WhiteSmoke;
             this.guna2Separator1.FillThickness = 2;
-            this.guna2Separator1.Location = new System.Drawing.Point(22, 482);
+            this.guna2Separator1.Location = new System.Drawing.Point(23, 468);
             this.guna2Separator1.Name = "guna2Separator1";
-            this.guna2Separator1.Size = new System.Drawing.Size(363, 41);
+            this.guna2Separator1.Size = new System.Drawing.Size(363, 51);
             this.guna2Separator1.TabIndex = 23;
             // 
             // guna2Separator2
             // 
             this.guna2Separator2.FillColor = System.Drawing.Color.WhiteSmoke;
             this.guna2Separator2.FillThickness = 2;
-            this.guna2Separator2.Location = new System.Drawing.Point(22, 381);
+            this.guna2Separator2.Location = new System.Drawing.Point(23, 362);
             this.guna2Separator2.Name = "guna2Separator2";
-            this.guna2Separator2.Size = new System.Drawing.Size(363, 44);
+            this.guna2Separator2.Size = new System.Drawing.Size(363, 59);
             this.guna2Separator2.TabIndex = 22;
             // 
             // btnXoa
@@ -309,7 +309,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnXoa.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnXoa.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.icons8_trash_100;
             this.btnXoa.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnXoa.Location = new System.Drawing.Point(304, 431);
+            this.btnXoa.Location = new System.Drawing.Point(305, 417);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnXoa.Size = new System.Drawing.Size(81, 45);
@@ -331,7 +331,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnLamMoi.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnLamMoi.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.icons8_refresh_100;
             this.btnLamMoi.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnLamMoi.Location = new System.Drawing.Point(249, 529);
+            this.btnLamMoi.Location = new System.Drawing.Point(250, 525);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnLamMoi.Size = new System.Drawing.Size(136, 45);
@@ -343,7 +343,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(18, 181);
+            this.label7.Location = new System.Drawing.Point(19, 162);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(110, 21);
             this.label7.TabIndex = 15;
@@ -353,7 +353,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 96);
+            this.label3.Location = new System.Drawing.Point(19, 77);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 21);
             this.label3.TabIndex = 14;
@@ -373,7 +373,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnSua.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnSua.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.icons8_edit_1001;
             this.btnSua.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnSua.Location = new System.Drawing.Point(162, 431);
+            this.btnSua.Location = new System.Drawing.Point(157, 417);
             this.btnSua.Name = "btnSua";
             this.btnSua.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnSua.Size = new System.Drawing.Size(88, 45);
@@ -385,7 +385,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(18, 263);
+            this.label2.Location = new System.Drawing.Point(19, 244);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 21);
             this.label2.TabIndex = 13;
@@ -406,7 +406,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnThem.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnThem.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.icons8_add_100;
             this.btnThem.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnThem.Location = new System.Drawing.Point(22, 431);
+            this.btnThem.Location = new System.Drawing.Point(18, 417);
             this.btnThem.Name = "btnThem";
             this.btnThem.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnThem.Size = new System.Drawing.Size(93, 45);
@@ -423,7 +423,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtDiaChi.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtDiaChi.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtDiaChi.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
-            this.txtDiaChi.Location = new System.Drawing.Point(22, 289);
+            this.txtDiaChi.Location = new System.Drawing.Point(23, 270);
             this.txtDiaChi.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDiaChi.Multiline = true;
             this.txtDiaChi.Name = "txtDiaChi";
@@ -441,7 +441,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtSĐT.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtSĐT.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSĐT.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
-            this.txtSĐT.Location = new System.Drawing.Point(22, 207);
+            this.txtSĐT.Location = new System.Drawing.Point(23, 188);
             this.txtSĐT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSĐT.Name = "txtSĐT";
             this.txtSĐT.PlaceholderText = "Nhập số điện thoại...";
@@ -458,7 +458,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtTenKH.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtTenKH.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTenKH.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
-            this.txtTenKH.Location = new System.Drawing.Point(22, 122);
+            this.txtTenKH.Location = new System.Drawing.Point(23, 103);
             this.txtTenKH.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTenKH.Name = "txtTenKH";
             this.txtTenKH.PlaceholderText = "Nhập tên khách hàng...";

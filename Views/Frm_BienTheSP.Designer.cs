@@ -317,7 +317,7 @@
             this.cboDonViTinh.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.cboDonViTinh.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboDonViTinh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cboDonViTinh.HoverState.FillColor = System.Drawing.Color.SteelBlue;
+            this.cboDonViTinh.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.cboDonViTinh.ItemHeight = 30;
             this.cboDonViTinh.Location = new System.Drawing.Point(264, 98);
             this.cboDonViTinh.Name = "cboDonViTinh";

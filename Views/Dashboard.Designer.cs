@@ -54,6 +54,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanelSummary.SuspendLayout();
@@ -69,6 +70,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
+            this.guna2Panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -390,16 +392,28 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             // 
             // guna2Panel4
             // 
-            this.guna2Panel4.BackColor = System.Drawing.Color.White;
+            this.guna2Panel4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.guna2Panel4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.guna2Panel4.BorderThickness = 1;
-            this.guna2Panel4.Controls.Add(this.chart1);
+            this.guna2Panel4.Controls.Add(this.guna2Panel5);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel4.Location = new System.Drawing.Point(3, 3);
             this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.Padding = new System.Windows.Forms.Padding(1);
+            this.guna2Panel4.Padding = new System.Windows.Forms.Padding(7, 7, 0, 7);
             this.guna2Panel4.Size = new System.Drawing.Size(1046, 553);
             this.guna2Panel4.TabIndex = 2;
+            // 
+            // guna2Panel5
+            // 
+            this.guna2Panel5.BackColor = System.Drawing.Color.White;
+            this.guna2Panel5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.guna2Panel5.BorderThickness = 1;
+            this.guna2Panel5.Controls.Add(this.chart1);
+            this.guna2Panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Panel5.Location = new System.Drawing.Point(7, 7);
+            this.guna2Panel5.Name = "guna2Panel5";
+            this.guna2Panel5.Padding = new System.Windows.Forms.Padding(1);
+            this.guna2Panel5.Size = new System.Drawing.Size(1039, 539);
+            this.guna2Panel5.TabIndex = 3;
             // 
             // chart1
             // 
@@ -416,9 +430,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1044, 551);
+            this.chart1.Size = new System.Drawing.Size(1037, 537);
             this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.chart1.Text = "chart2";
             // 
             // Dashboard
             // 
@@ -449,6 +463,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel2.PerformLayout();
             this.guna2Panel4.ResumeLayout(false);
+            this.guna2Panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
@@ -460,7 +475,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -483,5 +497,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblThongBao;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
