@@ -40,6 +40,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 TenBienThe = $"{x.Unit} - {x.Concentration}"
             }).ToList();
 
+            _dsBind.Insert(0, new BienTheItem { VariantID = -1, TenBienThe = "-- Chọn biến thể --" });
+
             txtSoLuong.KeyPress += (s, ev) => {
                 if (!char.IsDigit(ev.KeyChar) && ev.KeyChar != '\b')
                 {
@@ -69,14 +71,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
             {
                 if (cboBienThe.SelectedItem == null) return;
 
-                // ✅ Cast thẳng sang BienTheItem
                 BienTheItem selected = (BienTheItem)cboBienThe.SelectedItem;
                 ProductVariant bienThe = _dsBienThe.FirstOrDefault(x => x.VariantID == selected.VariantID);
 
                 if (bienThe == null) return;
 
-                lblGiaSi.Text = $"Giá bán sỉ: {bienThe.WholesalePrice:N0} đ";
-                lblGiaLe.Text = $"Giá bán lẻ: {bienThe.RetailPrice:N0} đ";
+                lblGiaSi.Text = $"Giá bán sỉ: {bienThe.WholesalePrice:N0}đ";
+                lblGiaLe.Text = $"Giá bán lẻ: {bienThe.RetailPrice:N0}đ";
             }
             catch (Exception ex)
             {
@@ -86,6 +87,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void btnXacNhan1_Click(object sender, EventArgs e)
         {
+            BienTheItem selected = (BienTheItem)cboBienThe.SelectedItem;
+            if (selected == null || selected.VariantID == -1)
+            {
+                MessageBox.Show("Vui lòng chọn biến thể!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             decimal donGiaNhap;
             if (!decimal.TryParse(txtDonGia.Text.Trim(), out donGiaNhap))
             {
@@ -93,8 +101,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 return;
             }
 
-            // ✅ Cast thẳng sang BienTheItem
-            BienTheItem selected = (BienTheItem)cboBienThe.SelectedItem;
             ProductVariant bienThe = _dsBienThe.FirstOrDefault(x => x.VariantID == selected.VariantID);
 
             if (bienThe == null) return;
@@ -126,12 +132,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.Close();
         }
 
-        private void lblGBL_Click(object sender, EventArgs e) { }
-
         private void btnHuy_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();

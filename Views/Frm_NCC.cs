@@ -1,5 +1,6 @@
 using QL_CuaHangBanThuocTruSau.Controllers;
 using QL_CuaHangBanThuocTruSau.Models;
+using QL_CuaHangBanThuocTruSau.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -175,6 +176,29 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     catch (Exception ex)
                     {
                         MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void btnXuatReport_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "PDF Files|*.pdf";
+                sfd.FileName = $"BaoCaoNhaCungCap_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        var danhSach = controller.LayDanhSach();
+                        ReportHelper.XuatReportNhaCungCap(danhSach, sfd.FileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi: " + ex.Message, "Lỗi",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

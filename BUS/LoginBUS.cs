@@ -10,9 +10,6 @@ namespace QL_CuaHangBanThuocTruSau.BUS {
             _loginDAO = new LoginDAO ();
         }
 
-        /// <summary>
-        /// Nghiệp vụ xác thực người dùng
-        /// </summary>
         public string Authenticate (string username, string password) 
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))

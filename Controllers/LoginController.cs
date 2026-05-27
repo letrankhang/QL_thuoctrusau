@@ -12,12 +12,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             _loginDAO = new LoginDAO();
         }
 
-        /// <summary>
-        /// Xử lý logic đăng nhập từ View
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns>Chuỗi thông báo kết quả (SUCCESS nếu thành công)</returns>
         public string HandleLogin (string username, string password) 
         {
             if (string.IsNullOrWhiteSpace(username))

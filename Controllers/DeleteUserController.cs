@@ -8,9 +8,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             _userBUS = new UserBUS ();
         }
 
-        /// <summary>
-        /// Xử lý xóa mềm người dùng (Vô hiệu hóa)
-        /// </summary>
         public string HandleSoftDelete (int userId) {
             bool result = _userBUS.DeleteUser (userId);
             if( result )
@@ -20,9 +17,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             return "Vô hiệu hóa người dùng thất bại! Có thể bạn đang cố gắng vô hiệu hóa chính mình.";
         }
 
-        /// <summary>
-        /// Xóa vĩnh viễn người dùng
-        /// </summary>
         public string HandleHardDelete (int userId) {
             bool result = _userBUS.HardDeleteUser (userId);
             if( result )

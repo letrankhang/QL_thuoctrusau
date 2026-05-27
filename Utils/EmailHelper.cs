@@ -4,19 +4,11 @@ using System.Net.Mail;
 
 namespace QL_CuaHangBanThuocTruSau.Utils {
     public static class EmailHelper {
-        // Thông tin cấu hình SMTP (Cần được bảo mật và cấu hình chính xác)
-        // Lưu ý: Đối với Gmail, bạn cần sử dụng "App Password" (Mật khẩu ứng dụng)
         private const string Host = "smtp.gmail.com";
         private const int Port = 587;
-        private const string FromEmail = "ttrankhang2405@gmail.com"; // Thay bằng email của bạn
-        private const string AppPassword = "ozwm cird dacd xtgo"; // Thay bằng mật khẩu ứng dụng của bạn
+        private const string FromEmail = "ttrankhang2405@gmail.com"; // Thay bằng email
+        private const string AppPassword = "ozwm cird dacd xtgo"; // Thay bằng mật khẩu ứng dụng 
 
-        /// <summary>
-        /// Gửi mã xác thực qua Email
-        /// </summary>
-        /// <param name="toEmail">Email người nhận</param>
-        /// <param name="code">Mã xác thực (OTP)</param>
-        /// <returns>True nếu gửi thành công, False nếu thất bại</returns>
         public static bool SendVerificationCode (string toEmail, string code) {
             try
             {

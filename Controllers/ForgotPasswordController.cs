@@ -14,9 +14,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             _userBUS = new UserBUS ();
         }
 
-        /// <summary>
-        /// Bước 1: Xác định người dùng qua Email hoặc Username
-        /// </summary>
         public string IdentifyUser (string identifier) {
             if( string.IsNullOrWhiteSpace (identifier) )
                 return "Vui lòng nhập Email hoặc Tên tài khoản!";
@@ -55,16 +52,10 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
 
         public string GetSimulatedCode() => _verificationCode;
 
-        /// <summary>
-        /// Bước 2: Xác thực mã OTP
-        /// </summary>
         public bool VerifyCode (string inputCode) {
             return inputCode == _verificationCode;
         }
 
-        /// <summary>
-        /// Bước 3: Đặt lại mật khẩu mới
-        /// </summary>
         public string ResetPassword (string newPassword, string confirmPassword) {
             if( string.IsNullOrWhiteSpace (newPassword) )
                 return "Mật khẩu mới không được để trống!";

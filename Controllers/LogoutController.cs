@@ -9,17 +9,13 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             _logoutBUS = new LogoutBUS ();
         }
 
-        /// <summary>
-        /// Xử lý logic đăng xuất
-        /// </summary>
-        /// <returns>True nếu đăng xuất thành công</returns>
         public bool HandleLogout () {
-            // 1. Gọi BUS nếu cần xử lý nghiệp vụ (ví dụ: ghi log thời gian thoát)
+            // Gọi BUS nếu cần xử lý nghiệp vụ (ví dụ: ghi log thời gian thoát)
             bool businessResult = _logoutBUS.PerformLogoutBusiness ();
 
             if( businessResult )
             {
-                // 2. Xóa Session ứng dụng
+                // Xóa Session ứng dụng
                 SessionManager.ClearSession ();
                 return true;
             }

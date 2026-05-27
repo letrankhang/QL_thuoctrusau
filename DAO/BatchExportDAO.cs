@@ -6,9 +6,7 @@ using System.Linq;
 
 namespace QL_CuaHangBanThuocTruSau.DAO
 {
-    /// <summary>
-    /// DAO chuyên biệt cho các thao tác truy vấn phục vụ xuất bản/báo cáo Lô hàng
-    /// </summary>
+
     public class BatchExportDAO
     {
         private AppDbContext db = new AppDbContext();
@@ -20,6 +18,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO
                     join p in db.Products on pv.ProductID equals p.ProductID
                     join i in db.Imports on b.ImportID equals i.ImportID
                     join s in db.Suppliers on i.SupplierID equals s.SupplierID
+
                     select new BatchViewModel
                     {
                         BatchID = b.BatchID,
@@ -35,7 +34,5 @@ namespace QL_CuaHangBanThuocTruSau.DAO
                         HanSuDung = b.ExpiryDate
                     }).ToList();
         }
-
-        // Có thể thêm các query phức tạp khác phục vụ báo cáo tại đây
     }
 }

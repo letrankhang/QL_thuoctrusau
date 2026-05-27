@@ -16,6 +16,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO
                    join p in db.Products on pv.ProductID equals p.ProductID
                    join i in db.Imports on b.ImportID equals i.ImportID
                    join s in db.Suppliers on i.SupplierID equals s.SupplierID
+
                    select new BatchViewModel
                    {
                        BatchID = b.BatchID,

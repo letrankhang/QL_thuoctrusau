@@ -144,7 +144,7 @@
             this.label8.Location = new System.Drawing.Point(10, 10);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(297, 30);
+            this.label8.Size = new System.Drawing.Size(309, 31);
             this.label8.TabIndex = 7;
             this.label8.Text = "Thông tin chi tiết cần nhập ";
             // 
@@ -272,10 +272,9 @@
             this.lblGiaSi.Font = new System.Drawing.Font("Segoe UI Semibold", 12.10619F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGiaSi.Location = new System.Drawing.Point(318, 69);
             this.lblGiaSi.Name = "lblGiaSi";
-            this.lblGiaSi.Size = new System.Drawing.Size(76, 25);
+            this.lblGiaSi.Size = new System.Drawing.Size(128, 25);
             this.lblGiaSi.TabIndex = 36;
-            this.lblGiaSi.Text = "lblGiaSi";
-            this.lblGiaSi.Click += new System.EventHandler(this.lblGBL_Click);
+            this.lblGiaSi.Text = "Giá bán sỉ: 0đ";
             // 
             // lblGiaLe
             // 
@@ -283,9 +282,9 @@
             this.lblGiaLe.Font = new System.Drawing.Font("Segoe UI Semibold", 12.10619F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGiaLe.Location = new System.Drawing.Point(318, 103);
             this.lblGiaLe.Name = "lblGiaLe";
-            this.lblGiaLe.Size = new System.Drawing.Size(80, 25);
+            this.lblGiaLe.Size = new System.Drawing.Size(130, 25);
             this.lblGiaLe.TabIndex = 37;
-            this.lblGiaLe.Text = "lblGiaLe";
+            this.lblGiaLe.Text = "Giá bán lẻ: 0đ";
             // 
             // cboBienThe
             // 

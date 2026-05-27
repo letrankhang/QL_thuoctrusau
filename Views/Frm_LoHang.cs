@@ -2,6 +2,7 @@ using Guna.UI2.WinForms;
 using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Controllers;
 using QL_CuaHangBanThuocTruSau.Models;
+using QL_CuaHangBanThuocTruSau.Utils;
 using QL_CuaHangBanThuocTruSau.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -275,12 +276,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             lblHSD.Text = "...";
             btnTrangThai.Visible = false;
         }
-
-        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void dgvLoHang_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgvLoHang.Columns[e.ColumnIndex].Name != "colTrangThai")
@@ -312,6 +307,34 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     e.CellStyle.ForeColor = ColorTranslator.FromHtml("#721C24");
                     e.CellStyle.Font = semibold;
                     break;
+            }
+        }
+
+        private void btnXuatReport_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "PDF Files|*.pdf";
+                sfd.FileName = $"BaoCaoLoHang_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        int productID = ((Product)cboLocTheoSP.SelectedItem).ProductID;
+                        int supplierID = ((Supplier)cboLocTheoNCC.SelectedItem).SupplierID;
+
+                        List<BatchViewModel> danhSach = controller.layDanhSachTheoFilter(
+                            productID, supplierID, trangThaiDangChon);
+
+                        ReportHelper.XuatReportLoHang(danhSach, sfd.FileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Có lỗi xảy ra khi xuất report: " + ex.Message,
+                            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }

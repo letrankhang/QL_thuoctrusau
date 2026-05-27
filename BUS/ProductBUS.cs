@@ -10,7 +10,6 @@ namespace QL_CuaHangBanThuocTruSau.BUS
     using QL_CuaHangBanThuocTruSau.DAO;
     using QL_CuaHangBanThuocTruSau.Models;
     using QL_CuaHangBanThuocTruSau.Context;
-    using System.Security.Cryptography;
 
     public class ProductBUS
     {
@@ -23,7 +22,6 @@ namespace QL_CuaHangBanThuocTruSau.BUS
             try
             {
                 var list = variantDao.layTatCa();
-                // Load navigation property Product manually if not included
                 foreach (var item in list)
                 {
                     if (item.Product == null)

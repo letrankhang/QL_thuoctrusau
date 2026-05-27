@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnXuatReport = new Guna.UI2.WinForms.Guna2Button();
             this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
-            this.btnNhapExcel = new Guna.UI2.WinForms.Guna2Button();
             this.btnThem = new Guna.UI2.WinForms.Guna2Button();
             this.btnXuatExcel = new Guna.UI2.WinForms.Guna2Button();
             this.btnXoa = new Guna.UI2.WinForms.Guna2Button();
@@ -114,7 +113,6 @@
             this.guna2Panel3.BorderThickness = 1;
             this.guna2Panel3.Controls.Add(this.btnXuatReport);
             this.guna2Panel3.Controls.Add(this.guna2VSeparator1);
-            this.guna2Panel3.Controls.Add(this.btnNhapExcel);
             this.guna2Panel3.Controls.Add(this.btnThem);
             this.guna2Panel3.Controls.Add(this.btnXuatExcel);
             this.guna2Panel3.Controls.Add(this.btnXoa);
@@ -141,43 +139,22 @@
             this.btnXuatReport.HoverState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnXuatReport.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.printer;
             this.btnXuatReport.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnXuatReport.Location = new System.Drawing.Point(660, 65);
+            this.btnXuatReport.Location = new System.Drawing.Point(650, 65);
             this.btnXuatReport.Name = "btnXuatReport";
             this.btnXuatReport.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnXuatReport.Size = new System.Drawing.Size(158, 45);
             this.btnXuatReport.TabIndex = 16;
             this.btnXuatReport.Text = "Xuất Report";
+            this.btnXuatReport.Click += new System.EventHandler(this.btnXuatReport_Click);
             // 
             // guna2VSeparator1
             // 
             this.guna2VSeparator1.FillColor = System.Drawing.Color.WhiteSmoke;
             this.guna2VSeparator1.FillThickness = 2;
-            this.guna2VSeparator1.Location = new System.Drawing.Point(313, 55);
+            this.guna2VSeparator1.Location = new System.Drawing.Point(418, 55);
             this.guna2VSeparator1.Name = "guna2VSeparator1";
-            this.guna2VSeparator1.Size = new System.Drawing.Size(28, 65);
+            this.guna2VSeparator1.Size = new System.Drawing.Size(56, 65);
             this.guna2VSeparator1.TabIndex = 13;
-            // 
-            // btnNhapExcel
-            // 
-            this.btnNhapExcel.BorderRadius = 7;
-            this.btnNhapExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNhapExcel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnNhapExcel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnNhapExcel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnNhapExcel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnNhapExcel.FillColor = System.Drawing.Color.White;
-            this.btnNhapExcel.Font = new System.Drawing.Font("Segoe UI", 12.10619F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNhapExcel.ForeColor = System.Drawing.Color.Black;
-            this.btnNhapExcel.HoverState.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.btnNhapExcel.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.xls_file;
-            this.btnNhapExcel.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnNhapExcel.Location = new System.Drawing.Point(347, 65);
-            this.btnNhapExcel.Name = "btnNhapExcel";
-            this.btnNhapExcel.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnNhapExcel.Size = new System.Drawing.Size(143, 45);
-            this.btnNhapExcel.TabIndex = 15;
-            this.btnNhapExcel.Text = "Nhập Excel";
-            this.btnNhapExcel.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             // 
             // btnThem
             // 
@@ -193,7 +170,7 @@
             this.btnThem.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnThem.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.icons8_add_100;
             this.btnThem.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnThem.Location = new System.Drawing.Point(12, 65);
+            this.btnThem.Location = new System.Drawing.Point(22, 65);
             this.btnThem.Name = "btnThem";
             this.btnThem.PressedColor = System.Drawing.SystemColors.ActiveBorder;
             this.btnThem.Size = new System.Drawing.Size(93, 45);
@@ -215,7 +192,7 @@
             this.btnXuatExcel.HoverState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnXuatExcel.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.xlsx;
             this.btnXuatExcel.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnXuatExcel.Location = new System.Drawing.Point(506, 65);
+            this.btnXuatExcel.Location = new System.Drawing.Point(491, 65);
             this.btnXuatExcel.Name = "btnXuatExcel";
             this.btnXuatExcel.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnXuatExcel.Size = new System.Drawing.Size(137, 45);
@@ -237,7 +214,7 @@
             this.btnXoa.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnXoa.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.icons8_trash_100;
             this.btnXoa.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnXoa.Location = new System.Drawing.Point(226, 65);
+            this.btnXoa.Location = new System.Drawing.Point(301, 65);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnXoa.Size = new System.Drawing.Size(81, 45);
@@ -259,7 +236,7 @@
             this.btnSua.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.btnSua.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.icons8_edit_1001;
             this.btnSua.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnSua.Location = new System.Drawing.Point(122, 65);
+            this.btnSua.Location = new System.Drawing.Point(160, 65);
             this.btnSua.Name = "btnSua";
             this.btnSua.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnSua.Size = new System.Drawing.Size(82, 45);
@@ -442,18 +419,18 @@
             // 
             this.dgvNCC.AllowUserToResizeColumns = false;
             this.dgvNCC.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvNCC.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dgvNCC.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvNCC.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvNCC.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNCC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNCC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvNCC.ColumnHeadersHeight = 35;
             this.dgvNCC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -461,14 +438,14 @@
             this.Column3,
             this.Column4,
             this.colNgayTao});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.83186F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvNCC.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 10.83186F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvNCC.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvNCC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvNCC.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.dgvNCC.Location = new System.Drawing.Point(0, 0);
@@ -507,8 +484,8 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "SupplierID";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle9;
             this.Column1.FillWeight = 70F;
             this.Column1.HeaderText = "Mã nhà cung cấp";
             this.Column1.MinimumWidth = 6;
@@ -526,8 +503,8 @@
             // Column3
             // 
             this.Column3.DataPropertyName = "Phone";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column3.FillWeight = 60F;
             this.Column3.HeaderText = "Số điện thoại";
             this.Column3.MinimumWidth = 6;
@@ -546,8 +523,8 @@
             // colNgayTao
             // 
             this.colNgayTao.DataPropertyName = "CreatedAt";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colNgayTao.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colNgayTao.DefaultCellStyle = dataGridViewCellStyle11;
             this.colNgayTao.FillWeight = 70F;
             this.colNgayTao.HeaderText = "Ngày tạo";
             this.colNgayTao.MinimumWidth = 6;
@@ -709,7 +686,6 @@
         private Guna.UI2.WinForms.Guna2DataGridView dgvNCC;
         private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
         private Guna.UI2.WinForms.Guna2Button btnXuatExcel;
-        private Guna.UI2.WinForms.Guna2Button btnNhapExcel;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel9;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel10;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;

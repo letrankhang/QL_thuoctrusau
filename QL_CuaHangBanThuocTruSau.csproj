@@ -248,6 +248,7 @@
     <Compile Include="Utils\OperationResult.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\InvoicePrinter.cs" />
+    <Compile Include="Utils\ReportHelper.cs" />
     <Compile Include="ViewModels\BatchViewModel.cs" />
     <Compile Include="ViewModels\CongNoViewModel.cs" />
     <Compile Include="Views\Dashboard.cs">

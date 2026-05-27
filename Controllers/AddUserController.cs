@@ -9,10 +9,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             _userBUS = new UserBUS ();
         }
 
-        /// <summary>
-        /// Xử lý thêm người dùng mới từ View
-        /// </summary>
-        /// <returns>Thông báo kết quả</returns>
         public string HandleAddUser (string username, string password, string fullName, string email, string role) {
             // 1. Kiểm tra ràng buộc dữ liệu cơ bản ở mức Controller
             if( string.IsNullOrWhiteSpace (username) )

@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Wordprocessing;
 using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Models;
+using QL_CuaHangBanThuocTruSau.Utils;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -47,6 +48,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             try
             {
                 var ds = khachHangBus.layDanhSach();
+                _danhSachGoc = ds;
                 dgvKhachHang.DataSource = ds;
                 lblTongKhachHang.Text = ds.Count.ToString();
             }
@@ -56,10 +58,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             }
         }
 
-        // --- HÀM HỖ TRỢ: KIỂM TRA DỮ LIỆU ĐẦU VÀO ---
         private bool KiemTraHopLe()
         {
-            // 1. Kiểm tra không được để trống bất kỳ trường nào
+            // Kiểm tra không được để trống bất kỳ trường nào
             if (string.IsNullOrWhiteSpace(txtTenKH.Text) ||
                 string.IsNullOrWhiteSpace(txtSĐT.Text) ||
                 string.IsNullOrWhiteSpace(txtDiaChi.Text))
@@ -68,7 +69,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 return false;
             }
 
-            // 2. Kiểm tra định dạng số điện thoại (Bắt buộc 10 số và bắt đầu bằng số 0)
+            // Kiểm tra định dạng số điện thoại (Bắt buộc 10 số và bắt đầu bằng số 0)
             // Ký hiệu Regex: ^0 là bắt đầu bằng 0, \d{9} là theo sau bởi đúng 9 chữ số, $ là kết thúc chuỗi
             Regex regexPhone = new Regex(@"^0\d{9}$");
             if (!regexPhone.IsMatch(txtSĐT.Text.Trim()))
@@ -286,6 +287,34 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dgvKhachHang.DataSource = ketQua;
             lblTongKhachHang.Text = ketQua.Count.ToString();
             lblDangChon.Text = "Lọc: " + tuNgay.ToString("dd/MM/yyyy") + " → " + denNgay.ToString("dd/MM/yyyy") + " (" + ketQua.Count + " KH)";
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Excel Workbook|*.xlsx";
+                sfd.FileName = $"DanhSachKhachHang_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    var danhSach = khachHangBus.layDanhSach();
+                    ExcelHelper.XuatExcelKhachHang(danhSach, sfd.FileName);
+                }
+            }
+        }
+
+        private void btnXuatReport_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "PDF Files|*.pdf";
+                sfd.FileName = $"BaoCaoKhachHang_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    var danhSach = khachHangBus.layDanhSach();
+                    ReportHelper.XuatReportKhachHang(danhSach, sfd.FileName);
+                }
+            }
         }
     }
 }

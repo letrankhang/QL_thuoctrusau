@@ -58,23 +58,12 @@ namespace QL_CuaHangBanThuocTruSau.DAO
         public List<Order> GetOrdersByCustomer(int customerId)
         {
             List<Order> list = new List<Order>();
-            // Thay đổi chuỗi kết nối và câu lệnh SQL tùy theo cấu trúc DB của bạn
-            // string sql = "SELECT * FROM Orders WHERE CustomerID = @CustomerId ORDER BY OrderDate DESC";
-
-            // Giả sử bạn có class DBHelper hoặc dùng SqlConnection trực tiếp
-            // var parameters = new { CustomerId = customerId };
-            // Ở đây tôi viết logic giả định, bạn hãy áp dụng theo cách project bạn đang thực thi truy vấn
-            // list = DataProvider.Instance.ExecuteQuery(sql, parameters); 
-
             return list;
         }
 
         public List<OrderDetail> GetDetailsByOrderId(int orderId)
         {
             List<OrderDetail> list = new List<OrderDetail>();
-            // string sql = "SELECT * FROM OrderDetails WHERE OrderID = @OrderId";
-
-            // Truy vấn dữ liệu từ bảng OrderDetails
             return list;
         }
         public bool CreateOrder(Order order, List<OrderDetail> details, decimal paidAmount)

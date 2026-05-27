@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using Guna.UI2.WinForms;
+using Microsoft.VisualBasic;
 using QL_CuaHangBanThuocTruSau.Context;
 using QL_CuaHangBanThuocTruSau.Models;
 using System;
@@ -145,8 +146,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dgvCongNo.DataBindingComplete += (s, e) => ToMauDong();
         }
 
-        // ===================== LOAD =====================
-
         private void Frm_CongNo_Load(object sender, EventArgs e)
         {
             StyleDgv(dgvCongNo);
@@ -179,8 +178,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             LoadData();
             CanhBaoNoQuaHan();
         }
-
-        // ===================== LOAD CUSTOMERS + SUPPLIERS =====================
 
         private void LoadCustomers()
         {
@@ -226,7 +223,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     DateTime tuNgay = dtpTuNgay.Value.Date;
                     DateTime denNgay = dtpDenNgay.Value.Date.AddDays(1);
 
-                    // ── LẤY TẤT CẢ CÁC GIAO DỊCH GỐC (SALE/PURCHASE/DEBT) ──
                     var baseTransactions = db.DebtTransactions
                         .Include(d => d.Customer)
                         .Include(d => d.Supplier)
@@ -330,8 +326,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             }
         }
 
-        // ===================== TÔ MÀU =====================
-
         private void ToMauDong()
         {
             foreach (DataGridViewRow r in dgvCongNo.Rows)
@@ -404,8 +398,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             }
         }
 
-        // ===================== PAGING =====================
-
         private void UpdatePagingInfo()
         {
             int start = _totalRows == 0 ? 0 : (_currentPage - 1) * _pageSize + 1;
@@ -444,8 +436,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             }
         }
 
-        // ===================== FILTER EVENTS =====================
-
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
             if (!isLoaded) return;
@@ -460,16 +450,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
             LoadData();
         }
 
-        // ===================== THU NỢ =====================
-
         private void btnThuNo_Click(object sender, EventArgs e)
         {
             try
             {
                 if (dgvCongNo.CurrentRow == null)
                 {
-                    MessageBox.Show("Vui lòng chọn một dòng để thu/trả nợ.", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Vui lòng chọn một dòng để thu/trả nợ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -480,35 +467,134 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
                 if (remaining <= 0)
                 {
-                    MessageBox.Show("Khoản nợ này đã thanh toán đủ.", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Khoản nợ này đã thanh toán đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
                 string hanhDong = loaiNo == "Khách hàng" ? "Thu nợ" : "Trả nợ";
+                decimal soTienThu = 0;
 
-                string input = Interaction.InputBox(
-                    $"Loại nợ:      {loaiNo}\n" +
-                    $"Đối tác:      {partnerName}\n" +
-                    $"Còn phải thu: {remaining:N0} đ\n\n" +
-                    $"Nhập số tiền {hanhDong.ToLower()}:",
-                    hanhDong, remaining.ToString());
-
-                if (string.IsNullOrWhiteSpace(input)) return;
-
-                if (!decimal.TryParse(input, out decimal soTienThu) || soTienThu <= 0)
+                Form frmInput = new Form
                 {
-                    MessageBox.Show("Số tiền không hợp lệ.", "Lỗi",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    Width = 400,
+                    Height = 274,
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    Text = hanhDong,
+                    StartPosition = FormStartPosition.CenterParent,
+                    MaximizeBox = false,
+                    MinimizeBox = false,
+                    BackColor = Color.White,
+                    Font = new Font("Segoe UI", 10)
+                };
 
-                if (soTienThu > remaining)
+                Label lblConLai = new Label
                 {
-                    MessageBox.Show($"Số tiền ({soTienThu:N0}) vượt quá số còn nợ ({remaining:N0}).", "Lỗi",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    Left = 20,
+                    Top = 13,
+                    Width = 345,
+                    Height = 30,
+                    Text = $"Còn phải {(loaiNo == "Khách hàng" ? "thu" : "trả")}: {remaining:N0} VNĐ",
+                    Font = new Font("Segoe UI", 13, FontStyle.Bold),
+                    ForeColor = Color.FromArgb(70, 130, 180)
+                };
+
+                Label lblLoaiNo = new Label
+                {
+                    Left = 20,
+                    Top = 50,
+                    Width = 345,
+                    Height = 20,
+                    Text = "Loại nợ: " + loaiNo,
+                    ForeColor = Color.FromArgb(60, 60, 60)
+                };
+
+                Label lblDoiTac = new Label
+                {
+                    Left = 20,
+                    Top = 73,  // 50 + 23
+                    Width = 345,
+                    Height = 20,
+                    Text = "Đối tác: " + partnerName,
+                    ForeColor = Color.FromArgb(60, 60, 60)
+                };
+
+                Label lblNhap = new Label
+                {
+                    Left = 20,
+                    Top = 100,  // 75 + 23
+                    Width = 345,
+                    Height = 20,
+                    Text = "Số tiền " + hanhDong.ToLower() + ":",
+                    ForeColor = Color.FromArgb(60, 60, 60)
+                };
+
+                Guna.UI2.WinForms.Guna2TextBox txtTien = new Guna.UI2.WinForms.Guna2TextBox
+                {
+                    Left = 15,
+                    Top = 96,
+                    Width = 248,
+                    Height = 24,
+                    Text = remaining.ToString("0"),
+                    Font = new Font("Segoe UI", 12),
+                    BorderColor = Color.FromArgb(200, 200, 200),
+                    BorderRadius = 6
+                };
+                txtTien.KeyPress += (s, ev) =>
+                {
+                    if (!char.IsDigit(ev.KeyChar) && ev.KeyChar != '\b')
+                        ev.Handled = true;
+                };
+
+                Guna.UI2.WinForms.Guna2Button btnOK = new Guna.UI2.WinForms.Guna2Button
+                {
+                    Text = "Xác nhận",
+                    Left = 20,
+                    Top = 172,
+                    Width = 164,
+                    Height = 40,
+                    FillColor = Color.FromArgb(70, 130, 180),
+                    ForeColor = Color.White,
+                    BorderRadius = 6,
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold)
+                };
+
+                Guna.UI2.WinForms.Guna2Button btnCancel = new Guna.UI2.WinForms.Guna2Button
+                {
+                    Text = "Hủy",
+                    Left = 199,
+                    Top = 172,
+                    Width = 164,
+                    Height = 40,
+                    FillColor = Color.FromArgb(224, 224, 224),
+                    ForeColor = Color.FromArgb(128, 128, 128),
+                    BorderRadius = 6,
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold)
+                };
+
+                btnOK.Click += (s, ev) =>
+                {
+                    string clean = txtTien.Text.Replace(",", "").Replace(".", "");
+                    if (!decimal.TryParse(clean, out decimal so) || so <= 0)
+                    {
+                        MessageBox.Show("Số tiền không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    if (so > remaining)
+                    {
+                        MessageBox.Show($"Số tiền ({so:N0}) vượt quá số còn nợ ({remaining:N0})!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    soTienThu = so;
+                    frmInput.DialogResult = DialogResult.OK;
+                    frmInput.Close();
+                };
+                btnCancel.Click += (s, ev) => frmInput.Close();
+
+                frmInput.Controls.AddRange(new Control[] { lblConLai, lblLoaiNo, lblDoiTac, lblNhap, txtTien, btnOK, btnCancel });
+                frmInput.AcceptButton = btnOK;
+                frmInput.CancelButton = btnCancel;
+
+                if (frmInput.ShowDialog() != DialogResult.OK) return;
 
                 using (var db = new AppDbContext())
                 {

@@ -31,7 +31,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 Font fontTitle = new Font(bf, 18, Font.BOLD, BaseColor.BLACK);
                 Font fontHeader = new Font(bf, 14, Font.BOLD);
 
-                // 1. Header Công ty
+                // Header Công ty
                 Paragraph headerCompany = new Paragraph("CỬA HÀNG BÁN THUỐC TRỪ SÂU K3G\nTrao chất lượng – Nhận niềm tin - Cho mùa vàng trĩu hạt", fontHeader);
                 headerCompany.Alignment = Element.ALIGN_CENTER;
                 document.Add(headerCompany);
@@ -42,7 +42,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
 
                 document.Add(new Paragraph("\n"));
 
-                // 2. Tiêu đề hóa đơn
+                // Tiêu đề hóa đơn
                 Paragraph title = new Paragraph("HOÁ ĐƠN BÁN HÀNG", fontTitle);
                 title.Alignment = Element.ALIGN_CENTER;
                 document.Add(title);
@@ -52,12 +52,12 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 document.Add(subTitle);
                 document.Add(new Paragraph("\n"));
 
-                // 3. Thông tin khách hàng
+                // Thông tin khách hàng
                 document.Add(new Paragraph($"Tên khách hàng: {order.Customer?.Name ?? "..................................................."}", fontNormal));
                 document.Add(new Paragraph($"Địa chỉ: {order.Customer?.Address ?? "..................................................."}", fontNormal));
                 document.Add(new Paragraph($"Điện thoại: {order.Customer?.Phone ?? "..................................................."}", fontNormal));
                 document.Add(new Paragraph("\n"));
-                // 4. Bảng danh sách sản phẩm
+                // Bảng danh sách sản phẩm
                 PdfPTable table = new PdfPTable(5);
                 table.WidthPercentage = 100;
                 table.SetWidths(new float[] { 10f, 40f, 15f, 15f, 20f });
@@ -145,12 +145,12 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 document.Add(table);
                 document.Add(new Paragraph("\n"));
 
-                // 5. Số tiền bằng chữ
+                // Số tiền bằng chữ
                 string amountInWords = NumberToWords(order.TotalAmount);
                 document.Add(new Paragraph($"Thành tiền viết bằng chữ: {amountInWords}.", fontItalic));
                 document.Add(new Paragraph("\n"));
 
-                // 6. Chữ ký
+                // Chữ ký
                 PdfPTable tableSign = new PdfPTable(2);
                 tableSign.WidthPercentage = 100;
                 tableSign.DefaultCell.Border = Rectangle.NO_BORDER;

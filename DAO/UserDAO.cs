@@ -3,7 +3,6 @@ using QL_CuaHangBanThuocTruSau.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.Entity;
 
 namespace QL_CuaHangBanThuocTruSau.DAO {
     public class UserDAO {
@@ -120,9 +119,6 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
             }
         }
 
-        /// <summary>
-        /// Cập nhật thông tin người dùng đã tồn tại
-        /// </summary>
         public bool UpdateUser (User user) {
             using (var context = new AppDbContext())
             {
@@ -157,9 +153,6 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
             }
         }
 
-        /// <summary>
-        /// Xóa mềm người dùng (Chuyển trạng thái Status sang false)
-        /// </summary>
         public bool DeleteUser (int userId) {
             using (var context = new AppDbContext())
             {
@@ -180,9 +173,6 @@ namespace QL_CuaHangBanThuocTruSau.DAO {
             }
         }
 
-        /// <summary>
-        /// Xóa vĩnh viễn người dùng khỏi database
-        /// </summary>
         public bool HardDeleteUser (int userId) {
             using (var context = new AppDbContext())
             {

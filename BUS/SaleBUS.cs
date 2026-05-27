@@ -43,15 +43,10 @@ namespace QL_CuaHangBanThuocTruSau.BUS
                 return Result<Order>.Failure("Lỗi lấy thông tin đơn hàng: " + ex.Message);
             }
         }
-
-        /// <summary>
-        /// Thực hiện thanh toán và lưu đơn hàng
-        /// </summary>
         public Result ProcessSale(Order order, List<OrderDetail> details, decimal paidAmount)
         {
             try
             {
-                // Validate dữ liệu cơ bản
                 if (order == null || details == null || details.Count == 0)
                 {
                     return Result.Failure("Dữ liệu đơn hàng hoặc chi tiết trống");

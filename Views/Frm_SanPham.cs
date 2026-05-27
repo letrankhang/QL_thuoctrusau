@@ -346,7 +346,25 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void btnXuatReport_Click(object sender, EventArgs e)
         {
-            //
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "PDF Files|*.pdf";
+                sfd.FileName = $"BaoCaoSanPham_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        var danhSach = controller.LayDanhSach();
+                        ReportHelper.XuatReportSanPham(danhSach, sfd.FileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi: " + ex.Message, "Lỗi",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void btnThemLoai_Click(object sender, EventArgs e)

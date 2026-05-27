@@ -132,7 +132,6 @@
             this.guna2Panel1.Padding = new System.Windows.Forms.Padding(10);
             this.guna2Panel1.Size = new System.Drawing.Size(1218, 186);
             this.guna2Panel1.TabIndex = 0;
-            this.guna2Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
             // 
             // guna2Panel11
             // 
@@ -177,6 +176,7 @@
             this.btnXuatReport.Size = new System.Drawing.Size(149, 45);
             this.btnXuatReport.TabIndex = 12;
             this.btnXuatReport.Text = "Xuất Report";
+            this.btnXuatReport.Click += new System.EventHandler(this.btnXuatReport_Click);
             // 
             // guna2Panel12
             // 
@@ -826,7 +826,7 @@
             this.dgvLoHang.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.19469F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;

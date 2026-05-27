@@ -445,9 +445,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             RefreshProductData();
         }
 
-        // =========================================================================
-        // HÀM MỚI: TẠO DIALOG NHẬP SỐ TIỀN KHÁCH TRẢ
-        // =========================================================================
         private decimal GetPaidAmountFromUser(decimal totalAmount)
         {
             decimal resultAmount = -1;
@@ -455,7 +452,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             Form prompt = new Form()
             {
                 Width = 400,
-                Height = 236, 
+                Height = 227, 
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 Text = "Thanh toán đơn hàng",
                 StartPosition = FormStartPosition.CenterParent,
@@ -504,7 +501,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             {
                 Text = "Xác nhận",
                 Left = 20,
-                Top = 128,
+                Top = 124,
                 Width = 165,
                 Height = 40,
                 FillColor = Color.FromArgb(70, 130, 180),
@@ -517,7 +514,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             {
                 Text = "Hủy",
                 Left = 200,
-                Top = 128,
+                Top = 124,
                 Width = 165,
                 Height = 40,
                 FillColor = Color.FromArgb(224, 224, 224),
@@ -586,14 +583,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     // 3. Xử lý trường hợp khách đưa dư (thối lại)
                     if (paidAmount > totalAmount)
                     {
-                        MessageBox.Show($"Khách đưa thừa: {(paidAmount - totalAmount):N0} VNĐ.\nVui lòng thối lại tiền thừa cho khách!", "Thông báo thối tiền", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"Khách đưa thừa: {(paidAmount - totalAmount):N0}đ.\nVui lòng thối lại tiền thừa cho khách!", "Thông báo thối tiền", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         paidAmount = totalAmount; // Chỉ ghi nhận trả tối đa bằng tổng tiền vào DataBase
                     }
                 }
                 else
                 {
-                    // Xử lý nút Lưu ghi nợ 100%
-                    if (MessageBox.Show($"Xác nhận lưu đơn GHI NỢ toàn bộ {totalAmount:N0} đ?", "Xác nhận", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+                    if (MessageBox.Show($"Xác nhận lưu đơn và ghi nợ toàn bộ {totalAmount:N0}đ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
                     paidAmount = 0;
                 }
 
@@ -616,7 +612,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     decimal debt = totalAmount - paidAmount;
                     string successMsg = (paidAmount >= totalAmount)
                                         ? "Thanh toán thành công!"
-                                        : $"Giao dịch thành công!\nKhách hàng đã thanh toán: {paidAmount:N0} đ\nĐược ghi nợ lại: {debt:N0} đ";
+                                        : $"Giao dịch thành công!\nKhách hàng đã thanh toán: {paidAmount:N0} đ\nĐược ghi nợ lại: {debt:N0}đ";
 
                     MessageBox.Show(successMsg, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearCart();

@@ -7,9 +7,6 @@ using System.Linq;
 
 namespace QL_CuaHangBanThuocTruSau.BUS
 {
-    /// <summary>
-    /// BUS điều phối nghiệp vụ xuất Excel cho Lô hàng
-    /// </summary>
     public class BatchExportBUS
     {
         private BatchExportDAO _exportDAO = new BatchExportDAO();

@@ -9,9 +9,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             _userBUS = new UserBUS ();
         }
 
-        /// <summary>
-        /// Xử lý cập nhật thông tin người dùng
-        /// </summary>
         public string HandleUpdateUser (int userId, string password, string fullName, string email, string role, bool status) {
             // 1. Validation
             if( string.IsNullOrWhiteSpace (fullName) )
