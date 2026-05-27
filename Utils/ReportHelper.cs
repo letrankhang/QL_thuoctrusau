@@ -48,8 +48,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 tieuDe.Alignment = Element.ALIGN_CENTER;
                 doc.Add(tieuDe);
 
-                Paragraph ngayXuat = new Paragraph(
-                    "Ngày xuất: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"), fontNgayXuat);
+                Paragraph ngayXuat = new Paragraph("Ngày xuất: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"), fontNgayXuat);
                 ngayXuat.Alignment = Element.ALIGN_RIGHT;
                 doc.Add(ngayXuat);
                 doc.Add(new Paragraph("\n"));

@@ -49,10 +49,12 @@ namespace QL_CuaHangBanThuocTruSau.DAO
         public dynamic GetNearingExpiryProducts(int days = 30)
         {
             var thresholdDate = DateTime.Today.AddDays(days);
-            var today = DateTime.Today;
+            var today = DateTime.Today; 
 
             var result = _context.Batches
-                .Where(b => b.ExpiryDate <= thresholdDate && b.RemainingQuantity > 0)
+                .Where(b => b.ExpiryDate >= today         
+                         && b.ExpiryDate <= thresholdDate   
+                         && b.RemainingQuantity > 0)
                 .OrderBy(b => b.ExpiryDate)
                 .Select(b => new {
                     ProductName = b.ProductVariant.Product.Name + " (" + b.ProductVariant.Unit + ")",

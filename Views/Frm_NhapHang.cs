@@ -418,18 +418,15 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                     var phieu = db.Imports.FirstOrDefault(x => x.ImportID == importID);
                     if (phieu == null)
                     {
-                        MessageBox.Show("Không tìm thấy phiếu nhập!", "Lỗi",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Không tìm thấy phiếu nhập!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     decimal tongTien = phieu.TotalAmount;
-
                     decimal daDaTra = db.DebtTransactions
                         .Where(x => x.ReferenceImportID == importID
                                  && x.TransactionType.ToLower() == "payment")
                         .Sum(x => (decimal?)x.Amount) ?? 0;
-
                     decimal conLai = tongTien - daDaTra;
 
                     if (conLai <= 0)
@@ -439,31 +436,123 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                         return;
                     }
 
-                    string input = Microsoft.VisualBasic.Interaction.InputBox(
-                        $"Nhà cung cấp:  {supplierName}\n" +
-                        $"Tổng tiền:     {tongTien:N0}đ\n" +
-                        $"Đã thanh toán: {daDaTra:N0}đ\n" +
-                        $"Còn lại:       {conLai:N0}đ\n\n" +
-                        "Nhập số tiền thanh toán:",
-                        "Thanh toán phiếu nhập",
-                        conLai.ToString());
+                    decimal soTienTra = -1;
 
-                    if (string.IsNullOrWhiteSpace(input)) return;
-
-                    if (!decimal.TryParse(input, out decimal soTienTra) || soTienTra <= 0)
+                    Form prompt = new Form
                     {
-                        MessageBox.Show("Số tiền không hợp lệ!", "Lỗi",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                        Width = 420,
+                        Height = 287,
+                        FormBorderStyle = FormBorderStyle.FixedDialog,
+                        Text = "Thanh toán phiếu nhập",
+                        StartPosition = FormStartPosition.CenterParent,
+                        MaximizeBox = false,
+                        MinimizeBox = false,
+                        BackColor = Color.White,
+                        Font = new Font("Segoe UI", 10)
+                    };
 
-                    if (soTienTra > conLai)
+                    Label lblSupplier = new Label
                     {
-                        MessageBox.Show(
-                            $"Số tiền nhập ({soTienTra:N0}đ) vượt quá số còn lại ({conLai:N0}đ)!",
-                            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        Left = 20,
+                        Top = 15,
+                        Width = 370,
+                        Height = 20,
+                        Text = $"Nhà cung cấp:  {supplierName}",
+                        Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                        ForeColor = Color.FromArgb(45, 55, 72)
+                    };
+
+                    Label lblInfo = new Label
+                    {
+                        Left = 20,
+                        Top = 42,
+                        Width = 370,
+                        Height = 60,
+                        Text = $"Tổng tiền:       {tongTien:N0}đ\n" +
+                               $"Đã thanh toán: {daDaTra:N0}đ\n" +
+                               $"Còn lại:           {conLai:N0}đ",
+                        Font = new Font("Segoe UI", 10),
+                        ForeColor = Color.FromArgb(60, 60, 60)
+                    };
+
+                    Label lblPrompt = new Label
+                    {
+                        Left = 20,
+                        Top = 112,
+                        Width = 370,
+                        Height = 20,
+                        Text = "Nhập số tiền thanh toán:",
+                        Font = new Font("Segoe UI", 10),
+                        ForeColor = Color.FromArgb(60, 60, 60)
+                    };
+
+                    var txtAmount = new Guna.UI2.WinForms.Guna2TextBox
+                    {
+                        Left = 15,
+                        Top = 105,
+                        Width = 263,
+                        Height = 24,
+                        Text = conLai.ToString("0"),
+                        Font = new Font("Segoe UI", 12),
+                        BorderColor = Color.FromArgb(200, 200, 200),
+                        BorderRadius = 6
+                    };
+
+                    var btnOk = new Guna.UI2.WinForms.Guna2Button
+                    {
+                        Text = "Xác nhận",
+                        Left = 20,
+                        Top = 183,
+                        Width = 174,
+                        Height = 40,
+                        FillColor = Color.FromArgb(70, 130, 180),
+                        ForeColor = Color.White,
+                        BorderRadius = 6,
+                        Font = new Font("Segoe UI", 10, FontStyle.Bold)
+                    };
+
+                    var btnHuy = new Guna.UI2.WinForms.Guna2Button
+                    {
+                        Text = "Hủy",
+                        Left = 208,
+                        Top = 183,
+                        Width = 175,
+                        Height = 40,
+                        FillColor = Color.FromArgb(224, 224, 224),
+                        ForeColor = Color.FromArgb(128, 128, 128),
+                        BorderRadius = 6,
+                        Font = new Font("Segoe UI", 10, FontStyle.Bold)
+                    };
+
+                    btnOk.Click += (s2, e2) => { prompt.DialogResult = DialogResult.OK; prompt.Close(); };
+                    btnHuy.Click += (s2, e2) => { prompt.DialogResult = DialogResult.Cancel; prompt.Close(); };
+
+                    prompt.Controls.AddRange(new Control[]
+                        { lblSupplier, lblInfo, lblPrompt, txtAmount, btnOk, btnHuy });
+                    prompt.AcceptButton = btnOk;
+                    prompt.CancelButton = btnHuy;
+
+                    if (prompt.ShowDialog() == DialogResult.OK)
+                    {
+                        string clean = txtAmount.Text.Replace(",", "").Replace(".", "");
+                        if (!decimal.TryParse(clean, out soTienTra) || soTienTra <= 0)
+                        {
+                            MessageBox.Show("Số tiền không hợp lệ!", "Lỗi",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        if (soTienTra > conLai)
+                        {
+                            MessageBox.Show(
+                                $"Số tiền nhập ({soTienTra:N0}đ) vượt quá số còn lại ({conLai:N0}đ)!",
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
                     }
+                    else return; // người dùng bấm Hủy
+
+                    prompt.Dispose();
 
                     db.DebtTransactions.Add(new DebtTransaction
                     {
@@ -475,11 +564,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                         Note = $"Thanh toán phiếu nhập #{importID}"
                     });
 
-                    // Cập nhật trạng thái phiếu
-                    phieu.Status = (daDaTra + soTienTra >= tongTien)
-                        ? "COMPLETED"
-                        : "PARTIAL";
-
+                    phieu.Status = (daDaTra + soTienTra >= tongTien) ? "COMPLETED" : "PARTIAL";
                     db.SaveChanges();
 
                     MessageBox.Show($"Thanh toán {soTienTra:N0}đ thành công!", "Thành công",
@@ -525,8 +610,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         private void dgvChiTietDonHang_CellContentClick (object sender, DataGridViewCellEventArgs e) {
             TinhTongTien ();
         }
-
-        // ===================== HELPER =====================
 
         private void CapNhatLaiSTT () {
             for( int i = 0; i < dgvChiTietDonHang.Rows.Count; i++ )
