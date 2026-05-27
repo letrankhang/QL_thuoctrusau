@@ -670,7 +670,7 @@
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Right;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12.10619F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(130, 0);
+            this.label5.Location = new System.Drawing.Point(125, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(107, 25);
             this.label5.TabIndex = 5;
@@ -682,11 +682,11 @@
             this.lblKetQua.Dock = System.Windows.Forms.DockStyle.Right;
             this.lblKetQua.Font = new System.Drawing.Font("Segoe UI Semibold", 12.10619F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKetQua.ForeColor = System.Drawing.Color.Firebrick;
-            this.lblKetQua.Location = new System.Drawing.Point(237, 0);
+            this.lblKetQua.Location = new System.Drawing.Point(232, 0);
             this.lblKetQua.Name = "lblKetQua";
-            this.lblKetQua.Size = new System.Drawing.Size(64, 25);
+            this.lblKetQua.Size = new System.Drawing.Size(69, 25);
             this.lblKetQua.TabIndex = 7;
-            this.lblKetQua.Text = "0VNĐ";
+            this.lblKetQua.Text = "0 VNĐ";
             this.lblKetQua.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // guna2Panel5

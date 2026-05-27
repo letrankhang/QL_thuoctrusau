@@ -137,7 +137,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private void WireEvents()
         {
             this.Load += Frm_CongNo_Load;
-            cboLocKhachHang.SelectedIndexChanged += CboLocKhachHang_SelectedIndexChanged;
+            cboLocLoaiNo.SelectedIndexChanged += cboLocLoaiNo_SelectedIndexChanged;
             cboTrangThai.SelectedIndexChanged += (s, e) => { if (isLoaded) { _currentPage = 1; LoadData(); } };
             dtpTuNgay.ValueChanged += (s, e) => { if (isLoaded) { _currentPage = 1; LoadData(); } };
             dtpDenNgay.ValueChanged += (s, e) => { if (isLoaded) { _currentPage = 1; LoadData(); } };
@@ -171,7 +171,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dtpDenNgay.Format = DateTimePickerFormat.Custom;
             dtpDenNgay.CustomFormat = "d/M/yyyy";
 
-            LoadCustomers();
+            LoadLoaiNo();
 
             isLoaded = true;
 
@@ -179,35 +179,15 @@ namespace QL_CuaHangBanThuocTruSau.Views
             CanhBaoNoQuaHan();
         }
 
-        private void LoadCustomers()
+        private void LoadLoaiNo()
         {
-            cboLocKhachHang.Items.Clear();
-            cboLocKhachHang.Items.Add("Tất cả khách hàng");
-            cboLocKhachHang.DropDownWidth = 400;
+            cboLocLoaiNo.Items.Clear();
+            cboLocLoaiNo.Items.Add("Tất cả loại nợ");
+            cboLocLoaiNo.Items.Add("Khách hàng");
+            cboLocLoaiNo.Items.Add("Nhà cung cấp");
+            cboLocLoaiNo.DropDownWidth = 180;
             cboTrangThai.DropDownWidth = 220;
-            try
-            {
-                using (var db = new AppDbContext())
-                {
-                    var customerNames = db.Customers.Select(c => c.Name).ToList();
-                    var supplierNames = db.Suppliers.Select(s => s.Name).ToList();
-
-                    var allNames = customerNames.Concat(supplierNames)
-                        .Distinct().OrderBy(x => x).ToList();
-
-                    foreach (var name in allNames)
-                        if (!string.IsNullOrEmpty(name))
-                            cboLocKhachHang.Items.Add(name);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi load danh sách đối tác: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            if (cboLocKhachHang.Items.Count > 0)
-                cboLocKhachHang.SelectedIndex = 0;
+            cboLocLoaiNo.SelectedIndex = 0;
         }
 
         private void LoadData()
@@ -218,7 +198,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 using (var db = new AppDbContext())
                 {
                     string keyword = (txtTimKiem.Text ?? "").Trim().ToLower();
-                    string doiTacFilter = cboLocKhachHang.SelectedItem?.ToString() ?? "Tất cả khách hàng";
+                    string doiTacFilter = cboLocLoaiNo.SelectedItem?.ToString() ?? "Tất cả loại nợ";
                     string trangThai = cboTrangThai.SelectedItem?.ToString() ?? "Tất cả trạng thái";
                     DateTime tuNgay = dtpTuNgay.Value.Date;
                     DateTime denNgay = dtpDenNgay.Value.Date.AddDays(1);
@@ -273,7 +253,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                         };
                     }).ToList();
 
-                    // ── BỘ LỌC ──
                     var filtered = combined.AsEnumerable();
 
                     if (!string.IsNullOrEmpty(keyword))
@@ -281,13 +260,16 @@ namespace QL_CuaHangBanThuocTruSau.Views
                             x.OrderID.ToString().Contains(keyword) || 
                             x.PartnerName.ToLower().Contains(keyword));
 
-                    if (doiTacFilter != "Tất cả khách hàng")
-                        filtered = filtered.Where(x => x.PartnerName == doiTacFilter);
+                    if (doiTacFilter != "Tất cả loại nợ")
+                        filtered = filtered.Where(x => x.LoaiNo == doiTacFilter);
 
                     if (trangThai != "Tất cả trạng thái")
                         filtered = filtered.Where(x => x.Status == trangThai);
 
-                    var finalResult = filtered.OrderByDescending(x => x.OrderDate).ToList();
+                    var finalResult = filtered
+                        .OrderBy(x => x.LoaiNo)              
+                        .ThenBy(x => x.OrderID)   
+                        .ToList();
 
                     _totalRows = finalResult.Count;
                     _fullFilteredList = finalResult; // Lưu lại danh sách đầy đủ đã lọc
@@ -297,22 +279,20 @@ namespace QL_CuaHangBanThuocTruSau.Views
                         .Take(_pageSize)
                         .ToList();
 
-                    // Lưu lại danh sách đã lọc để xuất Excel nếu cần (hoặc lấy trực tiếp từ DataSource)
-                    // Ở đây ta tính toán tổng dựa trên finalResult (đã lọc nhưng chưa phân trang)
                     decimal tongNoKhach = finalResult.Where(x => x.LoaiNo == "Khách hàng").Sum(x => x.RemainingDebt);
                     decimal tongNoNCC = finalResult.Where(x => x.LoaiNo == "Nhà cung cấp").Sum(x => x.RemainingDebt);
-                    
-                    lblTongCongNoValue.Text = (tongNoKhach + tongNoNCC).ToString("N0");
-                    lblNoPhaiThuValue.Text = tongNoKhach.ToString("N0");
-                    lblDaThanhToanValue.Text = tongNoNCC.ToString("N0");
-                    
+
+                    lblTongCongNoValue.Text = (tongNoKhach + tongNoNCC).ToString("N0") + " VNĐ";
+                    lblNoPhaiThuValue.Text = tongNoKhach.ToString("N0") + " VNĐ";
+                    lblDaThanhToanValue.Text = tongNoNCC.ToString("N0") + " VNĐ";
+
                     // Cập nhật text label cho trực quan
                     lblNoPhaiThuTitle.Text = "Khách nợ (Phải thu)";
                     lblDaThanhToanTitle.Text = "Nợ NCC (Phải trả)";
                     lblTongCongNoTitle.Text = "Tổng công nợ";
                     
-                    lblNoPhaiThuValue.ForeColor = Color.FromArgb(0, 120, 215); // Xanh dương cho phải thu
-                    lblDaThanhToanValue.ForeColor = Color.FromArgb(0, 192, 0); // Đỏ cho phải trả
+                    lblNoPhaiThuValue.ForeColor = Color.FromArgb(0, 120, 215); 
+                    lblDaThanhToanValue.ForeColor = Color.FromArgb(0, 192, 0); 
 
                     UpdatePagingInfo();
                     ToMauDong();
@@ -443,13 +423,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             LoadData();
         }
 
-        private void CboLocKhachHang_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isLoaded) return;
-            _currentPage = 1;
-            LoadData();
-        }
-
         private void btnThuNo_Click(object sender, EventArgs e)
         {
             try
@@ -493,7 +466,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     Top = 13,
                     Width = 345,
                     Height = 30,
-                    Text = $"Còn phải {(loaiNo == "Khách hàng" ? "thu" : "trả")}: {remaining:N0} VNĐ",
+                    Text = $"Còn phải {(loaiNo == "Khách hàng" ? "thu" : "trả")}: {remaining:N0}VNĐ",
                     Font = new Font("Segoe UI", 13, FontStyle.Bold),
                     ForeColor = Color.FromArgb(70, 130, 180)
                 };
@@ -511,7 +484,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 Label lblDoiTac = new Label
                 {
                     Left = 20,
-                    Top = 73,  // 50 + 23
+                    Top = 73,  
                     Width = 345,
                     Height = 20,
                     Text = "Đối tác: " + partnerName,
@@ -521,7 +494,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 Label lblNhap = new Label
                 {
                     Left = 20,
-                    Top = 100,  // 75 + 23
+                    Top = 100,  
                     Width = 345,
                     Height = 20,
                     Text = "Số tiền " + hanhDong.ToLower() + ":",
@@ -703,6 +676,15 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 MessageBox.Show("Lỗi xuất Excel: " + ex.Message, "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void cboLocLoaiNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isLoaded) 
+                return;
+
+            _currentPage = 1;
+            LoadData();
         }
     }
 }

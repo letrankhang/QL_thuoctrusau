@@ -1,5 +1,4 @@
-﻿using QL_CuaHangBanThuocTruSau.BUS;
-using QL_CuaHangBanThuocTruSau.Context;
+﻿using QL_CuaHangBanThuocTruSau.Context;
 using QL_CuaHangBanThuocTruSau.Controllers;
 using QL_CuaHangBanThuocTruSau.Models;
 using QL_CuaHangBanThuocTruSau.Utils;
@@ -43,7 +42,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                     return status ?? "";
             }
         }
-        // ===================== LOAD =====================
 
         private void Frm_NhapHang_Load (object sender, EventArgs e) {
             StyleDgv (dgvChiTietDonHang);
@@ -67,8 +65,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             dgvChiTietDonHang.CellClick += (s, ev) => dgvLichSuNhap.ClearSelection();
             dgvLichSuNhap.CellClick += (s, ev) => dgvChiTietDonHang.ClearSelection();
         }
-
-        // ===================== STYLE =====================
 
         private void StyleDgv (DataGridView dgv) 
         {
@@ -158,16 +154,16 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                         {
                             case "COMPLETED":
                             case "PAID":
-                                cellTrangThai.Style.ForeColor = Color.FromArgb(0, 180, 80);
+                                cellTrangThai.Style.ForeColor = Color.FromArgb(0, 150, 60);
                                 cellTrangThai.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
                             case "PARTIAL":
                             case "UNPAID":
-                                cellTrangThai.Style.ForeColor = Color.FromArgb(255, 160, 0);
+                                cellTrangThai.Style.ForeColor = Color.FromArgb(200, 120, 0);
                                 cellTrangThai.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
                             case "CANCELLED":
-                                cellTrangThai.Style.ForeColor = Color.FromArgb(220, 50, 50);
+                                cellTrangThai.Style.ForeColor = Color.FromArgb(200, 80, 0);
                                 cellTrangThai.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
                         }
@@ -195,89 +191,19 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             cboNhaCungCap.SelectedIndex = 0;
             cboSanPham.SelectedIndex = 0;
             dtpNgay.Value = DateTime.Now;
-            txtDaThanhToan.Clear();
-            TinhTongTien(); // tự cập nhật txtTongGiaTriPhieu, txtCongNo, lblKetQua
+            if (dgvChiTietDonHang.Rows.Count == 0)
+            {
+                txtTongGiaTriPhieu.Text = "Tự động tính...";
+                txtCongNo.Text = "Tự động tính...";
+                lblKetQua.Text = "0 VNĐ";
+            }
+            else
+            {
+                txtDaThanhToan.Clear();
+                TinhTongTien();
+            }
             LoadLichSuNhap();
             UpdateEmptyLabel();
-        }
-
-        // ===================== LƯU / THANH TOÁN =====================
-
-        private void SaveOrderToDb (decimal soTienThanhToan) {
-            if( dgvChiTietDonHang.Rows.Count == 0 || cboNhaCungCap.SelectedItem == null )
-            {
-                MessageBox.Show ("Vui lòng kiểm tra lại thông tin sản phẩm hoặc nhà cung cấp!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                using( var db = new AppDbContext () )
-                {
-                    CboItem nccSelected = (CboItem) cboNhaCungCap.SelectedItem;
-
-                    var hoaDon = new Import ();
-                    hoaDon.SupplierID = nccSelected.Value;
-                    hoaDon.ImportDate = DateTime.Now;
-                    decimal.TryParse (txtTongGiaTriPhieu.Text.Replace (",", ""), out decimal tongTien);
-                    hoaDon.TotalAmount = tongTien;
-                    hoaDon.UserID = 1;
-
-                    db.Imports.Add (hoaDon);
-                    db.SaveChanges ();
-
-                    foreach( DataGridViewRow row in dgvChiTietDonHang.Rows )
-                    {
-                        if( !row.IsNewRow && row.Tag != null )
-                        {
-                            Batch batch = new Batch ();
-                            batch.ImportID = hoaDon.ImportID;
-                            batch.VariantID = (int) row.Tag;
-
-                            int soLuong = Convert.ToInt32 (row.Cells[5].Value);
-                            batch.InitialQuantity = soLuong;
-                            batch.RemainingQuantity = soLuong;
-                            batch.ImportPrice = Convert.ToDecimal (row.Cells[4].Value);
-
-                            bool checkNSX = DateTime.TryParseExact (
-                                row.Cells[6].Value?.ToString (), "dd/MM/yyyy",
-                                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime nsx);
-
-                            bool checkHSD = DateTime.TryParseExact (
-                                row.Cells[7].Value?.ToString (), "dd/MM/yyyy",
-                                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime hsd);
-
-                            if( !checkNSX || !checkHSD )
-                            {
-                                MessageBox.Show ("Ngày sản xuất hoặc hạn sử dụng không đúng định dạng dd/MM/yyyy",
-                                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-
-                            batch.ManufactureDate = nsx;
-                            batch.ExpiryDate = hsd;
-
-                            db.Batches.Add (batch);
-                        }
-                    }
-
-                    db.SaveChanges ();
-                    MessageBox.Show ("Đã lưu dữ liệu vào hệ thống thành công!", "Thành công",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Làm mới sau khi lưu
-                    dgvChiTietDonHang.Rows.Clear ();
-                    txtDaThanhToan.Clear ();
-                    TinhTongTien ();
-                    LoadLichSuNhap ();
-                }
-            }
-            catch( Exception ex )
-            {
-                MessageBox.Show ("Lỗi hệ thống: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void btnLuuPhieu_Click (object sender, EventArgs e) {
@@ -375,12 +301,20 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
                     db.SaveChanges();
 
-                    MessageBox.Show("Lưu phiếu nhập thành công!", "Thành công",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Lưu phiếu nhập thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     dgvChiTietDonHang.Rows.Clear();
-                    txtDaThanhToan.Clear();
-                    TinhTongTien();
+                    if (dgvChiTietDonHang.Rows.Count == 0)
+                    {
+                        txtTongGiaTriPhieu.Text = "Tự động tính...";
+                        txtCongNo.Text = "Tự động tính...";
+                        lblKetQua.Text = "0 VNĐ";
+                    }
+                    else
+                    {
+                        txtDaThanhToan.Clear();
+                        TinhTongTien();
+                    }
                     LoadLichSuNhap();
                     UpdateEmptyLabel();
                 }
@@ -545,7 +479,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                         if (soTienTra > conLai)
                         {
                             MessageBox.Show(
-                                $"Số tiền nhập ({soTienTra:N0}đ) vượt quá số còn lại ({conLai:N0}đ)!",
+                                $"Số tiền đã nhập là ({soTienTra:N0}đ) vượt quá số còn lại ({conLai:N0}đ)!",
                                 "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
@@ -591,7 +525,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 }
             }
 
-            lblKetQua.Text = string.Format ("{0:N0}VNĐ", tong);
+            lblKetQua.Text = string.Format ("{0:N0} VNĐ", tong);
             txtTongGiaTriPhieu.Text = tong.ToString ("N0");
             TinhCongNo ();
         }
@@ -745,17 +679,23 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                         switch (item.Status?.ToUpper())
                         {
                             case "COMPLETED":
+                                cell.Style.ForeColor = Color.FromArgb(0, 180, 80);
+                                cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+                                break;
                             case "PAID":
                                 cell.Style.ForeColor = Color.FromArgb(0, 180, 80);
                                 cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
                             case "PARTIAL":
-                            case "UNPAID":
                                 cell.Style.ForeColor = Color.FromArgb(255, 160, 0);
                                 cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
-                            case "CANCELLED":
+                            case "UNPAID":
                                 cell.Style.ForeColor = Color.FromArgb(220, 50, 50);
+                                cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+                                break;
+                            case "CANCELLED":
+                                cell.Style.ForeColor = Color.FromArgb(140, 140, 140);
                                 cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
                         }

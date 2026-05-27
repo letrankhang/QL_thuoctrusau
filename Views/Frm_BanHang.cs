@@ -431,7 +431,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             {
                 if (row.Cells["Total"].Value != null) total += Convert.ToDecimal(row.Cells["Total"].Value);
             }
-            lblTotal.Text = $"{total:N0}đ";
+            lblTotal.Text = $"{total:N0} VNĐ";
 
             lblHTGioHang.Visible = dgvCart.Rows.Count == 0;
         }
