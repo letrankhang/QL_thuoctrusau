@@ -41,7 +41,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils {
             }
             catch( Exception ex )
             {
-                // Trong thực tế nên log lỗi này lại
                 Console.WriteLine ("Lỗi gửi Email: " + ex.Message);
                 return false;
             }

@@ -97,7 +97,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             decimal donGiaNhap;
             if (!decimal.TryParse(txtDonGia.Text.Trim(), out donGiaNhap))
             {
-                MessageBox.Show("Đơn giá không hợp lệ!");
+                MessageBox.Show("Đơn giá không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -107,17 +107,17 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
             if (donGiaNhap >= bienThe.RetailPrice)
             {
-                MessageBox.Show("Đơn giá nhập phải nhỏ hơn giá bán lẻ!");
+                MessageBox.Show("Đơn giá nhập phải nhỏ hơn giá bán lẻ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (donGiaNhap >= bienThe.WholesalePrice)
             {
-                MessageBox.Show("Đơn giá nhập phải nhỏ hơn giá bán sỉ!");
+                MessageBox.Show("Đơn giá nhập phải nhỏ hơn giá bán sỉ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (dtpHSD.Value.Date <= dtpNSX.Value.Date)
             {
-                MessageBox.Show("HSD phải lớn hơn NSX!");
+                MessageBox.Show("HSD phải lớn hơn NSX!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

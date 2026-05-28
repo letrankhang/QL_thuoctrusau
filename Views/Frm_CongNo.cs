@@ -466,7 +466,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     Top = 13,
                     Width = 345,
                     Height = 30,
-                    Text = $"Còn phải {(loaiNo == "Khách hàng" ? "thu" : "trả")}: {remaining:N0}VNĐ",
+                    Text = $"Còn phải {(loaiNo == "Khách hàng" ? "thu" : "trả")}: {remaining:N0} VNĐ",
                     Font = new Font("Segoe UI", 13, FontStyle.Bold),
                     ForeColor = Color.FromArgb(70, 130, 180)
                 };
