@@ -3,6 +3,7 @@ using QL_CuaHangBanThuocTruSau.Models;
 using QL_CuaHangBanThuocTruSau.Utils;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -98,7 +99,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private void Frm_NCC_Load_1(object sender, EventArgs e)
         {
             dgvNCC.AutoGenerateColumns = false;
-
+            dgvNCC.DefaultCellStyle.Font = new Font("Segoe UI", 10f);
             dgvNCC.Columns["colNgayTao"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
 
             cboLoc.Items.Clear();

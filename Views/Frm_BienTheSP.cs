@@ -19,6 +19,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void Frm_BienTheSP_Load(object sender, EventArgs e)
         {
+            dgvBienThe.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9f, FontStyle.Bold);
             khoiTaoDonViTinh();
             txtMaSP.Text = maSanPham.ToString();
             taiDuLieu();
@@ -68,7 +69,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 dgvBienThe.Columns["VariantID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvBienThe.Columns["ProductID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvBienThe.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvBienThe.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Seminbold", 9f);
+                dgvBienThe.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9f, FontStyle.Bold);
                 dgvBienThe.Columns["RetailPrice"].DefaultCellStyle.Format = "N0";
                 dgvBienThe.Columns["WholesalePrice"].DefaultCellStyle.Format = "N0";
             }

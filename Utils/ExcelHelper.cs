@@ -456,7 +456,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                         using (var workbook = new XLWorkbook(ofd.FileName))
                         {
                             var worksheet = workbook.Worksheet(1);
-                            var rows = worksheet.RangeUsed().RowsUsed().Skip(1); // Skip header
+                            var rows = worksheet.RangeUsed().RowsUsed().Skip(1); 
 
                             int count = 0;
                             foreach (var row in rows)

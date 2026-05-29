@@ -23,7 +23,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
                 document.Open();
 
-                // Cấu hình font tiếng Việt
                 BaseFont bf = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 Font fontNormal = new Font(bf, 11, Font.NORMAL);
                 Font fontBold = new Font(bf, 11, Font.BOLD);
@@ -31,38 +30,55 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 Font fontTitle = new Font(bf, 18, Font.BOLD, BaseColor.BLACK);
                 Font fontHeader = new Font(bf, 14, Font.BOLD);
 
-                // Header Công ty
-                Paragraph headerCompany = new Paragraph("CỬA HÀNG BÁN THUỐC TRỪ SÂU K3G\nTrao chất lượng – Nhận niềm tin - Cho mùa vàng trĩu hạt", fontHeader);
+                Paragraph headerCompany = new Paragraph("CỬA HÀNG BÁN THUỐC TRỪ SÂU K3G", new Font(bf, 14, Font.BOLD));
                 headerCompany.Alignment = Element.ALIGN_CENTER;
                 document.Add(headerCompany);
 
-                Paragraph headerAddr = new Paragraph("ĐC: TP. Cao Lãnh, tỉnh Đồng Tháp\nĐT: 0814.999.999", fontNormal);
+                Paragraph headerSlogan = new Paragraph("Trao chất lượng – Nhận niềm tin - Cho mùa vàng trĩu hạt", new Font(bf, 11, Font.ITALIC));
+                headerSlogan.Alignment = Element.ALIGN_CENTER;
+                document.Add(headerSlogan);
+
+                Paragraph headerAddr = new Paragraph("ĐC: TP. Cao Lãnh, tỉnh Đồng Tháp  |  ĐT: 0814.999.999", new Font(bf, 10, Font.NORMAL));
                 headerAddr.Alignment = Element.ALIGN_CENTER;
                 document.Add(headerAddr);
 
-                document.Add(new Paragraph("\n"));
+                PdfPTable duongKe = new PdfPTable(1);
+                duongKe.WidthPercentage = 100;
+                duongKe.SpacingBefore = 6f;
+                duongKe.SpacingAfter = 6f;
+                PdfPCell lineCell = new PdfPCell(new Phrase(""));
+                lineCell.BorderWidthTop = 0;
+                lineCell.BorderWidthBottom = 1f;
+                lineCell.BorderWidthLeft = 0;
+                lineCell.BorderWidthRight = 0;
+                lineCell.BorderColor = BaseColor.LIGHT_GRAY;
+                lineCell.PaddingBottom = 4f;
+                duongKe.AddCell(lineCell);
+                document.Add(duongKe);
 
-                // Tiêu đề hóa đơn
-                Paragraph title = new Paragraph("HOÁ ĐƠN BÁN HÀNG", fontTitle);
+                Paragraph title = new Paragraph("HOÁ ĐƠN BÁN HÀNG", new Font(bf, 18, Font.BOLD));
                 title.Alignment = Element.ALIGN_CENTER;
+                title.SpacingBefore = 4f;
                 document.Add(title);
 
-                Paragraph subTitle = new Paragraph($"Mã hóa đơn: #{order.OrderID} - Ngày: {order.OrderDate:dd/MM/yyyy HH:mm}", fontItalic);
+                Paragraph subTitle = new Paragraph(
+                    $"Mã hóa đơn: #{order.OrderID}  -  Ngày: {order.OrderDate:dd/MM/yyyy HH:mm}",
+                    new Font(bf, 10, Font.ITALIC));
                 subTitle.Alignment = Element.ALIGN_CENTER;
+                subTitle.SpacingAfter = 10f;
                 document.Add(subTitle);
-                document.Add(new Paragraph("\n"));
 
-                // Thông tin khách hàng
+                document.Add(duongKe);
+
                 document.Add(new Paragraph($"Tên khách hàng: {order.Customer?.Name ?? "..................................................."}", fontNormal));
                 document.Add(new Paragraph($"Địa chỉ: {order.Customer?.Address ?? "..................................................."}", fontNormal));
                 document.Add(new Paragraph($"Điện thoại: {order.Customer?.Phone ?? "..................................................."}", fontNormal));
                 document.Add(new Paragraph("\n"));
-                // Bảng danh sách sản phẩm
+
                 PdfPTable table = new PdfPTable(5);
                 table.WidthPercentage = 100;
                 table.SetWidths(new float[] { 10f, 40f, 15f, 15f, 20f });
 
-                // Header bảng
                 AddCellToTable(table, "STT", fontBold);
                 AddCellToTable(table, "Tên hàng", fontBold);
                 AddCellToTable(table, "Số lượng", fontBold);
@@ -86,7 +102,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     }
                 }
 
-                // Dòng tổng cộng
                 PdfPCell cellTotalLabel = new PdfPCell(new Phrase("Tổng cộng", fontBold));
                 cellTotalLabel.Colspan = 4;
                 cellTotalLabel.HorizontalAlignment = Element.ALIGN_CENTER;
@@ -98,7 +113,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 cellTotalValue.Padding = 5;
                 table.AddCell(cellTotalValue);
 
-                // Tính toán tiền nợ và đã thanh toán dựa trên giao dịch thực tế
                 decimal paidAmount = 0;
                 decimal refundAmount = 0;
 
@@ -118,7 +132,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 decimal debtAmount = order.TotalAmount - paidAmount - refundAmount;
                 if (debtAmount < 0) debtAmount = 0;
 
-                // Dòng đã thanh toán
                 PdfPCell cellPaidLabel = new PdfPCell(new Phrase("Đã thanh toán", fontNormal));
                 cellPaidLabel.Colspan = 4;
                 cellPaidLabel.HorizontalAlignment = Element.ALIGN_RIGHT;
@@ -130,7 +143,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 cellPaidValue.Padding = 5;
                 table.AddCell(cellPaidValue);
 
-                // Dòng còn nợ
                 PdfPCell cellDebtLabel = new PdfPCell(new Phrase("Còn nợ", fontNormal));
                 cellDebtLabel.Colspan = 4;
                 cellDebtLabel.HorizontalAlignment = Element.ALIGN_RIGHT;
@@ -155,22 +167,33 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 tableSign.WidthPercentage = 100;
                 tableSign.DefaultCell.Border = Rectangle.NO_BORDER;
 
-                PdfPCell cellBuyer = new PdfPCell(new Phrase("\n\nKHÁCH HÀNG\n\n\n(Ký, họ tên)", fontBold));
+                Phrase phraseBuyer = new Phrase();
+                phraseBuyer.Add(new Chunk("\n\nKHÁCH HÀNG\n\n", fontBold));
+                phraseBuyer.Add(new Chunk("(Ký, họ tên)", fontNormal));
+                PdfPCell cellBuyer = new PdfPCell(phraseBuyer);
                 cellBuyer.Border = Rectangle.NO_BORDER;
                 cellBuyer.HorizontalAlignment = Element.ALIGN_CENTER;
                 tableSign.AddCell(cellBuyer);
 
-                string dateStr = $"Ngày {DateTime.Now.Day} tháng {DateTime.Now.Month} năm {DateTime.Now.Year}";
-                PdfPCell cellSeller = new PdfPCell(new Phrase($"{dateStr}\n\nCHỦ CỬA HÀNG\n\n\n(Ký, họ tên)", fontBold));
+                string dateStr = $"Cao Lãnh, ngày {DateTime.Now.Day} tháng {DateTime.Now.Month} năm {DateTime.Now.Year}";
+                Phrase phraseSeller = new Phrase();
+                phraseSeller.Add(new Chunk(dateStr + "\n\n", fontItalic));
+                phraseSeller.Add(new Chunk("CHỦ CỬA HÀNG\n\n", fontBold));
+                phraseSeller.Add(new Chunk("(Ký, họ tên)", fontNormal));
+                PdfPCell cellSeller = new PdfPCell(phraseSeller);
                 cellSeller.Border = Rectangle.NO_BORDER;
                 cellSeller.HorizontalAlignment = Element.ALIGN_CENTER;
                 tableSign.AddCell(cellSeller);
 
                 document.Add(tableSign);
 
+                Paragraph thankYou = new Paragraph("~ Cảm ơn quý khách đã tin tưởng và ủng hộ cửa hàng! ~", new Font(bf, 11, Font.ITALIC, BaseColor.GRAY));
+                thankYou.Alignment = Element.ALIGN_CENTER;
+                thankYou.SpacingBefore = 93f;
+                document.Add(thankYou);
                 document.Close();
+
                 MessageBox.Show("Xuất hóa đơn thành công tại: " + filePath, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Mở file sau khi xuất
                 try { System.Diagnostics.Process.Start(filePath); } catch { }
             }
             catch (Exception ex)

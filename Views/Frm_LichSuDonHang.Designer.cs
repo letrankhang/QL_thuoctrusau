@@ -34,6 +34,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.dtpDenNgay = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.dtpTuNgay = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.btnLoc = new Guna.UI2.WinForms.Guna2Button();
             this.txtTimKiem = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblDenNgay = new System.Windows.Forms.Label();
@@ -44,8 +46,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnInHoaDon = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.dtpDenNgay = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.dtpTuNgay = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLichSu)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -66,6 +66,42 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(950, 70);
             this.pnlTop.TabIndex = 0;
+            // 
+            // dtpDenNgay
+            // 
+            this.dtpDenNgay.BackColor = System.Drawing.Color.Transparent;
+            this.dtpDenNgay.BorderColor = System.Drawing.Color.Transparent;
+            this.dtpDenNgay.BorderRadius = 10;
+            this.dtpDenNgay.BorderThickness = 1;
+            this.dtpDenNgay.Checked = true;
+            this.dtpDenNgay.FillColor = System.Drawing.Color.White;
+            this.dtpDenNgay.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpDenNgay.Location = new System.Drawing.Point(647, 20);
+            this.dtpDenNgay.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpDenNgay.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpDenNgay.Name = "dtpDenNgay";
+            this.dtpDenNgay.Size = new System.Drawing.Size(130, 34);
+            this.dtpDenNgay.TabIndex = 9;
+            this.dtpDenNgay.Value = new System.DateTime(2026, 5, 10, 7, 44, 6, 136);
+            // 
+            // dtpTuNgay
+            // 
+            this.dtpTuNgay.BackColor = System.Drawing.Color.Transparent;
+            this.dtpTuNgay.BorderColor = System.Drawing.Color.Transparent;
+            this.dtpTuNgay.BorderRadius = 10;
+            this.dtpTuNgay.BorderThickness = 1;
+            this.dtpTuNgay.Checked = true;
+            this.dtpTuNgay.FillColor = System.Drawing.Color.White;
+            this.dtpTuNgay.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpTuNgay.Location = new System.Drawing.Point(416, 20);
+            this.dtpTuNgay.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpTuNgay.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpTuNgay.Name = "dtpTuNgay";
+            this.dtpTuNgay.Size = new System.Drawing.Size(128, 34);
+            this.dtpTuNgay.TabIndex = 8;
+            this.dtpTuNgay.Value = new System.DateTime(2026, 5, 10, 7, 44, 4, 183);
             // 
             // btnLoc
             // 
@@ -106,7 +142,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtTimKiem.Location = new System.Drawing.Point(12, 20);
             this.txtTimKiem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.PlaceholderText = "Nhập mã hóa đơn hoặc tên khách hàng,...";
+            this.txtTimKiem.PlaceholderText = "Nhập mã hóa đơn hoặc tên khách hàng...";
             this.txtTimKiem.SelectedText = "";
             this.txtTimKiem.Size = new System.Drawing.Size(324, 34);
             this.txtTimKiem.TabIndex = 6;
@@ -254,42 +290,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Panel2.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.guna2Panel2.Size = new System.Drawing.Size(950, 422);
             this.guna2Panel2.TabIndex = 6;
-            // 
-            // dtpDenNgay
-            // 
-            this.dtpDenNgay.BackColor = System.Drawing.Color.Transparent;
-            this.dtpDenNgay.BorderColor = System.Drawing.Color.Transparent;
-            this.dtpDenNgay.BorderRadius = 10;
-            this.dtpDenNgay.BorderThickness = 1;
-            this.dtpDenNgay.Checked = true;
-            this.dtpDenNgay.FillColor = System.Drawing.Color.White;
-            this.dtpDenNgay.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtpDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpDenNgay.Location = new System.Drawing.Point(647, 20);
-            this.dtpDenNgay.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpDenNgay.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpDenNgay.Name = "dtpDenNgay";
-            this.dtpDenNgay.Size = new System.Drawing.Size(130, 34);
-            this.dtpDenNgay.TabIndex = 9;
-            this.dtpDenNgay.Value = new System.DateTime(2026, 5, 10, 7, 44, 6, 136);
-            // 
-            // dtpTuNgay
-            // 
-            this.dtpTuNgay.BackColor = System.Drawing.Color.Transparent;
-            this.dtpTuNgay.BorderColor = System.Drawing.Color.Transparent;
-            this.dtpTuNgay.BorderRadius = 10;
-            this.dtpTuNgay.BorderThickness = 1;
-            this.dtpTuNgay.Checked = true;
-            this.dtpTuNgay.FillColor = System.Drawing.Color.White;
-            this.dtpTuNgay.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtpTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpTuNgay.Location = new System.Drawing.Point(416, 20);
-            this.dtpTuNgay.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpTuNgay.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpTuNgay.Name = "dtpTuNgay";
-            this.dtpTuNgay.Size = new System.Drawing.Size(128, 34);
-            this.dtpTuNgay.TabIndex = 8;
-            this.dtpTuNgay.Value = new System.DateTime(2026, 5, 10, 7, 44, 4, 183);
             // 
             // Frm_LichSuDonHang
             // 

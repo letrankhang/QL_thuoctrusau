@@ -31,6 +31,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
             if( result == "SUCCESS" )
             {
+                ReportHelper.NguoiDangNhap = SessionManager.CurrentUser.FullName;
+                ReportHelper.ChucVu = SessionManager.CurrentUser.Role == "Admin" ? "Quản trị viên" : "Nhân viên";
+
                 MessageBox.Show("Xin chào, " + SessionManager.CurrentUser.FullName + "!\nVai trò: " 
                     + SessionManager.CurrentUser.Role, "Đăng nhập thành công",
                         MessageBoxButtons.OK,

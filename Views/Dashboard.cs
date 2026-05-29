@@ -23,7 +23,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             try
             {
                 var summary = _controller.GetSummary ();
-                // Sử dụng định dạng N0 để đảm bảo có dấu phân cách hàng nghìn và đầy đủ số 0
                 label6.Text = string.Format ("{0:N0} VNĐ", summary.TotalRevenue);
                 label7.Text = string.Format ("{0:N0}", summary.NewOrdersToday);
                 label8.Text = string.Format ("{0:N0} VNĐ", summary.CustomerDebt);
@@ -158,7 +157,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 dataGridView1.RowTemplate.Height = 30;
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView1.GridColor = Color.LightGray;
+                dataGridView1.GridColor = Color.White;
                 dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
                 dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(45, 45, 45);
                 dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 230, 248);
@@ -224,7 +223,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                     else 
                         loCangDate++;
                 }
-                lblTongSoLo.Text = string.Format("Tổng: {0} lô cận hạn", loCangDate);
+                lblTongSoLo.Text = string.Format("Có {0} lô hàng sắp hết hạn trong 30 ngày tới", loCangDate);
 
                 lblThongBao.Visible = expiredProducts.Count == 0;
                 lblThongBao.Text = "(Không có lô hàng nào sắp hết hạn)";

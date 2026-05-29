@@ -27,6 +27,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private void Frm_LoHang_Load(object sender, EventArgs e)
         {
             dgvLoHang.AutoGenerateColumns = false;
+            dgvLoHang.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9f, FontStyle.Bold);
             btnTrangThai.Visible = false;
             lblDangChon.Text = "---";
 
