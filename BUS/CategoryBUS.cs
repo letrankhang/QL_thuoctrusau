@@ -6,7 +6,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS
 {
     public class CategoryBUS
     {
-        CategoryDAO dao = new CategoryDAO();
+        private CategoryDAO dao = new CategoryDAO();
 
         public List<Category> layDanhSachLoai()
         {

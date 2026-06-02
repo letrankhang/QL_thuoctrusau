@@ -1,21 +1,24 @@
 using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Utils;
 
-namespace QL_CuaHangBanThuocTruSau.Controllers {
-    public class LogoutController {
-        private readonly LogoutBUS _logoutBUS;
+namespace QL_CuaHangBanThuocTruSau.Controllers 
+{
+    public class LogoutController 
+    {
+        private LogoutBUS _logoutBUS;
 
-        public LogoutController () {
+        public LogoutController () 
+        {
             _logoutBUS = new LogoutBUS ();
         }
 
-        public bool HandleLogout () {
-            // Gọi BUS nếu cần xử lý nghiệp vụ (ví dụ: ghi log thời gian thoát)
+        public bool HandleLogout () 
+        {
             bool businessResult = _logoutBUS.PerformLogoutBusiness ();
 
             if( businessResult )
             {
-                // Xóa Session ứng dụng
+                // xóa session ứng dụng
                 SessionManager.ClearSession ();
                 return true;
             }

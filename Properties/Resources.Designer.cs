@@ -463,6 +463,36 @@ namespace QL_CuaHangBanThuocTruSau.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap eye_close {
+            get {
+                object obj = ResourceManager.GetObject("eye-close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap eye_close1 {
+            get {
+                object obj = ResourceManager.GetObject("eye-close1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap eye_close2 {
+            get {
+                object obj = ResourceManager.GetObject("eye_close2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap eyeopen {
             get {
                 object obj = ResourceManager.GetObject("eyeopen", resourceCulture);
@@ -536,6 +566,26 @@ namespace QL_CuaHangBanThuocTruSau.Properties {
         public static System.Drawing.Bitmap hidden {
             get {
                 object obj = ResourceManager.GetObject("hidden", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap hide {
+            get {
+                object obj = ResourceManager.GetObject("hide", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap hide2 {
+            get {
+                object obj = ResourceManager.GetObject("hide2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -666,6 +716,16 @@ namespace QL_CuaHangBanThuocTruSau.Properties {
         public static System.Drawing.Bitmap inventory1 {
             get {
                 object obj = ResourceManager.GetObject("inventory1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap invisible {
+            get {
+                object obj = ResourceManager.GetObject("invisible", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -966,6 +1026,16 @@ namespace QL_CuaHangBanThuocTruSau.Properties {
         public static System.Drawing.Bitmap shared_vision {
             get {
                 object obj = ResourceManager.GetObject("shared-vision", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap shared_vision3 {
+            get {
+                object obj = ResourceManager.GetObject("shared-vision3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

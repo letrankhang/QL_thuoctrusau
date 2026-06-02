@@ -59,13 +59,17 @@ namespace QL_CuaHangBanThuocTruSau.BUS
 
         public bool them(ProductVariant bienThe, out string loi)
         {
-            if (!validateBienThe(bienThe, out loi)) return false;
+            if (!validateBienThe(bienThe, out loi)) 
+                return false;
+
             return dao.themMoi(bienThe);
         }
 
         public bool sua(ProductVariant bienThe, out string loi)
         {
-            if (!validateBienThe(bienThe, out loi)) return false;
+            if (!validateBienThe(bienThe, out loi)) 
+                return false;
+
             return dao.capNhat(bienThe);
         }
 
@@ -83,8 +87,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS
         public List<ProductVariant> timKiem(string keyword, int maSP)
         {
             return dao.layTheoSanPham(maSP)
-                      .FindAll(v =>
-                          v.Unit.ToLower().Contains(keyword.ToLower()) ||
+                      .FindAll(v => v.Unit.ToLower().Contains(keyword.ToLower()) ||
                           (v.Concentration != null && v.Concentration.ToLower().Contains(keyword.ToLower())) ||
                           v.VariantID.ToString().Contains(keyword));
         }

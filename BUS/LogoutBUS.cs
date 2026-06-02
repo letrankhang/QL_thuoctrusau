@@ -1,12 +1,16 @@
 using System;
 
-namespace QL_CuaHangBanThuocTruSau.BUS {
-    public class LogoutBUS {
-        public bool PerformLogoutBusiness () {
+namespace QL_CuaHangBanThuocTruSau.BUS 
+{
+    public class LogoutBUS 
+    {
+        public bool PerformLogoutBusiness () 
+        {
             try
             {
-                // Giả sử sau này bạn muốn ghi log vào Database khi user logout
-                // LogDAO.Write("User logged out");
+                // TODO: Sau này nếu cần, có thể ghi log vào database
+                // Ví dụ là: LogDAO.Write("User logged out");
+                // Hiện tại chưa có nghiệp vụ thực sự, luôn trả về true
                 return true;
             }
             catch (Exception)

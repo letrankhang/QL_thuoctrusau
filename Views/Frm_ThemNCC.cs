@@ -7,8 +7,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 {
     public partial class Frm_ThemNCC : Form
     {
-        SuppliersController controller = new SuppliersController();
-
+        private SuppliersController controller = new SuppliersController();
         private Supplier nhaCungCapCanSua = null;
 
         public Frm_ThemNCC()

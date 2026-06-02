@@ -6,7 +6,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS
 {
     public class SuppliersBUS
     {
-        SuppliersDAO nhaCungCapDao = new SuppliersDAO();
+        private SuppliersDAO nhaCungCapDao = new SuppliersDAO();
 
         public List<Supplier> layDanhSach()
         {

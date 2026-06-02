@@ -158,7 +158,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtOTP.SelectedText = "";
             this.txtOTP.Size = new System.Drawing.Size(387, 60);
             this.txtOTP.TabIndex = 0;
-            this.txtOTP.TextChanged += new System.EventHandler(this.txtOTP_TextChanged);
             // 
             // guna2Panel2
             // 

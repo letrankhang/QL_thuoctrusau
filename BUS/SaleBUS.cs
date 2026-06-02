@@ -8,7 +8,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS
 {
     public class SaleBUS
     {
-        private readonly SaleDAO _saleDAO;
+        private SaleDAO _saleDAO;
 
         public SaleBUS()
         {
@@ -61,6 +61,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS
                 {
                     return Result.Success("Xử lý đơn hàng thành công");
                 }
+
                 return Result.Failure("Lỗi khi lưu đơn hàng vào cơ sở dữ liệu");
             }
             catch (Exception ex)
@@ -83,6 +84,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS
                 {
                     return Result.Success("Trả hàng thành công");
                 }
+
                 return Result.Failure("Lỗi khi xử lý trả hàng trong cơ sở dữ liệu");
             }
             catch (Exception ex)

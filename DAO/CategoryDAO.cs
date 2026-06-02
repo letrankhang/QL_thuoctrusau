@@ -7,7 +7,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO
 {
     public class CategoryDAO
     {
-        AppDbContext db = new AppDbContext();
+        private AppDbContext db = new AppDbContext();
 
         public List<Category> layTatCaLoai()
         {
@@ -27,9 +27,9 @@ namespace QL_CuaHangBanThuocTruSau.DAO
             {
                 return false;
             }
-            
             timThay.Name = loai.Name;
             timThay.Description = loai.Description;
+
             return db.SaveChanges() > 0;
         }
 
@@ -40,15 +40,14 @@ namespace QL_CuaHangBanThuocTruSau.DAO
             {
                 return false;
             }
-
             db.Categories.Remove(timThay);
+
             return db.SaveChanges() > 0;
         }
 
         public bool tenDaTonTai(string ten, int boQuaMa = 0)
         {
-            return db.Categories.Any(c =>
-                c.Name.ToLower() == ten.ToLower() &&
+            return db.Categories.Any(c => c.Name.ToLower() == ten.ToLower() &&
                 c.CategoryID != boQuaMa);
         }
     }

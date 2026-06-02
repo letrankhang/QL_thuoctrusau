@@ -6,7 +6,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS
 {
     public class InventoryTransactionBUS
     {
-        private readonly InventoryTransactionDAO dao = new InventoryTransactionDAO();
+        private InventoryTransactionDAO dao = new InventoryTransactionDAO();
 
         public List<InventoryTransaction> GetAllTransactions()
         {

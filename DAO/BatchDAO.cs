@@ -7,7 +7,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO
 {
     public class BatchDAO
     {
-        AppDbContext db = new AppDbContext();
+        private AppDbContext db = new AppDbContext();
 
         private IQueryable<BatchViewModel> baseQuery()
         {

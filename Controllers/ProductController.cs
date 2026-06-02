@@ -2,14 +2,13 @@ using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace QL_CuaHangBanThuocTruSau.Controllers
 {
     public class ProductController
     {
-        ProductBUS sanPhamBus = new ProductBUS();
-        CategoryBUS loaiBus = new CategoryBUS();
+        private ProductBUS sanPhamBus = new ProductBUS();
+        private CategoryBUS loaiBus = new CategoryBUS();
 
         public List<Category> LayDanhSachLoai()
         {
@@ -39,7 +38,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
         public bool Them(Product sanPham, out string loi)
         {
             loi = "";
-
             if (!KiemTraHopLe(sanPham, laThemMoi: true, out loi))
             {
                 return false;
@@ -51,7 +49,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
         public bool Sua(Product sanPham, out string loi)
         {
             loi = "";
-
             if (!KiemTraHopLe(sanPham, laThemMoi: false, out loi))
             {
                 return false;
@@ -63,7 +60,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
         public bool Xoa(int maSanPham, out string loi)
         {
             loi = "";
-
             if (maSanPham <= 0)
             {
                 loi = "Mã sản phẩm không hợp lệ!";
@@ -76,7 +72,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
         private bool KiemTraHopLe(Product sanPham, bool laThemMoi, out string loi)
         {
             loi = "";
-
             if (sanPham.ProductID <= 0)
             {
                 loi = "Mã sản phẩm phải là số nguyên dương!";
@@ -116,7 +111,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
                 loi = "Mô tả không được vượt quá 399 ký tự!";
                 return false;
             }
-
             return true;
         }
 

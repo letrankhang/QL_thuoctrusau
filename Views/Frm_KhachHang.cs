@@ -1,11 +1,9 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using QL_CuaHangBanThuocTruSau.BUS;
+﻿using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Models;
 using QL_CuaHangBanThuocTruSau.Utils;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Text.RegularExpressions; // Thêm thư viện để dùng Regex bắt lỗi số điện thoại
+using System.Text.RegularExpressions; // thư viện dùng Regex bắt lỗi số điện thoại
 using System.Windows.Forms;
 
 namespace QL_CuaHangBanThuocTruSau.Views
@@ -20,12 +18,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
         {
             InitializeComponent();
 
-            // --- FIX ĐỊNH DẠNG MÀN HÌNH ---
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            // THÊM DÒNG NÀY: Ép form không được tự ý phóng to/thu nhỏ các control theo màn hình Windows
+            // Ép form không được tự ý phóng to/thu nhỏ các control theo màn hình Windows
             this.AutoScaleMode = AutoScaleMode.None;
         }
 
@@ -60,25 +57,22 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private bool KiemTraHopLe()
         {
-            // Kiểm tra không được để trống bất kỳ trường nào
-            if (string.IsNullOrWhiteSpace(txtTenKH.Text) ||
-                string.IsNullOrWhiteSpace(txtSĐT.Text) ||
-                string.IsNullOrWhiteSpace(txtDiaChi.Text))
+            if (string.IsNullOrWhiteSpace(txtTenKH.Text) || string.IsNullOrWhiteSpace(txtSĐT.Text) || string.IsNullOrWhiteSpace(txtDiaChi.Text))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin (Tên, Số điện thoại, Địa chỉ)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
+            // Ghi chú kĩ:
             // Kiểm tra định dạng số điện thoại (Bắt buộc 10 số và bắt đầu bằng số 0)
             // Ký hiệu Regex: ^0 là bắt đầu bằng 0, \d{9} là theo sau bởi đúng 9 chữ số, $ là kết thúc chuỗi
             Regex regexPhone = new Regex(@"^0\d{9}$");
             if (!regexPhone.IsMatch(txtSĐT.Text.Trim()))
             {
                 MessageBox.Show("Số điện thoại không hợp lệ!\nVui lòng nhập đúng 10 số và bắt đầu bằng số 0.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtSĐT.Focus(); // Đưa con trỏ chuột về lại ô SĐT
+                txtSĐT.Focus(); 
                 return false;
             }
-
             return true;
         }
 
@@ -112,7 +106,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (!KiemTraHopLe()) return;
+            if (!KiemTraHopLe()) 
+                return;
 
             if (khachHangBus.kiemTraSoDienThoaiTonTai(txtSĐT.Text.Trim()))
             {
@@ -148,8 +143,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 return;
             }
 
-            // Gọi hàm kiểm tra tính hợp lệ trước khi xử lý
-            if (!KiemTraHopLe()) return;
+            if (!KiemTraHopLe()) 
+                return;
 
             if (khachHangBus.kiemTraSoDienThoaiTonTai(txtSĐT.Text.Trim(), maDangChon))
             {
@@ -268,6 +263,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             {
                 int thu = (int)homNay.DayOfWeek;
                 int soNgayVeThu2;
+
                 if (thu == 0)
                     soNgayVeThu2 = 6;
                 else
@@ -276,7 +272,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 tuNgay = homNay.AddDays(-soNgayVeThu2);
                 denNgay = homNay;
             }
-            else // Tháng này
+            else // tháng này
             {
                 tuNgay = new DateTime(homNay.Year, homNay.Month, 1);
                 denNgay = homNay;

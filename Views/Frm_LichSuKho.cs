@@ -12,7 +12,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 {
     public partial class Frm_LichSuKho : Form
     {
-        private readonly InventoryTransactionBUS _bus = new InventoryTransactionBUS();
+        private InventoryTransactionBUS _bus = new InventoryTransactionBUS();
         private List<InventoryTransaction> _allTransactions = new List<InventoryTransaction>();
 
         public Frm_LichSuKho()

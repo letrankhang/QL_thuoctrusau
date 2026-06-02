@@ -9,8 +9,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
 {
     public partial class Frm_TRANGCHU : Form
     {
-        LogoutController _logoutController;
+        private LogoutController _logoutController;
         private System.Windows.Forms.Timer clock;
+
         public Frm_TRANGCHU()
         {
             InitializeComponent();
@@ -23,7 +24,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             UpdateUserInfo();
             ApplyPermissions();
 
-            // Nếu là Admin thì mở Dashboard, ngược lại mở Quản lý Sản phẩm
             if (SessionManager.IsAdmin())
             {
                 SetActiveButton(btnTongQuan);
@@ -71,6 +71,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private string FormatGreeting()
         {
             System.Globalization.CultureInfo vi = new System.Globalization.CultureInfo("vi-VN");
+
             return DateTime.Now.ToString("HH:mm:ss | dddd, dd/MM/yyyy", vi) + "  |  Xin chào, "
                 + SessionManager.CurrentUser.FullName
                 + " (" + SessionManager.CurrentUser.Role + ")";
@@ -86,6 +87,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         }
 
         private Form activeForm = null;
+
         private void OpenChildForm(Form childForm, string title)
         {
             if (activeForm != null)
@@ -93,7 +95,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 activeForm.Close();
                 activeForm.Dispose();
             }
-
             lblInterfaceName.Text = title;
             activeForm = childForm;
             childForm.TopLevel = false;
@@ -108,7 +109,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void btnTaiKhoan_Click(object sender, EventArgs e)
         {
-            if (!SessionManager.IsAdmin()) return;
+            if (!SessionManager.IsAdmin()) 
+                return;
+
             SetActiveButton(btnTaiKhoan);
             OpenChildForm(new Frm_TaiKhoan(), "QUẢN LÝ TÀI KHOẢN");
         }
@@ -146,7 +149,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
         }
         private void btnTongQuan_Click(object sender, EventArgs e)
         {
-            if (!SessionManager.IsAdmin()) return;
+            if (!SessionManager.IsAdmin()) 
+                return;
+
             SetActiveButton(btnTongQuan);
             OpenChildForm(new Dashboard(), "TỔNG QUAN");
         }
@@ -168,7 +173,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             SetActiveButton(btnNCC);
             OpenChildForm(new Frm_NCC(), "QUẢN LÝ NHÀ CUNG CẤP");
         }
-
         private void btnBanHang_Click(object sender, EventArgs e)
         {
             SetActiveButton(btnBanHang);
@@ -179,7 +183,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
         {
             SetActiveButton(btnNhapHang);
             OpenChildForm(new Frm_NhapHang(), "NHẬP HÀNG");
-
         }
 
         private void btnKhachHang_Click(object sender, EventArgs e)
@@ -194,6 +197,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             OpenChildForm(new Frm_CongNo(), "QUẢN LÝ CÔNG NỢ");
         }
 
+        #region demo vẽ avatar cho staff và admin góc phải màn hình
         private void veAvatar(string hoTen, string role)
         {
             string chu = hoTen.Trim().Split(' ')[hoTen.Trim().Split(' ').Length - 1][0].ToString().ToUpper();
@@ -216,6 +220,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             path.AddEllipse(0, 0, pb_Avatar.Width - 1, pb_Avatar.Height - 1);
             pb_Avatar.Region = new Region(path);
         }
+        #endregion
     }
 }
 

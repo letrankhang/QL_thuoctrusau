@@ -14,7 +14,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 {
     public partial class Frm_SuaNCC : Form
     {
-        SuppliersController controller = new SuppliersController();
+        private SuppliersController controller = new SuppliersController();
         private Supplier nhaCungCapCanSua;
 
         public Frm_SuaNCC(Supplier nhaCungCap)

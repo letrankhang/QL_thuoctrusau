@@ -3,11 +3,14 @@ using QL_CuaHangBanThuocTruSau.DAO;
 using QL_CuaHangBanThuocTruSau.Models;
 using QL_CuaHangBanThuocTruSau.Utils;
 
-namespace QL_CuaHangBanThuocTruSau.Controllers {
-    public class LoginController {
-        private readonly LoginBUS _loginBUS;
-        private readonly LoginDAO _loginDAO;
-        public LoginController () {
+namespace QL_CuaHangBanThuocTruSau.Controllers 
+{
+    public class LoginController 
+    {
+        private LoginBUS _loginBUS;
+        private LoginDAO _loginDAO;
+        public LoginController () 
+        {
             _loginBUS = new LoginBUS ();
             _loginDAO = new LoginDAO();
         }
@@ -26,6 +29,7 @@ namespace QL_CuaHangBanThuocTruSau.Controllers {
             {
                 User user = _loginDAO.GetUserByCredentials(username, password);
                 SessionManager.SetSession(user);
+
                 return "SUCCESS";
             }
             else if (result == "LOCKED")

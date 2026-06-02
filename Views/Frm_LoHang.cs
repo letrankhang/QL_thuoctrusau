@@ -51,7 +51,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void khoiTaoMauBtn()
         {
-            // Tham khảo màu HTML
             btnTatCa.FillColor = ColorTranslator.FromHtml("#E9ECEF");
             btnTatCa.ForeColor = ColorTranslator.FromHtml("#495057");
             btnTatCa.BorderColor = ColorTranslator.FromHtml("#CED4DA");
@@ -137,7 +136,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             khoiTaoMauBtn();
             btn.BorderThickness = 2;
             btn.BorderColor = btn.BorderColor;
-
             btnDangChon = btn;
         }
 
@@ -213,7 +211,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void dgvLoHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0) 
+                return;
 
             DataGridViewRow row = dgvLoHang.Rows[e.RowIndex];
 
@@ -325,15 +324,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
                         int productID = ((Product)cboLocTheoSP.SelectedItem).ProductID;
                         int supplierID = ((Supplier)cboLocTheoNCC.SelectedItem).SupplierID;
 
-                        List<BatchViewModel> danhSach = controller.layDanhSachTheoFilter(
-                            productID, supplierID, trangThaiDangChon);
+                        List<BatchViewModel> danhSach = controller.layDanhSachTheoFilter(productID, supplierID, trangThaiDangChon);
 
                         ReportHelper.XuatReportLoHang(danhSach, sfd.FileName);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Có lỗi xảy ra khi xuất report: " + ex.Message,
-                            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Có lỗi xảy ra khi xuất report: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

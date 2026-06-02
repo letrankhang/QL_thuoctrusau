@@ -4,200 +4,179 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace QL_CuaHangBanThuocTruSau.DAO {
-    public class UserDAO {
-        public UserDAO () { }
+namespace QL_CuaHangBanThuocTruSau.DAO 
+{
+    public class UserDAO 
+    {
+        private AppDbContext db = new AppDbContext();
 
-        //lấy toàn bộ thông tin người dùng
-        public List<User> GetAllUsers () {
-            using (var context = new AppDbContext())
+        public List<User> GetAllUsers() 
+        {
+            try
             {
-                try
-                {
-                    return context.Users.AsNoTracking().ToList ();
-                }
-                catch( Exception ex )
-                {
-                    Console.WriteLine ("Lỗi khi lấy danh sách user: " + ex.Message);
-                    return new List<User> ();
-                }
+                return db.Users.AsNoTracking().ToList ();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine ("Lỗi khi lấy danh sách user: " + ex.Message);
+                return new List<User> ();
             }
         }
 
-        /// Lấy thông tin chi tiết một người dùng theo ID
-        public User GetUserById (int userId) {
-            using (var context = new AppDbContext())
+        public User GetUserById (int userId) 
+        {
+            try
             {
-                try
-                {
-                    return context.Users.AsNoTracking().FirstOrDefault (u => u.UserID == userId);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Lỗi: " + ex.Message);
-                    return null;
-                }
+                return db.Users.AsNoTracking().FirstOrDefault (u => u.UserID == userId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return null;
             }
         }
 
-        //kiểm tra người dùng có tồn tại ko
-        public bool IsUsernameExists (string username) {
-            using (var context = new AppDbContext())
+        // kiểm tra người dùng có tồn tại ko
+        public bool IsUsernameExists (string username) 
+        {
+            return db.Users.Any(u => u.Username == username);
+        }
+
+        public User GetUserByUsername (string username) 
+        {
+            try
             {
-                return context.Users.Any (u => u.Username == username);
+                return db.Users.AsNoTracking().FirstOrDefault (u => u.Username == username);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return null;
             }
         }
 
-        public User GetUserByUsername (string username) {
-            using (var context = new AppDbContext())
+        public User GetUserByEmailOrUsername (string identifier) 
+        {
+            try
             {
-                try
-                {
-                    return context.Users.AsNoTracking().FirstOrDefault (u => u.Username == username);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Lỗi: " + ex.Message);
-                    return null;
-                }
+                return db.Users.AsNoTracking().FirstOrDefault (u => u.Username == identifier || u.Email == identifier);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return null;
             }
         }
 
-        public User GetUserByEmailOrUsername (string identifier) {
-            using (var context = new AppDbContext())
+        public bool UpdatePassword (int userId, string newPassword) 
+        {
+            try
             {
-                try
-                {
-                    return context.Users.AsNoTracking().FirstOrDefault (u => u.Username == identifier || u.Email == identifier);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Lỗi: " + ex.Message);
-                    return null;
-                }
+                var user = db.Users.FirstOrDefault(u => u.UserID == userId);
+                if (user == null) return false;
+
+                user.Password = newPassword;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
-        public bool UpdatePassword (int userId, string newPassword) {
-            using (var context = new AppDbContext())
+        // thêm user mới trả về thành công hoặc ko thành công
+        public bool AddUser (User user) 
+        {
+            try
             {
-                try
-                {
-                    var user = context.Users.FirstOrDefault (u => u.UserID == userId);
-                    if( user == null ) return false;
+                if (user == null) return false;
+                if (db.Users.Any(u => u.Username == user.Username)) return false;
 
-                    user.Password = newPassword;
-                    context.SaveChanges ();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
+                db.Users.Add(user);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine ("Lỗi khi thêm user: " + ex.Message);
+                return false;
             }
         }
 
-        //thêm user mới trả về thành công hoặc ko thành công
-
-        public bool AddUser (User user) {
-            using (var context = new AppDbContext())
+        public bool UpdateUser (User user) 
+        {
+            try
             {
-                try
-                {
-                    if( user == null ) return false;
-                    if( context.Users.Any (u => u.Username == user.Username) ) return false;
+                if( user == null ) return false;
 
-                    context.Users.Add (user);
-                    context.SaveChanges ();
-                    return true;
-                }
-                catch( Exception ex )
+                var existingUser = db.Users.FirstOrDefault (u => u.UserID == user.UserID);
+                if( existingUser != null )
                 {
-                    Console.WriteLine ("Lỗi khi thêm user: " + ex.Message);
-                    return false;
-                }
-            }
-        }
+                    existingUser.FullName = user.FullName;
+                    existingUser.Email = user.Email;
 
-        public bool UpdateUser (User user) {
-            using (var context = new AppDbContext())
-            {
-                try
-                {
-                    if( user == null ) return false;
+                    existingUser.Role = user.Role;
+                    existingUser.Status = user.Status;
 
-                    var existingUser = context.Users.FirstOrDefault (u => u.UserID == user.UserID);
-                    if( existingUser != null )
+                    if( !string.IsNullOrEmpty (user.Password) )
                     {
-                        existingUser.FullName = user.FullName;
-                        existingUser.Email = user.Email;
-
-                        existingUser.Role = user.Role;
-                        existingUser.Status = user.Status;
-
-                        if( !string.IsNullOrEmpty (user.Password) )
-                        {
-                            existingUser.Password = user.Password;
-                        }
-
-                        context.SaveChanges ();
-                        return true;
-                    }
-                    return false;
-                }
-                catch( Exception ex )
-                {
-                    Console.WriteLine ("Lỗi khi sửa thông tin user: " + ex.Message);
-                    return false;
-                }
-            }
-        }
-
-        public bool DeleteUser (int userId) {
-            using (var context = new AppDbContext())
-            {
-                try
-                {
-                    var existingUser = context.Users.FirstOrDefault (u => u.UserID == userId);
-                    if( existingUser == null ) return false;
-
-                    existingUser.Status = false;
-                    context.SaveChanges ();
-                    return true;
-                }
-                catch( Exception ex )
-                {
-                    Console.WriteLine ("Lỗi khi xóa mềm user: " + ex.Message);
-                    return false;
-                }
-            }
-        }
-
-        public bool HardDeleteUser (int userId) {
-            using (var context = new AppDbContext())
-            {
-                try
-                {
-                    var user = context.Users.FirstOrDefault (u => u.UserID == userId);
-                    if( user == null ) return false;
-
-                    bool hasOrders = context.Orders.Any (o => o.UserID == userId);
-                    bool hasImports = context.Imports.Any (i => i.UserID == userId);
-
-                    if( hasOrders || hasImports )
-                    {
-                        return false;
+                        existingUser.Password = user.Password;
                     }
 
-                    context.Users.Remove (user);
-                    context.SaveChanges ();
+                    db.SaveChanges();
                     return true;
                 }
-                catch( Exception ex )
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine ("Lỗi khi sửa thông tin user: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool DeleteUser (int userId) 
+        {
+            try
+            {
+                var existingUser = db.Users.FirstOrDefault (u => u.UserID == userId);
+                if (existingUser == null) return false;
+
+                existingUser.Status = false;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine ("Lỗi khi xóa mềm user: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool HardDeleteUser (int userId) 
+        {
+            try
+            {
+                var user = db.Users.FirstOrDefault(u => u.UserID == userId);
+                if (user == null) return false;
+
+                bool hasOrders = db.Orders.Any(o => o.UserID == userId);
+                bool hasImports = db.Imports.Any(i => i.UserID == userId);
+
+                if (hasOrders || hasImports)
                 {
-                    Console.WriteLine ("Lỗi khi xóa vĩnh viễn user: " + ex.Message);
                     return false;
                 }
+
+                db.Users.Remove(user);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine ("Lỗi khi xóa vĩnh viễn user: " + ex.Message);
+                return false;
             }
         }
     }

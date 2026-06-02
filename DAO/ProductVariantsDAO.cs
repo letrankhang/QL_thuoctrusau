@@ -7,7 +7,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO
 {
     public class ProductVariantDAO
     {
-        AppDbContext db = new AppDbContext();
+        private AppDbContext db = new AppDbContext();
 
         public List<ProductVariant> layTatCa()
         {
@@ -48,8 +48,8 @@ namespace QL_CuaHangBanThuocTruSau.DAO
             {
                 return false;
             }
-
             db.ProductVariants.Remove(timThay);
+
             return db.SaveChanges() > 0;
         }
 

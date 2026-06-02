@@ -27,8 +27,8 @@ namespace QL_CuaHangBanThuocTruSau.BUS
         public List<Customer> layDanhSach() => khachHangDao.layDanhSach();
 
         public List<Customer> timKiem(string tuKhoa) => khachHangDao.timKiem(tuKhoa);
-        public List<Customer> locTheoNgay(DateTime tuNgay, DateTime denNgay) => khachHangDao.locTheoNgay(tuNgay, denNgay);
 
+        public List<Customer> locTheoNgay(DateTime tuNgay, DateTime denNgay) => khachHangDao.locTheoNgay(tuNgay, denNgay);
 
         public Result<List<Customer>> SearchCustomers(string tuKhoa)
         {
@@ -40,13 +40,16 @@ namespace QL_CuaHangBanThuocTruSau.BUS
             catch (Exception ex)
             {
                 Logger.Log(ex, "CustomerBUS.SearchCustomers");
-                return Result<List<Customer>>.Failure("Lỗi tìm kiếm khách hàng: " + ex.Message);
+                return Result<List<Customer>>.Failure($"Lỗi tìm kiếm khách hàng: {ex.Message}");
             }
         }
 
         public bool them(Customer khachHang, out string loi) => khachHangDao.them(khachHang, out loi);
+
         public bool sua(Customer khachHang, out string loi) => khachHangDao.sua(khachHang, out loi);
+
         public bool xoa(int maKhachHang, out string loi) => khachHangDao.xoa(maKhachHang, out loi);
+
         public bool kiemTraSoDienThoaiTonTai(string soDienThoai, int boQuaID = 0) => khachHangDao.kiemTraSoDienThoaiTonTai(soDienThoai, boQuaID);
     }
 }

@@ -1,8 +1,10 @@
 using QL_CuaHangBanThuocTruSau.Models;
 using System.Data.Entity;
 
-namespace QL_CuaHangBanThuocTruSau.Context {
-    public class AppDbContext : DbContext {
+namespace QL_CuaHangBanThuocTruSau.Context 
+{
+    public class AppDbContext : DbContext 
+    {
         public AppDbContext () : base ("name=AppDbContext")
         {
             Database.SetInitializer<AppDbContext>(null);
@@ -22,7 +24,8 @@ namespace QL_CuaHangBanThuocTruSau.Context {
         public DbSet<InventoryTransaction> InventoryTransactions { get; set; }
         public DbSet<DebtTransaction> DebtTransactions { get; set; }
 
-        protected override void OnModelCreating (DbModelBuilder modelBuilder) {
+        protected override void OnModelCreating (DbModelBuilder modelBuilder) 
+        {
             base.OnModelCreating (modelBuilder);
 
             // Tắt Cascade Delete cho quan hệ giữa OrderDetail và OrderDetailBatch

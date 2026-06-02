@@ -15,6 +15,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
         }
 
         public static Result Success(string message = "") => new Result(true, message);
+
         public static Result Failure(string message) => new Result(false, message);
     }
 
@@ -28,6 +29,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
         }
 
         public static Result<T> Success(T data, string message = "") => new Result<T>(true, message, data);
+
         public static new Result<T> Failure(string message) => new Result<T>(false, message, default);
     }
 }

@@ -2,7 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace QL_CuaHangBanThuocTruSau.Models {
+namespace QL_CuaHangBanThuocTruSau.Models 
+{
     [Table ("Categories")]
     public class Category {
         [Key]

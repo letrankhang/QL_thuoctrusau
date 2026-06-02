@@ -11,7 +11,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 {
     public partial class Frm_LichSuDonHang : Form
     {
-        private readonly OrderBUS _orderBUS = new OrderBUS();
+        private OrderBUS _orderBUS = new OrderBUS();
         private List<Order> _allOrders = new List<Order>();
 
         public Frm_LichSuDonHang()
@@ -32,7 +32,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             LoadFullData();
         }
 
-        // Tải toàn bộ danh sách đơn hàng
         private void LoadFullData()
         {
             try
@@ -63,7 +62,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             dgvLichSu.DataSource = displayList;
         }
 
-        // Làm đẹp bảng dữ liệu
         private void DinhDangLuoi()
         {
             if (dgvLichSu.Columns.Count > 0)
@@ -78,11 +76,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 dgvLichSu.Columns["OrderID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvLichSu.Columns["OrderDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvLichSu.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                // Định dạng ngày tháng
+
                 if (dgvLichSu.Columns.Contains("OrderDate"))
                     dgvLichSu.Columns["OrderDate"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
 
-                // Định dạng tiền tệ VNĐ
                 if (dgvLichSu.Columns.Contains("TotalAmount"))
                 {
                     dgvLichSu.Columns["TotalAmount"].DefaultCellStyle.Format = "N0";
@@ -126,11 +123,11 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 try
                 {
                     // Lấy OrderID từ dòng đang chọn
-                    // Lưu ý: dgvLichSu.DataSource đang bind tới anonymous object, 
-                    // nhưng cột "OrderID" vẫn tồn tại nếu được tạo tự động hoặc gán thủ công.
+                    // dgvLichSu.DataSource đang bind tới anonymous object, 
+                    // nhưng cột OrderID vẫn tồn tại nếu được tạo tự động hoặc gán thủ công.
                     int orderId = Convert.ToInt32(dgvLichSu.SelectedRows[0].Cells["OrderID"].Value);
 
-                    // Lấy dữ liệu đầy đủ từ Database (bao gồm details, customer, user)
+                    // Lấy dữ liệu đầy đủ từ Database bao gồm details, customer, user
                     var order = _orderBUS.GetOrderById(orderId);
 
                     if (order != null)

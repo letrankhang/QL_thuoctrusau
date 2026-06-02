@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace QL_CuaHangBanThuocTruSau.Models {
+namespace QL_CuaHangBanThuocTruSau.Models 
+{
     [Table ("OrderDetailBatches")]
     public class OrderDetailBatch {
         [Key]

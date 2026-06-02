@@ -6,7 +6,7 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
 {
     public class CategoryController
     {
-        CategoryBUS bus = new CategoryBUS();
+        private CategoryBUS bus = new CategoryBUS();
 
         public List<Category> layDanhSachLoai()
         {
@@ -20,6 +20,7 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
                 Name = ten.Trim(),
                 Description = moTa.Trim()
             };
+
             return bus.themMoiLoai(loaiMoi);
         }
 
@@ -31,6 +32,7 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
                 Name = ten.Trim(),
                 Description = moTa.Trim()
             };
+
             return bus.capNhatLoai(loaiCapNhat);
         }
 

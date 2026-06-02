@@ -8,17 +8,21 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace QL_CuaHangBanThuocTruSau.Views {
-    public partial class Frm_NhapHang : Form {
-        ImportController controller = new ImportController ();
+namespace QL_CuaHangBanThuocTruSau.Views 
+{
+    public partial class Frm_NhapHang : Form 
+    {
+        private ImportController controller = new ImportController ();
 
-        public Frm_NhapHang () {
+        public Frm_NhapHang () 
+        {
             InitializeComponent ();
             this.Load += Frm_NhapHang_Load;
         }
 
-        private string DichTrangThai (string status) {
-            switch( status?.ToUpper () )
+        private string DichTrangThai (string status) 
+        {
+            switch (status?.ToUpper())
             {
                 case "COMPLETED": 
                     return "Hoàn thành";
@@ -43,7 +47,8 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
         }
 
-        private void Frm_NhapHang_Load (object sender, EventArgs e) {
+        private void Frm_NhapHang_Load (object sender, EventArgs e) 
+        {
             StyleDgv (dgvChiTietDonHang);
             StyleDgv (dgvLichSuNhap);
 
@@ -98,7 +103,8 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             dgv.RowTemplate.Height = 34;
         }
 
-        private void LoadDataToComboBox () {
+        private void LoadDataToComboBox () 
+        {
             using (var db = new AppDbContext())
             {
                 var listSuppliers = db.Suppliers.ToList();
@@ -117,35 +123,34 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
         }
 
-        private void LoadLichSuNhap () {
-
+        private void LoadLichSuNhap() 
+        {
             try
             {
-                using( var db = new AppDbContext () )
+                using (var db = new AppDbContext())
                 {
                     var ds = db.Imports
-                        .Select (x => new
+                        .Select(x => new
                         {
                             x.ImportID,
                             SupplierName = x.Supplier.Name,
                             UserName = x.User.FullName,
                             x.ImportDate,
                             x.TotalAmount,
-                            x.Status      // ← giữ status gốc tiếng Anh để tô màu
-                        })
-                        .ToList ();
+                            x.Status      
+                        }).ToList ();
 
-                    dgvLichSuNhap.Rows.Clear ();
+                    dgvLichSuNhap.Rows.Clear();
 
-                    foreach( var item in ds )
+                    foreach (var item in ds)
                     {
-                        int rowIndex = dgvLichSuNhap.Rows.Add (
+                        int rowIndex = dgvLichSuNhap.Rows.Add(
                             item.ImportID,
                             item.SupplierName,
                             item.UserName,
-                            item.ImportDate?.ToString ("dd/MM/yyyy"),
-                            item.TotalAmount.ToString ("N0"),
-                            DichTrangThai (item.Status)   // hiển thị tiếng Việt
+                            item.ImportDate?.ToString("dd/MM/yyyy"),
+                            item.TotalAmount.ToString("N0"),
+                            DichTrangThai(item.Status)   // hiển thị tiếng Việt
                         );
 
                         var cellTrangThai = dgvLichSuNhap.Rows[rowIndex].Cells[5];
@@ -157,11 +162,13 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                                 cellTrangThai.Style.ForeColor = Color.FromArgb(0, 150, 60);
                                 cellTrangThai.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
+
                             case "PARTIAL":
                             case "UNPAID":
                                 cellTrangThai.Style.ForeColor = Color.FromArgb(200, 120, 0);
                                 cellTrangThai.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
+
                             case "CANCELLED":
                                 cellTrangThai.Style.ForeColor = Color.FromArgb(200, 80, 0);
                                 cellTrangThai.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
@@ -170,18 +177,19 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                     }
                 }
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 MessageBox.Show ("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
-        private void UpdateEmptyLabel()
+        private void UpdateEmptyLabel ()
         {
             lblPhieu.Visible = dgvChiTietDonHang.Rows.Count == 0;
         }
 
-        private void btnLamMoi_Click (object sender, EventArgs e) {
+        private void btnLamMoi_Click (object sender, EventArgs e) 
+        {
             DialogResult dr = MessageBox.Show("Bạn có chắc muốn làm mới toàn bộ phiếu nhập?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dr != DialogResult.Yes)
@@ -206,21 +214,19 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             UpdateEmptyLabel();
         }
 
-        private void btnLuuPhieu_Click (object sender, EventArgs e) {
+        private void btnLuuPhieu_Click (object sender, EventArgs e) 
+        {
             if (dgvChiTietDonHang.Rows.Count == 0)
             {
-                MessageBox.Show("Chưa có sản phẩm nào trong phiếu!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chưa có sản phẩm nào trong phiếu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (cboNhaCungCap.SelectedIndex <= 0)
             {
-                MessageBox.Show("Vui lòng chọn nhà cung cấp!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn nhà cung cấp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             Supplier nccSelected = (Supplier)cboNhaCungCap.SelectedItem;
 
             try
@@ -237,7 +243,6 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                         UserID = SessionManager.CurrentUser?.UserID ?? 1,
                         Status = "UNPAID"
                     };
-
                     db.Imports.Add(hoaDon);
                     db.SaveChanges();
 
@@ -255,8 +260,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
                         if (!okNSX || !okHSD)
                         {
-                            MessageBox.Show($"Dòng {row.Index + 1}: NSX hoặc HSD không đúng định dạng dd/MM/yyyy.",
-                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Dòng {row.Index + 1}: NSX hoặc HSD không đúng định dạng dd/MM/yyyy.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
@@ -321,16 +325,14 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lưu phiếu: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi lưu phiếu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnThanhToan_Click (object sender, EventArgs e) {
             if (dgvLichSuNhap.CurrentRow == null)
             {
-                MessageBox.Show("Vui lòng chọn một phiếu nhập để thanh toán!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn một phiếu nhập để thanh toán!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -340,8 +342,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
             if (trangThai == "Hoàn thành" || trangThai == "Đã thanh toán")
             {
-                MessageBox.Show("Phiếu nhập này đã thanh toán xong!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Phiếu nhập này đã thanh toán xong!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -365,8 +366,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
                     if (conLai <= 0)
                     {
-                        MessageBox.Show("Phiếu nhập này đã thanh toán đủ!", "Thông báo",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Phiếu nhập này đã thanh toán đủ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
 
@@ -471,20 +471,20 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                         string clean = txtAmount.Text.Replace(",", "").Replace(".", "");
                         if (!decimal.TryParse(clean, out soTienTra) || soTienTra <= 0)
                         {
-                            MessageBox.Show("Số tiền không hợp lệ!", "Lỗi",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Số tiền không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
                         if (soTienTra > conLai)
                         {
-                            MessageBox.Show(
-                                $"Số tiền đã nhập là ({soTienTra:N0}đ) vượt quá số còn lại ({conLai:N0}đ)!",
-                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Số tiền đã nhập là ({soTienTra:N0}đ) vượt quá số còn lại ({conLai:N0}đ)!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     }
-                    else return; // người dùng bấm Hủy
+                    else
+                    {
+                        return; // người dùng bấm Hủy
+                    }
 
                     prompt.Dispose();
 
@@ -509,47 +509,51 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi thanh toán: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi thanh toán: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void TinhTongTien () {
+        private void TinhTongTien () 
+        {
             decimal tong = 0;
-            foreach( DataGridViewRow row in dgvChiTietDonHang.Rows )
+            foreach (DataGridViewRow row in dgvChiTietDonHang.Rows)
             {
-                if( !row.IsNewRow && row.Cells[8].Value != null )
+                if (!row.IsNewRow && row.Cells[8].Value != null)
                 {
-                    decimal.TryParse (row.Cells[8].Value.ToString (), out decimal thanhTien);
+                    decimal.TryParse(row.Cells[8].Value.ToString(), out decimal thanhTien);
                     tong += thanhTien;
                 }
             }
 
-            lblKetQua.Text = string.Format ("{0:N0} VNĐ", tong);
-            txtTongGiaTriPhieu.Text = tong.ToString ("N0");
-            TinhCongNo ();
+            lblKetQua.Text = string.Format("{0:N0} VNĐ", tong);
+            txtTongGiaTriPhieu.Text = tong.ToString("N0");
+            TinhCongNo();
         }
 
-        private void TinhCongNo () {
-            decimal.TryParse (txtTongGiaTriPhieu.Text.Replace (",", ""), out decimal tongTien);
-            decimal.TryParse (txtDaThanhToan.Text.Replace (",", ""), out decimal daTra);
+        private void TinhCongNo () 
+        {
+            decimal.TryParse(txtTongGiaTriPhieu.Text.Replace(",", ""), out decimal tongTien);
+            decimal.TryParse(txtDaThanhToan.Text.Replace(",", ""), out decimal daTra);
             decimal no = tongTien - daTra;
-            txtCongNo.Text = no.ToString ("N0");
+            txtCongNo.Text = no.ToString("N0");
         }
 
-        private void txtDaThanhToan_TextChanged (object sender, EventArgs e) {
+        private void txtDaThanhToan_TextChanged (object sender, EventArgs e) 
+        {
             TinhCongNo ();
         }
 
-        private void dgvChiTietDonHang_CellContentClick (object sender, DataGridViewCellEventArgs e) {
+        private void dgvChiTietDonHang_CellContentClick (object sender, DataGridViewCellEventArgs e)
+        { 
             TinhTongTien ();
         }
 
-        private void CapNhatLaiSTT () {
-            for( int i = 0; i < dgvChiTietDonHang.Rows.Count; i++ )
+        private void CapNhatLaiSTT () 
+        {
+            for (int i = 0; i < dgvChiTietDonHang.Rows.Count; i++)
             {
-                if( !dgvChiTietDonHang.Rows[i].IsNewRow )
-                    dgvChiTietDonHang.Rows[i].Cells[0].Value = (i + 1).ToString ();
+                if (!dgvChiTietDonHang.Rows[i].IsNewRow)
+                    dgvChiTietDonHang.Rows[i].Cells[0].Value = (i + 1).ToString();
             }
         }
 
@@ -595,11 +599,8 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         {
             if (dgvChiTietDonHang.SelectedRows.Count > 0)
             {
-                DialogResult dr = MessageBox.Show(
-                    "Bạn có chắc chắn muốn xóa sản phẩm này khỏi danh sách?",
-                    "Xác nhận xóa",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+                DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn xóa sản phẩm này khỏi danh sách?", "Xác nhận xóa",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dr == DialogResult.Yes)
                 {
@@ -613,8 +614,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn sản phẩm cần xóa!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn sản phẩm cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             UpdateEmptyLabel();
@@ -682,18 +682,22 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                                 cell.Style.ForeColor = Color.FromArgb(0, 180, 80);
                                 cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
+
                             case "PAID":
                                 cell.Style.ForeColor = Color.FromArgb(0, 180, 80);
                                 cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
+
                             case "PARTIAL":
                                 cell.Style.ForeColor = Color.FromArgb(255, 160, 0);
                                 cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
+
                             case "UNPAID":
                                 cell.Style.ForeColor = Color.FromArgb(220, 50, 50);
                                 cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
                                 break;
+
                             case "CANCELLED":
                                 cell.Style.ForeColor = Color.FromArgb(140, 140, 140);
                                 cell.Style.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
@@ -727,8 +731,9 @@ namespace QL_CuaHangBanThuocTruSau.Views {
         }
     }
 
-    // Class phụ giúp ComboBox lưu cả Tên và ID
-    public class CboItem {
+    // class phụ giúp comboBox lưu cả Tên và ID
+    public class CboItem 
+    {
         public string Text { get; set; }
         public int Value { get; set; }
 

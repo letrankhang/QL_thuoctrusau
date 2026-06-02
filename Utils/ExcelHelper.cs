@@ -4,7 +4,6 @@ using QL_CuaHangBanThuocTruSau.Models;
 using QL_CuaHangBanThuocTruSau.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,7 +11,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
 {
     public class ExcelHelper
     {
-
         public static void ExportToExcel<T>(IEnumerable<T> data, string fileName, string sheetName = "Data")
         {
             try
@@ -46,18 +44,15 @@ namespace QL_CuaHangBanThuocTruSau.Utils
             {
                 var worksheet = workbook.Worksheets.Add("Lô Hàng");
 
-                // Tiêu đề
                 var titleRange = worksheet.Range("A1:J1");
                 titleRange.Merge().Value = "BÁO CÁO DANH SÁCH LÔ HÀNG";
                 titleRange.Style.Font.SetBold().Font.SetFontSize(16).Font.FontColor = XLColor.White;
                 titleRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#2E7D32");
                 titleRange.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
 
-                // Thông tin phụ
                 worksheet.Cell("A2").Value = $"Ngày xuất: {DateTime.Now:dd/MM/yyyy HH:mm}";
                 worksheet.Range("A2:J2").Merge().Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right).Font.SetItalic();
 
-                // Header bảng
                 string[] headers = { "Mã Lô", "Tên Sản Phẩm", "Biến Thể", "Nhà Cung Cấp", "Giá Nhập", "SL Ban Đầu", "SL Còn Lại", "NSX", "HSD", "Trạng Thái" };
                 for (int i = 0; i < headers.Length; i++)
                 {
@@ -69,7 +64,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     cell.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
                 }
 
-                // Dữ liệu
                 int row = 5;
                 foreach (var item in danhSach)
                 {
@@ -87,7 +81,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     worksheet.Cell(row, 9).Style.NumberFormat.Format = "dd/MM/yyyy";
                     worksheet.Cell(row, 10).Value = item.TrangThai;
 
-                    // Định dạng màu cho cột Trạng thái
                     var statusCell = worksheet.Cell(row, 10);
                     if (item.TrangThai == "Hết hạn") statusCell.Style.Font.FontColor = XLColor.Red;
                     else if (item.TrangThai == "Sắp hết hạn") statusCell.Style.Font.FontColor = XLColor.Orange;
@@ -97,14 +90,12 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     row++;
                 }
 
-                // 5. Tổng kết
                 int lastRow = row;
                 worksheet.Cell(lastRow, 1).Value = "Tổng số lượng lô hàng:";
                 worksheet.Cell(lastRow, 1).Style.Font.SetBold();
                 worksheet.Cell(lastRow, 2).Value = danhSach.Count;
                 worksheet.Cell(lastRow, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
 
-                // Tự động căn chỉnh
                 worksheet.Columns().AdjustToContents();
 
                 workbook.SaveAs(filePath);
@@ -118,18 +109,15 @@ namespace QL_CuaHangBanThuocTruSau.Utils
             {
                 var worksheet = workbook.Worksheets.Add("Nhà Cung Cấp");
 
-                // Tiêu đề
                 var titleRange = worksheet.Range("A1:E1");
                 titleRange.Merge().Value = "DANH SÁCH NHÀ CUNG CẤP";
                 titleRange.Style.Font.SetBold().Font.SetFontSize(16).Font.FontColor = XLColor.White;
                 titleRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#1976D2");
                 titleRange.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
 
-                // Thông tin phụ
                 worksheet.Cell("A2").Value = $"Ngày xuất: {DateTime.Now:dd/MM/yyyy HH:mm}";
                 worksheet.Range("A2:E2").Merge().Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right).Font.SetItalic();
 
-                // Header bảng
                 string[] headers = { "Mã NCC", "Tên Nhà Cung Cấp", "Số Điện Thoại", "Địa Chỉ", "Ngày Tạo" };
                 for (int i = 0; i < headers.Length; i++)
                 {
@@ -141,7 +129,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     cell.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
                 }
 
-                // Dữ liệu
                 int row = 5;
                 foreach (var item in danhSach)
                 {
@@ -156,14 +143,12 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     row++;
                 }
 
-                // Tổng kết
                 int lastRow = row;
                 worksheet.Cell(lastRow, 1).Value = "Tổng số lượng NCC:";
                 worksheet.Cell(lastRow, 1).Style.Font.SetBold();
                 worksheet.Cell(lastRow, 2).Value = danhSach.Count;
                 worksheet.Cell(lastRow, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
 
-                // Tự động căn chỉnh
                 worksheet.Columns().AdjustToContents();
 
                 workbook.SaveAs(filePath);
@@ -171,82 +156,21 @@ namespace QL_CuaHangBanThuocTruSau.Utils
             }
         }
 
-        /*
-        public static void XuatExcelSanPham(List<Product> danhSach, string filePath)
-        {
-            using (var workbook = new XLWorkbook())
-            {
-                var worksheet = workbook.Worksheets.Add("Sản Phẩm");
-
-                // Tiêu đề
-                var titleRange = worksheet.Range("A1:D1");
-                titleRange.Merge().Value = "DANH SÁCH SẢN PHẨM";
-                titleRange.Style.Font.SetBold().Font.SetFontSize(16).Font.FontColor = XLColor.White;
-                titleRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#EF6C00");
-                titleRange.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-
-                // Thông tin phụ
-                worksheet.Cell("A2").Value = $"Ngày xuất: {DateTime.Now:dd/MM/yyyy HH:mm}";
-                worksheet.Range("A2:D2").Merge().Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right).Font.SetItalic();
-
-                // Header bảng
-                string[] headers = { "Mã Sản Phẩm", "Tên Sản Phẩm", "Loại", "Mô Tả" };
-                for (int i = 0; i < headers.Length; i++)
-                {
-                    var cell = worksheet.Cell(4, i + 1);
-                    cell.Value = headers[i];
-                    cell.Style.Fill.BackgroundColor = XLColor.FromHtml("#FFF3E0");
-                    cell.Style.Font.SetBold();
-                    cell.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                    cell.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-                }
-
-                // Dữ liệu
-                int row = 5;
-                foreach (var item in danhSach)
-                {
-                    worksheet.Cell(row, 1).Value = item.ProductID;
-                    worksheet.Cell(row, 2).Value = item.Name;
-                    worksheet.Cell(row, 3).Value = item.Category?.Name ?? item.CategoryID.ToString();
-                    worksheet.Cell(row, 4).Value = item.Description;
-
-                    worksheet.Range(row, 1, row, 4).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                    row++;
-                }
-
-                // Tổng kết
-                int lastRow = row;
-                worksheet.Cell(lastRow, 1).Value = "Tổng số lượng sản phẩm:";
-                worksheet.Cell(lastRow, 1).Style.Font.SetBold();
-                worksheet.Cell(lastRow, 2).Value = danhSach.Count;
-                worksheet.Cell(lastRow, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
-
-                // Tự động căn chỉnh
-                worksheet.Columns().AdjustToContents();
-
-                workbook.SaveAs(filePath);
-                try { System.Diagnostics.Process.Start(filePath); } catch { }
-            }
-        }
-        */
         public static void XuatExcelSanPhamChiTiet(List<Product> danhSach, string filePath)
         {
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Chi Tiết Sản Phẩm");
 
-                // Tiêu đề
                 var titleRange = worksheet.Range("A1:G1");
                 titleRange.Merge().Value = "DANH SÁCH CHI TIẾT SẢN PHẨM & BIẾN THỂ";
                 titleRange.Style.Font.SetBold().Font.SetFontSize(16).Font.FontColor = XLColor.White;
                 titleRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#E65100");
                 titleRange.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
 
-                // Thông tin phụ
                 worksheet.Cell("A2").Value = $"Ngày xuất: {DateTime.Now:dd/MM/yyyy HH:mm}";
                 worksheet.Range("A2:G2").Merge().Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right).Font.SetItalic();
 
-                // Header bảng
                 string[] headers = { "Mã SP", "Tên Sản Phẩm / Biến Thể", "Loại", "Đơn Vị", "Hàm Lượng", "Giá Bán Lẻ", "Giá Bán Sỉ" };
                 for (int i = 0; i < headers.Length; i++)
                 {
@@ -258,11 +182,9 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     cell.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
                 }
 
-                // Dữ liệu
                 int row = 5;
                 foreach (var sp in danhSach)
                 {
-                    // Dòng sản phẩm chính
                     worksheet.Cell(row, 1).Value = sp.ProductID;
                     worksheet.Cell(row, 2).Value = sp.Name;
                     worksheet.Cell(row, 2).Style.Font.SetBold();
@@ -274,7 +196,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
 
                     row++;
 
-                    // Các dòng biến thể
                     if (sp.ProductVariants != null && sp.ProductVariants.Count > 0)
                     {
                         foreach (var v in sp.ProductVariants)
@@ -294,14 +215,12 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     }
                 }
 
-                // Tổng kết
                 int lastRow = row;
                 worksheet.Cell(lastRow, 1).Value = "Tổng số lượng sản phẩm chính:";
                 worksheet.Cell(lastRow, 1).Style.Font.SetBold();
                 worksheet.Cell(lastRow, 2).Value = danhSach.Count;
                 worksheet.Cell(lastRow, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
 
-                // Tự động căn chỉnh
                 worksheet.Columns().AdjustToContents();
 
                 workbook.SaveAs(filePath);
@@ -315,18 +234,15 @@ namespace QL_CuaHangBanThuocTruSau.Utils
             {
                 var worksheet = workbook.Worksheets.Add("Công nợ");
 
-                // Tiêu đề
                 var titleRange = worksheet.Range("A1:I1");
                 titleRange.Merge().Value = "BÁO CÁO TÌNH HÌNH CÔNG NỢ ĐỐI TÁC";
                 titleRange.Style.Font.SetBold().Font.SetFontSize(16).Font.FontColor = XLColor.White;
                 titleRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#1565C0");
                 titleRange.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
 
-                // Thông tin phụ
                 worksheet.Cell("A2").Value = $"Ngày xuất: {DateTime.Now:dd/MM/yyyy HH:mm}";
                 worksheet.Range("A2:I2").Merge().Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right).Font.SetItalic();
 
-                // Header bảng
                 string[] headers = { "Mã Đơn", "Tên Đối Tác", "Loại Nợ", "Tổng Nợ", "Đã Thanh Toán", "Còn Lại", "Ngày Lập", "Trạng Thái", "Nhân Viên Lập" };
                 for (int i = 0; i < headers.Length; i++)
                 {
@@ -338,7 +254,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     cell.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
                 }
 
-                // Dữ liệu
                 int row = 5;
                 foreach (var item in danhSach)
                 {
@@ -360,7 +275,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     row++;
                 }
 
-                // Tổng kết
                 int lastRow = row + 1;
                 worksheet.Cell(lastRow, 1).Value = "TỔNG CỘNG:";
                 worksheet.Cell(lastRow, 1).Style.Font.SetBold();
@@ -380,7 +294,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 worksheet.Range(lastRow, 1, lastRow, 9).Style.Fill.BackgroundColor = XLColor.FromHtml("#F5F5F5");
                 worksheet.Range(lastRow, 1, lastRow, 9).Style.Border.OutsideBorder = XLBorderStyleValues.Medium;
 
-                // Tự động căn chỉnh
                 worksheet.Columns().AdjustToContents();
 
                 workbook.SaveAs(filePath);

@@ -24,10 +24,8 @@ namespace QL_CuaHangBanThuocTruSau.DAO
             tuKhoa = tuKhoa.Trim().ToLower();
 
             return db.Customers.Where(c => c.Name.ToLower().Contains(tuKhoa)
-                                          || c.Phone.Contains(tuKhoa)
-                                          || c.CustomerID.ToString().Contains(tuKhoa))
-                     .OrderBy(c => c.CustomerID)
-                     .ToList();
+                                || c.Phone.Contains(tuKhoa) || c.CustomerID.ToString().Contains(tuKhoa))
+                     .OrderBy(c => c.CustomerID).ToList();
         }
 
         public bool them(Customer khachHang, out string loi)
@@ -58,7 +56,6 @@ namespace QL_CuaHangBanThuocTruSau.DAO
                     loi = "Không tìm thấy khách hàng cần sửa!";
                     return false;
                 }
-
                 existing.Name = khachHang.Name;
                 existing.Phone = khachHang.Phone;
                 existing.Address = khachHang.Address;
@@ -116,10 +113,8 @@ namespace QL_CuaHangBanThuocTruSau.DAO
             DateTime batDau = tuNgay.Date;
             DateTime ketThuc = denNgay.Date.AddDays(1);
 
-            return db.Customers
-                     .Where(c => c.CreatedAt >= batDau && c.CreatedAt < ketThuc)
-                     .OrderBy(c => c.CustomerID)
-                     .ToList();
+            return db.Customers.Where(c => c.CreatedAt >= batDau && c.CreatedAt < ketThuc)
+                     .OrderBy(c => c.CustomerID).ToList();
         }
     }
 }

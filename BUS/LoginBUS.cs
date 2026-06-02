@@ -2,11 +2,14 @@ using QL_CuaHangBanThuocTruSau.DAO;
 using QL_CuaHangBanThuocTruSau.Models;
 using System;
 
-namespace QL_CuaHangBanThuocTruSau.BUS {
-    public class LoginBUS {
-        private readonly LoginDAO _loginDAO;
+namespace QL_CuaHangBanThuocTruSau.BUS 
+{
+    public class LoginBUS 
+    {
+        private LoginDAO _loginDAO;
 
-        public LoginBUS () {
+        public LoginBUS () 
+        {
             _loginDAO = new LoginDAO ();
         }
 

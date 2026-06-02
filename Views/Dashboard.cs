@@ -4,22 +4,27 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace QL_CuaHangBanThuocTruSau.Views {
-    public partial class Dashboard : Form {
-        private readonly DashboardController _controller;
+namespace QL_CuaHangBanThuocTruSau.Views 
+{
+    public partial class Dashboard : Form 
+    {
+        private DashboardController _controller;
 
-        public Dashboard () {
+        public Dashboard () 
+        {
             InitializeComponent ();
             _controller = new DashboardController ();
         }
 
-        private void Dashboard_Load (object sender, EventArgs e) {
+        private void Dashboard_Load (object sender, EventArgs e) 
+        {
             LoadSummary ();
             LoadChart ();
             LoadExpiredProducts ();
         }
 
-        private void LoadSummary () {
+        private void LoadSummary () 
+        {
             try
             {
                 var summary = _controller.GetSummary ();
@@ -28,19 +33,17 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 label8.Text = string.Format ("{0:N0} VNĐ", summary.CustomerDebt);
                 label9.Text = string.Format ("{0:N0} VNĐ", summary.InventoryValue);
 
-                // Màu chữ
                 label6.ForeColor = Color.FromArgb(45, 95, 166);
                 label7.ForeColor = Color.FromArgb(40, 167, 69);
                 label8.ForeColor = Color.FromArgb(220, 53, 69);
                 label9.ForeColor = Color.FromArgb(240, 165, 0);
 
-                // Nền trong suốt
                 label6.BackColor = Color.Transparent;
                 label7.BackColor = Color.Transparent;
                 label8.BackColor = Color.Transparent;
                 label9.BackColor = Color.Transparent;
 
-                // Màu title
+                // title
                 label2.ForeColor = Color.FromArgb(45, 95, 166);   
                 label3.ForeColor = Color.FromArgb(40, 167, 69);   
                 label4.ForeColor = Color.FromArgb(220, 53, 69);   
@@ -58,45 +61,44 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             }
         }
 
-        private void LoadChart () {
+        private void LoadChart () 
+        {
             try
             {
-                chart1.Series.Clear ();
+                chart1.Series.Clear();
                 chart1.ChartAreas[0].AxisY2.Enabled = AxisEnabled.True;
                 chart1.ChartAreas[0].BackColor = Color.White;
                 chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.LightGray;
                 chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
 
-                // Series Cột: Số lượng sản phẩm bán ra
-                Series colSeries = new Series ("Sản phẩm bán ra");
+                Series colSeries = new Series("Sản phẩm bán ra");
                 colSeries.ChartType = SeriesChartType.Column;
-                colSeries.Color = Color.FromArgb (0, 123, 255); 
+                colSeries.Color = Color.FromArgb(0, 123, 255); 
                 colSeries.IsValueShownAsLabel = true;
-                colSeries.Font = new Font ("Segoe UI", 8, FontStyle.Bold);
+                colSeries.Font = new Font("Segoe UI", 8, FontStyle.Bold);
 
-                // Series Đường: Doanh thu
-                Series lineSeries = new Series ("Doanh thu");
+                Series lineSeries = new Series("Doanh thu");
                 lineSeries.ChartType = SeriesChartType.Line;
-                lineSeries.Color = Color.FromArgb (220, 53, 69);
+                lineSeries.Color = Color.FromArgb(220, 53, 69);
                 lineSeries.BorderWidth = 3;
                 lineSeries.MarkerStyle = MarkerStyle.Circle;
                 lineSeries.MarkerSize = 10;
                 lineSeries.YAxisType = AxisType.Secondary; 
 
-                var revenueData = _controller.GetRevenueData ();
-                foreach( var item in revenueData )
+                var revenueData = _controller.GetRevenueData();
+                foreach (var item in revenueData)
                 {
-                    colSeries.Points.AddXY (item.DateStr, item.ProductCount);
-                    lineSeries.Points.AddXY (item.DateStr, item.Revenue);
+                    colSeries.Points.AddXY(item.DateStr, item.ProductCount);
+                    lineSeries.Points.AddXY(item.DateStr, item.Revenue);
                 }
 
                 chart1.Series.Add (colSeries);
                 chart1.Series.Add (lineSeries);
 
                 chart1.Titles.Clear ();
-                Title title = chart1.Titles.Add ("XU HƯỚNG KINH DOANH 7 NGÀY QUA");
-                title.Font = new Font ("Segoe UI", 12, FontStyle.Bold);
-                title.ForeColor = Color.FromArgb (64, 64, 64);
+                Title title = chart1.Titles.Add("XU HƯỚNG KINH DOANH 7 NGÀY QUA");
+                title.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+                title.ForeColor = Color.FromArgb(64, 64, 64);
 
                 chart1.ChartAreas[0].AxisX.Title = "Ngày";
                 chart1.ChartAreas[0].AxisY.Title = "Số lượng (SP)";
@@ -106,7 +108,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 chart1.Legends[0].Docking = Docking.Bottom;
 
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 MessageBox.Show ("Lỗi khi tải biểu đồ: " + ex.Message);
             }
@@ -163,12 +165,10 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 230, 248);
                 dataGridView1.DefaultCellStyle.SelectionForeColor = Color.FromArgb(30, 60, 90);
 
-                // Tắt kéo giãn cột và hàng
                 dataGridView1.AllowUserToResizeColumns = false;
                 dataGridView1.AllowUserToResizeRows = false;
                 dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
-                // Header
                 dataGridView1.EnableHeadersVisualStyles = false;
                 dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
                 dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -218,6 +218,7 @@ namespace QL_CuaHangBanThuocTruSau.Views {
                 foreach (var p in expiredProducts)
                 {
                     DateTime exp = (DateTime)p.ExpiryDate;
+
                     if ((exp - DateTime.Now).TotalDays < 0) 
                         loHetHan++;
                     else 
@@ -237,11 +238,16 @@ namespace QL_CuaHangBanThuocTruSau.Views {
 
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0) 
+                return;
 
             var row = dataGridView1.Rows[e.RowIndex];
-            if (row.Cells["ExpiryDate"]?.Value == null) return;
-            if (!(row.Cells["ExpiryDate"].Value is DateTime)) return;
+
+            if (row.Cells["ExpiryDate"]?.Value == null) 
+                return;
+
+            if (!(row.Cells["ExpiryDate"].Value is DateTime)) 
+                return;
 
             DateTime expiryDate = (DateTime)row.Cells["ExpiryDate"].Value;
             double daysLeft = (expiryDate - DateTime.Now).TotalDays;

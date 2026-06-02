@@ -9,71 +9,66 @@ namespace QL_CuaHangBanThuocTruSau.DAO
 {
     public class ImportDAO
     {
+        private AppDbContext db = new AppDbContext();
+
         public bool SaveImport(Import import, List<Batch> batches, out string error)
         {
             error = "";
-            using (var db = new AppDbContext())
+            using (var transaction = db.Database.BeginTransaction())
             {
-                using (var transaction = db.Database.BeginTransaction())
+                try
                 {
-                    try
+                    db.Imports.Add(import);
+                    db.SaveChanges(); // Lấy ID cho Import
+
+                    foreach (var batch in batches)
                     {
-                        db.Imports.Add(import);
-                        db.SaveChanges(); // Lấy ID cho Import
+                        batch.ImportID = import.ImportID;
+                        db.Batches.Add(batch);
+                        db.SaveChanges(); // Lấy ID cho Batch
 
-                        foreach (var batch in batches)
+                        var invTrans = new InventoryTransaction
                         {
-                            batch.ImportID = import.ImportID;
-                            db.Batches.Add(batch);
-                            db.SaveChanges(); // Lấy ID cho Batch
-
-                            // Ghi log giao dịch kho
-                            var invTrans = new InventoryTransaction
-                            {
-                                BatchID = batch.BatchID,
-                                Quantity = batch.InitialQuantity,
-                                TransactionType = "IMPORT",
-                                ReferenceID = import.ImportID,
-                                CreatedAt = DateTime.Now
-                            };
-                            db.InventoryTransactions.Add(invTrans);
-                        }
-
-                        // Xử lý công nợ NCC nếu cần (Giả định trả sau hoặc ghi nợ)
-                        if (import.Status == "DEBT")
-                        {
-                            var debt = new DebtTransaction
-                            {
-                                SupplierID = import.SupplierID,
-                                Amount = import.TotalAmount,
-                                TransactionType = "PURCHASE",
-                                ReferenceImportID = import.ImportID,
-                                TransactionDate = DateTime.Now,
-                                Note = $"Nhập hàng nợ đơn #{import.ImportID}"
-                            };
-                            db.DebtTransactions.Add(debt);
-                        }
-
-                        db.SaveChanges();
-                        transaction.Commit();
-                        return true;
+                            BatchID = batch.BatchID,
+                            Quantity = batch.InitialQuantity,
+                            TransactionType = "IMPORT",
+                            ReferenceID = import.ImportID,
+                            CreatedAt = DateTime.Now
+                        };
+                        db.InventoryTransactions.Add(invTrans);
                     }
-                    catch (Exception ex)
+
+                    // Xử lý công nợ NCC nếu cần (Giả định trả sau hoặc ghi nợ)
+                    if (import.Status == "DEBT")
                     {
-                        transaction.Rollback();
-                        error = ex.Message;
-                        return false;
+                        var debt = new DebtTransaction
+                        {
+                            SupplierID = import.SupplierID,
+                            Amount = import.TotalAmount,
+                            TransactionType = "PURCHASE",
+                            ReferenceImportID = import.ImportID,
+                            TransactionDate = DateTime.Now,
+                            Note = $"Nhập hàng nợ đơn #{import.ImportID}"
+                        };
+                        db.DebtTransactions.Add(debt);
                     }
+
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    error = ex.Message;
+                    return false;
                 }
             }
         }
 
         public List<Import> GetAll()
         {
-            using (var db = new AppDbContext())
-            {
-                return db.Imports.Include(i => i.Supplier).Include(i => i.User).OrderByDescending(i => i.ImportDate).ToList();
-            }
+            return db.Imports.Include(i => i.Supplier).Include(i => i.User).OrderByDescending(i => i.ImportDate).ToList();
         }
     }
 }

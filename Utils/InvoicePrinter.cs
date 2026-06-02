@@ -157,7 +157,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 document.Add(table);
                 document.Add(new Paragraph("\n"));
 
-                // Số tiền bằng chữ
                 string amountInWords = NumberToWords(order.TotalAmount);
                 document.Add(new Paragraph($"Thành tiền viết bằng chữ: {amountInWords}.", fontItalic));
                 document.Add(new Paragraph("\n"));
@@ -194,6 +193,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 document.Close();
 
                 MessageBox.Show("Xuất hóa đơn thành công tại: " + filePath, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 try { System.Diagnostics.Process.Start(filePath); } catch { }
             }
             catch (Exception ex)
@@ -278,7 +278,7 @@ namespace QL_CuaHangBanThuocTruSau.Utils
         }
         #endregion
 
-        // Giữ lại phương thức cũ để tránh lỗi compile nếu có chỗ khác gọi (như Frm_BanHang)
+        // Giữ lại phương thức cũ để tránh lỗi compile nếu có chỗ khác gọi 
         public void PrintInvoice(Order order, List<OrderDetail> details)
         {
             string fileName = $"HD_{order.OrderID}_{DateTime.Now:yyyyMMddHHmmss}.pdf";

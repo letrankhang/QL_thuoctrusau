@@ -6,7 +6,7 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
 {
     public class SuppliersController
     {
-        SuppliersBUS nhaCungCapBus = new SuppliersBUS();
+        private SuppliersBUS nhaCungCapBus = new SuppliersBUS();
 
         public List<Supplier> LayDanhSach()
         {
@@ -54,7 +54,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
         private bool KiemTraHopLe(Supplier nhaCungCap, bool laThemMoi, out string loi)
         {
             loi = "";
-
             if (string.IsNullOrWhiteSpace(nhaCungCap.Name))
             {
                 loi = "Tên nhà cung cấp không được để trống!";
@@ -107,7 +106,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
                 loi = "Địa chỉ không được vượt quá 200 ký tự!";
                 return false;
             }
-
             return true;
         }
     }

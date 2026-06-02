@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace QL_CuaHangBanThuocTruSau.DAO
 {
-
     public class BatchExportDAO
     {
         private AppDbContext db = new AppDbContext();

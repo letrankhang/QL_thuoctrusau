@@ -18,7 +18,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private int _totalRows = 0;
         private System.Collections.Generic.List<ViewModels.CongNoViewModel> _fullFilteredList = new System.Collections.Generic.List<ViewModels.CongNoViewModel>();
 
-
         private void StyleDgv(DataGridView dgv)
         {
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -301,8 +300,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             catch (Exception ex)
             {
                 _currentPage = savedPage;
-                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -359,22 +357,20 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
                     if (dsQuaHan.Any())
                     {
-                        string msg = $"⚠️ Có {dsQuaHan.Count} khoản nợ quá hạn (> 30 ngày):\n\n";
+                        string msg = $"Có {dsQuaHan.Count} khoản nợ quá hạn (> 30 ngày):\n\n";
                         foreach (var item in dsQuaHan.Take(5))
                             msg += $"• [{item.LoaiNo}] {item.TenDoiTac} — {item.Amount:N0} đ — {item.OrderDate:dd/MM/yyyy}\n";
 
                         if (dsQuaHan.Count > 5)
                             msg += $"... và {dsQuaHan.Count - 5} khoản khác.";
 
-                        MessageBox.Show(msg, "Cảnh báo nợ quá hạn",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(msg, "Cảnh báo nợ quá hạn", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kiểm tra nợ quá hạn: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi kiểm tra nợ quá hạn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -398,8 +394,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi chuyển trang tiếp: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi chuyển trang tiếp: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -411,8 +406,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi chuyển trang trước: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi chuyển trang trước: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -567,7 +561,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 frmInput.AcceptButton = btnOK;
                 frmInput.CancelButton = btnCancel;
 
-                if (frmInput.ShowDialog() != DialogResult.OK) return;
+                if (frmInput.ShowDialog() != DialogResult.OK) 
+                    return;
 
                 using (var db = new AppDbContext())
                 {
@@ -642,8 +637,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi giao dịch: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi giao dịch: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -653,8 +647,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             {
                 if (_fullFilteredList == null || _fullFilteredList.Count == 0)
                 {
-                    MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -667,14 +660,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
                     Utils.ExcelHelper.XuatExcelCongNo(_fullFilteredList, saveDialog.FileName);
-                    MessageBox.Show("Xuất Excel thành công!", "Thành công",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Xuất Excel thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi xuất Excel: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi xuất Excel: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

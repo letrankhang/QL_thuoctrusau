@@ -2,20 +2,23 @@ using System;
 using System.Net;
 using System.Net.Mail;
 
-namespace QL_CuaHangBanThuocTruSau.Utils {
-    public static class EmailHelper {
+namespace QL_CuaHangBanThuocTruSau.Utils 
+{
+    public static class EmailHelper 
+    {
         private const string Host = "smtp.gmail.com";
         private const int Port = 587;
         private const string FromEmail = "ttrankhang2405@gmail.com"; // Thay bằng email
         private const string AppPassword = "ozwm cird dacd xtgo"; // Thay bằng mật khẩu ứng dụng 
 
-        public static bool SendVerificationCode (string toEmail, string code) {
+        public static bool SendVerificationCode (string toEmail, string code) 
+        {
             try
             {
-                var mail = new MailMessage ();
-                mail.From = new MailAddress (FromEmail, "Hệ Thống Quản Lý Cửa Hàng");
+                var mail = new MailMessage();
+                mail.From = new MailAddress(FromEmail, "Hệ Thống Quản Lý Cửa Hàng");
                 mail.To.Add (toEmail);
-                mail.Subject = "Mã xác thực đặt lại mật khẩu - " + DateTime.Now.ToString ("dd/MM/yyyy HH:mm");
+                mail.Subject = "Mã xác thực đặt lại mật khẩu - " + DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
                 mail.Body = $@"
                     <div style='font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd; border-radius: 10px; max-width: 500px;'>
@@ -31,15 +34,15 @@ namespace QL_CuaHangBanThuocTruSau.Utils {
                     </div>";
                 mail.IsBodyHtml = true;
 
-                using( var smtp = new SmtpClient (Host, Port) )
+                using (var smtp = new SmtpClient(Host, Port))
                 {
-                    smtp.Credentials = new NetworkCredential (FromEmail, AppPassword);
+                    smtp.Credentials = new NetworkCredential(FromEmail, AppPassword);
                     smtp.EnableSsl = true;
                     smtp.Send (mail);
                 }
                 return true;
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 Console.WriteLine ("Lỗi gửi Email: " + ex.Message);
                 return false;

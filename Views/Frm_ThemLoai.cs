@@ -13,7 +13,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 {
     public partial class Frm_ThemLoai : Form
     {
-        CategoryController controller = new CategoryController();
+        private CategoryController controller = new CategoryController();
         int maDangChon = 0;
 
         public Frm_ThemLoai()
@@ -76,6 +76,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 MessageBox.Show("Vui lòng chọn loại cần sửa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             if (!kiemTraHopLe(laThemMoi: false))
             {
                 return;

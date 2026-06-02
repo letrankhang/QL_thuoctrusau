@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using QL_CuaHangBanThuocTruSau.Utils;
 
 namespace QL_CuaHangBanThuocTruSau.BUS
@@ -13,9 +11,9 @@ namespace QL_CuaHangBanThuocTruSau.BUS
 
     public class ProductBUS
     {
-        ProductDAO dao = new ProductDAO();
-        ProductVariantDAO variantDao = new ProductVariantDAO();
-        AppDbContext db = new AppDbContext();
+        private ProductDAO dao = new ProductDAO();
+        private ProductVariantDAO variantDao = new ProductVariantDAO();
+        private AppDbContext db = new AppDbContext();
 
         public Result<List<ProductVariant>> GetAllProductVariants()
         {
@@ -44,6 +42,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS
                     .Where(v => (v.Product?.Name != null && v.Product.Name.ToLower().Contains(keyword.ToLower())) ||
                                 v.Unit.ToLower().Contains(keyword.ToLower()))
                     .ToList();
+
                 return Result<List<ProductVariant>>.Success(list);
             }
             catch (Exception ex)
@@ -60,6 +59,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS
                 int totalStock = db.Batches
                     .Where(b => b.VariantID == variantId)
                     .Sum(b => (int?)b.RemainingQuantity) ?? 0;
+
                 return Result<int>.Success(totalStock);
             }
             catch (Exception ex)

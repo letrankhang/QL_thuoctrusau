@@ -254,15 +254,18 @@ namespace QL_CuaHangBanThuocTruSau.Views
         }
         private string LayDuongDanAnh(string imagePath)
         {
-            if (string.IsNullOrEmpty(imagePath)) return "";
+            if (string.IsNullOrEmpty(imagePath)) 
+                return "";
 
-            if (File.Exists(imagePath)) return imagePath;
+            if (File.Exists(imagePath)) 
+                return imagePath;
 
             string thuMuc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "ImagesProducts");
             thuMuc = Path.GetFullPath(thuMuc);
             string duongDanDay = Path.Combine(thuMuc, imagePath);
 
-            if (File.Exists(duongDanDay)) return duongDanDay;
+            if (File.Exists(duongDanDay)) 
+                return duongDanDay;
 
             return "";
         }
@@ -285,7 +288,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
                 File.Copy(ofd.FileName, duongDanDich, true);
 
-                // Chỉ lưu tên file vào biến, không lưu đường dẫn đầy đủ
+                // chỉ lưu tên file vào biến, không lưu đường dẫn đầy đủ
                 duongDanAnh = tenFile;
 
                 picAnhSP.Image = Image.FromFile(duongDanDich);
@@ -314,7 +317,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                         // Lấy toàn bộ danh sách kèm biến thể từ DB
                         var allProducts = controller.LayDanhSachKemBienThe();
 
-                        // Lấy danh sách ID sản phẩm đang hiển thị trên DGV (đã qua lọc/tìm kiếm)
+                        // lấy danh sách ID sản phẩm đang hiển thị trên DGV (đã qua lọc/tìm kiếm)
                         var visibleProductIDs = new HashSet<int>();
                         foreach (DataGridViewRow row in dgvSanPham.Rows)
                         {
@@ -324,7 +327,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                             }
                         }
 
-                        // Lọc danh sách chi tiết theo những gì đang hiển thị
+                        // lọc danh sách chi tiết theo những gì đang hiển thị
                         var filteredData = allProducts.Where(p => visibleProductIDs.Contains(p.ProductID)).ToList();
 
                         ExcelHelper.XuatExcelSanPhamChiTiet(filteredData, sfd.FileName);

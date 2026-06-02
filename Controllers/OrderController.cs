@@ -8,7 +8,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
 {
     public class OrderController
     {
-        // Hàm lưu hóa đơn và trừ tồn kho theo lô (FEFO - Hạn dùng gần nhất trừ trước)
         public bool thanhToanHoaDon(Order donHang, List<OrderDetail> chiTietDon)
         {
             using (var db = new AppDbContext()) 
@@ -17,18 +16,17 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
                 {
                     try
                     {
-                        // 1. Lưu thông tin hóa đơn chính
                         db.Orders.Add(donHang);
                         db.SaveChanges(); // Để lấy được ID của hóa đơn vừa tạo
 
-                        // 2. Duyệt từng mặt hàng trong giỏ hàng
+                        // Duyệt từng mặt hàng trong giỏ hàng
                         foreach (var item in chiTietDon)
                         {
                             item.OrderID = donHang.OrderID;
                             db.OrderDetails.Add(item);
                             db.SaveChanges(); // Lấy ID cho OrderDetail
 
-                            // 3. LOGIC TRỪ KHO: Lấy các lô hàng của biến thể này, còn hàng, ưu tiên lô sắp hết hạn
+                            // Lấy các lô hàng của biến thể này, còn hàng, ưu tiên lô sắp hết hạn
                             var danhSachLo = db.Batches
                                 .Where(b => b.VariantID == item.VariantID && b.RemainingQuantity > 0)
                                 .OrderBy(b => b.ExpiryDate)
@@ -86,7 +84,6 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
             }
         }
 
-        // Hàm lấy danh sách đơn hàng cũ (Dùng cho nút F4)
         public List<Order> layDanhSachDonCu()
         {
             using (var db = new AppDbContext())

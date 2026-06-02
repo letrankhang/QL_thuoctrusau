@@ -1,19 +1,14 @@
 using QL_CuaHangBanThuocTruSau.Context;
 using QL_CuaHangBanThuocTruSau.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace QL_CuaHangBanThuocTruSau.DAO
 {
     public class ProductDAO
     {
-        AppDbContext db = new AppDbContext();
+        private AppDbContext db = new AppDbContext();
 
         public List<Product> layTatCa()
         {
@@ -33,11 +28,11 @@ namespace QL_CuaHangBanThuocTruSau.DAO
             {
                 return false;
             }
-
             timThay.Name = sp.Name;
             timThay.CategoryID = sp.CategoryID;
             timThay.Description = sp.Description;
             timThay.ImagePath = sp.ImagePath;
+
             return db.SaveChanges() > 0;
         }
 
@@ -48,8 +43,8 @@ namespace QL_CuaHangBanThuocTruSau.DAO
             {
                 return false;
             }
-
             db.Products.Remove(timThay);
+
             return db.SaveChanges() > 0;
         }
 

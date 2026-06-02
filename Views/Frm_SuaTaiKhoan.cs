@@ -3,19 +3,23 @@ using QL_CuaHangBanThuocTruSau.Models;
 using System;
 using System.Windows.Forms;
 
-namespace QL_CuaHangBanThuocTruSau.Views {
-    public partial class Frm_SuaTaiKhoan : Form {
-        private readonly UserController _userController;
-        private readonly User _currentUser;
+namespace QL_CuaHangBanThuocTruSau.Views 
+{
+    public partial class Frm_SuaTaiKhoan : Form 
+    {
+        private UserController _userController;
+        private User _currentUser;
 
-        public Frm_SuaTaiKhoan (User user) {
+        public Frm_SuaTaiKhoan (User user) 
+        {
             InitializeComponent ();
             _userController = new UserController ();
             _currentUser = user;
             LoadUserData ();
         }
 
-        private void LoadUserData () {
+        private void LoadUserData () 
+        {
             txtUsername.Text = _currentUser.Username;
             txtFullName.Text = _currentUser.FullName;
             txtEmail.Text = _currentUser.Email;
@@ -24,35 +28,39 @@ namespace QL_CuaHangBanThuocTruSau.Views {
             UpdateStatusLabel (_currentUser.Status);
         }
 
-        private void UpdateStatusLabel (bool status) {
+        private void UpdateStatusLabel (bool status) 
+        {
             lblStatus.Text = status ? "Hoạt động" : "Đã khóa";
-            lblStatus.ForeColor = status ? System.Drawing.Color.FromArgb (22, 163, 74) : System.Drawing.Color.FromArgb (220, 38, 38);
+            lblStatus.ForeColor = status ? System.Drawing.Color.FromArgb(22, 163, 74) : System.Drawing.Color.FromArgb(220, 38, 38);
         }
 
-        private void swStatus_CheckedChanged (object sender, EventArgs e) {
-            UpdateStatusLabel (swStatus.Checked);
+        private void swStatus_CheckedChanged (object sender, EventArgs e) 
+        {
+            UpdateStatusLabel(swStatus.Checked);
         }
 
-        private void btnSave_Click (object sender, EventArgs e) {
-            string fullName = txtFullName.Text.Trim ();
-            string password = txtPassword.Text; // Có thể trống nếu không đổi
-            string email = txtEmail.Text.Trim ();
-            string role = cboRole.SelectedItem?.ToString () ?? "Staff";
+        private void btnSave_Click (object sender, EventArgs e) 
+        {
+            string fullName = txtFullName.Text.Trim();
+            string password = txtPassword.Text; 
+            string email = txtEmail.Text.Trim();
+            string role = cboRole.SelectedItem?.ToString() ?? "Staff";
             bool status = swStatus.Checked;
 
-            if( _userController.UpdateUser (_currentUser.UserID, password, fullName, email, role, status) )
+            if (_userController.UpdateUser(_currentUser.UserID, password, fullName, email, role, status))
             {
-                MessageBox.Show ("Cập nhật tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cập nhật tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close ();
             }
             else
             {
-                MessageBox.Show ("Cập nhật thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cập nhật thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnCancel_Click (object sender, EventArgs e) {
+        private void btnCancel_Click (object sender, EventArgs e) 
+        {
             this.Close ();
         }
     }

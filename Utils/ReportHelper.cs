@@ -11,28 +11,28 @@ namespace QL_CuaHangBanThuocTruSau.Utils
 {
     public class ReportHelper
     {
-        private static string fontPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "Arial.ttf");
+        private static string fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "Arial.ttf");
 
         private const string TEN_CUA_HANG = "CỬA HÀNG BÁN THUỐC TRỪ SÂU K3G";
         private const string SLOGAN = "Trao chất lượng – Nhận niềm tin - Cho mùa vàng trĩu hạt";
         private const string DIA_CHI = "TP. Cao Lãnh, tỉnh Đồng Tháp";
-        private const string EMAIL = "k3g.thuoctrusau@gmail.com";
+        //private const string EMAIL = "k3g.thuoctrusau@gmail.com";
         private const string SDT = "0814.999.999";
 
         public static string NguoiDangNhap { get; set; } = "";
         public static string ChucVu { get; set; } = "";
 
-        private static void ThemCell(PdfPTable bang, string noiDung, Font font,
-            int canLe = Element.ALIGN_LEFT, BaseColor mauNen = null)
+        private static void ThemCell(PdfPTable bang, string noiDung, Font font, int canLe = Element.ALIGN_LEFT, BaseColor mauNen = null)
         {
             PdfPCell cell = new PdfPCell(new Phrase(noiDung, font));
             cell.HorizontalAlignment = canLe;
             cell.VerticalAlignment = Element.ALIGN_MIDDLE;
             cell.Padding = 5;
             cell.BorderColor = BaseColor.BLACK;
+
             if (mauNen != null)
                 cell.BackgroundColor = mauNen;
+
             bang.AddCell(cell);
         }
 
@@ -58,7 +58,10 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                     doc.Add(logo);
                 }
             }
-            catch { }
+            catch 
+            { 
+                //
+            }
 
             Paragraph tenCH = new Paragraph(TEN_CUA_HANG, fontTenCH);
             tenCH.Alignment = Element.ALIGN_CENTER;
@@ -242,7 +245,11 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 MessageBox.Show("Lỗi khi xuất report: " + ex.Message, "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally { if (doc.IsOpen()) doc.Close(); }
+            finally
+            {
+                if (doc.IsOpen())
+                    doc.Close();
+            }
         }
 
         public static void XuatReportSanPham(List<Product> danhSach, string filePath)
@@ -332,7 +339,11 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 MessageBox.Show("Lỗi khi xuất report: " + ex.Message, "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally { if (doc.IsOpen()) doc.Close(); }
+            finally
+            {
+                if (doc.IsOpen())
+                    doc.Close();
+            }
         }
 
         public static void XuatReportNhaCungCap(List<Supplier> danhSach, string filePath)
@@ -390,7 +401,11 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 MessageBox.Show("Lỗi khi xuất report: " + ex.Message, "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally { if (doc.IsOpen()) doc.Close(); }
+            finally
+            {
+                if (doc.IsOpen())
+                    doc.Close();
+            }
         }
 
         public static void XuatReportKhachHang(List<Customer> danhSach, string filePath)
@@ -448,7 +463,11 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 MessageBox.Show("Lỗi khi xuất report: " + ex.Message, "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally { if (doc.IsOpen()) doc.Close(); }
+            finally 
+            { 
+                if (doc.IsOpen()) 
+                    doc.Close(); 
+            }
         }
     }
 }

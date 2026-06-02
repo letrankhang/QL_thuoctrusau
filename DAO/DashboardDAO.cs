@@ -1,6 +1,5 @@
 using QL_CuaHangBanThuocTruSau.Context;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 
@@ -8,19 +7,14 @@ namespace QL_CuaHangBanThuocTruSau.DAO
 {
     public class DashboardDAO
     {
-        private readonly AppDbContext _context;
-
-        public DashboardDAO()
-        {
-            _context = new AppDbContext();
-        }
+        private AppDbContext db = new AppDbContext();
 
         public dynamic GetRevenueLast7Days()
         {
             var endDate = DateTime.Today;
             var startDate = endDate.AddDays(-6);
 
-            var query = _context.Orders
+            var query = db.Orders
                 .Where(o => DbFunctions.TruncateTime(o.OrderDate) >= startDate && DbFunctions.TruncateTime(o.OrderDate) <= endDate)
                 .GroupBy(o => DbFunctions.TruncateTime(o.OrderDate))
                 .Select(g => new {
@@ -51,7 +45,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO
             var thresholdDate = DateTime.Today.AddDays(days);
             var today = DateTime.Today; 
 
-            var result = _context.Batches
+            var result = db.Batches
                 .Where(b => b.ExpiryDate >= today         
                          && b.ExpiryDate <= thresholdDate   
                          && b.RemainingQuantity > 0)
@@ -71,13 +65,11 @@ namespace QL_CuaHangBanThuocTruSau.DAO
         {
             var today = DateTime.Today;
 
-            // Đơn COMPLETED: tính full
-            var revenueCompleted = _context.Orders
+            var revenueCompleted = db.Orders
                 .Where(o => o.Status == "COMPLETED")
                 .Sum(o => (decimal?)o.TotalAmount) ?? 0;
 
-            // Đơn DEBT: chỉ tính phần khách đã trả (PAYMENT)
-            var revenueDebt = _context.DebtTransactions
+            var revenueDebt = db.DebtTransactions
                 .Where(t => t.CustomerID != null
                          && t.TransactionType == "PAYMENT"
                          && t.ReferenceOrderID != null
@@ -86,20 +78,20 @@ namespace QL_CuaHangBanThuocTruSau.DAO
 
             var totalRevenue = revenueCompleted + revenueDebt;
 
-            var newOrdersToday = _context.Orders
+            var newOrdersToday = db.Orders
                 .Count(o => DbFunctions.TruncateTime(o.OrderDate) == today);
 
-            var customerDebt = _context.DebtTransactions
+            var customerDebt = db.DebtTransactions
                 .Where(t => t.CustomerID != null)
                 .AsEnumerable()
                 .Sum(t => (t.TransactionType == "SALE" || t.TransactionType == "DEBT" ? 1 : -1) * t.Amount);
 
-            var supplierDebt = _context.DebtTransactions
+            var supplierDebt = db.DebtTransactions
                 .Where(t => t.SupplierID != null)
                 .AsEnumerable()
                 .Sum(t => (t.TransactionType == "PURCHASE" || t.TransactionType == "DEBT" ? 1 : -1) * t.Amount);
 
-            var inventoryValue = _context.Batches
+            var inventoryValue = db.Batches
                 .Where(b => b.RemainingQuantity > 0)
                 .Sum(b => (decimal?)(b.RemainingQuantity * b.ImportPrice)) ?? 0;
 

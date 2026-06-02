@@ -1,6 +1,5 @@
 ﻿using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Models;
-using QL_CuaHangBanThuocTruSau.Properties;
 using QL_CuaHangBanThuocTruSau.Utils;
 using System;
 using System.Collections.Generic;
@@ -85,7 +84,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
         private void LoadCboLocTheoLoai()
         {
             var categories = _categoryBUS.layDanhSachLoai();
-            if (categories == null) return;
+            if (categories == null) 
+                return;
 
             categories.Insert(0, new Category { CategoryID = 0, Name = "Tất cả loại" });
 
@@ -150,7 +150,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
             try
             {
                 flpProducts.Controls.Clear();
-                if (products == null) return;
+                if (products == null) 
+                    return;
 
                 foreach (var item in products)
                 {
@@ -216,8 +217,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
                     EventHandler cardClickHandler = (s, e) =>
                     {
-                        if (stockQty > 0) AddProductToCart(item);
-                        else MessageBox.Show("Sản phẩm đã hết hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (stockQty > 0) 
+                            AddProductToCart(item);
+                        else 
+                            MessageBox.Show("Sản phẩm đã hết hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     };
 
                     card.Click += cardClickHandler;
@@ -252,7 +255,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     flpProducts.Controls.Add(card);
                 }
             }
-            catch (Exception ex) { Logger.Log(ex, "Frm_BanHang.LoadProductGallery"); }
+            catch (Exception ex) 
+            { 
+                Logger.Log(ex, "Frm_BanHang.LoadProductGallery"); 
+            }
         }
 
         private void SetupGridColumns()
@@ -317,12 +323,17 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 dgvCart.CellValidating += DgvCart_CellValidating;
                 dgvCart.CellContentClick += dgvCart_CellContentClick;
             }
-            catch (Exception ex) { Logger.Log(ex, "Frm_BanHang.SetupGridColumns"); }
+            catch (Exception ex) 
+            { 
+                Logger.Log(ex, "Frm_BanHang.SetupGridColumns"); 
+            }
         }
 
         private void DgvCart_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0) 
+                return;
+
             if (dgvCart.Columns[e.ColumnIndex].Name == "Quantity")
             {
                 var row = dgvCart.Rows[e.RowIndex];
@@ -338,13 +349,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void dgvCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) 
+                return;
 
             string colName = dgvCart.Columns[e.ColumnIndex].Name;
             var row = dgvCart.Rows[e.RowIndex];
             int variantId = Convert.ToInt32(row.Cells["VariantID"].Value);
 
-            // Xử lý nút Cộng (+)
             if (colName == "btnPlus")
             {
                 var stockResult = _productBUS.GetStockQuantity(variantId);
@@ -361,7 +372,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     MessageBox.Show($"Chỉ còn {stockQty} sản phẩm trong kho!", "Thông báo");
                 }
             }
-            // Xử lý nút Trừ (-)
             else if (colName == "btnMinus")
             {
                 int currentQty = Convert.ToInt32(row.Cells["Quantity"].Value ?? 0);
@@ -379,7 +389,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     }
                 }
             }
-            // Xử lý nút Xóa
             else if (colName == "btnDelete")
             {
                 if (MessageBox.Show("Xóa sản phẩm này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -399,7 +408,8 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 return;
             }
 
-            if (variant == null || variant.Product == null) return;
+            if (variant == null || variant.Product == null) 
+                return;
 
             var stockResult = _productBUS.GetStockQuantity(variant.VariantID);
             int stockQty = stockResult.IsSuccess ? stockResult.Data : 0;
@@ -545,13 +555,21 @@ namespace QL_CuaHangBanThuocTruSau.Views
             return resultAmount;
         }
 
-        // HÀM XỬ LÝ THANH TOÁN 
         private void HandlePayment(bool isPrint, bool isFullPayment = true)
         {
             try
             {
-                if (dgvCart.Rows.Count == 0) { MessageBox.Show("Giỏ hàng đang trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
-                if (cboCustomer.SelectedValue == null) { MessageBox.Show("Vui lòng chọn khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+                if (dgvCart.Rows.Count == 0) 
+                { 
+                    MessageBox.Show("Giỏ hàng đang trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; 
+                }
+
+                if (cboCustomer.SelectedValue == null) 
+                {
+                    MessageBox.Show("Vui lòng chọn khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
+                    return; 
+                }
 
                 int customerId = (int)cboCustomer.SelectedValue;
                 decimal totalAmount = 0;
@@ -574,13 +592,13 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
                 if (isFullPayment)
                 {
-                    // 1. Mở form hỏi số tiền trả trước
+                    // Mở form hỏi số tiền trả trước
                     paidAmount = GetPaidAmountFromUser(totalAmount);
 
-                    // 2. Nếu người dùng bấm Hủy (trả về -1) thì ngắt quá trình
+                    // Nếu người dùng bấm Hủy (trả về -1) thì ngắt quá trình
                     if (paidAmount < 0) return;
 
-                    // 3. Xử lý trường hợp khách đưa dư (thối lại)
+                    // Xử lý trường hợp khách đưa dư (thối lại)
                     if (paidAmount > totalAmount)
                     {
                         MessageBox.Show($"Khách đưa thừa: {(paidAmount - totalAmount):N0}đ.\nVui lòng thối lại tiền thừa cho khách!", "Thông báo thối tiền", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -589,7 +607,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 }
                 else
                 {
-                    if (MessageBox.Show($"Xác nhận lưu đơn và ghi nợ toàn bộ {totalAmount:N0}đ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+                    if (MessageBox.Show($"Xác nhận lưu đơn và ghi nợ toàn bộ {totalAmount:N0}đ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) 
+                        return;
+
                     paidAmount = 0;
                 }
 
@@ -620,7 +640,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 }
                 else MessageBox.Show(result.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception ex) { Logger.Log(ex, "Frm_BanHang.HandlePayment"); MessageBox.Show("Lỗi: " + ex.Message); }
+            catch (Exception ex) 
+            { 
+                Logger.Log(ex, "Frm_BanHang.HandlePayment"); MessageBox.Show("Lỗi: " + ex.Message); 
+            }
         }
 
         private void ShowOldInvoices()
@@ -667,9 +690,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 return;
             }
 
-            var filtered = _allVariants.Where(v =>
-                (v.Product?.Name ?? "").ToLower().Contains(keyword)
-            ).ToList();
+            var filtered = _allVariants.Where(v => (v.Product?.Name ?? "").ToLower().Contains(keyword)).ToList();
 
             LoadProductGallery(filtered);
         }
@@ -680,7 +701,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             {
                 string keyword = txtSearch.Text.Trim();
                 var result = string.IsNullOrEmpty(keyword) ? _productBUS.GetAllProductVariants() : _productBUS.SearchProducts(keyword);
-                if (result.IsSuccess) LoadProductGallery(result.Data);
+                if (result.IsSuccess) 
+                    LoadProductGallery(result.Data);
+
                 e.SuppressKeyPress = true;
             }
         }
@@ -690,16 +713,23 @@ namespace QL_CuaHangBanThuocTruSau.Views
             switch (e.KeyCode)
             {
                 case Keys.F1: txtSearch.Focus(); txtSearch.SelectAll(); break;
+
                 case Keys.F2: HandlePayment(false, true); break;
+
                 case Keys.F5: HandlePayment(false, false); break;
+
                 case Keys.F3: ClearCart(); break;
+
                 case Keys.F4: ShowOldInvoices(); break;
             }
         }
 
         private void pnlRight_Paint(object sender, PaintEventArgs e) { }
+
         private void dgvCart_CellContentClick_1(object sender, DataGridViewCellEventArgs e) { dgvCart_CellContentClick(sender, e); }
+
         private void btnViewOld_Click(object sender, EventArgs e) { ShowOldInvoices(); }
+
 
         private void btnInventoryHistory_Click(object sender, EventArgs e)
         {
@@ -715,6 +745,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
         }
 
         private void pnlCartHeader_Paint(object sender, PaintEventArgs e) { }
+
         private void cboCustomer_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }

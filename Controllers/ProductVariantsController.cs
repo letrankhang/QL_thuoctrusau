@@ -1,6 +1,5 @@
 ﻿using QL_CuaHangBanThuocTruSau.BUS;
 using QL_CuaHangBanThuocTruSau.Models;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -8,7 +7,7 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
 {
     public class ProductVariantController
     {
-        private readonly ProductVariantBUS bus = new ProductVariantBUS();
+        private ProductVariantBUS bus = new ProductVariantBUS();
 
         public List<ProductVariant> layDanhSachTheoSP(int maSP)
         {

@@ -7,9 +7,9 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
 {
     public class BatchController
     {
-        BatchBUS bus = new BatchBUS();
-        ProductBUS productBUS = new ProductBUS();
-        SuppliersBUS suppliersBUS = new SuppliersBUS();
+        private BatchBUS bus = new BatchBUS();
+        private ProductBUS productBUS = new ProductBUS();
+        private SuppliersBUS suppliersBUS = new SuppliersBUS();
 
         public List<BatchViewModel> layDanhSach()
         {

@@ -3,49 +3,56 @@ using QL_CuaHangBanThuocTruSau.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace QL_CuaHangBanThuocTruSau.Controllers {
-    public class UserController {
-        private readonly UserBUS _userBUS;
+namespace QL_CuaHangBanThuocTruSau.Controllers 
+{
+    public class UserController 
+    {
+        private UserBUS _userBUS;
 
-        public UserController () {
+        public UserController () 
+        {
             _userBUS = new UserBUS ();
         }
 
-        public List<User> GetUserList () {
+        public List<User> GetUserList () 
+        {
             return _userBUS.GetAllUsers ();
         }
 
-        public User GetUserDetails (int userId) {
+        public User GetUserDetails (int userId) 
+        {
             return _userBUS.GetUserById (userId);
         }
 
-        public List<User> SearchUsers (string keyword) {
+        public List<User> SearchUsers (string keyword) 
+        {
             var allUsers = _userBUS.GetAllUsers ();
-            if( string.IsNullOrWhiteSpace (keyword) )
+            if (string.IsNullOrWhiteSpace (keyword))
                 return allUsers;
 
             keyword = keyword.ToLower ();
-            return allUsers.Where (u => 
-                u.Username.ToLower ().Contains (keyword) || 
+            return allUsers.Where (u => u.Username.ToLower ().Contains (keyword) || 
                 u.FullName.ToLower ().Contains (keyword)
             ).ToList ();
         }
 
-        public bool DeleteUser (string username) {
+        public bool DeleteUser (string username) 
+        {
             var user = _userBUS.GetUserByUsername (username);
-            if( user != null )
+            if (user != null)
             {
                 return _userBUS.DeleteUser (user.UserID);
             }
             return false;
         }
 
-        public bool UpdateUser (int userId, string password, string fullName, string email, string role, bool status) {
+        public bool UpdateUser (int userId, string password, string fullName, string email, string role, bool status) 
+        {
             return _userBUS.UpdateUserInfo (userId, password, fullName, email, role, status);
         }
 
-        public User GetUserByUsername (string username) {
-
+        public User GetUserByUsername (string username) 
+        {
             return _userBUS.GetUserByUsername (username);
         }
     }
