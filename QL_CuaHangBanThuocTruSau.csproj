@@ -583,6 +583,8 @@
     <None Include="Resources\user %282%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\search1.png" />
+    <None Include="Resources\search.png" />
     <None Include="Resources\Thiết kế chưa có tên.png" />
     <None Include="Resources\sticky-notes.png" />
     <None Include="Resources\plus3.png" />

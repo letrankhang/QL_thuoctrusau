@@ -336,8 +336,9 @@
             this.txtTimKiem.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtTimKiem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTimKiem.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
-            this.txtTimKiem.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.magnifier1;
+            this.txtTimKiem.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.search;
             this.txtTimKiem.IconLeftOffset = new System.Drawing.Point(5, 0);
+            this.txtTimKiem.IconLeftSize = new System.Drawing.Size(25, 25);
             this.txtTimKiem.Location = new System.Drawing.Point(14, 11);
             this.txtTimKiem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTimKiem.Name = "txtTimKiem";

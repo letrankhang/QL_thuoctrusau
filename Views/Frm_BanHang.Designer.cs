@@ -27,16 +27,12 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.pnlCheckout = new System.Windows.Forms.Panel();
             this.guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
             this.guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
-            this.btnInventoryHistory = new Guna.UI2.WinForms.Guna2Button();
             this.btnViewOld = new Guna.UI2.WinForms.Guna2Button();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
-            this.btnSaveOnly = new Guna.UI2.WinForms.Guna2Button();
-            this.btnSavePrint = new Guna.UI2.WinForms.Guna2Button();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblTotalText = new System.Windows.Forms.Label();
             this.pnlCartHeader = new System.Windows.Forms.Panel();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.cboCustomer = new Guna.UI2.WinForms.Guna2ComboBox();
             this.pnlLeft = new System.Windows.Forms.Panel();
@@ -46,6 +42,10 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.cboLocTheoLoai = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cboLocTheoGia = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnInventoryHistory = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSaveOnly = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSavePrint = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.guna2Panel2.SuspendLayout();
@@ -182,24 +182,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2Separator2.Size = new System.Drawing.Size(26, 10);
             this.guna2Separator2.TabIndex = 8;
             // 
-            // btnInventoryHistory
-            // 
-            this.btnInventoryHistory.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryHistory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnInventoryHistory.BorderRadius = 10;
-            this.btnInventoryHistory.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInventoryHistory.FillColor = System.Drawing.Color.SteelBlue;
-            this.btnInventoryHistory.Font = new System.Drawing.Font("Segoe UI Semibold", 8.920354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInventoryHistory.ForeColor = System.Drawing.Color.White;
-            this.btnInventoryHistory.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.historical;
-            this.btnInventoryHistory.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnInventoryHistory.Location = new System.Drawing.Point(239, 172);
-            this.btnInventoryHistory.Name = "btnInventoryHistory";
-            this.btnInventoryHistory.Size = new System.Drawing.Size(250, 53);
-            this.btnInventoryHistory.TabIndex = 7;
-            this.btnInventoryHistory.Text = "Lịch sử kho";
-            this.btnInventoryHistory.Click += new System.EventHandler(this.btnInventoryHistory_Click);
-            // 
             // btnViewOld
             // 
             this.btnViewOld.BackColor = System.Drawing.Color.Transparent;
@@ -232,41 +214,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.btnCancel.Size = new System.Drawing.Size(104, 53);
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Hủy đơn";
-            // 
-            // btnSaveOnly
-            // 
-            this.btnSaveOnly.BorderColor = System.Drawing.Color.SteelBlue;
-            this.btnSaveOnly.BorderRadius = 10;
-            this.btnSaveOnly.BorderThickness = 1;
-            this.btnSaveOnly.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSaveOnly.FillColor = System.Drawing.Color.White;
-            this.btnSaveOnly.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveOnly.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnSaveOnly.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.btnSaveOnly.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.debt_consolidation;
-            this.btnSaveOnly.ImageOffset = new System.Drawing.Point(2, 0);
-            this.btnSaveOnly.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSaveOnly.Location = new System.Drawing.Point(313, 75);
-            this.btnSaveOnly.Name = "btnSaveOnly";
-            this.btnSaveOnly.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.btnSaveOnly.Size = new System.Drawing.Size(176, 58);
-            this.btnSaveOnly.TabIndex = 4;
-            this.btnSaveOnly.Text = " Ghi nợ / Lưu đơn";
-            // 
-            // btnSavePrint
-            // 
-            this.btnSavePrint.BorderRadius = 10;
-            this.btnSavePrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSavePrint.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(168)))), ((int)(((byte)(83)))));
-            this.btnSavePrint.Font = new System.Drawing.Font("Segoe UI Semibold", 12.10619F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSavePrint.ForeColor = System.Drawing.Color.White;
-            this.btnSavePrint.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.wallet;
-            this.btnSavePrint.ImageSize = new System.Drawing.Size(27, 27);
-            this.btnSavePrint.Location = new System.Drawing.Point(14, 75);
-            this.btnSavePrint.Name = "btnSavePrint";
-            this.btnSavePrint.Size = new System.Drawing.Size(261, 58);
-            this.btnSavePrint.TabIndex = 3;
-            this.btnSavePrint.Text = "Thanh toán";
             // 
             // lblTotal
             // 
@@ -312,24 +259,6 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(187, 32);
             this.guna2HtmlLabel1.TabIndex = 2;
             this.guna2HtmlLabel1.Text = "Đơn hàng hiện tại";
-            // 
-            // guna2Button1
-            // 
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.HoverState.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.add_to_cart1;
-            this.guna2Button1.ImageSize = new System.Drawing.Size(28, 28);
-            this.guna2Button1.Location = new System.Drawing.Point(3, 10);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.PressedColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.Size = new System.Drawing.Size(33, 37);
-            this.guna2Button1.TabIndex = 3;
             // 
             // guna2Separator1
             // 
@@ -445,8 +374,9 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.SteelBlue;
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
-            this.txtSearch.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.magnifier;
+            this.txtSearch.IconLeft = global::QL_CuaHangBanThuocTruSau.Properties.Resources.search;
             this.txtSearch.IconLeftOffset = new System.Drawing.Point(5, 0);
+            this.txtSearch.IconLeftSize = new System.Drawing.Size(25, 25);
             this.txtSearch.Location = new System.Drawing.Point(4, 9);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearch.Name = "txtSearch";
@@ -455,6 +385,77 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.txtSearch.Size = new System.Drawing.Size(648, 36);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // btnInventoryHistory
+            // 
+            this.btnInventoryHistory.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryHistory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnInventoryHistory.BorderRadius = 10;
+            this.btnInventoryHistory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInventoryHistory.FillColor = System.Drawing.Color.SteelBlue;
+            this.btnInventoryHistory.Font = new System.Drawing.Font("Segoe UI Semibold", 8.920354F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInventoryHistory.ForeColor = System.Drawing.Color.White;
+            this.btnInventoryHistory.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.historical;
+            this.btnInventoryHistory.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnInventoryHistory.Location = new System.Drawing.Point(239, 172);
+            this.btnInventoryHistory.Name = "btnInventoryHistory";
+            this.btnInventoryHistory.Size = new System.Drawing.Size(250, 53);
+            this.btnInventoryHistory.TabIndex = 7;
+            this.btnInventoryHistory.Text = "Lịch sử kho";
+            this.btnInventoryHistory.Click += new System.EventHandler(this.btnInventoryHistory_Click);
+            // 
+            // btnSaveOnly
+            // 
+            this.btnSaveOnly.BorderColor = System.Drawing.Color.SteelBlue;
+            this.btnSaveOnly.BorderRadius = 10;
+            this.btnSaveOnly.BorderThickness = 1;
+            this.btnSaveOnly.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSaveOnly.FillColor = System.Drawing.Color.White;
+            this.btnSaveOnly.Font = new System.Drawing.Font("Segoe UI Semibold", 10.19469F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveOnly.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btnSaveOnly.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.btnSaveOnly.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.debt_consolidation;
+            this.btnSaveOnly.ImageOffset = new System.Drawing.Point(2, 0);
+            this.btnSaveOnly.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSaveOnly.Location = new System.Drawing.Point(313, 75);
+            this.btnSaveOnly.Name = "btnSaveOnly";
+            this.btnSaveOnly.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.btnSaveOnly.Size = new System.Drawing.Size(176, 58);
+            this.btnSaveOnly.TabIndex = 4;
+            this.btnSaveOnly.Text = " Ghi nợ / Lưu đơn";
+            // 
+            // btnSavePrint
+            // 
+            this.btnSavePrint.BorderRadius = 10;
+            this.btnSavePrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSavePrint.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(168)))), ((int)(((byte)(83)))));
+            this.btnSavePrint.Font = new System.Drawing.Font("Segoe UI Semibold", 12.10619F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSavePrint.ForeColor = System.Drawing.Color.White;
+            this.btnSavePrint.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.wallet;
+            this.btnSavePrint.ImageSize = new System.Drawing.Size(27, 27);
+            this.btnSavePrint.Location = new System.Drawing.Point(14, 75);
+            this.btnSavePrint.Name = "btnSavePrint";
+            this.btnSavePrint.Size = new System.Drawing.Size(261, 58);
+            this.btnSavePrint.TabIndex = 3;
+            this.btnSavePrint.Text = "Thanh toán";
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.FillColor = System.Drawing.Color.Transparent;
+            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.HoverState.FillColor = System.Drawing.Color.Transparent;
+            this.guna2Button1.Image = global::QL_CuaHangBanThuocTruSau.Properties.Resources.add_to_cart1;
+            this.guna2Button1.ImageSize = new System.Drawing.Size(28, 28);
+            this.guna2Button1.Location = new System.Drawing.Point(3, 10);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.PressedColor = System.Drawing.Color.Transparent;
+            this.guna2Button1.Size = new System.Drawing.Size(33, 37);
+            this.guna2Button1.TabIndex = 3;
             // 
             // Frm_BanHang
             // 

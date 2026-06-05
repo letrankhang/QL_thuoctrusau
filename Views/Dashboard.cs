@@ -224,7 +224,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
                     else 
                         loCangDate++;
                 }
-                lblTongSoLo.Text = string.Format("Có {0} lô hàng sắp hết hạn trong 30 ngày tới", loCangDate);
+                lblTongSoLo.Text = string.Format("Có {0} lô hàng sắp hết hạn...", loCangDate);
 
                 lblThongBao.Visible = expiredProducts.Count == 0;
                 lblThongBao.Text = "(Không có lô hàng nào sắp hết hạn)";

@@ -7,14 +7,14 @@ namespace QL_CuaHangBanThuocTruSau.BUS
 {
     public class BatchBUS
     {
-        BatchDAO dao = new BatchDAO();
+        private BatchDAO dao = new BatchDAO();
 
         private string tinhTrangThai(DateTime? hanSuDung)
         {
             if (hanSuDung == null)
                 return "Không xác định";
 
-            if (hanSuDung.Value < DateTime.Today)
+            if (hanSuDung.Value <= DateTime.Today)
                 return "Hết hạn";
 
             if (hanSuDung.Value < DateTime.Today.AddDays(30))
@@ -29,7 +29,7 @@ namespace QL_CuaHangBanThuocTruSau.BUS
             {
                 danhSach[i].TrangThai = tinhTrangThai(danhSach[i].HanSuDung);
             }
-            return danhSach;
+            return danhSach; 
         }
 
         public List<BatchViewModel> layDanhSach()

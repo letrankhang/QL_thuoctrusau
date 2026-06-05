@@ -46,7 +46,7 @@ namespace QL_CuaHangBanThuocTruSau.DAO
             var today = DateTime.Today; 
 
             var result = db.Batches
-                .Where(b => b.ExpiryDate >= today         
+                .Where(b => b.ExpiryDate > today         
                          && b.ExpiryDate <= thresholdDate   
                          && b.RemainingQuantity > 0)
                 .OrderBy(b => b.ExpiryDate)

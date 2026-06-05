@@ -13,23 +13,23 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
 
         public string HandleAddUser (string username, string password, string fullName, string email, string role) 
         {
-            if ( string.IsNullOrWhiteSpace (username) )
+            if (string.IsNullOrWhiteSpace(username))
                 return "Tên đăng nhập không được để trống!";
             
-            if ( string.IsNullOrWhiteSpace (password) )
+            if (string.IsNullOrWhiteSpace(password))
                 return "Mật khẩu không được để trống!";
 
-            if ( password.Length < 6 )
+            if (password.Length < 6)
                 return "Mật khẩu phải có ít nhất 6 ký tự!";
 
-            if ( !string.IsNullOrWhiteSpace (email) && !email.Contains ("@") )
+            if (!string.IsNullOrWhiteSpace(email) && !email.Contains("@"))
                 return "Email không hợp lệ!";
 
             // Gọi BUS thực hiện nghiệp vụ
             bool isSuccess = _userBUS.AddNewUser (username, password, fullName, email, role);
 
 
-            if( isSuccess )
+            if (isSuccess)
             {
                 return "SUCCESS";
             }
