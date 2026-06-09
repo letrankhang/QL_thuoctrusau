@@ -158,7 +158,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             this.cboLocTrangThai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cboLocTrangThai.HoverState.BorderColor = System.Drawing.Color.SteelBlue;
             this.cboLocTrangThai.ItemHeight = 30;
-            this.cboLocTrangThai.Location = new System.Drawing.Point(912, 12);
+            this.cboLocTrangThai.Location = new System.Drawing.Point(911, 12);
             this.cboLocTrangThai.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboLocTrangThai.Name = "cboLocTrangThai";
             this.cboLocTrangThai.Size = new System.Drawing.Size(184, 36);

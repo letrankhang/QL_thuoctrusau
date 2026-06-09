@@ -161,7 +161,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
             cboTrangThai.Items.Add("Đã thanh toán");
             cboTrangThai.SelectedIndex = 0;
 
-            dtpTuNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dtpTuNgay.Value = new DateTime(DateTime.Now.Year, 1, 1);
             dtpDenNgay.Value = DateTime.Now;
 
             dtpTuNgay.Format = DateTimePickerFormat.Custom;
@@ -338,28 +338,42 @@ namespace QL_CuaHangBanThuocTruSau.Views
                 {
                     var ngayQuaHan = DateTime.Now.AddDays(-30);
 
-                    var dsQuaHan = db.DebtTransactions
+                    var dsGoc = db.DebtTransactions
                         .Include(x => x.Customer)
                         .Include(x => x.Supplier)
                         .Where(x => (x.TransactionType.ToUpper() == "SALE" ||
                                      x.TransactionType.ToUpper() == "PURCHASE")
                                  && x.TransactionDate < ngayQuaHan
                                  && x.Amount > 0)
-                        .Select(x => new
-                        {
-                            TenDoiTac = x.Customer != null ? x.Customer.Name
-                                      : x.Supplier != null ? x.Supplier.Name : "N/A",
-                            Amount = x.Amount,
-                            OrderDate = x.TransactionDate,
-                            LoaiNo = x.TransactionType.ToUpper() == "SALE" ? "Khách hàng" : "Nhà cung cấp"
-                        })
                         .ToList();
+
+                    // Lọc những khoản còn nợ thực sự (chưa thanh toán đủ)
+                    var dsQuaHan = dsGoc.Where(x =>
+                    {
+                        decimal paid = 0;
+                        if (x.ReferenceOrderID != null)
+                            paid = db.DebtTransactions
+                                .Where(p => p.TransactionType.ToUpper() == "PAYMENT"
+                                         && p.ReferenceOrderID == x.ReferenceOrderID)
+                                .Sum(p => (decimal?)p.Amount) ?? 0;
+                        else if (x.ReferenceImportID != null)
+                            paid = db.DebtTransactions
+                                .Where(p => p.TransactionType.ToUpper() == "PAYMENT"
+                                         && p.ReferenceImportID == x.ReferenceImportID)
+                                .Sum(p => (decimal?)p.Amount) ?? 0;
+
+                        return (x.Amount - paid) > 0; // Còn nợ mới cảnh báo
+                    }).ToList();
 
                     if (dsQuaHan.Any())
                     {
                         string msg = $"Có {dsQuaHan.Count} khoản nợ quá hạn (> 30 ngày):\n\n";
                         foreach (var item in dsQuaHan.Take(5))
-                            msg += $"• [{item.LoaiNo}] {item.TenDoiTac} — {item.Amount:N0} đ — {item.OrderDate:dd/MM/yyyy}\n";
+                        {
+                            string loai = item.TransactionType.ToUpper() == "SALE" ? "Khách hàng" : "Nhà cung cấp";
+                            string ten = item.Customer?.Name ?? item.Supplier?.Name ?? "N/A";
+                            msg += $"• [{loai}] {ten} — {item.Amount:N0} đ — {item.TransactionDate:dd/MM/yyyy}\n";
+                        }
 
                         if (dsQuaHan.Count > 5)
                             msg += $"... và {dsQuaHan.Count - 5} khoản khác.";

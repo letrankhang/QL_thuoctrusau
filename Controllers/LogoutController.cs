@@ -9,14 +9,14 @@ namespace QL_CuaHangBanThuocTruSau.Controllers
 
         public LogoutController () 
         {
-            _logoutBUS = new LogoutBUS ();
+            _logoutBUS = new LogoutBUS();
         }
 
         public bool HandleLogout () 
         {
             bool businessResult = _logoutBUS.PerformLogoutBusiness ();
 
-            if( businessResult )
+            if (businessResult)
             {
                 // xóa session ứng dụng
                 SessionManager.ClearSession ();

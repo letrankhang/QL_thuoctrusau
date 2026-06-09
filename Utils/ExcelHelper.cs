@@ -276,8 +276,6 @@ namespace QL_CuaHangBanThuocTruSau.Utils
                 }
 
                 int lastRow = row + 1;
-                worksheet.Cell(lastRow, 1).Value = "TỔNG CỘNG:";
-                worksheet.Cell(lastRow, 1).Style.Font.SetBold();
                 
                 worksheet.Cell(lastRow, 2).Value = $"Số lượng công nợ: {danhSach.Count}";
                 worksheet.Cell(lastRow, 2).Style.Font.SetBold();

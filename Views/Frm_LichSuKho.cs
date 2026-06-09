@@ -22,7 +22,7 @@ namespace QL_CuaHangBanThuocTruSau.Views
 
         private void Frm_LichSuKho_Load(object sender, EventArgs e)
         {
-            dtpTuNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dtpTuNgay.Value = new DateTime(DateTime.Now.Year, 1, 1);
             dtpDenNgay.Value = DateTime.Now;
 
             dtpTuNgay.Format = DateTimePickerFormat.Custom;
