@@ -8,8 +8,8 @@ namespace QL_CuaHangBanThuocTruSau.Utils
     {
         private const string Host = "smtp.gmail.com";
         private const int Port = 587;
-        private const string FromEmail = "ttrankhang2405@gmail.com"; // Thay bằng email
-        private const string AppPassword = "ozwm cird dacd xtgo"; // Thay bằng mật khẩu ứng dụng 
+        private const string FromEmail = "Insert your email"; // Thay bằng email
+        private const string AppPassword = "Insert app password "; // Thay bằng mật khẩu ứng dụng 
 
         public static bool SendVerificationCode (string toEmail, string code) 
         {
