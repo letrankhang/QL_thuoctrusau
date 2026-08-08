@@ -17,7 +17,7 @@ Dự án được thiết kế nhằm giúp các cửa hàng, đại lý kinh do
 | 1 | **Lê Trần Khang** | **Nhóm trưởng** | Quản lý chung, thiết kế kiến trúc hệ thống, phát triển module quản lý tài khoản & Thống kê Dashboard |
 | 2 | **Lê Hồng Gấm** | Thành viên | Phát triển module Bán hàng, Quản lý khách hàng |
 | 3 | **Phan Tuấn Kha** | Thành viên | Phát triển module Quản lý Kho, Lô hàng & Nhập hàng từ Nhà cung cấp, công nợ |
-| 4 | **Trần Thái Kiệt** | Thành viên | Phát triển module quản lý Sản phẩm, quy trình nhập hàng, đồng bộ giao diện |
+| 4 | **Trần Thái Kiệt** | Thành viên | Phát triển module quản lý Sản phẩm, các biến thể, lô hàng, đồng bộ giao diện |
 
 ---
 
